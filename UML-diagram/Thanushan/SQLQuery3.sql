@@ -1,63 +1,62 @@
 create table Category 
 (
-CID char (10),
-category_Name varchar (20),
-constraint Category_PK PRIMARY KEY(CID),
+CID int auto_increment unique not null,
+category_Name varchar (100) unique not null,
 
+constraint Category_PK PRIMARY KEY(CID)
 );
 
 create  table Product
 (
-Product_ID char (10),
-CID char (10),
-Product_name varchar (20),
-Price int,
-Quantity int ,
-Discount varchar (20),
-unit int,
-Description varchar (150),
-constraint Product_ID_PK PRIMARY KEY(Product_ID),
-constraint Category_CID_FK FOREIGN KEY(CID) REFERENCES Category (CID ),
+PrID int auto_increment unique not null,
+productName varchar (100) unique,
+descript varchar (250) null,
+price int not null,
+unit varchar(5) not null,
+quantity int not null,
+imgUrl varchar(300) null,
+discount int null,
+CID int not null,
+
+constraint Product_PK PRIMARY KEY(PrID),
+constraint Category_FK FOREIGN KEY(CID) REFERENCES Category (CID)
 
 
 );
 create table Employee
 (
-Employee_ID char(10),
-Email varchar(50) CHECK (Email LIKE '%_@__%.__%'),
-NIC char (15),
-DOB date,
-username varchar(20),
-password varchar(20),
-constraint Employee_PK PRIMARY KEY(Employee_ID)
+EmID int auto_increment unique not null,
+email varchar(50) CHECK (Email LIKE '%_@__%.__%'),
+nic int unique not null,
+dob date not null,
+phone int(10) not null
+username varchar(50) unique not null,
+password varchar(255) not null,
+
+constraint Employee_PK PRIMARY KEY(EmID)
 );
 
-create table Employee_phone
-(
-Employee_ID char(10),
-phone int,
-constraint Employee_FK FOREIGN KEY(Employee_ID ) REFERENCES Employee (Employee_ID),
 
-);
 
 
 create table Category_Employee
 (
-CID char (10),
-Employee_ID char (10),
-constraint Category_CID_FK1 FOREIGN KEY(CID) REFERENCES Category (CID),
-constraint Employee_Employee_ID_FK2 FOREIGN KEY(Employee_ID) REFERENCES Employee (Employee_ID),
+CID int not null,
+EmID int not null,
 
+CONSTRAINT Category_Employee PRIMARY KEY (CID, EmID),
+constraint Category_FK1 FOREIGN KEY(CID) REFERENCES Category (CID),
+constraint Employee_FK2 FOREIGN KEY(EmID) REFERENCES Employee (EmID)
 );
 
 create table Product_Employee
 (
-Product_ID char (10),
-Employee_ID char (10),
-constraint Product_Product_ID_FK1 FOREIGN KEY(Product_ID) REFERENCES Product(Product_ID),
-constraint Product_Employee_Employee_ID_FK2 FOREIGN KEY(Employee_ID) REFERENCES Employee(Employee_ID),
+PrID int not null,
+EmID int not null,
 
-
+CONSTRAINT Category_Employee PRIMARY KEY (PrID, EmID),
+constraint Product_FK1 FOREIGN KEY(PrD) REFERENCES Product(PrID),
+constraint Employee_FK2 FOREIGN KEY(EmID) REFERENCES Employee(EmID)
 );
 
 
@@ -101,11 +100,4 @@ insert into Employee_phone values('E003','0753187254');
 insert into Employee_phone values('E004','0723187254');
 insert into Employee_phone values('E005','0763187254');
 
-
-
-
-
-
-
-
-
+    
