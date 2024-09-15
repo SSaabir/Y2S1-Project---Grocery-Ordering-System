@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Profile Settings</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url(/Images/editprofile.jpg);
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .main-box {
+            display: flex;
+            flex-direction: column;
+            width: 600px;
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: transparent;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .uplode,
+        .profle {
+            padding-left: 175px;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            object-fit: cover;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .upload-btn {
+            background-color: #5f2c84;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .upload-btn:hover {
+            background-color: #4a206a;
+        }
+        
+        .main-form {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .profile-form h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .group {
+            margin-bottom: 20px;
+        }
+        
+        .group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .group input:focus {
+            border-color: #5f2c84;
+            box-shadow: 0 0 8px rgba(95, 44, 132, 0.2);
+            outline: none;
+        }
+        
+        .save-btn {
+            background-color: #5f2c84;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 250px;
+            align-self: flex-start;
+            margin-left: 25%;
+        }
+        
+        .save-btn:hover {
+            background-color: #4a206a;
+        }
+        
+        @media (max-width: 768px) {
+            .main-box {
+                flex-direction: column;
+                box-shadow: none;
+            }
+            .main-form {
+                padding: 20px;
+            }
+            .profile-sidebar {
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+            .profile-form,
+            .experience-form {
+                width: 100%;
+            }
+            .save-btn {
+                width: 100%;
+            }
+        }
+        
+        .file-input {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-box">
+
+        <div class="main-form">
+            <div class="profile-form">
+
+                <div class="profle">
+                    <img src="/user.png" alt="Profile Picture" class="profile-pic" id="profilePic">
+                </div>
+
+                <div class="uplode">
+                    <button type="button" class="upload-btn" onclick="document.getElementById('fileInput').click();">Upload Photo</button>
+                    <input type="file" id="fileInput" class="file-input" accept="image/*" onchange="previewImage(event)">
+                </div>
+
+                <h2>Profile Settings</h2>
+                <form>
+                    <div class="group">
+                        <label for="userName">User Name</label>
+                        <input type="text" id="userName" placeholder="User Name" required>
+                    </div>
+                    <div class="group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" id="firstname" placeholder="First Name" required>
+                    </div>
+
+                    <div class="group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" id="lastname" placeholder="Last Name" required>
+                    </div>
+
+                    <div class="group">
+                        <label for="phone">Mobile Number</label>
+                        <input type="tel" id="phone" placeholder="Enter Phone Number" required>
+                    </div>
+                    <div class="group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" placeholder="Enter Address" required>
+                    </div>
+
+                    <div class="group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" placeholder="Enter City" required>
+                    </div>
+
+                    <div class="group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter Email" required>
+                    </div>
+
+
+                    <button type="submit" class="save-btn">Save Profile</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function() {
+                const imgElement = document.getElementById('profilePic');
+                imgElement.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+
+</html>
