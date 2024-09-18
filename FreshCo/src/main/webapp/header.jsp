@@ -58,8 +58,7 @@
             transition: color 0.3s;
         }
 
-        .nav-links a:hover,
-        .nav-links a.main-active {
+        .nav-links a:hover {
             color: #0c0000;
             border-bottom: 2px solid #0ded2b;
         }
@@ -136,22 +135,21 @@
     <header>
         <nav class="navbar">
             <div class="freshco">
-                <span>FreshCo</span>
+                <span><i>FreshCo</i></span>
             </div>
             <ul class="nav-links">
-                <li><a href="#" class="main-active">Home</a></li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="index.jsp">Home</a></li>
                 <li><a href="#">Shop</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Pages</a></li>
+                <li><a href="#contactUS">Contact Us</a></li>
+                <li><a href="aboutUs.jsp">About Us</a></li>
+                
             </ul>
             <div class="search-bar">
                 <input type="text" placeholder="Search...">
                 <button><i class='bx bx-search-alt-2'></i></button>
             </div>
             <div class="buttons">
-                <a href="#">Log In</a>
-                <a href="#">Register</a>
+                <a href="./login.jsp">Log In</a>
             </div>
             <div class="nav-icons">
                 <a href="#"> <i class='bx bx-cart-alt'></i>

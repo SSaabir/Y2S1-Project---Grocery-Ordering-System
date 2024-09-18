@@ -8,93 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-            text-transform: capitalize;
-        }
-        
-        body {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-        
-        .container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            width: 100%;
-        }
-        
-        .footer {
-            width: 100%;
-        }
-        
-        .newsletter {
-            display: flex;
-            width: 100%;
-            position: relative;
-            top: 60px;
-            max-width: 1000px;
-            margin: auto;
-            background: #616361;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 15px;
-            border-radius: 10px;
-        }
-        
-        .newsletter-left h2 {
-            color: #fff;
-            text-transform: uppercase;
-            font-size: 1rem;
-            opacity: 0.5;
-            letter-spacing: 1px;
-        }
-        
-        .newsletter-left h1 {
-            color: #fff;
-            text-transform: uppercase;
-            font-size: 1.5rem;
-        }
-        
-        .newsletter-right {
-            width: 500px;
-        }
-        
-        .newsletter-input {
-            background: #fff;
-            padding: 5px;
-            border-radius: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .newsletter-input input {
-            border: none;
-            outline: none;
-            background: transparent;
-            width: 80%;
-            padding-left: 10px;
-            font-weight: 600;
-        }
-        
-        .newsletter-input button {
-            background: #201e1e;
-            padding: 9px 15px;
-            border-radius: 15px;
-            color: #fff;
-            cursor: pointer;
-        }
-        
-        .newsletter-input button:hover {
-            background: #3a3939;
-        }
-        
+    footer{
+    position:relative;
+    }
         .footer-content {
             background: #3ea055;;
             padding: 100px 40px 40px;
@@ -195,9 +111,8 @@
 </head>
 
 <body>
+<footer>
     <div class="container">
-        <div class="footer">
-            </div>
             <div class="footer-content">
                 <div class="footer-main">
                     <h2>FreshCo</h2>
@@ -216,17 +131,19 @@
                     <p>Helpful Links</p>
                     <a href="#" class="link">Services</a>
                     <a href="#" class="link">Support</a>
+                    <a href="faq.jsp" class="link">FAQ</a>
                     <a href="#" class="link">Terms & Conditions</a>
                 </div>
                 <div class="links">
                     <p>Information</p>
-                    <a href="#" class="link">Home</a>
-                    <a href="#" class="link">About</a>
-                    <a href="#" class="link">Contact Us</a>
+                    <a href="index.jsp" class="link">Home</a>
+                    <a href="aboutUs.jsp" class="link">About</a>
+                    <a href="#contactUS" class="link">Contact Us</a>
                 </div>
             </div>
         </div>
     </div>
+</footer>
 </body>
 
 </html>

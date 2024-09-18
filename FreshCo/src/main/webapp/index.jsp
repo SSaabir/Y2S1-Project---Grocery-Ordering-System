@@ -152,7 +152,7 @@
                     <input type="text" class="search-input" placeholder="Search your Daily Grocery" name="search" required>
                     <input type="submit" class="search-button" value="search">
                 </form>
-
+	
 
             </div>
 
@@ -177,38 +177,7 @@
 
             </a>
 
-            <a href="#" class="category-box">
-
-                <img src="./image/cat-1.png" alt="Fruits">
-                <span>Fruits</span>
-
-            </a>
-
-            <a href="#" class="category-box">
-
-                <img src="./image/cat-2.png" alt="Meats">
-                <span>Fish  Meats</span>
-
-            </a>
-
-            <a href="#" class="category-box">
-
-                <img src="./image/cat-5.png" alt="Breads">
-                <span>Breads</span>
-
-            </a>
-            <a href="#" class="category-box">
-
-                <img src="./image/cat-6.png" alt="Sotf Drinks">
-                <span>Sotf Drinks</span>
-
-            </a>
-            <a href="#" class="category-box">
-
-                <img src="./image/cat-4.png" alt="Fish">
-                <span>Fish</span>
-
-            </a>
+          
         </div>
     </section>
     <!--category end-->
@@ -238,118 +207,7 @@
                     <i class="fas fa-shopping-bag"></i> Add To Cart
                 </a>
             </div>
-
-            <div class="product-box">
-                <img src="./image/pro-2.png" alt="Mango">
-                <strong>Mango</strong>
-                <span class="Quantity">1kg</span>
-                <span class="price">1500/=</span>
-
-                <a href="#" class="cart-button">
-                    <i class="fas fa-shopping-bag"></i> Add To Cart
-                </a>
-            </div>
-
-            <div class="product-box">
-                <img src="./image/pro-4.png" alt="Orange">
-                <strong>Orange</strong>
-                <span class="Quantity">1kg</span>
-                <span class="price">1400/=</span>
-
-                <a href="#" class="cart-button">
-                    <i class="fas fa-shopping-bag"></i> Add To Cart
-                </a>
-            </div>
-
-            <div class="product-box">
-                <img src="./image/pro-3.png" alt="Choco Bun">
-                <strong>Choco Bun</strong>
-                <span class="Quantity">1</span>
-                <span class="price">500/=</span>
-
-                <a href="#" class="cart-button">
-                    <i class="fas fa-shopping-bag"></i> Add To Cart
-                </a>
-            </div>
-
-            <div class="product-box">
-                <img src="./image/pro-5.png" alt="Tomato">
-                <strong>Tomato</strong>
-                <span class="Quantity">1kg</span>
-                <span class="price">1300/=</span>
-
-                <a href="#" class="cart-button">
-                    <i class="fas fa-shopping-bag"></i> Add To Cart
-                </a>
-            </div>
-
-            <div class="product-box">
-                <img src="./image/pro-9.png" alt="Sprite">
-                <strong>Sprite</strong>
-                <span class="Quantity">100oml</span>
-                <span class="price">1150/=</span>
-
-                <a href="#" class="cart-button">
-                    <i class="fas fa-shopping-bag"></i> Add To Cart
-                </a>
-            </div>
-
-            <div class="product-box">
-                <img src="./image/pro-6.png" alt="Onion">
-                <strong>Onion</strong>
-                <span class="Quantity">1kg</span>
-                <span class="price">1550/=</span>
-
-                <a href="#" class="cart-button">
-                    <i class="fas fa-shopping-bag"></i> Add To Cart
-                </a>
-            </div>
-
-            <div class="product-box">
-                <img src="./image/pro-7.png" alt="Mutton">
-                <strong>Mutton</strong>
-                <span class="Quantity">1kg</span>
-                <span class="price">2550/=</span>
-
-                <a href="#" class="cart-button">
-                    <i class="fas fa-shopping-bag"></i> Add To Cart
-                </a>
-            </div>
-            <div class="product-box">
-                <img src="./image/pro-8.png" alt="Tuna Fish">
-                <strong>Tuna Fish</strong>
-                <span class="Quantity">1kg</span>
-                <span class="price">1750/=</span>
-
-                <a href="#" class="cart-button">
-                    <i class="fas fa-shopping-bag"></i> Add To Cart
-                </a>
-            </div>
-
-
-            <div class="product-box">
-                <img src="./image/pro-11.png" alt="Strawberry">
-                <strong>Strawberry</strong>
-                <span class="Quantity">1kg</span>
-                <span class="price">1250/=</span>
-
-                <a href="#" class="cart-button">
-                    <i class="fas fa-shopping-bag"></i> Add To Cart
-                </a>
-            </div>
-            <div class="product-box">
-                <img src="./image/pro-10.png" alt="Apple">
-                <strong>Apple</strong>
-                <span class="Quantity">1kg</span>
-                <span class="price">2150/=</span>
-
-                <a href="#" class="cart-button">
-                    <i class="fas fa-shopping-bag"></i> Add To Cart
-                </a>
-            </div>
         </div>
-
-
 
 
     </section>
@@ -392,66 +250,7 @@
               <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem perspiciatis recusandae tempora quod doloribus amet quo hic corrupti molestiae odit!</p>
      
            </div>
-           <div class="client-box">
-     
-              <div class="client-profile">
-                 <img src="./image/pic-4.png" alt="client">
-              
-                 <div class="profile-text">
-                   <strong>Eva Green</strong>
-                   <span>HRmanager</span>
-                 </div>
-     
-                 
-     
-              
-                 
-              
-              
-              </div>
-     
-              <div class="Rating">
-                 <i class="fas fa-star"></i>
-                 <i class="fas  fa-star"></i>
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-     
-              </div>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem perspiciatis recusandae tempora quod doloribus amet quo hic corrupti molestiae odit!</p>
-     
-           </div>
-           <div class="client-box">
-     
-              <div class="client-profile">
-                 <img src="./image/pic-3.png" alt="client">
-              
-                 <div class="profile-text">
-                   <strong>jim currey</strong>
-                   <span>basketball player</span>
-                 </div>
-     
-                 
-     
-              
-                 
-              
-              
-              </div>
-     
-              <div class="Rating">
-                 <i class="fas fa-star"></i>
-                 <i class="fas  fa-star"></i>
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-     
-              </div>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem perspiciatis recusandae tempora quod doloribus amet quo hic corrupti molestiae odit!</p>
-     
-           </div>
-           
-     
+          
      
         </div>
      
