@@ -127,6 +127,18 @@
                 flex-direction: column;
             }
         }
+        
+        .home-bg{
+         background-image: url(./image/home-bg.jpg);
+        background-size: cover;
+        background-position: center;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        margin-top: 10px;
+        margin-left: 4.5%;
+        border-radius:20px ;
+        
     </style>
 
 </head>

@@ -8,17 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     
     <style>
-    footer{
-    position:relative;
-    }
-        .footer-content {
-            background: #3ea055;;
-            padding: 100px 40px 40px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
+   footer {
+    position: relative;
+    width: 100%;
+}
+
+.footer-content {
+    background: #3ea055;
+    padding: 100px 40px 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
         
         .footer-main {
             margin: 10px 20px;
