@@ -17,7 +17,7 @@ CREATE TABLE Product (
     discount INT NULL,
     CID INT NOT NULL,
     CONSTRAINT Product_PK PRIMARY KEY (PrID),
-    CONSTRAINT Category_FK FOREIGN KEY (CID)
+    CONSTRAINT Category_FK1 FOREIGN KEY (CID)
         REFERENCES Category (CID)
 );
 
@@ -37,9 +37,9 @@ CREATE TABLE Category_Employee (
     CID INT NOT NULL,
     EmID INT NOT NULL,
     CONSTRAINT Category_Employee_PK PRIMARY KEY (CID, EmID),
-    CONSTRAINT Category_FK1 FOREIGN KEY (CID)
+    CONSTRAINT Category_FK2 FOREIGN KEY (CID)
         REFERENCES Category (CID),
-    CONSTRAINT Employee_FK2 FOREIGN KEY (EmID)
+    CONSTRAINT Employee_FK1 FOREIGN KEY (EmID)
         REFERENCES Employee (EmID)
 );
 
@@ -47,7 +47,7 @@ CREATE TABLE Product_Employee (
     PrID INT NOT NULL,
     EmID INT NOT NULL,
     CONSTRAINT Product_Employee_PK PRIMARY KEY (PrID, EmID),
-    CONSTRAINT Product_FK1 FOREIGN KEY (PrID)
+    CONSTRAINT Product_FK2 FOREIGN KEY (PrID)
         REFERENCES Product (PrID),
     CONSTRAINT Employee_FK2 FOREIGN KEY (EmID)
         REFERENCES Employee (EmID)
@@ -93,19 +93,22 @@ CREATE TABLE Sale (
     CONSTRAINT Sale_PK PRIMARY KEY (OID),
     CONSTRAINT Customer_FK1 FOREIGN KEY (CusID)
         REFERENCES Customer (CusID),
-    CONSTRAINT Payment_FK2 FOREIGN KEY (PID)
+    CONSTRAINT Payment_FK1 FOREIGN KEY (PID)
         REFERENCES Payment (PID),
-    CONSTRAINT DeliveryPerson_FK3 FOREIGN KEY (DPID)
+    CONSTRAINT DeliveryPerson_FK1 FOREIGN KEY (DPID)
         REFERENCES DeliveryPerson (DPID)
 );
 
 CREATE TABLE Product_Sale (
     PrID INT NOT NULL,
     OID INT NOT NULL,
+    quantity INT NOT NULL,
+    netPrice FLOAT NOT NULL,
+    discount INT NULL,
     CONSTRAINT Product_Sale_PK PRIMARY KEY (PrID, OID),
     CONSTRAINT Product_FK1 FOREIGN KEY (PrID)
         REFERENCES Product (PrID),
-    CONSTRAINT Sale_FK2 FOREIGN KEY (OID)
+    CONSTRAINT Sale_FK1 FOREIGN KEY (OID)
         REFERENCES Sale (OID)
 );
 
@@ -115,7 +118,7 @@ CREATE TABLE Feedback (
     rating INT NULL,
     OID INT NOT NULL,
     CONSTRAINT Feedback_PK PRIMARY KEY (FID),
-    CONSTRAINT Order_FK FOREIGN KEY (OID)
+    CONSTRAINT Sale_FK2 FOREIGN KEY (OID)
         REFERENCES Sale (OID)
 );
 
@@ -123,7 +126,7 @@ CREATE TABLE Manager (
     MID INT AUTO_INCREMENT NOT NULL UNIQUE,
     EmID INT NOT NULL,
     CONSTRAINT Manager_PK PRIMARY KEY (MID),
-    CONSTRAINT Manager_FK FOREIGN KEY (EmID)
+    CONSTRAINT Manager_FK1 FOREIGN KEY (EmID)
         REFERENCES Employee (EmID)
 );
 
@@ -131,9 +134,9 @@ CREATE TABLE Manager_Feedback (
     MID INT NOT NULL,
     FID INT NOT NULL,
     CONSTRAINT Manager_Feedback_PK PRIMARY KEY (MID, FID),
-    CONSTRAINT Manager_FK1 FOREIGN KEY (MID)
+    CONSTRAINT Manager_FK2 FOREIGN KEY (MID)
         REFERENCES Manager (MID),
-    CONSTRAINT Feedback_FK2 FOREIGN KEY (FID)
+    CONSTRAINT Feedback_FK1 FOREIGN KEY (FID)
         REFERENCES Feedback (FID)
 );
 
@@ -141,9 +144,9 @@ CREATE TABLE Manager_Employee (
     MID INT NOT NULL,
     EmID INT NOT NULL,
     CONSTRAINT Manager_Employee_PK PRIMARY KEY (MID, EmID),
-    CONSTRAINT Manager_FK1 FOREIGN KEY (MID)
+    CONSTRAINT Manager_FK3 FOREIGN KEY (MID)
         REFERENCES Manager (MID),
-    CONSTRAINT Employee_FK2 FOREIGN KEY (EmID)
+    CONSTRAINT Employee_FK3 FOREIGN KEY (EmID)
         REFERENCES Employee (EmID)
 );
 
@@ -166,9 +169,9 @@ CREATE TABLE Manager_Admin (
     MID INT NOT NULL,
     AID INT NOT NULL,
     CONSTRAINT Manager_Admin_PK PRIMARY KEY (MID, AID),
-    CONSTRAINT Manager_FK1 FOREIGN KEY (MID)
+    CONSTRAINT Manager_FK4 FOREIGN KEY (MID)
         REFERENCES Manager (MID),
-    CONSTRAINT Admin_FK2 FOREIGN KEY (AID)
+    CONSTRAINT Admin_FK1 FOREIGN KEY (AID)
         REFERENCES Admin (AID)
 );
 
@@ -184,9 +187,9 @@ CREATE TABLE Customer_Enquiry (
     CusID INT NOT NULL,
     EnID INT NOT NULL,
     CONSTRAINT Customer_Enquiry_PK PRIMARY KEY (CusID, EnID),
-    CONSTRAINT Customer_FK1 FOREIGN KEY (CusID)
+    CONSTRAINT Customer_FK2 FOREIGN KEY (CusID)
         REFERENCES Customer (CusID),
-    CONSTRAINT Enquiry_FK2 FOREIGN KEY (EnID)
+    CONSTRAINT Enquiry_FK1 FOREIGN KEY (EnID)
         REFERENCES Enquiry (EnID)
 );
 
@@ -194,7 +197,7 @@ CREATE TABLE Manager_Enquiry (
     MID INT NOT NULL,
     EnID INT NOT NULL,
     CONSTRAINT Manager_Enquiry_PK PRIMARY KEY (MID, EnID),
-    CONSTRAINT Manager_FK1 FOREIGN KEY (MID)
+    CONSTRAINT Manager_FK5 FOREIGN KEY (MID)
         REFERENCES Manager (MID),
     CONSTRAINT Enquiry_FK2 FOREIGN KEY (EnID)
         REFERENCES Enquiry (EnID)
@@ -204,7 +207,7 @@ CREATE TABLE Customer_Admin (
     CusID INT NOT NULL,
     AID INT NOT NULL,
     CONSTRAINT Customer_Admin_PK PRIMARY KEY (CusID, AID),
-    CONSTRAINT Customer_FK1 FOREIGN KEY (CusID)
+    CONSTRAINT Customer_FK3 FOREIGN KEY (CusID)
         REFERENCES Customer (CusID),
     CONSTRAINT Admin_FK2 FOREIGN KEY (AID)
         REFERENCES Admin (AID)
@@ -214,9 +217,9 @@ CREATE TABLE Payment_Manager (
     MID INT NOT NULL,
     PID INT NOT NULL,
     CONSTRAINT Payment_Manager_PK PRIMARY KEY (MID, PID),
-    CONSTRAINT Manager_FK1 FOREIGN KEY (MID)
+    CONSTRAINT Manager_FK6 FOREIGN KEY (MID)
         REFERENCES Manager (MID),
-    CONSTRAINT Payment_FK1 FOREIGN KEY (PID)
+    CONSTRAINT Payment_FK2 FOREIGN KEY (PID)
         REFERENCES Payment (PID)
 );
 
@@ -224,7 +227,7 @@ CREATE TABLE Customer_Phone (
     CusID INT NOT NULL,
     phone VARCHAR(15) NOT NULL,
     CONSTRAINT Customer_Phone_PK PRIMARY KEY (CusID, phone),
-    CONSTRAINT Customer_FK FOREIGN KEY (CusID)
+    CONSTRAINT Customer_FK4 FOREIGN KEY (CusID)
         REFERENCES Customer (CusID)
 );
 
@@ -244,12 +247,12 @@ INSERT INTO Product (productName, descript, price, unit, quantity, imgUrl, disco
 ('Bread', 'Freshly baked bread', 50, 'pcs', 100, NULL, 2, 4),
 ('Apple', 'Juicy red apples', 200, 'kg', 60, NULL, 5, 5);
 
-INSERT INTO Employee (email, nic, dob, phone, username, password) VALUES 
-('thanu1022@gmail.com', '200129602687', '2001-10-22', NULL, '0743187254', 'thanushan', 'thanu2001'),
-('ishas10001@gmail.com', '20034552687', '2001-10-22', NULL, '0703187254', 'ishas', 'ishas0320'),
-('saabir2010@gmail.com', '200229602687', '2001-10-22', NULL, '0753187254', 'saabir', 'saabir12'),
-('Aadher000@gmail.com', '200329602687', '2001-10-22', NULL, '0723187254', 'Aadhir', 'Aadhir000'),
-('sanujan2@gmail.com', '200329602687', '2001-10-22', NULL, '0763187254', 'shanujan', 'shanujan2002');
+INSERT INTO Employee (email, nic, dob, imgUrl, phone, username, password) VALUES 
+('thanu1022@gmail.com', '2001296268', '2001-10-22', NULL, '0743187254', 'thanushan', 'thanu2001'),
+('ishas10001@gmail.com', '2003452687', '2001-10-22', NULL, '0703187254', 'ishas', 'ishas0320'),
+('saabir2010@gmail.com', '2002960687', '2001-10-22', NULL, '0753187254', 'saabir', 'saabir12'),
+('Aadher000@gmail.com', '2039602687', '2001-10-22', NULL, '0723187254', 'Aadhir', 'Aadhir000'),
+('sanujan2@gmail.com', '2003602687', '2001-10-22', NULL, '0763187254', 'shanujan', 'shanujan2002');
 
 INSERT INTO Category_Employee (CID, EmID) VALUES 
 (1, 1),
@@ -293,12 +296,12 @@ INSERT INTO Sale (orderDate, totalAmount, orderStatus, CusID, PID, DPID) VALUES
 ('2024-04-04', 50.00, TRUE, 4, 4, 4),
 ('2024-05-05', 600.00, TRUE, 5, 5, 5);
 
-INSERT INTO Product_Sale (PrID, OID) VALUES 
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5);
+INSERT INTO Product_Sale (PrID, OID, quantity, netPrice, discount) VALUES 
+(1, 1, 5, 500.00, 10),
+(2, 2, 3, 3000.00, 5),
+(3, 3, 10, 10000.00, NULL),
+(4, 4, 7, 350.00, 2),
+(5, 5, 2, 400.00, 5);
 
 INSERT INTO Feedback (comments, rating, OID) VALUES 
 ('Great product!', 5, 1),
