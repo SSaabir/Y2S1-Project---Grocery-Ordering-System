@@ -5,16 +5,6 @@ body{
    background-color:rgb(244, 241, 241);
 }
 
-.home-bg{
-   background: url(./image/home-bg.jpg) no-repeat;
-   background-size: cover;
-   background-position: center;
-   width: 90%;
-   margin-left: 5%;
-   border-radius:30px ;
-
-}
-
 .home-bg .home{
    display: flex;
    align-items: center;
