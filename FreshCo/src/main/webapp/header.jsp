@@ -9,19 +9,26 @@
     <title>FreshCo Grocery Navigation Bar</title>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <style>
+   
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
 
+		.logo{
+		font-family: 'Finger Paint', cursive;
+		}
+		
         body {
             background-color: #f5f5f5;
             
         }
 
         .navbar {
+        	font-family: Arial, sans-serif;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -36,7 +43,7 @@
         }
 
         .freshco span {
-            font-size: 18px;
+            font-size: 30px;
             font-weight: bold;
             color: #000000;
         }
@@ -135,7 +142,7 @@
     <header>
         <nav class="navbar">
             <div class="freshco">
-                <span><i>FreshCo</i></span>
+                <span class="logo"><i>Fresh Co.</i></span>
             </div>
             <ul class="nav-links">
                 <li><a href="index.jsp">Home</a></li>

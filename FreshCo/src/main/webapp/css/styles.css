@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
 
 *{  
-    font-family: Archivo;
-    font-weight: 500;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
+.logo{
+		font-family: 'Finger Paint', cursive;
+		}
+		
 #side-nav{
     height: auto;
     width: 15%;
@@ -38,6 +39,13 @@
 }
 
 #main{
-    background-color: #f9f9f9;
+	
+    font-weight: 500;
+   background-color: #f9f9f9;
    margin-left:15.5%;
+  
 }
+
+   .material-symbols-outlined {
+            cursor: pointer;
+        }

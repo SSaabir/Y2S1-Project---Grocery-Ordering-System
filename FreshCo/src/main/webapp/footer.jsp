@@ -15,7 +15,7 @@
 
 .footer-content {
     background: #3ea055;
-    padding: 100px 40px 40px;
+    padding: 50px 50px 0px 40px;
     width: 100%;
     display: flex;
     justify-content: space-between;
