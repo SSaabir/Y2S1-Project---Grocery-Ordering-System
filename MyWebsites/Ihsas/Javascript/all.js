@@ -44,7 +44,7 @@ function handleFormSubmit(event) {
     if (isValid) {
         document.getElementById(`${formType}Success`).style.display = 'block';
         console.log(getFormData(formType));
-        // Perform AJAX request or form submission here
+
     }
 }
 
@@ -148,3 +148,7 @@ document.getElementById('driverOption').addEventListener('change', function() {
         window.location.href = "Delivery_person.html";
     }
 });
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////

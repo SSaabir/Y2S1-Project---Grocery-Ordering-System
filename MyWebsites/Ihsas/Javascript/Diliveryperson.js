@@ -1,15 +1,3 @@
-document.getElementById('driverOption').addEventListener('change', function() {
-    if (this.checked) {
-        window.location.href = "Delivery_person.html ";
-    }
-});
-
-document.getElementById('registrationForm').addEventListener('submit', function(event) {
-    alert('Form submitted successfully!');
-    event.preventDefault();
-});
-
-
 document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('registrationForm').addEventListener('submit', function(event) {
@@ -21,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault();
         } else {
             alert('Form submitted successfully!');
+
         }
     });
 
