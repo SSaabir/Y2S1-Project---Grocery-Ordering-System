@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
 
 *{  
-    margin: 0;
+	    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -10,6 +10,8 @@
 		}
 		
 #side-nav{
+	font-family: Archivo;
+    font-weight: 500;
     height: auto;
     width: 15%;
     position: absolute;
@@ -39,9 +41,9 @@
 }
 
 #main{
-	
+	font-family: Archivo;
     font-weight: 500;
-   background-color: #f9f9f9;
+	   background-color: #f9f9f9;
    margin-left:15.5%;
   
 }

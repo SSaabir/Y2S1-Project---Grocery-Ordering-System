@@ -53,6 +53,7 @@
         <header>
             <jsp:include page="header.jsp" />
         </header>
+        
         <!--Side Navigation-->
         <div id="side-nav">
             <a class="active" href="dashboard.jsp"><span class="material-symbols-outlined">
