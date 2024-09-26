@@ -17,7 +17,7 @@ CREATE TABLE Product (
     discount INT NULL,
     CID INT NOT NULL,
     CONSTRAINT Product_PK PRIMARY KEY (PrID),
-    CONSTRAINT Category_FK1 FOREIGN KEY (CID)
+    CONSTRAINT Product_Category_FK FOREIGN KEY (CID)
         REFERENCES Category (CID)
 );
 
@@ -37,9 +37,9 @@ CREATE TABLE Category_Employee (
     CID INT NOT NULL,
     EmID INT NOT NULL,
     CONSTRAINT Category_Employee_PK PRIMARY KEY (CID, EmID),
-    CONSTRAINT Category_FK2 FOREIGN KEY (CID)
+    CONSTRAINT Category_Employee_Category_FK FOREIGN KEY (CID)
         REFERENCES Category (CID),
-    CONSTRAINT Employee_FK1 FOREIGN KEY (EmID)
+    CONSTRAINT Category_Employee_Employee_FK FOREIGN KEY (EmID)
         REFERENCES Employee (EmID)
 );
 
@@ -47,18 +47,29 @@ CREATE TABLE Product_Employee (
     PrID INT NOT NULL,
     EmID INT NOT NULL,
     CONSTRAINT Product_Employee_PK PRIMARY KEY (PrID, EmID),
-    CONSTRAINT Product_FK2 FOREIGN KEY (PrID)
+    CONSTRAINT Product_Employee_Product_FK FOREIGN KEY (PrID)
         REFERENCES Product (PrID),
-    CONSTRAINT Employee_FK2 FOREIGN KEY (EmID)
+    CONSTRAINT Product_Employee_Employee_FK FOREIGN KEY (EmID)
         REFERENCES Employee (EmID)
 );
 
+-- Using EmID from Employee as a Foreign Key in Manager Table
+CREATE TABLE Manager (
+    EmID INT NOT NULL UNIQUE,
+    CONSTRAINT Manager_PK PRIMARY KEY (EmID),
+    CONSTRAINT Manager_Employee_FK FOREIGN KEY (EmID)
+        REFERENCES Employee (EmID)
+);
+
+-- Using EmID from Employee as a Foreign Key in DeliveryPerson Table
 CREATE TABLE DeliveryPerson (
-    DPID INT NOT NULL UNIQUE,
+    EmID INT NOT NULL UNIQUE,
     vehicleNum CHAR(10) NOT NULL,
     drivingLicenseNum VARCHAR(10) NOT NULL,
     city VARCHAR(50) NOT NULL,
-    CONSTRAINT DeliveryPerson_PK PRIMARY KEY (DPID)
+    CONSTRAINT DeliveryPerson_PK PRIMARY KEY (EmID),
+    CONSTRAINT DeliveryPerson_Employee_FK FOREIGN KEY (EmID)
+        REFERENCES Employee (EmID)
 );
 
 CREATE TABLE Customer (
@@ -89,14 +100,14 @@ CREATE TABLE Sale (
     orderStatus BOOLEAN NULL,
     CusID INT NOT NULL,
     PID INT NOT NULL,
-    DPID INT NOT NULL,
+    EmID INT NOT NULL,
     CONSTRAINT Sale_PK PRIMARY KEY (OID),
-    CONSTRAINT Customer_FK1 FOREIGN KEY (CusID)
+    CONSTRAINT Sale_Customer_FK FOREIGN KEY (CusID)
         REFERENCES Customer (CusID),
-    CONSTRAINT Payment_FK1 FOREIGN KEY (PID)
+    CONSTRAINT Sale_Payment_FK FOREIGN KEY (PID)
         REFERENCES Payment (PID),
-    CONSTRAINT DeliveryPerson_FK1 FOREIGN KEY (DPID)
-        REFERENCES DeliveryPerson (DPID)
+    CONSTRAINT Sale_Employee_FK FOREIGN KEY (EmID)
+        REFERENCES Employee (EmID)
 );
 
 CREATE TABLE Product_Sale (
@@ -106,9 +117,9 @@ CREATE TABLE Product_Sale (
     netPrice FLOAT NOT NULL,
     discount INT NULL,
     CONSTRAINT Product_Sale_PK PRIMARY KEY (PrID, OID),
-    CONSTRAINT Product_FK1 FOREIGN KEY (PrID)
+    CONSTRAINT Product_Sale_Product_FK FOREIGN KEY (PrID)
         REFERENCES Product (PrID),
-    CONSTRAINT Sale_FK1 FOREIGN KEY (OID)
+    CONSTRAINT Product_Sale_Sale_FK FOREIGN KEY (OID)
         REFERENCES Sale (OID)
 );
 
@@ -118,32 +129,29 @@ CREATE TABLE Feedback (
     rating INT NULL,
     OID INT NOT NULL,
     CONSTRAINT Feedback_PK PRIMARY KEY (FID),
-    CONSTRAINT Sale_FK2 FOREIGN KEY (OID)
+    CONSTRAINT Feedback_Sale_FK FOREIGN KEY (OID)
         REFERENCES Sale (OID)
 );
 
-CREATE TABLE Manager (
-    MID INT NOT NULL UNIQUE,
-    CONSTRAINT Manager_PK PRIMARY KEY (MID)
-);
-
+-- Manager Feedback Table
 CREATE TABLE Manager_Feedback (
-    MID INT NOT NULL,
+    EmID INT NOT NULL,
     FID INT NOT NULL,
-    CONSTRAINT Manager_Feedback_PK PRIMARY KEY (MID, FID),
-    CONSTRAINT Manager_FK2 FOREIGN KEY (MID)
-        REFERENCES Manager (MID),
-    CONSTRAINT Feedback_FK1 FOREIGN KEY (FID)
+    CONSTRAINT Manager_Feedback_PK PRIMARY KEY (EmID, FID),
+    CONSTRAINT Manager_Feedback_Manager_FK FOREIGN KEY (EmID)
+        REFERENCES Manager (EmID),
+    CONSTRAINT Manager_Feedback_Feedback_FK FOREIGN KEY (FID)
         REFERENCES Feedback (FID)
 );
 
+-- Manager Employee Table (linking EmID as a relationship between manager and employees)
 CREATE TABLE Manager_Employee (
-    MID INT NOT NULL,
-    EmID INT NOT NULL,
-    CONSTRAINT Manager_Employee_PK PRIMARY KEY (MID, EmID),
-    CONSTRAINT Manager_FK3 FOREIGN KEY (MID)
-        REFERENCES Manager (MID),
-    CONSTRAINT Employee_FK3 FOREIGN KEY (EmID)
+    EmID_Manager INT NOT NULL,
+    EmID_Employee INT NOT NULL,
+    CONSTRAINT Manager_Employee_PK PRIMARY KEY (EmID_Manager, EmID_Employee),
+    CONSTRAINT Manager_Employee_Manager_FK FOREIGN KEY (EmID_Manager)
+        REFERENCES Manager (EmID),
+    CONSTRAINT Manager_Employee_Employee_FK FOREIGN KEY (EmID_Employee)
         REFERENCES Employee (EmID)
 );
 
@@ -163,12 +171,12 @@ CREATE TABLE Admin (
 );
 
 CREATE TABLE Manager_Admin (
-    MID INT NOT NULL,
+    EmID INT NOT NULL,
     AID INT NOT NULL,
-    CONSTRAINT Manager_Admin_PK PRIMARY KEY (MID, AID),
-    CONSTRAINT Manager_FK4 FOREIGN KEY (MID)
-        REFERENCES Manager (MID),
-    CONSTRAINT Admin_FK1 FOREIGN KEY (AID)
+    CONSTRAINT Manager_Admin_PK PRIMARY KEY (EmID, AID),
+    CONSTRAINT Manager_Admin_Manager_FK FOREIGN KEY (EmID)
+        REFERENCES Manager (EmID),
+    CONSTRAINT Manager_Admin_Admin_FK FOREIGN KEY (AID)
         REFERENCES Admin (AID)
 );
 
@@ -184,19 +192,19 @@ CREATE TABLE Customer_Enquiry (
     CusID INT NOT NULL,
     EnID INT NOT NULL,
     CONSTRAINT Customer_Enquiry_PK PRIMARY KEY (CusID, EnID),
-    CONSTRAINT Customer_FK2 FOREIGN KEY (CusID)
+    CONSTRAINT Customer_Enquiry_Customer_FK FOREIGN KEY (CusID)
         REFERENCES Customer (CusID),
-    CONSTRAINT Enquiry_FK1 FOREIGN KEY (EnID)
+    CONSTRAINT Customer_Enquiry_Enquiry_FK FOREIGN KEY (EnID)
         REFERENCES Enquiry (EnID)
 );
 
 CREATE TABLE Manager_Enquiry (
-    MID INT NOT NULL,
+    EmID INT NOT NULL,
     EnID INT NOT NULL,
-    CONSTRAINT Manager_Enquiry_PK PRIMARY KEY (MID, EnID),
-    CONSTRAINT Manager_FK5 FOREIGN KEY (MID)
-        REFERENCES Manager (MID),
-    CONSTRAINT Enquiry_FK2 FOREIGN KEY (EnID)
+    CONSTRAINT Manager_Enquiry_PK PRIMARY KEY (EmID, EnID),
+    CONSTRAINT Manager_Enquiry_Manager_FK FOREIGN KEY (EmID)
+        REFERENCES Manager (EmID),
+    CONSTRAINT Manager_Enquiry_Enquiry_FK FOREIGN KEY (EnID)
         REFERENCES Enquiry (EnID)
 );
 
@@ -204,19 +212,19 @@ CREATE TABLE Customer_Admin (
     CusID INT NOT NULL,
     AID INT NOT NULL,
     CONSTRAINT Customer_Admin_PK PRIMARY KEY (CusID, AID),
-    CONSTRAINT Customer_FK3 FOREIGN KEY (CusID)
+    CONSTRAINT Customer_Admin_Customer_FK FOREIGN KEY (CusID)
         REFERENCES Customer (CusID),
-    CONSTRAINT Admin_FK2 FOREIGN KEY (AID)
+    CONSTRAINT Customer_Admin_Admin_FK FOREIGN KEY (AID)
         REFERENCES Admin (AID)
 );
 
 CREATE TABLE Payment_Manager (
-    MID INT NOT NULL,
+    EmID INT NOT NULL,
     PID INT NOT NULL,
-    CONSTRAINT Payment_Manager_PK PRIMARY KEY (MID, PID),
-    CONSTRAINT Manager_FK6 FOREIGN KEY (MID)
-        REFERENCES Manager (MID),
-    CONSTRAINT Payment_FK2 FOREIGN KEY (PID)
+    CONSTRAINT Payment_Manager_PK PRIMARY KEY (EmID, PID),
+    CONSTRAINT Payment_Manager_Manager_FK FOREIGN KEY (EmID)
+        REFERENCES Manager (EmID),
+    CONSTRAINT Payment_Manager_Payment_FK FOREIGN KEY (PID)
         REFERENCES Payment (PID)
 );
 
@@ -224,162 +232,229 @@ CREATE TABLE Customer_Phone (
     CusID INT NOT NULL,
     phone VARCHAR(15) NOT NULL,
     CONSTRAINT Customer_Phone_PK PRIMARY KEY (CusID, phone),
-    CONSTRAINT Customer_FK4 FOREIGN KEY (CusID)
+    CONSTRAINT Customer_Phone_Customer_FK FOREIGN KEY (CusID)
         REFERENCES Customer (CusID)
 );
 
--- Insert Records
+-- Create Triggers to Enforce Constraints
+DELIMITER //
 
-INSERT INTO Category (category_Name) VALUES 
-('Vegetables'),
-('Meat'),
-('Snacks'),
-('Bakery'),
-('Fruits');
+CREATE TRIGGER before_insert_manager
+BEFORE INSERT ON Manager
+FOR EACH ROW
+BEGIN
+    DECLARE emp_count INT;
+    SELECT COUNT(*) INTO emp_count FROM DeliveryPerson WHERE EmID = NEW.EmID;
+    IF emp_count > 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Employee cannot be both a Manager and a Delivery Person';
+    END IF;
+END; //
 
-INSERT INTO Product (productName, descript, price, unit, quantity, imgUrl, discount, CID) VALUES 
-('Mango', 'Fresh tropical mangoes', 100, 'kg', 50, NULL, 5, 5),
-('Chicken', 'Fresh chicken meat', 2000, 'kg', 20, NULL, 10, 2),
-('Fish', 'Fresh fish', 1000, 'kg', 30, NULL, 5, 2),
-('Bread', 'Freshly baked bread', 50, 'pcs', 100, NULL, 2, 4),
-('Apple', 'Juicy red apples', 200, 'kg', 60, NULL, 5, 5);
+CREATE TRIGGER before_insert_deliveryperson
+BEFORE INSERT ON DeliveryPerson
+FOR EACH ROW
+BEGIN
+    DECLARE emp_count INT;
+    SELECT COUNT(*) INTO emp_count FROM Manager WHERE EmID = NEW.EmID;
+    IF emp_count > 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Employee cannot be both a Delivery Person and a Manager';
+    END IF;
+END; //
+
+DELIMITER ;
+
 
 INSERT INTO Employee (email, nic, dob, imgUrl, phone, username, password) VALUES 
-('thanu1022@gmail.com', '2001296268', '2001-10-22', NULL, '0743187254', 'thanushan', 'thanu2001'),
-('ishas10001@gmail.com', '2003452687', '2001-10-22', NULL, '0703187254', 'ishas', 'ishas0320'),
-('saabir2010@gmail.com', '2002960687', '2001-10-22', NULL, '0753187254', 'saabir', 'saabir12'),
-('Aadher000@gmail.com', '2039602687', '2001-10-22', NULL, '0723187254', 'Aadhir', 'Aadhir000'),
-('sanujan2@gmail.com', '2003602687', '2001-10-22', NULL, '0763187254', 'shanujan', 'shanujan2002');
+('john.doe@example.com', 'NIC123456', '1990-01-01', 'john.jpg', '1234567890', 'johndoe', 'password1'), -- EmID 1
+('jane.smith@example.com', 'NIC654321', '1985-02-02', 'jane.jpg', '0987654321', 'janesmith', 'password2'), -- EmID 2
+('mark.jones@example.com', 'NIC789456', '1992-03-03', 'mark.jpg', '1357924680', 'markjones', 'password3'), -- EmID 3
+('lucy.brown@example.com', 'NIC159753', '1988-04-04', 'lucy.jpg', '2468135790', 'lucybrown', 'password4'), -- EmID 4
+('alex.wilson@example.com', 'NIC753159', '1995-05-05', 'alex.jpg', '3692581470', 'alexwilson', 'password5'), -- EmID 5
+('emma.johnson@example.com', 'NIC951753', '1987-06-06', 'emma.jpg', '1472583690', 'emmajohnson', 'password6'), -- EmID 6
+('william.thompson@example.com', 'NIC852456', '1993-07-07', 'william.jpg', '2583691470', 'williamthompson', 'password7'), -- EmID 7
+('olivia.martinez@example.com', 'NIC456789', '1986-08-08', 'olivia.jpg', '9632587410', 'oliviamartinez', 'password8'), -- EmID 8
+('james.anderson@example.com', 'NIC654987', '1982-09-09', 'james.jpg', '7894561230', 'jamesanderson', 'password9'), -- EmID 9
+('isabella.jackson@example.com', 'NIC321654', '1994-10-10', 'isabella.jpg', '3216549870', 'isabellajackson', 'password10'), -- EmID 10
+('benjamin.harris@example.com', 'NIC789123', '1983-11-11', 'benjamin.jpg', '1473692580', 'benjaminharris', 'password11'), -- EmID 11
+('sophia.miller@example.com', 'NIC258963', '1991-12-12', 'sophia.jpg', '2583691470', 'sophiamiller', 'password12'), -- EmID 12
+('elijah.wilson@example.com', 'NIC951456', '1996-01-13', 'elijah.jpg', '1237894560', 'elijahwilson', 'password13'), -- EmID 13
+('ava.moore@example.com', 'NIC753468', '1990-02-14', 'ava.jpg', '7891234560', 'avamoore', 'password14'), -- EmID 14
+('noah.taylor@example.com', 'NIC951369', '1997-03-15', 'noah.jpg', '4561237890', 'noahtaylor', 'password15'); -- EmID 15
 
-INSERT INTO Category_Employee (CID, EmID) VALUES 
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5);
+-- Insert records into Category
+INSERT INTO Category (category_Name)
+VALUES
+    ('Electronics'),
+    ('Clothing'),
+    ('Home Appliances'),
+    ('Books'),
+    ('Toys');
 
-INSERT INTO Product_Employee (PrID, EmID) VALUES 
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5);
+-- Insert records into Product
+INSERT INTO Product (productName, descript, price, unit, quantity, imgUrl, discount, CID)
+VALUES
+    ('Smartphone', 'Latest model smartphone', 599.99, 'unit', 100, 'smartphone.jpg', 10, 1),
+    ('T-shirt', 'Cotton T-shirt', 19.99, 'piece', 500, 'tshirt.jpg', 5, 2),
+    ('Refrigerator', '2-door refrigerator', 799.99, 'unit', 50, 'refrigerator.jpg', 15, 3),
+    ('Novel', 'Bestselling novel', 14.99, 'book', 200, 'novel.jpg', 0, 4),
+    ('Toy Car', 'Toy car for kids', 19.99, 'piece', 100, 'toycar.jpg', 10, 5);
 
-INSERT INTO DeliveryPerson (vehicleNum, drivingLicenseNum, city) VALUES 
-('ABC1234', 'D123456789', 'Colombo'),
-('XYZ5678', 'D987654321', 'Kandy'),
-('LMN4321', 'D456789123', 'Galle'),
-('PQR8765', 'D321654987', 'Jaffna'),
-('STU9876', 'D789456123', 'Kurunegala');
+-- Insert records into Manager
+INSERT INTO Manager (EmID)
+VALUES
+    (6),
+    (7),
+    (8),
+    (9),
+    (10);
 
-INSERT INTO Customer (fName, lName, email, lane, city, dob, imgUrl, username, password) VALUES 
-('John', 'Doe', 'johndoe@example.com', '123 Main St', 'Colombo', '1990-01-01', NULL, 'johndoe', 'password1'),
-('Jane', 'Smith', 'janesmith@example.com', '456 Market St', 'Kandy', '1992-02-02', NULL, 'janesmith', 'password2'),
-('Alice', 'Brown', 'alicebrown@example.com', '789 High St', 'Galle', '1988-03-03', NULL, 'alicebrown', 'password3'),
-('Bob', 'Jones', 'bobjones@example.com', '101 Low St', 'Jaffna', '1985-04-04', NULL, 'bobjones', 'password4'),
-('Charlie', 'Davis', 'charliedavis@example.com', '202 Hill St', 'Kurunegala', '1995-05-05', NULL, 'charliedavis', 'password5');
+-- Insert records into DeliveryPerson
+INSERT INTO DeliveryPerson (EmID, vehicleNum, drivingLicenseNum, city)
+VALUES
+    (2, 'DP001', 'DL12345', 'Colombo'),
+    (3, 'DP002', 'DL67890', 'Kandy'),
+    (11, 'DP003', 'DL11111', 'Galle'),
+    (12, 'DP004', 'DL22222', 'Jaffna'),
+    (13, 'DP005', 'DL33333', 'Kurunegala');
 
-INSERT INTO Payment (payMethod, payStatus) VALUES 
-('Credit Card', TRUE),
-('Debit Card', TRUE),
-('Cash on Delivery', FALSE),
-('PayPal', TRUE),
-('Bank Transfer', FALSE);
+-- Insert records into Customer
+INSERT INTO Customer (fName, lName, email, lane, city, dob, username, password)
+VALUES
+    ('John', 'Doe', 'johndoe@example.com', 'Main Street', 'Colombo', '1990-01-01', 'johndoe', 'password123'),
+    ('Jane', 'Smith', 'janesmith@example.com', 'Park Avenue', 'Kandy', '1995-02-02', 'janesmith', 'password456'),
+    ('Alice', 'Johnson', 'alicejohnson@example.com', '1st Street', 'Galle', '1985-03-03', 'alicejohnson', 'password789'),
+    ('Bob', 'Williams', 'bobwilliams@example.com', '2nd Street', 'Jaffna', '1975-04-04', 'bobwilliams', 'password000'),
+    ('Charlie', 'Brown', 'charliebrown@example.com', '3rd Street', 'Kurunegala', '1965-05-05', 'charliebrown', 'password111');
 
-INSERT INTO Sale (orderDate, totalAmount, orderStatus, CusID, PID, DPID) VALUES 
-('2024-01-01', 500.00, TRUE, 1, 1, 1),
-('2024-02-02', 1500.00, TRUE, 2, 2, 2),
-('2024-03-03', 200.00, TRUE, 3, 3, 3),
-('2024-04-04', 50.00, TRUE, 4, 4, 4),
-('2024-05-05', 600.00, TRUE, 5, 5, 5);
+-- Insert records into Payment
+INSERT INTO Payment (payMethod, payStatus)
+VALUES
+    ('Credit Card', TRUE),
+    ('Cash on Delivery', FALSE),
+    ('PayPal', TRUE),
+    ('Bank Transfer', FALSE),
+    ('Mobile Payment', TRUE);
 
-INSERT INTO Product_Sale (PrID, OID, quantity, netPrice, discount) VALUES 
-(1, 1, 5, 500.00, 10),
-(2, 2, 3, 3000.00, 5),
-(3, 3, 10, 10000.00, NULL),
-(4, 4, 7, 350.00, 2),
-(5, 5, 2, 400.00, 5);
+-- Insert records into Sale
+INSERT INTO Sale (orderDate, totalAmount, orderStatus, CusID, PID, EmID)
+VALUES
+    ('2023-12-31', 100.00, TRUE, 1, 1, 1),
+    ('2024-01-01', 50.00, FALSE, 2, 2, 2),
+    ('2024-01-02', 75.00, TRUE, 3, 3, 3),
+    ('2024-01-03', 25.00, FALSE, 4, 4, 4),
+    ('2024-01-04', 150.00, TRUE, 5, 5, 5);
 
-INSERT INTO Feedback (comments, rating, OID) VALUES 
-('Great product!', 5, 1),
-('Very satisfied', 4, 2),
-('Not as expected', 2, 3),
-('Excellent quality', 5, 4),
-('Good value for money', 4, 5);
+-- Insert records into Product_Sale
+INSERT INTO Product_Sale (PrID, OID, quantity, netPrice, discount)
+VALUES
+    (1, 1, 2, 90.00, 10),
+    (2, 2, 1, 45.00, 5),
+    (3, 3, 3, 60.00, 15),
+    (4, 4, 2, 20.00, 0),
+    (5, 5, 5, 120.00, 20);
 
-INSERT INTO Manager (EmID) VALUES 
-(1),
-(2),
-(3),
-(4),
-(5);
+-- Insert records into Feedback
+INSERT INTO Feedback (comments, rating, OID)
+VALUES
+    ('Great product!', 5, 1),
+    ('Good service', 4, 2),
+    ('Excellent value', 5, 3),
+    ('Fast delivery', 4, 4),
+    ('Happy customer', 5, 5);
 
-INSERT INTO Manager_Feedback (MID, FID) VALUES 
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5);
+-- Insert records into Category_Employee
+INSERT INTO Category_Employee (CID, EmID)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5);
 
-INSERT INTO Manager_Employee (MID, EmID) VALUES 
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5);
+-- Insert records into Product_Employee
+INSERT INTO Product_Employee (PrID, EmID)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5);
 
-INSERT INTO Admin (fName, lName, email, address, city, dob, imgUrl, phone, username, password) VALUES 
-('Admin1', 'One', 'admin1@example.com', 'Admin St', 'Colombo', '1970-01-01', NULL, '0771234567', 'admin1', 'adminpass1'),
-('Admin2', 'Two', 'admin2@example.com', 'Admin St', 'Kandy', '1972-02-02', NULL, '0772345678', 'admin2', 'adminpass2'),
-('Admin3', 'Three', 'admin3@example.com', 'Admin St', 'Galle', '1974-03-03', NULL, '0773456789', 'admin3', 'adminpass3'),
-('Admin4', 'Four', 'admin4@example.com', 'Admin St', 'Jaffna', '1976-04-04', NULL, '0774567890', 'admin4', 'adminpass4'),
-('Admin5', 'Five', 'admin5@example.com', 'Admin St', 'Kurunegala', '1978-05-05', NULL, '0775678901', 'admin5', 'adminpass5');
+-- Insert records into Manager_Feedback
+INSERT INTO Manager_Feedback (EmID, FID)
+VALUES
+    (6, 1),
+    (7, 2),
+    (8, 3),
+    (9, 4),
+    (10, 5);
 
-INSERT INTO Manager_Admin (MID, AID) VALUES 
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5);
+-- Insert records into Manager_Employee
+INSERT INTO Manager_Employee (EmID_Manager, EmID_Employee)
+VALUES
+	(10,11),
+    (6, 2),
+    (7, 3),
+    (8, 4),
+    (9, 5);
 
-INSERT INTO Enquiry (subject, comments, response) VALUES 
-('Product Inquiry', 'Can you provide more details on the mangoes?', 'Yes, they are organic.'),
-('Payment Issue', 'My payment didn’t go through', 'Please try again or contact support.'),
-('Delivery Question', 'When will my order arrive?', 'Your order will arrive within 2 days.'),
-('Product Quality', 'The apples were bruised', 'We apologize and will replace them.'),
-('Order Cancelation', 'Can I cancel my order?', 'Your order has been canceled.');
+INSERT INTO Enquiry (subject, comments, response)
+VALUES 
+('Product Availability', 'Is the new model of the phone available in stock?', NULL),
+('Shipping Inquiry', 'What are the shipping charges to New York?', NULL),
+('Warranty Details', 'Could you provide details on the warranty for the laptop?', NULL),
+('Discount Offers', 'Are there any discount offers for bulk purchases?', NULL),
+('Return Policy', 'What is the return policy for electronics?', NULL);
 
-INSERT INTO Customer_Enquiry (CusID, EnID) VALUES 
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5);
+-- Insert records into Customer_Enquiry
+INSERT INTO Customer_Enquiry (CusID, EnID)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5);
 
-INSERT INTO Manager_Enquiry (MID, EnID) VALUES 
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5);
+-- Insert records into Manager_Enquiry
+INSERT INTO Manager_Enquiry (EmID, EnID)
+VALUES
+    (6, 1),
+    (7, 2),
+    (8, 3),
+    (9, 4),
+    (10, 5);
 
-INSERT INTO Customer_Admin (CusID, AID) VALUES 
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5);
+INSERT INTO Admin (fName, lName, email, address, city, dob, imgUrl, phone, username, password)
+VALUES 
+('John', 'Doe', 'johndoe@example.com', '123 Main St', 'Springfield', '1985-04-12', 'http://example.com/images/johndoe.jpg', '123-456-7890', 'johndoe', 'hashed_password_1'),
+('Jane', 'Smith', 'janesmith@example.com', '456 Elm St', 'Shelbyville', '1990-07-22', 'http://example.com/images/janesmith.jpg', '098-765-4321', 'janesmith', 'hashed_password_2'),
+('Alice', 'Johnson', 'alicejohnson@example.com', '789 Oak St', 'Ogdenville', '1988-09-15', 'http://example.com/images/alicejohnson.jpg', '555-123-4567', 'alicejohnson', 'hashed_password_3'),
+('Bob', 'Brown', 'bobbrown@example.com', '321 Pine St', 'Capitol City', '1979-11-05', 'http://example.com/images/bobbrown.jpg', '444-987-6543', 'bobbrown', 'hashed_password_4'),
+('Charlie', 'Davis', 'charliedavis@example.com', '654 Maple St', 'North Haverbrook', '1983-03-30', 'http://example.com/images/charliedavis.jpg', '333-456-7890', 'charliedavis', 'hashed_password_5');
 
-INSERT INTO Payment_Manager (MID, PID) VALUES 
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5);
+-- Insert records into Customer_Admin
+INSERT INTO Customer_Admin (CusID, AID)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5);
 
-INSERT INTO Customer_Phone (CusID, phone) VALUES 
-(1, '0779876543'),
-(2, '0788765432'),
-(3, '0797654321'),
-(4, '0716543210'),
-(5, '0725432109');
+-- Insert records into Payment_Manager
+INSERT INTO Payment_Manager (EmID, PID)
+VALUES
+    (6, 1),
+    (7, 2),
+    (8, 3),
+    (9, 4),
+    (10, 5);
+
+-- Insert records into Customer_Phone
+INSERT INTO Customer_Phone (CusID, phone)
+VALUES
+    (1, '1234567890'),
+    (2, '9876543210'),
+    (3, '1112223330'),
+    (4, '4445556660'),
+    (5, '7778889990');
