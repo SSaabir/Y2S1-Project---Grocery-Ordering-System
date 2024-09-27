@@ -4,4 +4,15 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  
+<servlet>
+        <servlet-name>ViewEmployee</servlet-name>
+        <servlet-class>freshco.Control.ViewEmployee</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewEmployee</servlet-name>
+        <url-pattern>/viewEmployees</url-pattern>
+    </servlet-mapping>
+
+    
 </web-app>

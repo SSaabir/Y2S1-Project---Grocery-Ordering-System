@@ -23,8 +23,9 @@
 
 <body>
 <header>
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="header.jsp" />
 </header>
+	 <jsp:include page="dash.jsp" />
 
 <div id="side-nav">
     <a href="dashboard.jsp"><span class="material-symbols-outlined">dashboard</span>Dashboard</a>
