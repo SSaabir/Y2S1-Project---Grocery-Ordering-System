@@ -38,7 +38,7 @@ public class PaymentDBUtil {
             return isSuccess;
     }
     
-	public static boolean updatePayment(int PID,String payMethod, Boolean payStatus) {
+	public static boolean updatePayment(int PID, String payMethod, boolean payStatus) {
 	
 		boolean isSuccess = false;
 		

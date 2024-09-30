@@ -28,12 +28,12 @@ public class AddEnquiry extends HttpServlet {
 		
      	            String subject = request.getParameter("subject");
                    	String comments = request.getParameter("comments");
-     	            String response = request.getParameter("response");
+     	            String respons = request.getParameter("response");
 		
 		
 	      
 		        
-		        boolean isInserted = EnquiryDBUtil.insertEnquiry(subject,comments,response);
+		        boolean isInserted = EnquiryDBUtil.insertEnquiry(subject,comments,respons);
 
 		        if (isInserted) {
 		            // Redirect or inform the user of success
