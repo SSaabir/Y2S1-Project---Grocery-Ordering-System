@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import freshco.Model.PaymentDBUtil;
 
 
-@WebServlet("/UpdateEnquiry")
+@WebServlet("/UpdatePayment")
 public class UpdatePayment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class UpdatePayment extends HttpServlet {
 		
 		        int PID = Integer.parseInt(request.getParameter("PID"));
 		    	String payMethod = request.getParameter("payMethod");
-	         	String payStatus = request.getParameter("payStatus");
+	         	boolean payStatus = request.getParameter("payStatus") != null;
 	         	
 	         
 

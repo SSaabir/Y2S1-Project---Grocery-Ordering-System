@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import freshco.Model.PaymentDBUtil;
 
 
-@WebServlet("/DeleteEnquiry")
+@WebServlet("/DeletePayment")
 public class DeletePayment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
