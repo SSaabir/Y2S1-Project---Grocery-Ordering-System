@@ -13,6 +13,4 @@
         <servlet-name>ViewEmployee</servlet-name>
         <url-pattern>/viewEmployees</url-pattern>
     </servlet-mapping>
-
-    
 </web-app>
