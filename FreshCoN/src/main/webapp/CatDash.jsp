@@ -25,8 +25,17 @@
 <header>
     <jsp:include page="header.jsp" />
 </header>
-	 <jsp:include page="dash.jsp" />
-	 
+	<div id="side-nav">
+    <a href="dashboard.jsp"><span class="material-symbols-outlined">dashboard</span>Dashboard</a>
+    <a href="CustDash.jsp"><span class="material-symbols-outlined">groups</span> Customer</a>
+    <a href="OrderDash.jsp"><span class="material-symbols-outlined">shopping_bag</span> Order</a>
+    <a href="ViewEmployees"><span class="material-symbols-outlined">badge</span> Employee</a>
+    <a class="active" href="CatDash.jsp"><span class="material-symbols-outlined">category</span> Category</a>
+    <a href="ProDash.jsp"><span class="material-symbols-outlined">inventory_2</span> Product</a>
+    <a href="FeedDash.jsp"><span class="material-symbols-outlined">feedback</span> Feedback</a>
+    <a href="EnqDash.jsp"><span class="material-symbols-outlined">support</span> Enquiry</a>
+    <a href="PayDash.jsp"><span class="material-symbols-outlined">payments</span> Payment</a>
+	</div>
 <div id="main">
 <h1 class="title-sec">Category</h1>
    <hr>
