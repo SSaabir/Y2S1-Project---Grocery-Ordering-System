@@ -13,18 +13,18 @@ public class CustomerDBUtil {
 
         ResultSet rs = webDB.executeSearch(query);
         while (rs.next()) {
-        	Customer cus = new Customer(rs.getInt("id"),rs.getString("fname"),rs.getString("lname"),rs.getString("email"),rs.getString("lane"),rs.getString("city"),rs.getString("dob"),rs.getString("imgUrl"),rs.getString("username"),rs.getString("password"));
+        	Customer cus = new Customer(rs.getInt("id"),rs.getString("fName"),rs.getString("lName"),rs.getString("email"),rs.getString("lane"),rs.getString("city"),rs.getString("dob"),rs.getString("imgUrl"),rs.getString("username"),rs.getString("password"));
         	customer.add(cus);
         }
         rs.close();
         return customer;
     }
 	
-	public static boolean insertCustomer(String fname, String lname, String email, String lane, String city, String dob,String imgUrl, String username,String password) {
+	public static boolean insertCustomer(String fName, String lName, String email, String lane, String city, String dob,String imgUrl, String username,String password) {
     	
     	boolean isSuccess = false;
     	
-    	String query = "INSERT INTO customer (fname, lname, email, lane, city, dob,imgUrl,username,password) VALUES ('" + fname + "', '" + lname + "', '" + email + "', '" + lane + "', '" + city + "', '" + dob + "','"+imgUrl+"','"+username+"','"+password+"')";
+    	String query = "INSERT INTO customer (fName, lName, email, lane, city, dob,imgUrl,username,password) VALUES ('" + fName + "', '" + lName + "', '" + email + "', '" + lane + "', '" + city + "', '" + dob + "','"+imgUrl+"','"+username+"','"+password+"')";
     	
     		try {
                 int rowsAffected = webDB.executeIUD(query);
@@ -38,11 +38,11 @@ public class CustomerDBUtil {
             return isSuccess;
     }
     
-	public static boolean updateCustomer(int id,String fname, String lname, String email, String lane, String city, String dob,String imgUrl, String username,String password) {
+	public static boolean updateCustomer(int id,String fName, String lName, String email, String lane, String city, String dob,String imgUrl, String username,String password) {
 	
 		boolean isSuccess = false;
 		
-		String query = "UPDATE customer SET fname='"+fname+"',lname='"+lname+"',email='"+email+"',lane='"+lane+"',city='"+city+"',dob='"+dob+"',imgUrl='"+imgUrl+"',username='"+username+"',password='"+password+"'"
+		String query = "UPDATE customer SET fname='"+fName+"',lname='"+lName+"',email='"+email+"',lane='"+lane+"',city='"+city+"',dob='"+dob+"',imgUrl='"+imgUrl+"',username='"+username+"',password='"+password+"'"
 				+ "where id='"+id+"'";
 
 	try {
