@@ -1,9 +1,11 @@
 package freshco.Beans;
 
+import java.sql.Date;
+
 public class Sale {
 	
 	private int OID ;
-    private String orderDate ;
+    private Date orderDate ;
     private double totalAmount;
     private boolean orderStatus;
     private int CusID ;
@@ -11,10 +13,10 @@ public class Sale {
     private int DPID ;
     
     
-	public Sale(int oID, String orderDate, double totalAmount, boolean orderStatus, int cusID, int pID, int dPID) {
+	public Sale(int oID, Date date, double totalAmount, boolean orderStatus, int cusID, int pID, int dPID) {
 		super();
 		OID = oID;
-		this.orderDate = orderDate;
+		this.orderDate = date;
 		this.totalAmount = totalAmount;
 		this.orderStatus = orderStatus;
 		CusID = cusID;
@@ -26,7 +28,7 @@ public class Sale {
 	public int getOID() {
 		return OID;
 	}
-	public String getOrderDate() {
+	public Date getOrderDate() {
 		return orderDate;
 	}
 	public double getTotalAmount() {
@@ -47,7 +49,7 @@ public class Sale {
 	public void setOID(int oID) {
 		OID = oID;
 	}
-	public void setOrderDate(String orderDate) {
+	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
 	public void setTotalAmount(double totalAmount) {
