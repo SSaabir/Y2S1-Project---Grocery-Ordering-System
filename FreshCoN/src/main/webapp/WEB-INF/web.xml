@@ -13,4 +13,14 @@
         <servlet-name>ViewEmployee</servlet-name>
         <url-pattern>/viewEmployees</url-pattern>
     </servlet-mapping>
+    
+    
+    <servlet>
+        <servlet-name>ViewAdmin</servlet-name>
+        <servlet-class>freshco.Control.ViewAdmin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewAdmin</servlet-name>
+        <url-pattern>/ViewAdmins</url-pattern>
+    </servlet-mapping>
 </web-app>

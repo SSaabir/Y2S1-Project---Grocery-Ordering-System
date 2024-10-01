@@ -20,7 +20,7 @@ public class Admin {
 		super();
 		AID = aID;
 		this.fName = fName;
-		this.fName = lName;
+		this.lName = lName;
 		this.email = email;
 		this.Lane = address;
 		this.city = city;
