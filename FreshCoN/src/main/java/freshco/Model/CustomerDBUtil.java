@@ -3,10 +3,27 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import freshco.Beans.Customer;
+import freshco.Beans.Employee;
 
 
 public class CustomerDBUtil {
 
+	public static Customer validateCustomer(String username, String password) throws Exception {
+		
+		String query = "SELECT * FROM customer WHERE username='"+username+"' AND password='"+password+"'";
+		
+		ResultSet rs = webDB.executeSearch(query);
+		
+		if (rs.next()) {
+		Customer cus = new Customer(rs.getInt("id"),rs.getString("fname"),rs.getString("lname"),rs.getString("email"),rs.getString("lane"),rs.getString("city"),rs.getString("dob"),rs.getString("imgUrl"),rs.getString("username"),rs.getString("password"));
+		rs.close();
+        return cus;
+		} else {
+			rs.close();
+			return null;
+		}
+	}
+	
 	public static List<Customer> getAllCustomer() throws Exception {
         List<Customer> customer = new ArrayList<>();
         String query = "SELECT * FROM Customer";

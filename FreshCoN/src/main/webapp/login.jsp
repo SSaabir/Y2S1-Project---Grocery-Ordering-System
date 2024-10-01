@@ -253,10 +253,10 @@
         <div class="form-container sign-in-container">
             <form id="signInForm" action="#">
                 <h1>Sign In</h1>
-                <span class="enter_details">Use your Email for login</span>
-                <input type="email" id="signInEmail" placeholder="Email" required />
+                <span class="enter_details">Use your Username for login</span>
+                <input type="email" id="signInEmail" name="username" placeholder="Username" required />
                 <span id="signInEmailError" class="error"></span>
-                <input type="password" id="signInPassword" placeholder="Password" required />
+                <input type="password" id="signInPassword" name="password" placeholder="Password" required />
                 <span id="signInPasswordError" class="error"></span>
                 <a href="#" class="a">Forgot Your Password?</a>
                 <button type="submit">Sign In</button>

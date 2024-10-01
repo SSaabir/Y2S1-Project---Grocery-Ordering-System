@@ -4,8 +4,9 @@ public class Admin {
 	
 	private int AID ;
     private String  fName ;
+    private String lName;
     private String email ;
-    private String address ;
+    private String Lane ;
     private String city ;
     private String dob ;
     private String imgUrl ;
@@ -14,19 +15,30 @@ public class Admin {
     private String password ;
     
     
-	public Admin(int aID, String fName, String email, String address, String city, String dob, String imgUrl,
+	public Admin(int aID, String fName, String lName, String email, String address, String city, String dob, String imgUrl,
 			String phone, String username, String password) {
 		super();
 		AID = aID;
 		this.fName = fName;
+		this.fName = lName;
 		this.email = email;
-		this.address = address;
+		this.Lane = address;
 		this.city = city;
 		this.dob = dob;
 		this.imgUrl = imgUrl;
 		this.phone = phone;
 		this.username = username;
 		this.password = password;
+	}
+
+
+	public String getlName() {
+		return lName;
+	}
+
+
+	public void setlName(String lName) {
+		this.lName = lName;
 	}
 
 
@@ -45,8 +57,8 @@ public class Admin {
 	}
 
 
-	public String getAddress() {
-		return address;
+	public String getLane() {
+		return Lane;
 	}
 
 
@@ -95,8 +107,8 @@ public class Admin {
 	}
 
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setLane(String Lane) {
+		this.Lane = Lane;
 	}
 
 

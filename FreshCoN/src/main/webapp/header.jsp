@@ -1,5 +1,19 @@
+<%
+    // Get the current session, create a new one if it doesn't exist
+    HttpSession sess = request.getSession(true);
+
+    String userType = "guest";  // Default user type is guest
+
+    // Check if "userID" exists in the session
+    if (sess.getAttribute("userID") != null) {
+        // If it exists, retrieve "userType"
+        userType = (String) sess.getAttribute("userType");
+    }
+%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
