@@ -6,6 +6,22 @@ import freshco.Beans.Employee;
 
 
 public class EmployeeDBUtil {
+	public static Employee validateEmployee(String username, String password) throws Exception {
+		
+		String query = "SELECT * FROM employee WHERE username='"+username+"' AND password='"+password+"'";
+		
+		ResultSet rs = webDB.executeSearch(query);
+		
+		if (rs.next()) {
+		Employee emp = new Employee(rs.getInt("EmID"),rs.getString("email"),rs.getString("nic"),rs.getString("dob"),rs.getString("imgUrl"),rs.getString("phone"),rs.getString("username"),rs.getString("password"));
+		
+		rs.close();
+        return emp;
+		} else {
+			rs.close();
+			return null;
+		}
+	}
 
 	public static List<Employee> getAllEmployees() throws Exception {
         List<Employee> employees = new ArrayList<>();

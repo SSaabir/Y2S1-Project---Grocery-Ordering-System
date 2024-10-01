@@ -25,8 +25,8 @@ public class AddCustomer extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		     
-	         	String fname = request.getParameter("fname");
-	         	String lname = request.getParameter("lname");
+	         	String fName = request.getParameter("fName");
+	         	String lName = request.getParameter("lName");
 	         	String email = request.getParameter("email");
 	         	String lane = request.getParameter("lane");
 	         	String city = request.getParameter("city");
@@ -36,7 +36,7 @@ public class AddCustomer extends HttpServlet {
 	         	String password = request.getParameter("password");
 
 		        
-		        boolean isInserted = CustomerDBUtil.insertCustomer(fname,lname,email,lane,city,dob,imgUrl,username,password);
+		        boolean isInserted = CustomerDBUtil.insertCustomer(fName,lName,email,lane,city,dob,imgUrl,username,password);
 
 		        if (isInserted) {
 		            // Redirect or inform the user of success
