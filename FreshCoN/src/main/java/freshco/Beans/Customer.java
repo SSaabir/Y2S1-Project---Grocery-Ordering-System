@@ -1,5 +1,7 @@
 package freshco.Beans;
 
+import java.util.List;
+
 public class Customer {
 	
 	    private int cusID;
@@ -12,9 +14,10 @@ public class Customer {
 	    private String imgUrl;
 	    private String username;
 	    private String password;
+	    private List<String> phones;
 	    
 	    
-		public Customer(int cusID, String fName, String lName, String email, String lane, String city, String dob, String imgUrl, String username, String password) 
+		public Customer(int cusID, String fName, String lName, String email, String lane, String city, String dob, String imgUrl, String username, String password, List<String> phones2) 
 		{
 			super();
 			this.cusID = cusID;
@@ -27,8 +30,11 @@ public class Customer {
 			this.imgUrl = imgUrl;
 			this.username = username;
 			this.password = password;
+			this.phones=phones;
 		}
 
+
+	
 
 		public int getCusID() {
 			return cusID;
@@ -130,5 +136,13 @@ public class Customer {
 		}
 	    
 	    
-	    
+		public List<String> getPhones() {
+			return phones;
+		}
+
+
+		public void setPhones(List<String> phones) {
+			this.phones = phones;
+		}
+
 }
