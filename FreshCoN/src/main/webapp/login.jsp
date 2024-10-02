@@ -251,7 +251,7 @@
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form id="signInForm" action="#">
+            <form id="signInForm" action="UserValidations">
                 <h1>Sign In</h1>
                 <span class="enter_details">Use your Username for login</span>
                 <input type="email" id="signInEmail" name="username" placeholder="Username" required />

@@ -5,6 +5,7 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   
+  <!--Employee dash --> 
 <servlet>
         <servlet-name>ViewEmployee</servlet-name>
         <servlet-class>freshco.Control.ViewEmployee</servlet-class>
@@ -22,4 +23,48 @@
     <servlet-name>ViewCustomer</servlet-name>
     <url-pattern>/ViewCustomers</url-pattern>
     </servlet-mapping>
+    
+    
+    
+     <!--Customer dash -->
+    
+    <servlet>
+        <servlet-name>ViewCustomer</servlet-name>
+        <servlet-class>freshco.Control.ViewCustomer</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewCustomer</servlet-name>
+        <url-pattern>/ViewCustomers</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+      <!--Enquiry dash -->
+    
+    <servlet>
+        <servlet-name>ViewEnquiry</servlet-name>
+        <servlet-class>freshco.Control.ViewEnquiry</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewEnquiry</servlet-name>
+        <url-pattern>/ViewEnquiry</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    
+       <!--Payment dash -->
+    
+    <servlet>
+        <servlet-name>ViewPayment</servlet-name>
+        <servlet-class>freshco.Control.ViewPayment</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewPayment</servlet-name>
+        <url-pattern>/ViewPayment</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    
 </web-app>

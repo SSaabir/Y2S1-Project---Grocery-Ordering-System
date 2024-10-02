@@ -7,7 +7,7 @@ import freshco.Beans.Payment;
 
 public class PaymentDBUtil {
 
-	public static List<Payment> getAllEnquiry() throws Exception {
+	public static List<Payment> getAllPayment() throws Exception {
         List<Payment> payment = new ArrayList<>();
         String query = "SELECT * FROM Payment";
 

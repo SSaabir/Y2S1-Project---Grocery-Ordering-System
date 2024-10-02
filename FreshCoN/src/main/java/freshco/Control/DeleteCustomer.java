@@ -20,10 +20,10 @@ public class DeleteCustomer extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	        // Get the customer ID from the request
-	        int id = Integer.parseInt(request.getParameter("id"));
+	        int CusID = Integer.parseInt(request.getParameter("CusID"));
 
 	        // Call the deleteCustomer method from your database class
-	        boolean isDeleted = CustomerDBUtil.deleteCustomer(id);
+	        boolean isDeleted = CustomerDBUtil.deleteCustomer(CusID);
 
 	        if (isDeleted) {
 	            // Redirect to a success page

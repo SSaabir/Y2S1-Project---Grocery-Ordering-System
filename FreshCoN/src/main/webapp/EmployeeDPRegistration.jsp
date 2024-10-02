@@ -33,7 +33,7 @@
             width: 50%;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(5px);
-        }
+        } 
         
         h2 {
             margin-bottom: 20px;
