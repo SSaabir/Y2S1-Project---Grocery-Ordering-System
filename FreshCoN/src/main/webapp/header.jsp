@@ -220,7 +220,7 @@
                             <li><a href="#">Login</a><i class='bx bx-chevron-right'></i></li>
                             <li><a href="#">Edit Profile</a><i class='bx bx-chevron-right'></i></li>
                             <li><a href="#">Registration</a><i class='bx bx-chevron-right'></i></li>
-                            <li><a href="#">Logout</a><i class='bx bx-chevron-right'></i></li>
+                            <li><a href="logout">Logout</a><i class='bx bx-chevron-right'></i></li>
                         </ul>
                     </div>
                 </div>

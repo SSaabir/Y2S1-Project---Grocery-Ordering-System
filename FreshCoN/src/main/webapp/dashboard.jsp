@@ -93,12 +93,12 @@
                 </div>
 
             </section>
-
+<%String userType = (String) session.getAttribute("userType");%>
 
 
             <section class="graph">
                 <div class="graph-box" id="graph1">
-                    <h1>jingles</h1>
+                    <h1> <%= userType %></h1>
                 </div>
 
                 <div class="graph-box" id="graph2">

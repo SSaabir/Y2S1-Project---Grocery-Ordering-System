@@ -6,14 +6,14 @@ public class Product {
 	private String productName;
 	private String descript ;
 	private double  price;
-	private int unit ;
+	private String unit ;
 	private int quantity ;
 	private String imgUrl ;
 	private double discount;
 	private int CID ;
 	
 	
-	public Product(int prID, String productName, String descript, double price, int unit, int quantity, String imgUrl,
+	public Product(int prID, String productName, String descript, double price, String unit, int quantity, String imgUrl,
 			double discount, int cID) {
 		super();
 		PrID = prID;
@@ -48,7 +48,7 @@ public class Product {
 	}
 
 
-	public int getUnit() {
+	public String getUnit() {
 		return unit;
 	}
 
@@ -93,7 +93,7 @@ public class Product {
 	}
 
 
-	public void setUnit(int unit) {
+	public void setUnit(String unit) {
 		this.unit = unit;
 	}
 

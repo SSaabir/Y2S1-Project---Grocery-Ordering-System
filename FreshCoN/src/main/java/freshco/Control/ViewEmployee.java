@@ -13,14 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ViewEmployee extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
 
-    public ViewEmployee() {
-        super();
-      
-    }
-
-
+	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
     	List<Employee> employees = EmployeeDBUtil.getAllEmployees();

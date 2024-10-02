@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="freshco.Model.CategoryDBUtil"%>
+<%@ page import="freshco.Beans.Category"%>
+<%@ page import="java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,54 +61,32 @@
         <table id="myTable" class="display nowrap" style="width:100%">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
-                    <th>Action</th>
-                </tr>
+                    <th>ID</th>
+                    <th>Category Name</th>
+                     </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                    <td>
-                        <a href="#"><span class="material-symbols-outlined">edit</span></a>
-                        <a href="#"><span class="material-symbols-outlined">delete_forever</span></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011/07/25</td>
-                    <td>$170,750</td>
-                   
-                    <td>
-                        <a href="#"><span class="material-symbols-outlined">edit</span></a>
-                        <a href="#"><span class="material-symbols-outlined">delete_forever</span></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ashton Cox</td>
-                    <td>Junior Technical Author</td>
-                    <td>San Francisco</td>
-                    <td>66</td>
-                    <td>2009/01/12</td>
-                    <td>$86,000</td>
-                   
-                    <td>
-                        <a href="#"><span class="material-symbols-outlined">edit</span></a>
-                        <a href="#"><span class="material-symbols-outlined">delete_forever</span></a>
-                    </td>
-                </tr>
+           <tbody>
+                 <%
+                    try {
+                    	List<Category> categories = (List<Category>)request.getAttribute("categories");
+                        if (categories != null) {
+                            for (Category cat : categories) {
+                    %>
+                    <tr>
+                        <td><%= cat.getCID() %></td>
+                         <td><%= cat.getCategory_Name() %></td>
+                         
+                        
+                        
+                        
+                    </tr>
+                    <%
+                        	}
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                %>
                 <!-- Add more rows as needed -->
             </tbody>
         </table>

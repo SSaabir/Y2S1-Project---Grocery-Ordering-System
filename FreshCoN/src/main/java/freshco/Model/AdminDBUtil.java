@@ -1,14 +1,41 @@
 package freshco.Model;
 
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import freshco.Beans.Admin; // Assuming you have an Admin bean class
 
-public class AdminDBUtil {
 
-    // Method to retrieve all admin records
+public class AdminDBUtil {
+	
+	public static Admin validateAdmin(String username, String password) throws Exception {
+		
+		String query = "SELECT * FROM admin WHERE username='"+username+"' AND password='"+password+"'";
+		
+		ResultSet rs = webDB.executeSearch(query);
+		
+		if (rs.next()) {
+		Admin adm = new Admin(
+                rs.getInt("AID"),
+                rs.getString("fName"),
+                rs.getString("lName"),
+                rs.getString("email"),
+                rs.getString("lane"),
+                rs.getString("city"),
+                rs.getString("dob"),
+                rs.getString("imgUrl"),
+                rs.getString("phone"),
+                rs.getString("username"),
+                rs.getString("password")
+            );
+		rs.close();
+        return adm;
+		} else {
+			rs.close();
+			return null;
+		}
+	}
+	
     public static List<Admin> getAllAdmins() throws Exception {
         List<Admin> admins = new ArrayList<>();
         String query = "SELECT * FROM Admin";
@@ -20,7 +47,7 @@ public class AdminDBUtil {
                 rs.getString("fName"),
                 rs.getString("lName"),
                 rs.getString("email"),
-                rs.getString("address"),
+                rs.getString("lane"),
                 rs.getString("city"),
                 rs.getString("dob"),
                 rs.getString("imgUrl"),

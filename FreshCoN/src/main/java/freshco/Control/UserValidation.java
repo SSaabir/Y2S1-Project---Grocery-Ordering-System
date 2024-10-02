@@ -11,17 +11,13 @@ import javax.servlet.http.HttpSession;
 import freshco.Beans.Admin;
 import freshco.Beans.Customer;
 import freshco.Beans.Employee;
+import freshco.Model.AdminDBUtil;
 import freshco.Model.CustomerDBUtil;
 import freshco.Model.EmployeeDBUtil;
 
 
 public class UserValidation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public UserValidation() {
-        super();
-        
-    }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
@@ -56,6 +52,7 @@ public class UserValidation extends HttpServlet {
 		} else if (isCusVal != null) {
 			sess.setAttribute("ID", isCusVal.getCusID());
 	        sess.setAttribute("email", isCusVal.getEmail());
+	        sess.setAttribute("phone", isCusVal.getPhone());
 	        sess.setAttribute("fName", isCusVal.getfName());
 	        sess.setAttribute("lName", isCusVal.getlName());
 	        sess.setAttribute("dob", isCusVal.getDob());

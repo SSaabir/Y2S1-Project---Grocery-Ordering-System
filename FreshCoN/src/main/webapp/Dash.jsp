@@ -22,31 +22,31 @@
             <a href="dashboard.jsp"><span class="material-symbols-outlined">
                     dashboard
                 </span>Dashboard</a>
-            <a href="/Customer"><span class="material-symbols-outlined">
+            <a href="Customer"><span class="material-symbols-outlined">
                     groups
                 </span> Customer</a>
-                <a href="/Admin"><span class="material-symbols-outlined">
+                <a href="Admin"><span class="material-symbols-outlined">
                     groups
                 </span> Admin</a>
-            <a href="/Sale"><span class="material-symbols-outlined">
+            <a href="Sale"><span class="material-symbols-outlined">
                     shopping_bag
                 </span> Sale</a>
-            <a href="/viewEmployees"><span class="material-symbols-outlined">
+            <a href="Employee"><span class="material-symbols-outlined">
                     badge
                 </span> Employee</a>
-            <a href="/Category"><span class="material-symbols-outlined">
+            <a href="Category"><span class="material-symbols-outlined">
                     category
                 </span> Category</a>
-            <a href="/Product"><span class="material-symbols-outlined">
+            <a href="Product"><span class="material-symbols-outlined">
                     inventory_2
                 </span> Product</a>
-            <a href="/Feedback"><span class="material-symbols-outlined">
+            <a href="Feedback"><span class="material-symbols-outlined">
                     feedback
                 </span> Feedback</a>
-            <a href="/EnqDash"><span class="material-symbols-outlined">
+            <a href="Enquiry"><span class="material-symbols-outlined">
                     support
                 </span> Enquiry</a>
-            <a href="/PayDash"><span class="material-symbols-outlined">
+            <a href="Payment"><span class="material-symbols-outlined">
                     payments
                 </span> Payment </a>
         </div>

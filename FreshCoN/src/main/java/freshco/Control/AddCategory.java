@@ -19,8 +19,9 @@ public class AddCategory extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String categoryName = request.getParameter("categoryName");
+        String imgUrl = request.getParameter("imgUrl");
 
-        boolean isSuccess = CategoryDBUtil.insertCategory(categoryName);
+        boolean isSuccess = CategoryDBUtil.insertCategory(categoryName, imgUrl);
 
         if (isSuccess) {
             response.sendRedirect("ViewCategoryServlet");  // Redirect to the view servlet

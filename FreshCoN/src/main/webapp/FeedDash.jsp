@@ -71,7 +71,7 @@
                 <tbody>
                     <%
                     try {
-                    	List<Feedback> feedback = (List<Feedback>) request.getAttribute("feedback");
+                    	List<Feedback> feedback = (List<Feedback>) request.getAttribute("feedbacks");
                         if (feedback != null) {
                         for (Feedback Feed : feedback) {
                     %>

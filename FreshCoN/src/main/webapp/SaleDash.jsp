@@ -1,30 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="freshco.Model.AdminDBUtil" %>
-<%@ page import="freshco.Beans.Admin" %>
+<%@ page import="freshco.Model.SaleDBUtil" %>
+<%@ page import="freshco.Beans.Sale" %>
 <%@ page import="java.util.List" %>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <title>Fresh Co</title>
     <style>
-        #main {
-            padding-top: 2%;
-            margin-top: 2%;
-        }
+         #main{
+       padding-top: 2%;
+   margin-top: 2%;
+      } 
     </style>
 </head>
-
-<body>
-<jsp:include page = "Dash.jsp"/>
-
+ <jsp:include page="Dash.jsp"/>
 <div id="main">
-    <h1 class="title-sec">Admin</h1>
+    <h1 class="title-sec">Sale</h1>
     <hr>
     
     <div class="top-container">
@@ -62,37 +61,30 @@
             <table id="myTable" class="display nowrap" style="width:100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Lane</th>
-                        <th>City</th>
-                        <th>DOB</th>
-                        <th>Phone</th>
-                        <th>Username</th>
-               
-                        
+                        <th>OID</th>
+                        <th>Order Date</th>
+                        <th>Total Amount</th>
+                        <th>Order Status</th>
+                        <th>CusID</th>
+                        <th>PID</th>
+                        <th>DPID</th>
                     </tr>
                 </thead>
                 <tbody>
                     <%
                     try {
-                    	List<Admin> admin = (List<Admin>) request.getAttribute("admins");
-                        if (admin != null) {
-                        for (Admin adm : admin) {
+                    	List<Sale> sales = (List<Sale>) request.getAttribute("sales");
+                        if (sales != null) {
+                        for (Sale Sale : sales) {
                     %>
                     <tr>
-                    	<td><%= adm.getAID() %></td>
-                        <td><%= adm.getfName() %></td>
-                        <td><%= adm.getlName() %></td>
-                        <td><%= adm.getEmail()%></td>
-                        <td><%= adm.getLane() %></td>
-                        <td><%= adm.getCity() %></td>
-                        <td><%= adm.getDob() %></td>
-                        <td><%= adm.getPhone() %></td>
-                        <td><%= adm.getUsername() %></td>
-                        
+                    	<td><%= Sale.getOID() %></td>
+                        <td><%= Sale.getOrderDate() %></td>
+                        <td><%= Sale.getTotalAmount() %></td>
+                        <td><%= Sale.isOrderStatus()%></td>
+                        <td><%= Sale.getCusID()%></td>
+                        <td><%= Sale.getPID()%></td>
+                        <td><%= Sale.getDPID()%></td>
                     </tr>
                     <%
                         	}

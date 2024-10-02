@@ -4,13 +4,15 @@ public class Category {
 	
 	private int CID;
 	private String category_Name;
+	private String imgUrl;
 	
 	
-	public Category(int cID, String category_Name) {
+	public Category(int cID, String category_Name, String imgUrl) {
 		
 		super();
 		CID = cID;
 		this.category_Name = category_Name;
+		this.imgUrl = imgUrl;
 	}
 
 

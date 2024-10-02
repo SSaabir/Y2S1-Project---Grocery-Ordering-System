@@ -5,14 +5,12 @@ import freshco.Beans.Feedback;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/ViewFeedback")
 public class ViewFeedback extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -20,7 +18,7 @@ public class ViewFeedback extends HttpServlet {
         try {
             List<Feedback> feedbacks = FeedbackDBUtil.getAllFeedbacks(); // Retrieve all feedback records
             request.setAttribute("feedbacks", feedbacks); // Set the feedback list as an attribute in the request
-            RequestDispatcher dispatcher = request.getRequestDispatcher("FeedbackDash.jsp"); // Forward to FeedbackDash.jsp
+            RequestDispatcher dispatcher = request.getRequestDispatcher("FeedDash.jsp"); // Forward to FeedbackDash.jsp
             dispatcher.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace(); 

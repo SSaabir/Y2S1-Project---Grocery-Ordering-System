@@ -1,36 +1,35 @@
 package freshco.Beans;
 
-import java.util.List;
-
 public class Customer {
 	
 	    private int cusID;
 	    private String fName;
 	    private String lName;
 	    private String email;
+	    private String phone;
 	    private String lane;
 	    private String city;
 	    private String dob; 
 	    private String imgUrl;
 	    private String username;
 	    private String password;
-	    private List<String> phones;
 	    
 	    
-		public Customer(int cusID, String fName, String lName, String email, String lane, String city, String dob, String imgUrl, String username, String password, List<String> phones2) 
+		public Customer(int cusID, String fName, String lName, String email, String phone, String lane, String city, String dob, String imgUrl, String username, String password) 
 		{
 			super();
 			this.cusID = cusID;
 			this.fName = fName;
 			this.lName = lName;
 			this.email = email;
+			this.phone = phone;
 			this.lane = lane;
 			this.city = city;
 			this.dob = dob;
 			this.imgUrl = imgUrl;
 			this.username = username;
 			this.password = password;
-			this.phones=phones;
+			
 		}
 
 
@@ -136,13 +135,13 @@ public class Customer {
 		}
 	    
 	    
-		public List<String> getPhones() {
-			return phones;
+		public String getPhone() {
+			return phone;
 		}
 
 
-		public void setPhones(List<String> phones) {
-			this.phones = phones;
+		public void setPhone(String phone) {
+			this.phone = phone;
 		}
 
 }

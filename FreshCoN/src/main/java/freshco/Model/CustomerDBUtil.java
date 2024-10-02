@@ -7,7 +7,7 @@ import freshco.Beans.Employee;
 
 
 public class CustomerDBUtil {
-/*
+
 	public static Customer validateCustomer(String username, String password) throws Exception {
 		
 		String query = "SELECT * FROM customer WHERE username='"+username+"' AND password='"+password+"'";
@@ -15,7 +15,7 @@ public class CustomerDBUtil {
 		ResultSet rs = webDB.executeSearch(query);
 		
 		if (rs.next()) {
-		Customer cus = new Customer(rs.getInt("CusID"),rs.getString("fName"),rs.getString("lName"),rs.getString("email"),rs.getString("lane"),rs.getString("city"),rs.getString("dob"),rs.getString("imgUrl"),rs.getString("username"),rs.getString("password"));
+		Customer cus = new Customer(rs.getInt("CusID"),rs.getString("fName"),rs.getString("lName"),rs.getString("email"),rs.getString("phone"),rs.getString("lane"),rs.getString("city"),rs.getString("dob"),rs.getString("imgUrl"),rs.getString("username"),rs.getString("password"));
 		rs.close();
         return cus;
 		} else {
@@ -23,18 +23,19 @@ public class CustomerDBUtil {
 			return null;
 		}
 	}
-	*/
+	
 	public static List<Customer> getAllCustomer() throws Exception {
 	    List<Customer> customers = new ArrayList<>();
-	    String customerQuery = "SELECT * FROM Customer";
-	    
-	    try (ResultSet rs = webDB.executeSearch(customerQuery)) {
+	    String Query = "SELECT * FROM Customer";
+	    ResultSet rs = webDB.executeSearch(Query);
+	    try {
 	        while (rs.next()) {
 	            // Fetch customer basic details
 	            int cusID = rs.getInt("CusID");
 	            String fName = rs.getString("fName");
 	            String lName = rs.getString("lName");
 	            String email = rs.getString("email");
+	            String phone = rs.getString("phone");
 	            String lane = rs.getString("lane");
 	            String city = rs.getString("city");
 	            String dob = rs.getString("dob");  // Assuming LocalDate for dob
@@ -42,27 +43,14 @@ public class CustomerDBUtil {
 	            String username = rs.getString("username");
 	            String password = rs.getString("password");
 
-	            // Build and execute the phone query
-	            String phoneQuery = "SELECT phone FROM Customer_Phone WHERE CusID = " + cusID;
-	            ResultSet phoneRs = webDB.executeSearch(phoneQuery);
-	            
-	            List<String> phones = new ArrayList<>();
-	            while (phoneRs.next()) {
-	                phones.add(phoneRs.getString("phone"));
-	            }
-	            phoneRs.close(); // Don't forget to close the phone ResultSet
-
-	            // Create customer object with phone numbers
-	            Customer cus = new Customer(cusID, fName, lName, email, lane, city, dob, imgUrl, username, password, phones);
-	            
+	            Customer cus = new Customer(cusID, fName, lName, email, phone, lane, city, dob, imgUrl, username, password);
 	            customers.add(cus);
 	            
 	        }
 	    } catch (Exception e) {
-	        // Log the exception (if you have a logger) or handle it as needed
 	        throw e;
 	    }
-
+	    rs.close();
 	    return customers;
 	}
 
