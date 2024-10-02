@@ -14,7 +14,7 @@ import freshco.Beans.Employee;
 import freshco.Model.CustomerDBUtil;
 import freshco.Model.EmployeeDBUtil;
 
-@WebServlet("/UserValidation")
+
 public class UserValidation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
