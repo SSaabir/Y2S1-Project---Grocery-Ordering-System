@@ -41,7 +41,7 @@
 </div>
 
 <div id="main">
-    <h1 class="title-sec">Employee</h1>
+    <h1 class="title-sec">Admin</h1>
     <hr>
     
     <div class="top-container">

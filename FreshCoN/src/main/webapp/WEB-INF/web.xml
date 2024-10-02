@@ -23,4 +23,14 @@
         <servlet-name>ViewAdmin</servlet-name>
         <url-pattern>/ViewAdmins</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ViewFeedback</servlet-name>
+        <servlet-class>freshco.Control.ViewFeedback</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewFeedback</servlet-name>
+        <url-pattern>/Viewfeedback</url-pattern>
+    </servlet-mapping>
+      
 </web-app>
