@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="freshco.Model.FeedbackDBUtil" %>
-<%@ page import="freshco.Beans.Feedback" %>
+<%@ page import="freshco.Model.AdminDBUtil" %>
+<%@ page import="freshco.Beans.Admin" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +41,7 @@
 </div>
 
 <div id="main">
-    <h1 class="title-sec">Feedback</h1>
+    <h1 class="title-sec">Admin</h1>
     <hr>
     
     <div class="top-container">
@@ -79,24 +79,37 @@
             <table id="myTable" class="display nowrap" style="width:100%">
                 <thead>
                     <tr>
-                        <th>FID</th>
-                        <th>Comments</th>
-                        <th>Rating</th>
-                        <th>OID</th>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Lane</th>
+                        <th>City</th>
+                        <th>DOB</th>
+                        <th>Phone</th>
+                        <th>Username</th>
+               
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <%
                     try {
-                    	List<Feedback> feedback = (List<Feedback>) request.getAttribute("feedback");
-                        if (feedback != null) {
-                        for (Feedback Feed : feedback) {
+                    	List<Admin> admin = (List<Admin>) request.getAttribute("admins");
+                        if (admin != null) {
+                        for (Admin adm : admin) {
                     %>
                     <tr>
-                    	<td><%= Feed.getFID() %></td>
-                        <td><%= Feed.getComments() %></td>
-                        <td><%= Feed.getRating() %></td>
-                        <td><%= Feed.getOID()%></td>
+                    	<td><%= adm.getAID() %></td>
+                        <td><%= adm.getfName() %></td>
+                        <td><%= adm.getlName() %></td>
+                        <td><%= adm.getEmail()%></td>
+                        <td><%= adm.getLane() %></td>
+                        <td><%= adm.getCity() %></td>
+                        <td><%= adm.getDob() %></td>
+                        <td><%= adm.getPhone() %></td>
+                        <td><%= adm.getUsername() %></td>
+                        
                     </tr>
                     <%
                         	}
