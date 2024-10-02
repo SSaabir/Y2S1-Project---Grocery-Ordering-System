@@ -19,7 +19,7 @@ public class UpdateCustomer extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		        int id = Integer.parseInt(request.getParameter("id"));
+		        int CusID = Integer.parseInt(request.getParameter("CusID"));
 		    	String fName = request.getParameter("fName");
 	         	String lName = request.getParameter("lName");
 	         	String email = request.getParameter("email");
@@ -31,7 +31,7 @@ public class UpdateCustomer extends HttpServlet {
 	         	String password = request.getParameter("password");
 
 		        // Call the updateCustomermethod from your database class
-		        boolean isUpdated = CustomerDBUtil.updateCustomer(id, fName,lName,email,lane,city,dob,imgUrl,username,password);
+		        boolean isUpdated = CustomerDBUtil.updateCustomer(CusID, fName,lName,email,lane,city,dob,imgUrl,username,password);
 
 		        if (isUpdated) {
 		            // Redirect or inform the user of success

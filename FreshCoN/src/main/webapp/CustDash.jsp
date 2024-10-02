@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+ <%@ page import="freshco.Model.CustomerDBUtil" %>
+<%@ page import="freshco.Beans.Customer" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,54 +79,46 @@
         <table id="myTable" class="display nowrap" style="width:100%">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
-                    <th>Action</th>
+                    <th>CusID</th>
+                    <th>First_Name</th>
+                    <th>Last_Name</th>
+                    <th>Email</th>
+                    <th>Lane</th>
+                    <th>City</th>
+                    <th>Date Of Birth</th>
+                    <th>ImgUrl</th>
+                    <th>UserName</th>
+                    <th>Phone Number</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                    <td>
-                        <a href="#"><span class="material-symbols-outlined">edit</span></a>
-                        <a href="#"><span class="material-symbols-outlined">delete_forever</span></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011/07/25</td>
-                    <td>$170,750</td>
-                   
-                    <td>
-                        <a href="#"><span class="material-symbols-outlined">edit</span></a>
-                        <a href="#"><span class="material-symbols-outlined">delete_forever</span></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ashton Cox</td>
-                    <td>Junior Technical Author</td>
-                    <td>San Francisco</td>
-                    <td>66</td>
-                    <td>2009/01/12</td>
-                    <td>$86,000</td>
-                   
-                    <td>
-                        <a href="#"><span class="material-symbols-outlined">edit</span></a>
-                        <a href="#"><span class="material-symbols-outlined">delete_forever</span></a>
-                    </td>
-                </tr>
+                 <%
+                    try {
+                    	List<Customer> customers = (List<Customer>) request.getAttribute("customers");
+                        if (customers != null) {
+                        for (Customer cus : customers) {
+                    %>
+                    <tr>
+                        <td><%= cus.getCusID() %></td>
+                        <td><%= cus.getfName() %></td>
+                        <td><%= cus.getlName() %></td>
+                        <td><%= cus.getEmail() %></td>
+                        <td><%= cus.getLane() %></td>
+                        <td><%= cus.getCity() %></td>
+                        <td><%= cus.getDob() %></td>
+                        <td><%= cus.getImgUrl() %></td>
+                        <td><%= cus.getUsername() %></td>
+                        <td><%= cus.getPhones() %></td>
+                        
+                        
+                    </tr>
+                    <%
+                        	}
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    %>
                 <!-- Add more rows as needed -->
             </tbody>
         </table>

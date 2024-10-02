@@ -34,6 +34,7 @@ public class AddCustomer extends HttpServlet {
 	         	String imgUrl = request.getParameter("imgUrl");
 	         	String username = request.getParameter("username");
 	         	String password = request.getParameter("password");
+	         	
 
 		        
 		        boolean isInserted = CustomerDBUtil.insertCustomer(fName,lName,email,lane,city,dob,imgUrl,username,password);

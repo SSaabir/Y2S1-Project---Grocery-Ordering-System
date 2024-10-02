@@ -5,6 +5,7 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   
+  <!--Employee dash --> 
 <servlet>
         <servlet-name>ViewEmployee</servlet-name>
         <servlet-class>freshco.Control.ViewEmployee</servlet-class>
@@ -15,22 +16,5 @@
     </servlet-mapping>
     
     
-    <servlet>
-        <servlet-name>ViewAdmin</servlet-name>
-        <servlet-class>freshco.Control.ViewAdmin</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ViewAdmin</servlet-name>
-        <url-pattern>/ViewAdmins</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>ViewFeedback</servlet-name>
-        <servlet-class>freshco.Control.ViewFeedback</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ViewFeedback</servlet-name>
-        <url-pattern>/Viewfeedback</url-pattern>
-    </servlet-mapping>
-      
+
 </web-app>

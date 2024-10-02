@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ page import="freshco.Model.EnquiryDBUtil" %>
+<%@ page import="freshco.Beans.Enquiry" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,54 +80,36 @@
         <table id="myTable" class="display nowrap" style="width:100%">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
-                    <th>Action</th>
+                    <th>Enquiry_ID</th>
+                    <th>Subject</th>
+                    <th>Comments</th>
+                    <th>Response</th>
+                    
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                    <td>
-                        <a href="#"><span class="material-symbols-outlined">edit</span></a>
-                        <a href="#"><span class="material-symbols-outlined">delete_forever</span></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011/07/25</td>
-                    <td>$170,750</td>
-                   
-                    <td>
-                        <a href="#"><span class="material-symbols-outlined">edit</span></a>
-                        <a href="#"><span class="material-symbols-outlined">delete_forever</span></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ashton Cox</td>
-                    <td>Junior Technical Author</td>
-                    <td>San Francisco</td>
-                    <td>66</td>
-                    <td>2009/01/12</td>
-                    <td>$86,000</td>
-                   
-                    <td>
-                        <a href="#"><span class="material-symbols-outlined">edit</span></a>
-                        <a href="#"><span class="material-symbols-outlined">delete_forever</span></a>
-                    </td>
-                </tr>
+               <%
+                    try {
+                    	List<Enquiry> enquiry = (List<Enquiry>) request.getAttribute("enquiry");
+                        if (enquiry != null) {
+                        for (Enquiry enq : enquiry) {
+                    %>
+                    <tr>
+                        <td><%= enq.getEnID() %></td>
+                        <td><%= enq.getSubject() %></td>
+                        <td><%= enq.getComments() %></td>
+                        <td><%= enq.getResponse() %></td>
+                     
+                       
+           
+                    </tr>
+                    <%
+                        	}
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    %>
                 <!-- Add more rows as needed -->
             </tbody>
         </table>
