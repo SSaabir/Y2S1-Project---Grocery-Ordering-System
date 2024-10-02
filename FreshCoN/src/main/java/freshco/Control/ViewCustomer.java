@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/ViewCustomer")
 public class ViewCustomer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -27,7 +26,7 @@ public class ViewCustomer extends HttpServlet {
         try {
     	List<Customer> customers = CustomerDBUtil.getAllCustomer();
         request.setAttribute("customers", customers); // Set the employee list as an attribute in the request
-        RequestDispatcher dispatcher = request.getRequestDispatcher("CusDash.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("CustDash.jsp");
         dispatcher.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace(); 

@@ -11,6 +11,15 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ViewEmployee</servlet-name>
-        <url-pattern>/viewEmployees</url-pattern>
+        <url-pattern>/ViewEmployees</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+    <servlet-name>ViewCustomer</servlet-name>
+    <servlet-class>freshco.Control.ViewCustomer</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>ViewCustomer</servlet-name>
+    <url-pattern>/ViewCustomers</url-pattern>
     </servlet-mapping>
 </web-app>
