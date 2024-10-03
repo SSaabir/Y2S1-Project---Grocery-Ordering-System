@@ -23,6 +23,7 @@ public class UpdateCustomer extends HttpServlet {
 		    	String fName = request.getParameter("fName");
 	         	String lName = request.getParameter("lName");
 	         	String email = request.getParameter("email");
+	         	String phone = request.getParameter("phone");
 	         	String lane = request.getParameter("lane");
 	         	String city = request.getParameter("city");
 	         	String dob = request.getParameter("dob");
@@ -31,7 +32,7 @@ public class UpdateCustomer extends HttpServlet {
 	         	String password = request.getParameter("password");
 
 		        // Call the updateCustomermethod from your database class
-		        boolean isUpdated = CustomerDBUtil.updateCustomer(CusID, fName,lName,email,lane,city,dob,imgUrl,username,password);
+		        boolean isUpdated = CustomerDBUtil.updateCustomer(CusID, fName,lName,email,phone,lane,city,dob,imgUrl,username,password);
 
 		        if (isUpdated) {
 		            // Redirect or inform the user of success

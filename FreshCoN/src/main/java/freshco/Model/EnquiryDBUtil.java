@@ -13,18 +13,21 @@ public class EnquiryDBUtil {
 
         ResultSet rs = webDB.executeSearch(query);
         while (rs.next()) {
-        	Enquiry enq = new Enquiry(rs.getInt("EnID"),rs.getString("subject"),rs.getString("comments"),rs.getString("response"));
+        	Enquiry enq = new Enquiry(rs.getInt("EnID"),rs.getString("email"),rs.getString("subject"),rs.getString("comments"),rs.getString("response"));
         	enquiry.add(enq);
         }
         rs.close();
         return enquiry;
     }
 	
-	public static boolean insertEnquiry(String subject, String comments, String response) {
+	
+	
+	
+	public static boolean insertEnquiry(String email,String subject, String comments, String response) {
     	
     	boolean isSuccess = false;
     	
-    	String query = "INSERT INTO enquiry (subject, comments, response) VALUES ('" + subject + "', '" + comments + "', '" + response + "')";
+    	String query = "INSERT INTO enquiry (email,subject, comments, response) VALUES ('" + email + "','" + subject + "', '" + comments + "', '" + response + "')";
     	
     		try {
                 int rowsAffected = webDB.executeIUD(query);
@@ -38,11 +41,16 @@ public class EnquiryDBUtil {
             return isSuccess;
     }
     
-	public static boolean updateEnquiry(int EnID,String subject, String comments, String response) {
+	
+	
+	
+	
+	
+	public static boolean updateEnquiry(int EnID,String email,String subject, String comments, String response) {
 	
 		boolean isSuccess = false;
 		
-		String query = "UPDATE enquiry SET subject='"+subject+"',comments='"+comments+"',response='"+response+"'"
+		String query = "UPDATE enquiry SET email='"+email+"',subject='"+subject+"',comments='"+comments+"',response='"+response+"'"
 				+ "where EnID='"+EnID+"'";
 
 	try {
@@ -57,6 +65,10 @@ public class EnquiryDBUtil {
 	
 	return isSuccess;
 }
+	
+	
+	
+	
 	
 public static boolean deleteEnquiry(int EnID) {
 	

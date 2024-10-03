@@ -3,18 +3,30 @@ package freshco.Beans;
 public class Enquiry {
 
 	private int enID;
+	private String email;
     private String subject;
     private String comments;
     private String response;
     
     
-	public Enquiry(int enID, String subject, String comments, String response) 
+	public Enquiry(int enID,String email, String subject, String comments, String response) 
 	{
 		super();
 		this.enID = enID;
+		this.email=email;
 		this.subject = subject;
 		this.comments = comments;
 		this.response = response;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 

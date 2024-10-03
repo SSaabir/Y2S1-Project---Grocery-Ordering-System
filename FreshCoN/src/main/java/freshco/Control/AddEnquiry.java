@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import freshco.Model.EnquiryDBUtil;
 
 
-@WebServlet("/AddEnquiry")
+
 public class AddEnquiry extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -22,10 +22,10 @@ public class AddEnquiry extends HttpServlet {
     }
 
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		     
-		
+		 			String email = request.getParameter("email");
      	            String subject = request.getParameter("subject");
                    	String comments = request.getParameter("comments");
      	            String respons = request.getParameter("response");
@@ -33,11 +33,11 @@ public class AddEnquiry extends HttpServlet {
 		
 	      
 		        
-		        boolean isInserted = EnquiryDBUtil.insertEnquiry(subject,comments,respons);
+		        boolean isInserted = EnquiryDBUtil.insertEnquiry(email,subject,comments,respons);
 
 		        if (isInserted) {
 		            // Redirect or inform the user of success
-		            response.sendRedirect("login.jsp");
+		            response.sendRedirect("index.jsp");
 		        } //else {
 		            // Handle the failure case, such as redirecting to an error page
 		            response.sendRedirect("");
