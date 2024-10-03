@@ -23,11 +23,11 @@ public class EnquiryDBUtil {
 	
 	
 	
-	public static boolean insertEnquiry(String email,String subject, String comments, String response) {
+	public static boolean insertEnquiry(String email,String subject, String comments) {
     	
     	boolean isSuccess = false;
     	
-    	String query = "INSERT INTO enquiry (email,subject, comments, response) VALUES ('" + email + "','" + subject + "', '" + comments + "', '" + response + "')";
+    	String query = "INSERT INTO enquiry (email,subject, comments) VALUES ('" + email + "','" + subject + "', '" + comments + "')";
     	
     		try {
                 int rowsAffected = webDB.executeIUD(query);
