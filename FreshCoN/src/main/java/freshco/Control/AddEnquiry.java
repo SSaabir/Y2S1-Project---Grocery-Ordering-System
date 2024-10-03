@@ -13,10 +13,12 @@ import freshco.Model.EnquiryDBUtil;
 public class AddEnquiry extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-  
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
     public AddEnquiry() {
         super();
-        
+        // TODO Auto-generated constructor stub
     }
 
 	
@@ -26,20 +28,20 @@ public class AddEnquiry extends HttpServlet {
 		 			String email = request.getParameter("email");
      	            String subject = request.getParameter("subject");
                    	String comments = request.getParameter("comments");
-     	           
+     	            String respons = request.getParameter("response");
 		
 		
 	      
 		        
-		        boolean isInserted = EnquiryDBUtil.insertEnquiry(email,subject,comments);
+		        boolean isInserted = EnquiryDBUtil.insertEnquiry(email,subject,comments,respons);
 
 		        if (isInserted) {
 		            // Redirect or inform the user of success
 		            response.sendRedirect("index.jsp");
-		        } else {
+		        } //else {
 		            // Handle the failure case, such as redirecting to an error page
 		            response.sendRedirect("");
-		        }
+		       // }
 		    }
 	
 
