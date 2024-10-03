@@ -66,12 +66,13 @@
                     <th>First_Name</th>
                     <th>Last_Name</th>
                     <th>Email</th>
+                    <th>Phone Number</th>
                     <th>Lane</th>
                     <th>City</th>
                     <th>Date Of Birth</th>
                     <th>ImgUrl</th>
                     <th>UserName</th>
-                    <th>Phone Number</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -86,12 +87,13 @@
                         <td><%= cus.getfName() %></td>
                         <td><%= cus.getlName() %></td>
                         <td><%= cus.getEmail() %></td>
+                         <td><%= cus.getPhone() %></td>
                         <td><%= cus.getLane() %></td>
                         <td><%= cus.getCity() %></td>
                         <td><%= cus.getDob() %></td>
                         <td><%= cus.getImgUrl() %></td>
                         <td><%= cus.getUsername() %></td>
-                        <td><%= cus.getPhone() %></td>
+                        
                         
                         
                     </tr>
