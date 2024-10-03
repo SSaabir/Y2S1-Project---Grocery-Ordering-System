@@ -3,7 +3,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import freshco.Beans.Customer;
-import freshco.Beans.Employee;
+
 
 
 public class CustomerDBUtil {
@@ -55,11 +55,14 @@ public class CustomerDBUtil {
 	}
 
 	
-	public static boolean insertCustomer(String fName, String lName, String email, String lane, String city, String dob,String imgUrl, String username,String password) {
+	
+	
+	
+	public static boolean insertCustomer(String fName, String lName, String email,String phone, String lane, String city, String dob,String imgUrl, String username,String password) {
     	
     	boolean isSuccess = false;
     	
-    	String query = "INSERT INTO customer (fName, lName, email, lane, city, dob,imgUrl,username,password) VALUES ('" + fName + "', '" + lName + "', '" + email + "', '" + lane + "', '" + city + "', '" + dob + "','"+imgUrl+"','"+username+"','"+password+"')";
+    	String query = "INSERT INTO customer (fName, lName, email, phone, lane, city, dob,imgUrl,username,password) VALUES ('" + fName + "', '" + lName + "', '" + email + "', '" + phone + "', '" + lane + "', '" + city + "', '" + dob + "','"+imgUrl+"','"+username+"','"+password+"')";
     	
     		try {
                 int rowsAffected = webDB.executeIUD(query);
@@ -73,11 +76,17 @@ public class CustomerDBUtil {
             return isSuccess;
     }
     
-	public static boolean updateCustomer(int CusID,String fName, String lName, String email, String lane, String city, String dob,String imgUrl, String username,String password) {
+	
+	
+	
+	
+	
+	
+	public static boolean updateCustomer(int CusID,String fName, String lName, String email,String phone, String lane, String city, String dob,String imgUrl, String username,String password) {
 	
 		boolean isSuccess = false;
 		
-		String query = "UPDATE customer SET fname='"+fName+"',lname='"+lName+"',email='"+email+"',lane='"+lane+"',city='"+city+"',dob='"+dob+"',imgUrl='"+imgUrl+"',username='"+username+"',password='"+password+"'"
+		String query = "UPDATE customer SET fname='"+fName+"',lname='"+lName+"',email='"+email+"',phone='"+phone+"',lane='"+lane+"',city='"+city+"',dob='"+dob+"',imgUrl='"+imgUrl+"',username='"+username+"',password='"+password+"'"
 				+ "where CusID='"+CusID+"'";
 
 	try {
@@ -92,6 +101,10 @@ public class CustomerDBUtil {
 	
 	return isSuccess;
 }
+	
+	
+	
+	
 	
 public static boolean deleteCustomer(int CusID) {
 	

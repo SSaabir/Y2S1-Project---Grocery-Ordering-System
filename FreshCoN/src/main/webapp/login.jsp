@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In/Sign Up Form</title>
-    <script src="/javascript/all.js" defer></script>
+    <script src="./javascript/all.js" defer></script>
     <style>
         * {
             box-sizing: border-box;
@@ -251,7 +251,7 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form id="signUpForm" action="login" method="post">
+            <form id="signUpForm" action="RegisterCustomer" method="post">
                 <h1>Create Account</h1>
                 <span class="enter_details">Enter Following Details</span>
                 <div class="form-grid">

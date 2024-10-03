@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import freshco.Model.CustomerDBUtil;
 
 
-@WebServlet("/AddCustomer")
+
 public class AddCustomer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -22,12 +22,13 @@ public class AddCustomer extends HttpServlet {
     }
 
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		     
 	         	String fName = request.getParameter("fName");
 	         	String lName = request.getParameter("lName");
 	         	String email = request.getParameter("email");
+	         	String phone = request.getParameter("phone");
 	         	String lane = request.getParameter("lane");
 	         	String city = request.getParameter("city");
 	         	String dob = request.getParameter("dob");
@@ -37,15 +38,15 @@ public class AddCustomer extends HttpServlet {
 	         	
 
 		        
-		        boolean isInserted = CustomerDBUtil.insertCustomer(fName,lName,email,lane,city,dob,imgUrl,username,password);
+		        boolean isInserted = CustomerDBUtil.insertCustomer(fName,lName,email,phone,lane,city,dob,imgUrl,username,password);
 
 		        if (isInserted) {
 		            // Redirect or inform the user of success
 		            response.sendRedirect("login.jsp");
-		        } //else {
+		        } else {
 		            // Handle the failure case, such as redirecting to an error page
 		            response.sendRedirect("");
-		       // }
+		        }
 		    }
 	
 
