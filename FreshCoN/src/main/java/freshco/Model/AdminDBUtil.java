@@ -66,7 +66,7 @@ public class AdminDBUtil {
                                    String city, String dob, String imgUrl, String phone,
                                    String username, String password) {
         boolean isSuccess = false;
-        String query = "INSERT INTO Admin (fName, lName, email, address, city, dob, imgUrl, phone, username, password) " +
+        String query = "INSERT INTO Admin (fName, lName, email, lane, city, dob, imgUrl, phone, username, password) " +
                        "VALUES ('" + fName + "', '" + lName + "', '" + email + "', '" + address + "', '" +
                        city + "', '" + dob + "', '" + imgUrl + "', '" + phone + "', '" + username + "', '" + password + "')";
 

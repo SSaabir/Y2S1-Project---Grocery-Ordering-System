@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/AddAdmin")
 public class AddAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,10 +36,9 @@ public class AddAdmin extends HttpServlet {
 
         // Redirect or forward based on the result
         if (isAdded) {
-            response.sendRedirect("adminList.jsp"); // Redirect to admin list page on success
+            response.sendRedirect("Admin"); // Redirect to admin list page on success
         } else {
             request.setAttribute("errorMessage", "Failed to add admin. Please try again.");
-            request.getRequestDispatcher("addAdmin.jsp").forward(request, response); // Forward back to form with error
         }
     }
 }

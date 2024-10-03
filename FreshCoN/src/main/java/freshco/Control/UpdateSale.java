@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/UpdateSale")
 public class UpdateSale extends HttpServlet {
 	 private static final long serialVersionUID = 1L;
 

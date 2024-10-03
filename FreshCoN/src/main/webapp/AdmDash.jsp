@@ -71,6 +71,7 @@
                         <th>DOB</th>
                         <th>Phone</th>
                         <th>Username</th>
+                        <th>Image URL</th>
                
                         
                     </tr>
@@ -92,6 +93,7 @@
                         <td><%= adm.getDob() %></td>
                         <td><%= adm.getPhone() %></td>
                         <td><%= adm.getUsername() %></td>
+                        <td><%= adm.getImgUrl() %></td>
                         
                     </tr>
                     <%
