@@ -91,7 +91,7 @@
                         <td><%= cus.getDob() %></td>
                         <td><%= cus.getImgUrl() %></td>
                         <td><%= cus.getUsername() %></td>
-                        <td><%= cus.getPhones() %></td>
+                        <td><%= cus.getPhone() %></td>
                         
                         
                     </tr>
