@@ -23,7 +23,7 @@ public class UpdateProduct extends HttpServlet {
         String productName = request.getParameter("productName");
         String descript = request.getParameter("descript");
         double price = Double.parseDouble(request.getParameter("price"));
-        int unit = Integer.parseInt(request.getParameter("unit"));
+        String unit = request.getParameter("unit");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         String imgUrl = request.getParameter("imgUrl");
         double discount = Double.parseDouble(request.getParameter("discount"));

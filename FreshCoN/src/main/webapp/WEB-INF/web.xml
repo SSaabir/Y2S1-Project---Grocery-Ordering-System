@@ -1,156 +1,208 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>FreshCoN</display-name>
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
-  
-  <!-- View Data Servlet Mappings Start-->
-      <!-- Admin dash -->
-    <servlet>
-    <servlet-name>ViewAdmin</servlet-name>
-    <servlet-class>freshco.Control.ViewAdmin</servlet-class>
-    </servlet>
-    <servlet-mapping>
-    <servlet-name>ViewAdmin</servlet-name>
-    <url-pattern>/Admin</url-pattern>
-    </servlet-mapping>
-    
-        <!-- Category dash -->
-    <servlet>
-    <servlet-name>ViewCategory</servlet-name>
-    <servlet-class>freshco.Control.ViewCategory</servlet-class>
-    </servlet>
-    <servlet-mapping>
-    <servlet-name>ViewCategory</servlet-name>
-    <url-pattern>/Category</url-pattern>
-    </servlet-mapping>
-    
-        <!-- Customer dash -->
-    <servlet>
-    <servlet-name>ViewCustomer</servlet-name>
-    <servlet-class>freshco.Control.ViewCustomer</servlet-class>
-    </servlet>
-    <servlet-mapping>
-    <servlet-name>ViewCustomer</servlet-name>
-    <url-pattern>/Customer</url-pattern>
-    </servlet-mapping>
-    
-  <!--Employee dash --> 
-<servlet>
-        <servlet-name>ViewEmployee</servlet-name>
-        <servlet-class>freshco.Control.ViewEmployee</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ViewEmployee</servlet-name>
-        <url-pattern>/Employee</url-pattern>
-    </servlet-mapping>
-    
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>FreshCoN</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 
-      <!--Enquiry dash -->
-    <servlet>
-        <servlet-name>ViewEnquiry</servlet-name>
-        <servlet-class>freshco.Control.ViewEnquiry</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ViewEnquiry</servlet-name>
-        <url-pattern>/Enquiry</url-pattern>
-    </servlet-mapping>
-    
-        <!-- Feedback dash -->
-    <servlet>
-    <servlet-name>ViewFeedback</servlet-name>
-    <servlet-class>freshco.Control.ViewFeedback</servlet-class>
-    </servlet>
-    <servlet-mapping>
-    <servlet-name>ViewFeedback</servlet-name>
-    <url-pattern>/Feedback</url-pattern>
-    </servlet-mapping>
-    
-       <!--Payment dash -->
-    <servlet>
-        <servlet-name>ViewPayment</servlet-name>
-        <servlet-class>freshco.Control.ViewPayment</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ViewPayment</servlet-name>
-        <url-pattern>/Payment</url-pattern>
-    </servlet-mapping>
-    
-        <!--Product dash -->
-    <servlet>
-        <servlet-name>ViewProduct</servlet-name>
-        <servlet-class>freshco.Control.ViewProduct</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ViewProduct</servlet-name>
-        <url-pattern>/Product</url-pattern>
-    </servlet-mapping>
-    
-     <!--Sale dash -->
-        <servlet>
-        <servlet-name>ViewSale</servlet-name>
-        <servlet-class>freshco.Control.ViewSale</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ViewSale</servlet-name>
-        <url-pattern>/Sale</url-pattern>
-    </servlet-mapping>
-    <!-- View Data Servlet Mappings Ending-->
-    
-    <!-- Validation Servlet Mapping Start-->
-     <servlet>
-        <servlet-name>UserValidation</servlet-name>
-        <servlet-class>freshco.Control.UserValidation</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UserValidation</servlet-name>
-        <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-    <!-- Validation Servlet Mapping End-->
-    
-     <!-- Validation Servlet Mapping Start-->
-     <servlet>
-        <servlet-name>logout</servlet-name>
-        <servlet-class>freshco.Control.logout</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>logout</servlet-name>
-        <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-    <!-- Logout Servlet Mapping End-->
-    
-    <!-- Insert Image Servlet Mapping Start -->
-    <servlet>
-        <servlet-name>ImageUploadServlet</servlet-name>
-        <servlet-class>freshco.Control.ImageUploadServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ImageUploadServlet</servlet-name>
-        <url-pattern>/UploadImage</url-pattern>
-    </servlet-mapping>
-    
-    <!-- Insert Data Servlet Mappings Start -->
-    <!-- Insert Delivery Person -->
-     <servlet>
-        <servlet-name>AddDeliveryPerson</servlet-name>
-        <servlet-class>freshco.Control.AddDeliveryPerson</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AddDeliveryPerson</servlet-name>
-        <url-pattern>/AddDelPerson</url-pattern>
-    </servlet-mapping>
-    
-        <!-- Insert Delivery Person -->
-     <servlet>
-        <servlet-name>AddEmpMan</servlet-name>
-        <servlet-class>freshco.Control.AddEmpMan</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AddEmpMan</servlet-name>
-        <url-pattern>/AEM</url-pattern>
-    </servlet-mapping>
-    
-    <!-- Insert Data Servlet Mappings End -->
-    
+	<!-- View Data Servlet Mappings Start -->
+	<!-- Admin dash -->
+	<servlet>
+		<servlet-name>ViewAdmin</servlet-name>
+		<servlet-class>freshco.Control.ViewAdmin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ViewAdmin</servlet-name>
+		<url-pattern>/Admin</url-pattern>
+	</servlet-mapping>
+
+	<!-- Category dash -->
+	<servlet>
+		<servlet-name>ViewCategory</servlet-name>
+		<servlet-class>freshco.Control.ViewCategory</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ViewCategory</servlet-name>
+		<url-pattern>/Category</url-pattern>
+	</servlet-mapping>
+
+	<!-- Customer dash -->
+	<servlet>
+		<servlet-name>ViewCustomer</servlet-name>
+		<servlet-class>freshco.Control.ViewCustomer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ViewCustomer</servlet-name>
+		<url-pattern>/Customer</url-pattern>
+	</servlet-mapping>
+
+	<!--Employee dash -->
+	<servlet>
+		<servlet-name>ViewEmployee</servlet-name>
+		<servlet-class>freshco.Control.ViewEmployee</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ViewEmployee</servlet-name>
+		<url-pattern>/Employee</url-pattern>
+	</servlet-mapping>
+
+
+	<!--Enquiry dash -->
+	<servlet>
+		<servlet-name>ViewEnquiry</servlet-name>
+		<servlet-class>freshco.Control.ViewEnquiry</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ViewEnquiry</servlet-name>
+		<url-pattern>/Enquiry</url-pattern>
+	</servlet-mapping>
+
+	<!-- Feedback dash -->
+	<servlet>
+		<servlet-name>ViewFeedback</servlet-name>
+		<servlet-class>freshco.Control.ViewFeedback</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ViewFeedback</servlet-name>
+		<url-pattern>/Feedback</url-pattern>
+	</servlet-mapping>
+
+	<!--Payment dash -->
+	<servlet>
+		<servlet-name>ViewPayment</servlet-name>
+		<servlet-class>freshco.Control.ViewPayment</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ViewPayment</servlet-name>
+		<url-pattern>/Payment</url-pattern>
+	</servlet-mapping>
+
+	<!--Product dash -->
+	<servlet>
+		<servlet-name>ViewProduct</servlet-name>
+		<servlet-class>freshco.Control.ViewProduct</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ViewProduct</servlet-name>
+		<url-pattern>/Product</url-pattern>
+	</servlet-mapping>
+
+	<!--Sale dash -->
+	<servlet>
+		<servlet-name>ViewSale</servlet-name>
+		<servlet-class>freshco.Control.ViewSale</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ViewSale</servlet-name>
+		<url-pattern>/Sale</url-pattern>
+	</servlet-mapping>
+	<!-- View Data Servlet Mappings Ending -->
+
+	<!-- Validation Servlet Mapping Start -->
+	<servlet>
+		<servlet-name>UserValidation</servlet-name>
+		<servlet-class>freshco.Control.UserValidation</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserValidation</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	<!-- Validation Servlet Mapping End -->
+
+	<!-- Validation Servlet Mapping Start -->
+	<servlet>
+		<servlet-name>logout</servlet-name>
+		<servlet-class>freshco.Control.logout</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logout</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	<!-- Logout Servlet Mapping End -->
+
+	<!-- Insert Image Servlet Mapping Start -->
+	<servlet>
+		<servlet-name>ImageUploadServlet</servlet-name>
+		<servlet-class>freshco.Control.ImageUploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ImageUploadServlet</servlet-name>
+		<url-pattern>/UploadImage</url-pattern>
+	</servlet-mapping>
+
+	<!-- Insert Data Servlet Mappings Start -->
+	<!-- Insert Delivery Person -->
+	<servlet>
+		<servlet-name>AddDeliveryPerson</servlet-name>
+		<servlet-class>freshco.Control.AddDeliveryPerson</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddDeliveryPerson</servlet-name>
+		<url-pattern>/AddDelPerson</url-pattern>
+	</servlet-mapping>
+
+	<!-- Insert Employee and Manager Person -->
+	<servlet>
+		<servlet-name>AddEmpMan</servlet-name>
+		<servlet-class>freshco.Control.AddEmpMan</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddEmpMan</servlet-name>
+		<url-pattern>/AEM</url-pattern>
+	</servlet-mapping>
+
+	<!-- Insert Enquiry -->
+	<servlet>
+		<servlet-name>AddEnquiry</servlet-name>
+		<servlet-class>freshco.Control.AddEnquiry</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddEnquiry</servlet-name>
+		<url-pattern>/EnquiryForm</url-pattern>
+	</servlet-mapping>
+
+	<!-- Insert Customer -->
+	<servlet>
+		<servlet-name>AddCustomer</servlet-name>
+		<servlet-class>freshco.Control.AddCustomer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddCustomer</servlet-name>
+		<url-pattern>/RegisterCustomer</url-pattern>
+	</servlet-mapping>
+
+	<!-- Insert Category -->
+	<servlet>
+		<servlet-name>AddCategory</servlet-name>
+		<servlet-class>freshco.Control.AddCategory</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddCategory</servlet-name>
+		<url-pattern>/AddCategories</url-pattern>
+	</servlet-mapping>
+
+	<!-- Insert Product -->
+	<servlet>
+		<servlet-name>AddProduct</servlet-name>
+		<servlet-class>freshco.Control.AddProduct</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddProduct</servlet-name>
+		<url-pattern>/AddProducts</url-pattern>
+	</servlet-mapping>
+
+	<!-- Insert Admin -->
+	<servlet>
+		<servlet-name>AddAdmin</servlet-name>
+		<servlet-class>freshco.Control.AddAdmin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddAdmin</servlet-name>
+		<url-pattern>/AddAdm</url-pattern>
+	</servlet-mapping>
+	<!-- Insert Data Servlet Mappings End -->
+
 </web-app>

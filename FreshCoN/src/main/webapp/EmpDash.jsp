@@ -58,6 +58,12 @@
                     });
                 });
             </script>
+             <%
+                HttpSession sess = request.getSession(false); // Get the session without creating a new one
+                String userType = (String) sess.getAttribute("userType"); // Get userType from the session
+
+                if (userType != null && userType.equals("employee")) {
+            %>
             <table id="myTable" class="display nowrap" style="width:100%">
                 <thead>
                     <tr>
@@ -94,6 +100,20 @@
                     %>
                 </tbody>
             </table>
+             <%
+                } else if (userType != null && userType.equals("customer")) {
+            %>
+            <!-- table             -->
+            <%
+                } else {
+            %>
+                <!-- Access Denied Message -->
+                <h2>Access Denied</h2>
+                <p>You do not have permission to view this content.</p>
+            <%
+                }
+            %>
+            
         </div>
     </section>
 </div>

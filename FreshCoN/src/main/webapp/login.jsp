@@ -284,7 +284,7 @@
                         <span id="dobError" class="error"></span>
                     </div>
                     <div>
-                        <input type="file" id="signUpImageUrl" accept="image/*" name="imgUrl" required />
+                        <input type="file" id="signUpImageUrl"  name="imgUrl" />
                         <span id="imageError" class="error"></span>
                         <img id="imagePreview" src="" alt="Image Preview" style="display:none; width: 100px; margin-top: 10px;" />
                     </div>
