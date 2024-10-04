@@ -12,7 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <title>Fresh Co</title>
+    <title>FreshCo</title>
     <style>
         #main{
        padding-top: 2%;
@@ -63,6 +63,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Category Name</th>
+                    <th>ImgUrl</th>
                      </tr>
             </thead>
            <tbody>
@@ -75,8 +76,7 @@
                     <tr>
                         <td><%= cat.getCID() %></td>
                          <td><%= cat.getCategory_Name() %></td>
-                         
-                        
+                         <td><img src="<%= cat.getImgUrl() %>" alt="<%= cat.getCategory_Name() %>" style="width: 100px; height: auto;"></td>
                         
                         
                     </tr>

@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import freshco.Beans.Category;
 
+
 public class CategoryDBUtil {
+	
+	
 
     // Get all categories
     public static List<Category> getAllCategories() throws Exception {
@@ -18,7 +21,7 @@ public class CategoryDBUtil {
             while (rs.next()) {
                 Category category = new Category(
                     rs.getInt("CID"),
-                    rs.getString("category_Name"),
+                    rs.getString("category_Name"), 
                     rs.getString("imgUrl")
                    
                 );
@@ -33,9 +36,10 @@ public class CategoryDBUtil {
     }
 
     // Insert a new category
-    public static boolean insertCategory(String category_Name,String ImgUrl) {
+    public static boolean insertCategory(String category_Name, String ImgUrl) {
         boolean isSuccess = false;
-        String query = "INSERT INTO Category (category_Name, imgUrl) VALUES ('" + category_Name + "','" + ImgUrl + "')";
+        // Corrected the SQL statement, removed the String type from the column list
+        String query = "INSERT INTO Category (category_Name, ImgUrl) VALUES ('" + category_Name + "', '" + ImgUrl + "')";
 
         try {
             int rowsAffected = webDB.executeIUD(query);  // Execute the insert query
@@ -44,7 +48,7 @@ public class CategoryDBUtil {
             e.printStackTrace();
         }
 
-        return isSuccess;
+        return isSuccess;   
     }
 
     // Update an existing category

@@ -22,9 +22,9 @@ public class ProductDBUtil {
     }
 
     // Insert a new product
-    public static boolean insertProduct(String productName, String descript, double price, int unit, int quantity, String imgUrl, double discount, int CID) {
+    public static boolean insertProduct(String productName, String descript, double price, String unit, int quantity, String imgUrl, double discount, int CID) {
         boolean isSuccess = false;
-        String query = "INSERT INTO Product (productName, descript, price, unit, quantity, imgUrl, discount, CID) " +
+        String query = "INSERT INTO Product (productName, descript, price, unit, quantity, discount, CID) " +
                        "VALUES ('" + productName + "', '" + descript + "', " + price + ", " + unit + ", " + quantity + ", '" + imgUrl + "', " + discount + ", " + CID + ")";
         
 
@@ -39,7 +39,7 @@ public class ProductDBUtil {
     
 
     // Update an existing product
-    public static boolean updateProduct(int PrID, String productName, String descript, double price, int unit, int quantity, String imgUrl, double discount, int CID) {
+    public static boolean updateProduct(int PrID, String productName, String descript, double price, String unit, int quantity, String imgUrl, double discount, int CID) {
         boolean isSuccess = false;
         String query = "UPDATE Product SET productName='" + productName + "', descript='" + descript + "', price=" + price +
                        ", unit=" + unit + ", quantity=" + quantity + ", imgUrl='" + imgUrl + "', discount=" + discount +

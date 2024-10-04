@@ -1,34 +1,38 @@
 package freshco.Control;
 
 import freshco.Model.CategoryDBUtil;
+import freshco.Beans.Category;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import javax.servlet.http.Part;
 
-@WebServlet("/AddCategoryServlet")
+
 public class AddCategory extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public AddCategory() {
-        super();
-    }
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String categoryName = request.getParameter("categoryName");
+        String category_Name = request.getParameter("category_Name");
         String imgUrl = request.getParameter("imgUrl");
+        
+        
+        
+      
 
-        boolean isSuccess = CategoryDBUtil.insertCategory(categoryName, imgUrl);
+        boolean isSuccess = CategoryDBUtil.insertCategory(category_Name, imgUrl);
 
         if (isSuccess) {
-            response.sendRedirect("ViewCategoryServlet");  // Redirect to the view servlet
+            response.sendRedirect("Category");
         } else {
-            request.setAttribute("errorMessage", "Failed to add category.");
-            request.getRequestDispatcher("addCategory.jsp").forward(request, response);
+            response.sendRedirect("error.jsp");
         }
     }
-}
 
+}
