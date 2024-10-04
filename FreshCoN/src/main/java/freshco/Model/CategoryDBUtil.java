@@ -36,20 +36,39 @@ public class CategoryDBUtil {
     }
 
     // Insert a new category
-    public static boolean insertCategory(String category_Name, String ImgUrl) {
+    public static boolean insertCategory(String category_Name, String imgUrl, int ID) {
         boolean isSuccess = false;
-        // Corrected the SQL statement, removed the String type from the column list
-        String query = "INSERT INTO Category (category_Name, ImgUrl) VALUES ('" + category_Name + "', '" + ImgUrl + "')";
+
+        // SQL query to insert into the Category table
+        String queryCategory = "INSERT INTO Category (category_Name, ImgUrl) VALUES ('" + category_Name + "', '" + imgUrl + "')";
 
         try {
-            int rowsAffected = webDB.executeIUD(query);  // Execute the insert query
-            isSuccess = rowsAffected > 0;  // Check if the insertion was successful
+            // Execute the insert query for the Category
+            int rowsAffected = webDB.executeIUD(queryCategory);
+
+            if (rowsAffected > 0) {
+                // Get the last inserted category ID
+                ResultSet rs = webDB.executeSearch("SELECT LAST_INSERT_ID()");
+                if (rs.next()) {
+                    int lastCategoryID = rs.getInt(1); // Assuming this is the ID of the last inserted category
+
+                    // SQL query to insert into the category_employee table
+                    String queryCategoryEmployee = "INSERT INTO category_employee (CID, EmID) VALUES (" + lastCategoryID + ", " + ID + ")";
+
+                    // Execute the insert query for category_employee
+                    int rowsAffected2 = webDB.executeIUD(queryCategoryEmployee);
+                    
+                    // Check if the insertion was successful
+                    isSuccess = rowsAffected2 > 0;
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return isSuccess;   
+        return isSuccess;
     }
+
 
     // Update an existing category
     public static boolean updateCategory(int CID, String category_Name) {
