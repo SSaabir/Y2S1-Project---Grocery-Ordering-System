@@ -7,13 +7,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fresh Co</title>
-    <script src="/javascript/all.js" defer></script>
+    <script src="./javascript/all.js" defer></script>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url(/image/back1.jpg);
+            background-image: url(./image/back1.jpg);
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -151,33 +151,12 @@
 
         <div class="registration">
             <h2> REGISTRATION FORM</h2>
-            <form id="registrationForm">
-
+            <form id="registrationForm" action="AEM" method="post">
                 <div class="form-row">
-                    <div class="sub-part">
-                        <label for="fname">First Name :</label>
-                        <input type="text" id="fname" placeholder="Enter your First Name" required>
-                    </div>
-
-                    <div class="sub-part">
-                        <label for="lname">Last Name :</label>
-                        <input type="text" id="lname" placeholder="Enter your Last Name" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="sub-part">
-                        <label>Gender:</label>
-                        <div class="gender-group">
-                            <label><input type="radio" name="gender" value="male" required> Male</label>
-                            <label><input type="radio" name="gender" value="female"> Female</label>
-                        </div>
-                    </div>
-
                     <div class="sub-part">
                         <label>Select Your Type :</label>
                         <div class="eType-group">
-                            <label><input type="radio" name="eType" value="manager" required> Manager</label>
+                            <label><input type="radio" name="eType" value="manager" > Manager</label>
                             <label><input type="radio" id="driverOption" name="eType" value="delivery"> Driver</label>
                         </div>
                     </div>
@@ -186,48 +165,45 @@
                 <div class="form-row">
                     <div class="sub-part">
                         <label for="email">Email :</label>
-                        <input type="email" id="email" placeholder="Enter your Email" required>
+                        <input type="email" name="email" id="email" placeholder="Enter your Email" required>
                     </div>
 
                     <div class="sub-part">
-                        <label for="address">Address :</label>
-                        <input type="text" id="address" placeholder="Enter your address" required>
+                        <label for="phone">Phone :</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your Phone Number" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="sub-part">
                         <label for="nic">NIC :</label>
-                        <input type="text" id="nic" required>
+                        <input type="text" id="nic" name="nic" required>
                     </div>
 
                     <div class="sub-part">
                         <label for="dob">DOB :</label>
-                        <input type="date" id="dob" required>
+                        <input type="date" id="dob" name="dob" required>
                     </div>
                 </div>
 
                 <div class="form-row">
-                    <div class="sub-part">
-                        <label for="phone">Phone :</label>
-                        <input type="tel" id="phone" placeholder="Enter your Phone Number" required>
-                    </div>
+
 
                     <div class="sub-part">
                         <label for="img">Add Image</label>
-                        <input type="file" id="img" required>
+                        <input type="file" id="img" name="imgUrl">
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="sub-part">
                         <label for="uName">User Name :</label>
-                        <input type="text" id="uName" placeholder="Enter User Name" required>
+                        <input type="text" id="uName" name="username" placeholder="Enter User Name" required>
                     </div>
 
                     <div class="sub-part">
                         <label for="password">Password :</label>
-                        <input type="password" id="password" placeholder="Enter Password" required>
+                        <input type="password" id="password" name="password" placeholder="Enter Password" required>
                     </div>
                 </div>
 

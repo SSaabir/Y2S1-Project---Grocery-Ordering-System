@@ -21,12 +21,12 @@ public class ManagerDBUtil {
         return managers;
     }
 	
-	public static boolean insertManager(String email, String nic, String dob, String phone, String username, String password) {
+	public static boolean insertManager(String email, String nic, String dob, String phone, String imgUrl, String username, String password) {
 	    
 	    boolean isSuccess = false;
 
 	    
-	    String queryEmployee = "INSERT INTO employee (email, nic, dob, phone, username, password) VALUES ('" + email + "', '" + nic + "', '" + dob + "', '" + phone + "', '" + username + "', '" + password + "')";
+	    String queryEmployee = "INSERT INTO employee (email, nic, dob, phone, imgUrl, username, password) VALUES ('" + email + "', '" + nic + "', '" + dob + "', '" + phone + "','" + imgUrl + "', '" + username + "', '" + password + "')";
 
 	    try {
 	      

@@ -37,10 +37,10 @@ public class DeliveryPersonDBUtil {
         return deliveryPersons;
     }
 
-    public static boolean insertDeliveryPerson(String email, String nic, String dob, String phone, String username, String password, String vehicleNum, String drivingLicenseNum, String city) {
+    public static boolean insertDeliveryPerson(String email, String nic, String dob, String imgUrl, String phone, String username, String password, String vehicleNum, String drivingLicenseNum, String city) {
         boolean isSuccess = false;
         
-        String queryEmployee = "INSERT INTO employee (email, nic, dob, phone, username, password) VALUES ('" + email + "', '" + nic + "', '" + dob + "', '" + phone + "', '" + username + "', '" + password + "')";
+        String queryEmployee = "INSERT INTO employee (email, nic, dob, imgUrl, phone, username, password) VALUES ('" + email + "', '" + nic + "', '" + dob + "', '" + imgUrl +"', '" + phone + "', '" + username + "', '" + password + "')";
         
         try {
             int rowsAffected = webDB.executeIUD(queryEmployee);
@@ -63,10 +63,10 @@ public class DeliveryPersonDBUtil {
         return isSuccess;
     }
 
-    public static boolean updateDeliveryPerson(int EmID, String email, String nic, String dob, String phone, String username, String password, String vehicleNum, String drivingLicenseNum, String city) {
+    public static boolean updateDeliveryPerson(int EmID, String email, String nic, String dob, String imgUrl, String phone, String username, String password, String vehicleNum, String drivingLicenseNum, String city) {
         boolean isSuccess = false;
 
-        String queryEmployee = "UPDATE employee SET email='" + email + "', nic='" + nic + "', dob='" + dob + "', phone='" + phone + "', username='" + username + "', password='" + password + "' WHERE EmID='" + EmID + "'";
+        String queryEmployee = "UPDATE employee SET email='" + email + "', nic='" + nic + "', dob='" + dob + "', imgUrl='" + imgUrl + "', phone='" + phone + "', username='" + username + "', password='" + password + "' WHERE EmID='" + EmID + "'";
         
         try {
             int rowsAffected = webDB.executeIUD(queryEmployee);

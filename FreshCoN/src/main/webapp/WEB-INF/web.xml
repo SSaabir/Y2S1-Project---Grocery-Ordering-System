@@ -120,4 +120,37 @@
     </servlet-mapping>
     <!-- Logout Servlet Mapping End-->
     
+    <!-- Insert Image Servlet Mapping Start -->
+    <servlet>
+        <servlet-name>ImageUploadServlet</servlet-name>
+        <servlet-class>freshco.Control.ImageUploadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ImageUploadServlet</servlet-name>
+        <url-pattern>/UploadImage</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Insert Data Servlet Mappings Start -->
+    <!-- Insert Delivery Person -->
+     <servlet>
+        <servlet-name>AddDeliveryPerson</servlet-name>
+        <servlet-class>freshco.Control.AddDeliveryPerson</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddDeliveryPerson</servlet-name>
+        <url-pattern>/AddDelPerson</url-pattern>
+    </servlet-mapping>
+    
+        <!-- Insert Delivery Person -->
+     <servlet>
+        <servlet-name>AddEmpMan</servlet-name>
+        <servlet-class>freshco.Control.AddEmpMan</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddEmpMan</servlet-name>
+        <url-pattern>/AEM</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Insert Data Servlet Mappings End -->
+    
 </web-app>

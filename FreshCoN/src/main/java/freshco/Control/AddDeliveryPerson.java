@@ -9,18 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import freshco.Model.DeliveryPersonDBUtil;
 
-@WebServlet("/AddDeliveryPerson")
 public class AddDeliveryPerson extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public AddDeliveryPerson() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String nic = request.getParameter("nic");
         String dob = request.getParameter("dob");
+        String imgUrl = request.getParameter("imgUrl");
         String phone = request.getParameter("phone");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -28,10 +24,10 @@ public class AddDeliveryPerson extends HttpServlet {
         String drivingLicenseNum = request.getParameter("drivingLicenseNum");
         String city = request.getParameter("city");
 
-        boolean isSuccess = DeliveryPersonDBUtil.insertDeliveryPerson(email, nic, dob, phone, username, password, vehicleNum, drivingLicenseNum, city);
+        boolean isSuccess = DeliveryPersonDBUtil.insertDeliveryPerson(email, nic, dob, imgUrl, phone, username, password, vehicleNum, drivingLicenseNum, city);
 
         if (isSuccess) {
-            response.sendRedirect("success.jsp");
+            response.sendRedirect("Employee");
         } else {
             response.sendRedirect("error.jsp");
         }

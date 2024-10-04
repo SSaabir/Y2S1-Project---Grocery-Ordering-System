@@ -123,65 +123,59 @@
     <div class="main">
         <div class="registration">
             <h2>Driver REGISTRATION FORM</h2>
-            <form id="registrationForm">
+            <form id="registrationForm" action="AddDelPerson" method="post">
                 <div class="form-row">
                     <div class="sub-part">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" placeholder="Enter your name" required>
-                    </div>
-                    <div class="sub-part">
                         <label for="email">Email:</label>
-                        <input type="email" id="email" placeholder="Enter your Email" required>
+                        <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+                    </div>
+                       <div class="sub-part">
+                        <label for="phone">Phone:</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your Phone Number" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="sub-part">
                         <label for="nic">NIC:</label>
-                        <input type="text" id="nic" required>
+                        <input type="text" id="nic" name="nic" required>
                     </div>
-                    <div class="sub-part">
-                        <label for="phone">Phone:</label>
-                        <input type="tel" id="phone" placeholder="Enter your Phone Number" required>
+                      <div class="sub-part">
+                        <label for="Dimg">Add Driver Image</label>
+                        <input type="file" id="Dimg" name="imgUrl">
                     </div>
+                                   
                 </div>
                 <div class="form-row">
                     <div class="sub-part">
-                        <label for="address">Address:</label>
-                        <input type="text" id="address" placeholder="Enter your address" required>
+                        <label for="city">City:</label>
+                        <input type="text" id="address" name="city" placeholder="Enter your address" required>
                     </div>
                     <div class="sub-part">
                         <label for="dob">DOB:</label>
-                        <input type="date" id="dob" required>
+                        <input type="date" id="dob" name="dob" required>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="sub-part">
-                        <label for="vNumber">Vehicle Number:</label>
-                        <input type="text" id="vNumber" required>
-                    </div>
                     <div class="sub-part">
                         <label for="LNumber">License Number:</label>
-                        <input type="text" id="LNumber" required>
+                        <input type="text" id="LNumber" name="drivingLicenseNum" required>
+                    </div>
+                      <div class="sub-part">
+                        <label for="vNumber">Vehicle Number:</label>
+                        <input type="text" id="vNumber" name="vehicleNum" required>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="sub-part">
-                        <label for="Dimg">Add Driver Image</label>
-                        <input type="file" id="Dimg" required>
-                    </div>
-                    <div class="sub-part">
-                        <label for="Limg">Add License Image</label>
-                        <input type="file" id="Limg" required>
-                    </div>
+                  
                 </div>
                 <div class="form-row">
                     <div class="sub-part">
                         <label for="uName">User Name:</label>
-                        <input type="text" id="uName" placeholder="Enter User Name" required>
+                        <input type="text" id="uName" name="username" placeholder="Enter User Name" required>
                     </div>
                     <div class="sub-part">
                         <label for="password">Password:</label>
-                        <input type="password" id="password" placeholder="Enter Password" required>
+                        <input type="password" id="password" name="password" placeholder="Enter Password" required>
                     </div>
                 </div>
                 <div class="form-actions">
