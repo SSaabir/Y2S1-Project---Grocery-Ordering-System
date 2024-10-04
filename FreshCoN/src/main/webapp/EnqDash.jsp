@@ -63,6 +63,7 @@
             <thead>
                 <tr>
                     <th>Enquiry_ID</th>
+                    <th>Email</th>
                     <th>Subject</th>
                     <th>Comments</th>
                     <th>Response</th>
@@ -78,6 +79,7 @@
                     %>
                     <tr>
                         <td><%= enq.getEnID() %></td>
+                        <td><%= enq.getEmail() %></td>
                         <td><%= enq.getSubject() %></td>
                         <td><%= enq.getComments() %></td>
                         <td><%= enq.getResponse() %></td>
