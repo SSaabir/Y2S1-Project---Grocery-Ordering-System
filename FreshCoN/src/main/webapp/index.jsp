@@ -374,10 +374,10 @@
         <div class="container">
             <h1 class="contact-title">Contact Us</h1>
             <p class="contact-subtitle">We'd love to hear from you! Please fill out the form below to get in touch.</p>
-            <form class="contact-form" action="EnquiryForm">
+            <form class="contact-form" action="EnquiryForm" method="post">
                 <input type="email" placeholder="Your Email Address" id="email" name="email" required>
                 <input type="text" placeholder="Enter Subject" id="subject" name="subject" required>
-                <textarea placeholder="Your Message" rows="5" id="Comments" name="Comments" required></textarea>
+                <textarea placeholder="Your Message" rows="5" id="Comments" name="comments" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
         </div>

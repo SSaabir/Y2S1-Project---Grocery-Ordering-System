@@ -1,12 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fresh Co</title>
+    <title>Profile Settings</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
@@ -14,7 +12,9 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, rgb(46, 45, 45), #504e4e);
+            background-image: url(/image/5786039.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
         }
         
         .main-box {
@@ -52,7 +52,7 @@
             transform: scale(1.05);
         }
         
-        .drag-drop-area {
+        .areas {
             width: 150px;
             height: 150px;
             border: 2px dashed #5f2c84;
@@ -64,7 +64,7 @@
             transition: background-color 0.3s ease;
         }
         
-        .drag-drop-area:hover {
+        .areas:hover {
             background-color: rgba(95, 44, 132, 0.1);
         }
         
@@ -83,19 +83,19 @@
             text-align: center;
         }
         
-        .group {
+        .sub_part {
             margin-bottom: 20px;
             position: relative;
         }
         
-        .group label {
+        .sub_part label {
             display: block;
             font-weight: bold;
             margin-bottom: 8px;
             color: #333;
         }
         
-        .group input {
+        .sub_part input {
             width: 80%;
             padding: 12px;
             padding-left: 35px;
@@ -105,13 +105,17 @@
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .group input:focus {
+        .sub_part input:focus {
             border-color: #5f2c84;
             box-shadow: 0 0 8px rgba(95, 44, 132, 0.2);
             outline: none;
         }
         
-        .group .fa {
+        .sub_part input:invalid {
+            border-color: red;
+        }
+        
+        .sub_part .fa {
             position: absolute;
             left: 10px;
             top: 50%;
@@ -136,6 +140,11 @@
         
         .save-btn:hover {
             background-color: #4a206a;
+        }
+        
+        .save-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
         }
         
         .loading-spinner {
@@ -173,58 +182,68 @@
 
 <body>
     <div class="main-box">
-        <div class="profile-header">
-            <h2>Profile Settings</h2>
-            <div class="drag-drop-area" onclick="document.getElementById('fileInput').click();">
-                <img src="/user.png" alt="Profile Picture" class="profile-pic" id="profilePic">
+        <form id="profileForm">
+            <div class="profile-header">
+                <h2>Profile Settings</h2>
+                <div class="areas" onclick="document.getElementById('imgUrl').click();">
+                    <img src="/path/to/default-image.jpg" alt="Profile Picture" class="profile-pic" id="profilePic">
+                </div>
+                <input type="file" id="imgUrl" class="file-input" name="imgUrl" accept="image/*" onchange="previewImage(event)">
             </div>
-            <input type="file" id="fileInput" class="file-input" accept="image/*" onchange="previewImage(event)">
-        </div>
 
-        <div class="main-form">
-            <form id="profileForm">
-                <div class="group">
-                    <label for="userName">User Name</label>
-                    <i class="fa fa-user"></i>
-                    <input type="text" id="userName" placeholder="User Name" required>
-                </div>
-                <div class="group">
-                    <label for="firstname">First Name</label>
+            <div class="main-form">
+                <div class="sub_part">
+                    <label for="fName">First Name</label>
                     <i class="fa fa-id-card"></i>
-                    <input type="text" id="firstname" placeholder="First Name" required>
+                    <input type="text" id="fName" name="fName" placeholder="First Name" required>
                 </div>
-                <div class="group">
-                    <label for="lastname">Last Name</label>
+                <div class="sub_part">
+                    <label for="lName">Last Name</label>
                     <i class="fa fa-id-card-alt"></i>
-                    <input type="text" id="lastname" placeholder="Last Name" required>
+                    <input type="text" id="lName" name="lName" placeholder="Last Name" required>
                 </div>
-                <div class="group">
-                    <label for="phone">Mobile Number</label>
-                    <i class="fa fa-phone"></i>
-                    <input type="tel" id="phone" placeholder="Enter Phone Number" required>
-                </div>
-                <div class="group">
-                    <label for="address">Address</label>
-                    <i class="fa fa-map-marker-alt"></i>
-                    <input type="text" id="address" placeholder="Enter Address" required>
-                </div>
-                <div class="group">
-                    <label for="city">City</label>
-                    <i class="fa fa-city"></i>
-                    <input type="text" id="city" placeholder="Enter City" required>
-                </div>
-                <div class="group">
+
+                <div class="sub_part">
                     <label for="email">Email</label>
                     <i class="fa fa-envelope"></i>
-                    <input type="email" id="email" placeholder="Enter Email" required>
+                    <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                </div>
+
+                <div class="sub_part">
+                    <label for="phone">Mobile Number</label>
+                    <i class="fa fa-phone"></i>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" required>
+                </div>
+
+                <div class="sub_part">
+                    <label for="lane">Address</label>
+                    <i class="fa fa-map-marker-alt"></i>
+                    <input type="text" id="lane" name="lane" placeholder="Enter Address" required>
+                </div>
+                <div class="sub_part">
+                    <label for="city">City</label>
+                    <i class="fa fa-city"></i>
+                    <input type="text" id="city" name="city" placeholder="Enter City" required>
+                </div>
+
+                <div class="sub_part">
+                    <label for="password">Password</label>
+                    <i class="fa fa-lock"></i>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+
+                <div class="sub_part">
+                    <label for="Confirmpassword">Confirm Password</label>
+                    <i class="fa fa-lock"></i>
+                    <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" required>
                 </div>
 
                 <button type="submit" class="save-btn" id="saveBtn">
                     Save Profile
                     <div class="loading-spinner" id="spinner"></div>
                 </button>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 
     <script>
@@ -242,28 +261,49 @@
             }
         }
 
-        document.getElementById('profileForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const saveBtn = document.getElementById('saveBtn');
+        document.getElementById('profileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('Confirmpassword').value;
+
+            // Validation checks
+            let validationErrors = [];
+            if (phone.length !== 10 || !/^\d{10}$/.test(phone)) {
+                validationErrors.push('Please enter a valid 10-digit phone number.');
+            }
+            if (password !== confirmPassword) {
+                validationErrors.push('Passwords do not match.');
+            }
+
+            if (validationErrors.length > 0) {
+                alert(validationErrors.join('\n'));
+                return;
+            }
+
+            // Show spinner and disable button
             const spinner = document.getElementById('spinner');
+            const saveBtn = document.getElementById('saveBtn');
             saveBtn.disabled = true;
             spinner.style.display = 'inline-block';
 
-            setTimeout(function() {
+            // Simulate an API call
+            setTimeout(() => {
                 alert('Profile saved successfully!');
 
-
+                // Reset form fields
                 document.getElementById('profileForm').reset();
 
+                // Reset profile picture to default
+                const imgElement = document.getElementById('profilePic');
+                imgElement.src = '/path/to/default-image.jpg'; // Change this to your default image path
 
-                document.getElementById('profilePic').src = '/user.png';
-
-                saveBtn.disabled = false;
                 spinner.style.display = 'none';
+                saveBtn.disabled = false;
             }, 2000);
         });
     </script>
-
 </body>
 
 </html>
