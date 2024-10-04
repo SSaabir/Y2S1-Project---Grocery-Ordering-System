@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 
@@ -21,12 +22,10 @@ public class AddCategory extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String category_Name = request.getParameter("category_Name");
         String imgUrl = request.getParameter("imgUrl");
+        HttpSession session = request.getSession();
+        int ID = (int) session.getAttribute("ID");
         
-        
-        
-      
-
-        boolean isSuccess = CategoryDBUtil.insertCategory(category_Name, imgUrl);
+        boolean isSuccess = CategoryDBUtil.insertCategory(category_Name, imgUrl, ID);
 
         if (isSuccess) {
             response.sendRedirect("Category");
