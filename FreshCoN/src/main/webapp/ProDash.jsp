@@ -70,6 +70,7 @@
                     <th>Unit</th>
                     <th>Quantity</th>
                     <th>Discount</th>
+                    <th>CID</th>
                 </tr>
             </thead>
            <tbody>
@@ -87,6 +88,7 @@
                         <td><%= pro.getUnit() %></td>
                         <td><%= pro.getQuantity() %></td>
                         <td><%= pro.getDiscount() %></td>
+                        <td><%= pro.getCID() %></td>
                     </tr>
                     <%
                         	}

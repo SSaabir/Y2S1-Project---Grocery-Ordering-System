@@ -205,16 +205,19 @@
         <input type="number" id="quantity" name="quantity" placeholder="Quantity" required>
     </div>
     <div class="group">
-        <label for="imgUrl">Image URL</label>
-        <div class="drag-drop-area" onclick="document.getElementById('ImgUrl').click();">
-                            <img src="/user.png" alt="" class="profile-pic" id="profilePic">
-                        </div>
-                        <input type="file" id="ImgUrl"  name="ImgUrl" class="file-input" accept="image/*" onchange="previewImage(event)">
-    </div>
+                    <label for="imgUrl">Image</label>
+                    <input type="file" id="ImgUrl" name="imgUrl" >
+                </div>
     <div class="group">
         <label for="discount">Discount</label>
         <input type="number" id="discount" name="discount" step="0.01" min="0" placeholder="Discount" required>
     </div>
+    
+    <div class="group">
+        <label for="CID"> Category ID</label>
+        <input type="number" id="CID"  name="CID" placeholder="Enter Category ID" >
+    </div>
+    
     <button type="submit" class="save-btn">Save</button>
 </form>
 
