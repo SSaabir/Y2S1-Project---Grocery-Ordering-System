@@ -21,9 +21,14 @@ public class AddProduct extends HttpServlet {
         double price = Double.parseDouble(request.getParameter("price"));
         String unit = request.getParameter("unit");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        String imgUrl = "NotPound";
+        String imgUrl = request.getParameter("imgUrl");
         double discount = Double.parseDouble(request.getParameter("discount"));
         int CID = Integer.parseInt(request.getParameter("CID"));
+        
+        
+          
+
+          
 
         boolean isSuccess = ProductDBUtil.insertProduct(productName, descript, price, unit, quantity, imgUrl, discount, CID);
 
@@ -31,7 +36,7 @@ public class AddProduct extends HttpServlet {
             response.sendRedirect("Product");
         } else {
             request.setAttribute("errorMessage", "Failed to add product");
-            request.getRequestDispatcher("addProduct.jsp").forward(request, response);
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
 }
