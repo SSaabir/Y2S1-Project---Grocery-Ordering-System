@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import freshco.Model.CustomerDBUtil;
 
 
-@WebServlet("/DeleteCustomer")
+
 public class DeleteCustomer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,10 +27,10 @@ public class DeleteCustomer extends HttpServlet {
 
 	        if (isDeleted) {
 	            // Redirect to a success page
-	            response.sendRedirect("");
+	            response.sendRedirect("dashboard.jsp");
 	        } else {
 	            // Redirect to an error page
-	            response.sendRedirect("");
+	            response.sendRedirect("error.jsp");
 	        }
 	    }
 	}

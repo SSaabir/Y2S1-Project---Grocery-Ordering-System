@@ -182,54 +182,58 @@
 
 <body>
     <div class="main-box">
-        <form id="profileForm">
+        <form id="profileForm" action="EditProfile" method="post">
             <div class="profile-header">
                 <h2>Profile Settings</h2>
+          <!--  
                 <div class="areas" onclick="document.getElementById('imgUrl').click();">
                     <img src="/path/to/default-image.jpg" alt="Profile Picture" class="profile-pic" id="profilePic">
                 </div>
-                <input type="file" id="imgUrl" class="file-input" name="imgUrl" accept="image/*" onchange="previewImage(event)">
+                <input type="file" id="imgUrl" class="file-input" name="imgUrl" onchange="previewImage(event)">
+                -->
             </div>
 
             <div class="main-form">
                 <div class="sub_part">
                     <label for="fName">First Name</label>
                     <i class="fa fa-id-card"></i>
-                    <input type="text" id="fName" name="fName" placeholder="First Name" required>
+                    <input type="text" id="fName" name="fName" value="<%= (String) session.getAttribute("fName") %>" placeholder="First Name" required>
                 </div>
                 <div class="sub_part">
                     <label for="lName">Last Name</label>
                     <i class="fa fa-id-card-alt"></i>
-                    <input type="text" id="lName" name="lName" placeholder="Last Name" required>
+                    <input type="text" id="lName" name="lName" value="<%= (String) session.getAttribute("lName") %>" placeholder="Last Name" required>
                 </div>
 
                 <div class="sub_part">
                     <label for="email">Email</label>
                     <i class="fa fa-envelope"></i>
-                    <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                    <input type="email" id="email" name="email" value="<%= (String) session.getAttribute("email") %>" placeholder="Enter Email" required>
                 </div>
 
                 <div class="sub_part">
                     <label for="phone">Mobile Number</label>
                     <i class="fa fa-phone"></i>
-                    <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" required>
+                    <input type="tel" id="phone" name="phone" value="<%= (String) session.getAttribute("phone") %>" placeholder="Enter Phone Number" required>
                 </div>
 
                 <div class="sub_part">
-                    <label for="lane">Address</label>
+                    <label for="lane">Address : Lane</label>
                     <i class="fa fa-map-marker-alt"></i>
-                    <input type="text" id="lane" name="lane" placeholder="Enter Address" required>
+                    <input type="text" id="lane" name="lane" value="<%= (String) session.getAttribute("lane") %>" placeholder="Enter Address" required>
                 </div>
                 <div class="sub_part">
                     <label for="city">City</label>
                     <i class="fa fa-city"></i>
-                    <input type="text" id="city" name="city" placeholder="Enter City" required>
+                    <input type="text" id="city" name="city" value="<%= (String) session.getAttribute("city") %>" placeholder="Enter City" required>
                 </div>
+                
+                
 
                 <div class="sub_part">
                     <label for="password">Password</label>
                     <i class="fa fa-lock"></i>
-                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <input type="password" id="password" name="password" value="<%= (String) session.getAttribute("fName") %>" placeholder="Password" required>
                 </div>
 
                 <div class="sub_part">
@@ -239,71 +243,63 @@
                 </div>
 
                 <button type="submit" class="save-btn" id="saveBtn">
-                    Save Profile
-                    <div class="loading-spinner" id="spinner"></div>
-                </button>
+    			Save Profile
+				</button>
+
+				<button type="button" href="DeleteCustomer?CusID=<%= (int) session.getAttribute("ID")%>" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
+  				  Delete Profile
+				</button>
+
             </div>
         </form>
     </div>
+    
+  
+<script>
+    // Phone number validation (must be 10 digits)
+    const phoneInput = document.getElementById('phone');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('Confirmpassword');
+    const saveBtn = document.getElementById('saveBtn');
 
-    <script>
-        function previewImage(event) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
+    document.getElementById('profileForm').addEventListener('submit', function(event) {
+        let valid = true;
 
-            reader.onload = function() {
-                const imgElement = document.getElementById('profilePic');
-                imgElement.src = reader.result;
-            }
-
-            if (file) {
-                reader.readAsDataURL(file);
-            }
+        // Validate phone number length (10 digits)
+        const phoneValue = phoneInput.value;
+        if (!/^\d{10}$/.test(phoneValue)) {
+            alert("Phone number must be 10 digits");
+            valid = false;
         }
 
-        document.getElementById('profileForm').addEventListener('submit', function(event) {
+        // Validate passwords match
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            valid = false;
+        }
+
+        // If not valid, prevent form submission
+        if (!valid) {
             event.preventDefault();
+        }
+    });
 
-            const phone = document.getElementById('phone').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('Confirmpassword').value;
+  <!-- --!>  // Delete button functionality (can be customized as needed)
+    const deleteBtn = document.getElementById('deleteBtn');
+    deleteBtn.addEventListener('click', function() {
+        if (confirm("Are you sure you want to delete your profile?")) {
+            // Implement your delete logic here
+            alert("Profile deleted!");
+            // Optionally, you could redirect to another page after deletion
+            // window.location.href = "/path/to/redirect";
+        }
+    });
+</script>
 
-            // Validation checks
-            let validationErrors = [];
-            if (phone.length !== 10 || !/^\d{10}$/.test(phone)) {
-                validationErrors.push('Please enter a valid 10-digit phone number.');
-            }
-            if (password !== confirmPassword) {
-                validationErrors.push('Passwords do not match.');
-            }
 
-            if (validationErrors.length > 0) {
-                alert(validationErrors.join('\n'));
-                return;
-            }
-
-            // Show spinner and disable button
-            const spinner = document.getElementById('spinner');
-            const saveBtn = document.getElementById('saveBtn');
-            saveBtn.disabled = true;
-            spinner.style.display = 'inline-block';
-
-            // Simulate an API call
-            setTimeout(() => {
-                alert('Profile saved successfully!');
-
-                // Reset form fields
-                document.getElementById('profileForm').reset();
-
-                // Reset profile picture to default
-                const imgElement = document.getElementById('profilePic');
-                imgElement.src = '/path/to/default-image.jpg'; // Change this to your default image path
-
-                spinner.style.display = 'none';
-                saveBtn.disabled = false;
-            }, 2000);
-        });
-    </script>
 </body>
 
 </html>

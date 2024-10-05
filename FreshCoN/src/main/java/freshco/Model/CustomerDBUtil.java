@@ -72,11 +72,11 @@ public class CustomerDBUtil {
     }
 	
 	
-	public static boolean updateCustomer(int CusID,String fName, String lName, String email,String phone, String lane, String city, String dob,String imgUrl,String password) {
+	public static boolean updateCustomer(int CusID,String fName, String lName, String email,String phone, String lane, String city,String password) {
 	
 		boolean isSuccess = false;
 		
-		String query = "UPDATE customer SET fname='"+fName+"',lname='"+lName+"',email='"+email+"',phone='"+phone+"',lane='"+lane+"',city='"+city+"',dob='"+dob+"',imgUrl='"+imgUrl+"',password='"+password+"'"
+		String query = "UPDATE customer SET fname='"+fName+"',lname='"+lName+"',email='"+email+"',phone='"+phone+"',lane='"+lane+"',city='"+city+"',password='"+password+"'"
 				+ "where CusID='"+CusID+"'";
 
 	try {

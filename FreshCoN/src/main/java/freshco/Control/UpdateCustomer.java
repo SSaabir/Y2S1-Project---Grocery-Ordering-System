@@ -5,10 +5,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import freshco.Model.CustomerDBUtil;
 
 
-@WebServlet("/UpdateCustomer")
+
 public class UpdateCustomer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -19,26 +21,26 @@ public class UpdateCustomer extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		        int CusID = Integer.parseInt(request.getParameter("CusID"));
+		HttpSession session = request.getSession();
+		        int CusID = (int) session.getAttribute("ID");
 		    	String fName = request.getParameter("fName");
 	         	String lName = request.getParameter("lName");
 	         	String email = request.getParameter("email");
 	         	String phone = request.getParameter("phone");
 	         	String lane = request.getParameter("lane");
 	         	String city = request.getParameter("city");
-	         	String dob = request.getParameter("dob");
-	         	String imgUrl = request.getParameter("imgUrl");
+	         	//String imgUrl = request.getParameter("imgUrl");
 	         	String password = request.getParameter("password");
 
 		        // Call the updateCustomermethod from your database class
-		        boolean isUpdated = CustomerDBUtil.updateCustomer(CusID, fName,lName,email,phone,lane,city,dob,imgUrl,password);
+		        boolean isUpdated = CustomerDBUtil.updateCustomer(CusID, fName,lName,email,phone,lane,city, password);
 
 		        if (isUpdated) {
 		            // Redirect or inform the user of success
-		            response.sendRedirect("");
+		            response.sendRedirect("dashboard.jsp");
 		        } else {
 		            // Handle the failure case, such as redirecting to an error page
-		            response.sendRedirect("");
+		            response.sendRedirect("error.jsp");
 		        }
 		    }
 

@@ -216,11 +216,7 @@
 	</servlet-mapping>
 	<!-- Insert Data Servlet Mappings End -->
 	
-	
-	
-	
-	
-	
+
 	
 	<servlet>
 		<servlet-name>AddFeedback</servlet-name>
@@ -229,6 +225,36 @@
 	<servlet-mapping>
 		<servlet-name>AddFeedback</servlet-name>
 		<url-pattern>/Feedbackform</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- Update Customer -->
+	
+	
+	<servlet>
+		<servlet-name>UpdateCustomer</servlet-name>
+		<servlet-class>freshco.Control.UpdateCustomer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateCustomer</servlet-name>
+		<url-pattern>/EditProfile</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!-- Delete Customer -->
+	<servlet>
+		<servlet-name>DeleteCustomer</servlet-name>
+		<servlet-class>freshco.Control.DeleteCustomer</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteCustomer</servlet-name>
+		<url-pattern>/DeleteCustomer</url-pattern>
 	</servlet-mapping>
 	
 
