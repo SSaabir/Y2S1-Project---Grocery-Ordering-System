@@ -78,12 +78,10 @@ public class AdminDBUtil {
     }
 
     // Method to update an existing admin record
-    public static boolean updateAdmin(int AID, String fName, String lName, String email, 
-                                       String address, String city, String dob, String imgUrl, 
+    public static boolean updateAdmin(int AID, String fName, String lName, String email, String imgUrl, 
                                        String phone, String password) {
         boolean isSuccess = false;
-        String query = "UPDATE Admin SET fName='" + fName + "', lName='" + lName + "', email='" + email + 
-                       "', address='" + address + "', city='" + city + "', dob='" + dob + "', imgUrl='" + 
+        String query = "UPDATE Admin SET fName='" + fName + "', lName='" + lName + "', email='" + email +"', imgUrl='" + 
                        imgUrl + "', phone='" + phone + "', password='" + password + 
                        "' WHERE AID=" + AID;
 

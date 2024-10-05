@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="freshco.Model.AdminDBUtil" %>
 <%@ page import="freshco.Beans.Admin" %>
 <%@ page import="java.util.List" %>
@@ -9,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fresh Co</title>
+    <title>Edit Admin</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,7 +26,7 @@
             background-color: #ffffff;
         }
 
-        .registration {
+        .edit-form {
             padding: 30px;
             width: 50%;
             background-color: #ffffff;
@@ -97,7 +96,7 @@
         }
 
         @media (max-width: 768px) {
-            .registration {
+            .edit-form {
                 width: 90%;
             }
 
@@ -114,64 +113,50 @@
 
 <body>
     <div class="main">
-        <div class="registration">
-            <h2>ADMIN REGISTRATION FORM</h2>
-            <form action="AddAdm" method="post">
+        <div class="edit-form">
+            <h2>EDIT ADMIN FORM</h2>
+            <form action="UpdateAdmin" method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="sub-part">
                         <label for="fName">First Name:</label>
-                        <input type="text" id="fName" name="fName" placeholder="Enter First Name" required>
+                        <input type="text" id="fName" name="fName" placeholder="Enter First Name" value="<%= (String) session.getAttribute("fName") %>" required>
                     </div>
                     <div class="sub-part">
                         <label for="lName">Last Name:</label>
-                        <input type="text" id="lName" name="lName" placeholder="Enter Last Name" required>
+                        <input type="text" id="lName" name="lName" placeholder="Enter Last Name" value="<%= (String) session.getAttribute("lName") %>" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="sub-part">
                         <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                        <input type="email" id="email" name="email" placeholder="Enter Email" value="<%= (String) session.getAttribute("email") %>" required>
                     </div>
                     <div class="sub-part">
                         <label for="phone">Phone:</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" required>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" value="<%= (String) session.getAttribute("phone") %>" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="sub-part">
-                        <label for="Lane">Address Line:</label>
-                        <input type="text" id="Lane" name="Lane" placeholder="Enter Address Line" required>
-                    </div>
-                    <div class="sub-part">
-                        <label for="city">City:</label>
-                        <input type="text" id="city" name="city" placeholder="Enter City" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="sub-part">
-                        <label for="dob">Date of Birth:</label>
-                        <input type="date" id="dob" name="dob" required>
-                    </div>
-				<div class="sub-part">
                         <label for="img">Add Image</label>
-                        <input type="file" id="img">
-                    </div>                </div>
-                <div class="form-row">
-                    <div class="sub-part">
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                        <input type="file" id="img" name="img">
                     </div>
                 </div>
-                  <div class="sub_part">
-                    <label for="Confirmpassword">Confirm Password</label>
-                    <i class="fa fa-lock"></i>
-                    <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" required>
+                <div class="form-row">
+                    <div class="sub-part">
+                        <label for="password">New Password:</label>
+                        <input type="password" id="password" name="password" placeholder="Enter New Password">
+                    </div>
+                    <div class="sub-part">
+                        <label for="Confirmpassword">Confirm New Password:</label>
+                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password">
+                    </div>
                 </div>
-                
+
                 <div class="form-actions">
                     <button type="button" class="back-btn" onclick="history.back();">Back</button>
                     <button type="reset" class="reset-btn">Reset All</button>
-                    <button type="submit" class="submit-btn">Submit Form</button>
+                    <button type="submit" class="submit-btn">Submit Changes</button>
                 </div>
             </form>
         </div>

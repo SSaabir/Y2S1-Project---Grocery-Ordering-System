@@ -22,11 +22,10 @@ public class AddAdmin extends HttpServlet {
         String dob = request.getParameter("dob");
         String imgUrl = request.getParameter("imgUrl");
         String phone = request.getParameter("phone");
-        String username = request.getParameter("username");
         String password = request.getParameter("password");
 
         // Call the method to add admin
-        boolean isAdded = AdminDBUtil.addAdmin(fName, lName, email, address, city, dob, imgUrl, phone, username, password);
+        boolean isAdded = AdminDBUtil.addAdmin(fName, lName, email, address, city, dob, imgUrl, phone, password);
 
         // Redirect or forward based on the result
         if (isAdded) {
