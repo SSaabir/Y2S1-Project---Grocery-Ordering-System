@@ -1,6 +1,8 @@
 package freshco.Control;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,13 +21,18 @@ public class AddEmpMan extends HttpServlet {
 		String email = request.getParameter("email");
         String nic = request.getParameter("nic");
         String dob = request.getParameter("dob");
-        String imgUrl = request.getParameter("imgUrl");
         String phone = request.getParameter("phone");
         String password = request.getParameter("password");
 		String eType = request.getParameter("eType");
 		HttpSession session = request.getSession();
 		int ID = (int) session.getAttribute("ID");
 		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("UploadImage");
+        dispatcher.include(request, response); // Include ImageUploadServlet's response in this servlet
+
+        String imgUrl = (String) request.getAttribute("imageUrl"); 
+     	
+        
 		boolean isSuccess = false;
 		
 		if(eType == null || eType.isEmpty()){

@@ -1,6 +1,8 @@
 package freshco.Control;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,8 +34,12 @@ public class AddCustomer extends HttpServlet {
 	         	String lane = request.getParameter("lane");
 	         	String city = request.getParameter("city");
 	         	String dob = request.getParameter("dob");
-	         	String imgUrl = request.getParameter("imgUrl");
 	         	String password = request.getParameter("password");
+	         	
+	         	RequestDispatcher dispatcher = request.getRequestDispatcher("UploadImage");
+	            dispatcher.include(request, response); // Include ImageUploadServlet's response in this servlet
+
+	            String imgUrl = (String) request.getAttribute("imageUrl"); 
 	         	
 
 		        

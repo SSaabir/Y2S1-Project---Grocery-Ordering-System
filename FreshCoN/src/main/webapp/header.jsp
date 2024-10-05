@@ -21,6 +21,7 @@
     <meta charset="UTF-8">
 	<link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
    
 @import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
@@ -136,10 +137,10 @@
         }
         
         .user-pic {
-            width: 40px;
+            width: 30px;
             border-radius: 50%;
             cursor: pointer;
-            margin-left: 30px;
+            margin-left: 40%;
         }
         
         .sub-menu-wrap {
@@ -206,25 +207,40 @@
                 <li><a href="Product.jsp">Shop</a></li>
                 <li><a href="#contactUS">Contact Us</a></li>
             </ul>
-            <div class="search-bar">
-                <input type="text" placeholder="Search...">
-                <button><i class='bx bx-search-alt-2'></i></button>
-            </div>
+           
             <div class="buttons">
+<%
+                HttpSession sessH = request.getSession(false); // Get the session without creating a new one
+                String userTypo = (String) sessH.getAttribute("userType"); // Get userType from the session
 
+                if (userTypo == null || userTypo == "guest") {
+            %>
                 <img src="./image/user.png" class="user-pic" alt="User Profile">
                 <div class="sub-menu-wrap">
                     <div class="sub-menu">
                         <ul>
                             <li><a href="login.jsp">Login</a><i class='bx bx-chevron-right'></i></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <%
+                } else {
+            %>
+             <img src="<%= (String) session.getAttribute("imgUrl") %>" class="user-pic" alt="User Profile">
+                <div class="sub-menu-wrap">
+                    <div class="sub-menu">
+                        <ul>
                             <li><a href="EditProfile.jsp">Edit Profile</a><i class='bx bx-chevron-right'></i></li>
-                            <li><a href="login.jsp">Registration</a><i class='bx bx-chevron-right'></i></li>
                             <li><a href="logout">Logout</a><i class='bx bx-chevron-right'></i></li>
                         </ul>
                     </div>
                 </div>
+             <%
+                }
+            %>
             </div>
-            <a href="Product.jsp"><i class="fas fa-shopping-cart"></i></a>
+            <a href="Product.jsp"><span class="material-symbols-outlined">shopping_cart</span></a>
         </nav>
     </header>
 

@@ -1,6 +1,8 @@
 package freshco.Control;
 
 import freshco.Model.AdminDBUtil;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,10 +22,15 @@ public class AddAdmin extends HttpServlet {
         String address = request.getParameter("Lane");
         String city = request.getParameter("city");
         String dob = request.getParameter("dob");
-        String imgUrl = request.getParameter("imgUrl");
         String phone = request.getParameter("phone");
         String password = request.getParameter("password");
 
+        RequestDispatcher dispatcher = request.getRequestDispatcher("UploadImage");
+        dispatcher.include(request, response); // Include ImageUploadServlet's response in this servlet
+
+        String imgUrl = (String) request.getAttribute("imageUrl"); 
+     	
+        
         // Call the method to add admin
         boolean isAdded = AdminDBUtil.addAdmin(fName, lName, email, address, city, dob, imgUrl, phone, password);
 

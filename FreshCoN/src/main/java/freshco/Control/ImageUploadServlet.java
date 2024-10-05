@@ -15,27 +15,40 @@ public class ImageUploadServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Specify the directory where images will be saved
-        String uploadPath = getServletContext().getRealPath("") + File.separator + "image";
-        File uploadDir = new File(uploadPath);
+    	// Retrieve the file part from the form using 'ImgUrl'
+        Part part = request.getPart("imgUrl"); // 'ImgUrl' should match the file input name in the form
+        String fileName = part.getSubmittedFileName(); // Get the file name
+
+        
+       // String folderPath = "C:/Users/ext/Desktop/Project201/FreshCoN/src/main/webapp/image"; // Path to the image folder
+
+        
+        // Path to save the image file (make sure it points to your desired folder)
+        String folderPath = getServletContext().getRealPath("/image"); // The /image folder in your project
+
+        // Create directory if it doesn't exist
+        File uploadDir = new File(folderPath);
         if (!uploadDir.exists()) {
-            uploadDir.mkdir(); // Create the directory if it doesn't exist
+            uploadDir.mkdirs(); // Create directories if they don't exist
         }
 
-        String imagePath = null;
+        // Save the image file in the specified folder
+        String filePath = folderPath + File.separator + fileName;
+        part.write(filePath); // Save the file to the /image folder
 
-        // Get the image part from the request
-        Part imagePart = request.getPart("imgUrl");
-        if (imagePart != null && imagePart.getSize() > 0) {
-            String fileName = imagePart.getSubmittedFileName();
-            imagePath = uploadPath + File.separator + fileName;
-
-            // Save the image to the specified path
-            imagePart.write(imagePath);
+        // Check if the file was uploaded successfully
+        File uploadedFile = new File(filePath);
+        if (uploadedFile.exists()) {
+            System.out.println("File uploaded successfully: " + uploadedFile.getAbsolutePath());
+        } else {
+            System.out.println("File upload failed.");
         }
 
-        // Return the relative path to the uploaded image
-        String relativePath = "./image/" + imagePart.getSubmittedFileName();
-        response.getWriter().write(relativePath);
-    }
+        // Generate the image URL (this is the relative path to the image in the project)
+        String imageUrl = "./image/" + fileName; // Relative URL to access the image from your website
+
+        response.getWriter().write(imageUrl);
+        
+        request.setAttribute("imageUrl", imageUrl);
+        }
 }
