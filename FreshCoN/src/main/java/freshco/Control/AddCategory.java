@@ -27,13 +27,12 @@ public class AddCategory extends HttpServlet {
         String fileName = part.getSubmittedFileName(); // Get the file name
 
         
-        String folderPath = "C:/Users/ext/Desktop/Project201/FreshCoN/src/main/webapp/image"; // Path to the image folder
+       // String folderPath = "C:/Users/ext/Desktop/Project201/FreshCoN/src/main/webapp/image"; // Path to the image folder
 
-        /*
         
         // Path to save the image file (make sure it points to your desired folder)
         String folderPath = getServletContext().getRealPath("/image"); // The /image folder in your project
-*/
+
         // Create directory if it doesn't exist
         File uploadDir = new File(folderPath);
         if (!uploadDir.exists()) {
@@ -53,7 +52,7 @@ public class AddCategory extends HttpServlet {
         }
 
         // Generate the image URL (this is the relative path to the image in the project)
-        String imageUrl = "./image/" + fileName; // Relative URL to access the image from your website
+        String imageUrl = "/image/" + fileName; // Relative URL to access the image from your website
 
         // Get session details
         HttpSession session = request.getSession();

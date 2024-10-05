@@ -215,8 +215,19 @@
 		<url-pattern>/AddAdm</url-pattern>
 	</servlet-mapping>
 	<!-- Insert Data Servlet Mappings End -->
-	
 
+	<servlet>
+		<servlet-name>DeleteCategory</servlet-name>
+		<servlet-class>freshco.Control.DeleteCategory</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteCategory</servlet-name>
+		<url-pattern>/DeleteCategories</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	
 	
 	<servlet>
 		<servlet-name>AddFeedback</servlet-name>

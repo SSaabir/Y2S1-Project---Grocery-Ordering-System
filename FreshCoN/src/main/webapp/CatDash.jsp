@@ -64,6 +64,7 @@
                     <th>ID</th>
                     <th>Category Name</th>
                     <th>ImgUrl</th>
+                   	<th>Action</th>
                      </tr>
             </thead>
            <tbody>
@@ -77,7 +78,7 @@
                         <td><%= cat.getCID() %></td>
                          <td><%= cat.getCategory_Name() %></td>
                          <td><img src="<%= cat.getImgUrl() %>" alt="<%= cat.getCategory_Name() %>" style="width: 100px; height: auto;"></td>
-                        
+                        <td><a href="DeleteCategories?CID=<%= cat.getCID() %>"><span class="material-symbols-outlined">delete</span></a></td>
                         
                     </tr>
                     <%

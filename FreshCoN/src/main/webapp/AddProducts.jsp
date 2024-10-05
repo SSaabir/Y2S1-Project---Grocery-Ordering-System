@@ -172,6 +172,15 @@
         .file-input {
             display: none;
         }
+
+        select {
+            width: 130px;
+            height: 30px;
+            border-radius: 5px;
+            padding-left: 10px;
+        }
+
+        
     </style>
 </head>
 
@@ -206,7 +215,7 @@
     </div>
     <div class="group">
                     <label for="imgUrl">Image</label>
-                    <input type="file" id="ImgUrl" name="imgUrl" >
+                    <input type="file" id="imgUrl" name="imgUrl" >
                 </div>
     <div class="group">
         <label for="discount">Discount</label>
@@ -215,7 +224,15 @@
     
     <div class="group">
         <label for="CID"> Category ID</label>
-        <input type="number" id="CID"  name="CID" placeholder="Enter Category ID" >
+       <select name="Category" id="Category">
+
+        <option value="meats" name ="">meats</option>
+        <option value="meats" name ="">meats</option>
+        <option value="meats" name ="">meats</option>
+        <option value="meats" name ="">meats</option>
+        <option value="meats" name ="">meats</option>
+
+       </select>
     </div>
     
     <button type="submit" class="save-btn">Save</button>
@@ -266,5 +283,5 @@
 
 </body>
 
-</html>
+</html>+
     

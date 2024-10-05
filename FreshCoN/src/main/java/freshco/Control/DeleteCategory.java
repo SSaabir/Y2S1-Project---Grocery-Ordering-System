@@ -17,13 +17,13 @@ public class DeleteCategory extends HttpServlet {
         super();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int CID = Integer.parseInt(request.getParameter("CID"));
 
         boolean isSuccess = CategoryDBUtil.deleteCategory(CID);
 
         if (isSuccess) {
-            response.sendRedirect("ViewCategoryServlet");  // Redirect to the view servlet
+            response.sendRedirect("Category");  // Redirect to the view servlet
         } else {
             request.setAttribute("errorMessage", "Failed to delete category.");
             request.getRequestDispatcher("viewCategories.jsp").forward(request, response);

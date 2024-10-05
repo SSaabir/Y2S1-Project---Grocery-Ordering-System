@@ -72,6 +72,7 @@
                     <th>Discount</th>
                     <th>CID</th>
                 </tr>
+                
             </thead>
            <tbody>
                <%
@@ -89,7 +90,9 @@
                         <td><%= pro.getQuantity() %></td>
                         <td><%= pro.getDiscount() %></td>
                         <td><%= pro.getCID() %></td>
-                    </tr>
+                        <td><a href=""><span class="material-symbols-outlined">edit</span></a>
+                        <a href=""><span class="material-symbols-outlined">delete</span></a></td>
+                        
                     <%
                         	}
                         }
