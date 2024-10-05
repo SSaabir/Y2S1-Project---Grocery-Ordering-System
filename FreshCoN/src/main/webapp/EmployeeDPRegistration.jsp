@@ -170,10 +170,6 @@
                 </div>
                 <div class="form-row">
                     <div class="sub-part">
-                        <label for="uName">User Name:</label>
-                        <input type="text" id="uName" name="username" placeholder="Enter User Name" required>
-                    </div>
-                    <div class="sub-part">
                         <label for="password">Password:</label>
                         <input type="password" id="password" name="password" placeholder="Enter Password" required>
                     </div>

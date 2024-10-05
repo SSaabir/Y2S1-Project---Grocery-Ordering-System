@@ -5,9 +5,8 @@ public class DeliveryPerson extends Employee {
 	private String drivingLicenseNum;
 	private String city;
 	
-	public DeliveryPerson(int emID, String email, String nic, String dob, String imgUrl, String phone, String username,
-			String password, String vehicleNum, String drivingLicenseNum, String city) {
-		super(emID, email, nic, dob, imgUrl, phone, username, password);
+	public DeliveryPerson(int emID, String email, String nic, String dob, String imgUrl, String phone, String password, String vehicleNum, String drivingLicenseNum, String city) {
+		super(emID, email, nic, dob, imgUrl, phone, password);
 		this.vehicleNum = vehicleNum;
 		this.drivingLicenseNum = drivingLicenseNum;
 		this.city = city;

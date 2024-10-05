@@ -11,12 +11,11 @@ public class Admin {
     private String dob ;
     private String imgUrl ;
     private String phone ;
-    private String username ;
     private String password ;
     
     
 	public Admin(int aID, String fName, String lName, String email, String address, String city, String dob, String imgUrl,
-			String phone, String username, String password) {
+			String phone, String password) {
 		super();
 		AID = aID;
 		this.fName = fName;
@@ -27,7 +26,6 @@ public class Admin {
 		this.dob = dob;
 		this.imgUrl = imgUrl;
 		this.phone = phone;
-		this.username = username;
 		this.password = password;
 	}
 
@@ -81,12 +79,6 @@ public class Admin {
 		return phone;
 	}
 
-
-	public String getUsername() {
-		return username;
-	}
-
-
 	public String getPassword() {
 		return password;
 	}
@@ -130,12 +122,6 @@ public class Admin {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
 
 	public void setPassword(String password) {
 		this.password = password;

@@ -8,14 +8,14 @@ import freshco.Beans.Customer;
 
 public class CustomerDBUtil {
 
-	public static Customer validateCustomer(String username, String password) throws Exception {
+	public static Customer validateCustomer(String email, String password) throws Exception {
 		
-		String query = "SELECT * FROM customer WHERE username='"+username+"' AND password='"+password+"'";
+		String query = "SELECT * FROM customer WHERE email='"+email+"' AND password='"+password+"'";
 		
 		ResultSet rs = webDB.executeSearch(query);
 		
 		if (rs.next()) {
-		Customer cus = new Customer(rs.getInt("CusID"),rs.getString("fName"),rs.getString("lName"),rs.getString("email"),rs.getString("phone"),rs.getString("lane"),rs.getString("city"),rs.getString("dob"),rs.getString("imgUrl"),rs.getString("username"),rs.getString("password"));
+		Customer cus = new Customer(rs.getInt("CusID"),rs.getString("fName"),rs.getString("lName"),rs.getString("email"),rs.getString("phone"),rs.getString("lane"),rs.getString("city"),rs.getString("dob"),rs.getString("imgUrl"),rs.getString("password"));
 		rs.close();
         return cus;
 		} else {
@@ -40,10 +40,9 @@ public class CustomerDBUtil {
 	            String city = rs.getString("city");
 	            String dob = rs.getString("dob");  // Assuming LocalDate for dob
 	            String imgUrl = rs.getString("imgUrl");
-	            String username = rs.getString("username");
 	            String password = rs.getString("password");
 
-	            Customer cus = new Customer(cusID, fName, lName, email, phone, lane, city, dob, imgUrl, username, password);
+	            Customer cus = new Customer(cusID, fName, lName, email, phone, lane, city, dob, imgUrl, password);
 	            customers.add(cus);
 	            
 	        }
@@ -54,15 +53,11 @@ public class CustomerDBUtil {
 	    return customers;
 	}
 
-	
-	
-	
-	
-	public static boolean insertCustomer(String fName, String lName, String email,String phone, String lane, String city, String dob,String imgUrl, String username,String password) {
+	public static boolean insertCustomer(String fName, String lName, String email,String phone, String lane, String city, String dob,String imgUrl, String password) {
     	
     	boolean isSuccess = false;
     	
-    	String query = "INSERT INTO customer (fName, lName, email, phone, lane, city, dob,imgUrl,username,password) VALUES ('" + fName + "', '" + lName + "', '" + email + "', '" + phone + "', '" + lane + "', '" + city + "', '" + dob + "','"+imgUrl+"','"+username+"','"+password+"')";
+    	String query = "INSERT INTO customer (fName, lName, email, phone, lane, city, dob,imgUrl, password) VALUES ('" + fName + "', '" + lName + "', '" + email + "', '" + phone + "', '" + lane + "', '" + city + "', '" + dob + "','"+imgUrl+"','"+password+"')";
     	
     		try {
                 int rowsAffected = webDB.executeIUD(query);
@@ -75,12 +70,6 @@ public class CustomerDBUtil {
 
             return isSuccess;
     }
-    
-	
-	
-	
-	
-	
 	
 	public static boolean updateCustomer(int CusID,String fName, String lName, String email,String phone, String lane, String city, String dob,String imgUrl, String username,String password) {
 	

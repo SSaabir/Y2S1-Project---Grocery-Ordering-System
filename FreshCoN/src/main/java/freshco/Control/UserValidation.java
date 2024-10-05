@@ -2,7 +2,6 @@ package freshco.Control;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,23 +9,29 @@ import javax.servlet.http.HttpSession;
 
 import freshco.Beans.Admin;
 import freshco.Beans.Customer;
+import freshco.Beans.DeliveryPerson;
 import freshco.Beans.Employee;
+import freshco.Beans.Manager;
 import freshco.Model.AdminDBUtil;
 import freshco.Model.CustomerDBUtil;
+import freshco.Model.DeliveryPersonDBUtil;
 import freshco.Model.EmployeeDBUtil;
+import freshco.Model.ManagerDBUtil;
 
 
 public class UserValidation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
+		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
 		try {
-		Employee isEmpVal = EmployeeDBUtil.validateEmployee(username, password);
-		Customer isCusVal = CustomerDBUtil.validateCustomer(username, password);
-		Admin isAdmVal = AdminDBUtil.validateAdmin(username, password);
+		Employee isEmpVal = EmployeeDBUtil.validateEmployee(email, password);
+		Manager isManVal = ManagerDBUtil.validateManager(email, password);
+		DeliveryPerson isDPsnVal = DeliveryPersonDBUtil.validateDeliveryPerson(email, password);
+		Customer isCusVal = CustomerDBUtil.validateCustomer(email, password);
+		Admin isAdmVal = AdminDBUtil.validateAdmin(email, password);
 		
 		HttpSession sess = request.getSession(false);
 		
@@ -43,11 +48,35 @@ public class UserValidation extends HttpServlet {
 	        sess.setAttribute("dob", isEmpVal.getDob());
 	        sess.setAttribute("imgUrl", isEmpVal.getImgUrl());
 	        sess.setAttribute("phone", isEmpVal.getPhone());
-	        sess.setAttribute("username", isEmpVal.getUsername());
 	        sess.setAttribute("password", isEmpVal.getPassword()); // Not recommended to store passwords in session!
 	        sess.setAttribute("userType", "Employee");
 
 	        // Redirect to a success page or dashboard
+	        response.sendRedirect("dashboard.jsp"); 
+		} else if (isManVal != null) {
+			sess.setAttribute("ID", isManVal.getEmID());
+	        sess.setAttribute("email", isManVal.getEmail());
+	        sess.setAttribute("nic", isManVal.getNic());
+	        sess.setAttribute("dob", isManVal.getDob());
+	        sess.setAttribute("imgUrl", isManVal.getImgUrl());
+	        sess.setAttribute("phone", isManVal.getPhone());
+	        sess.setAttribute("password", isManVal.getPassword()); // Not recommended to store passwords in session!
+	        sess.setAttribute("userType", "Manager");
+	        
+	        response.sendRedirect("dashboard.jsp"); 
+		} else if (isDPsnVal!= null) {	
+			sess.setAttribute("ID", isDPsnVal.getEmID());
+	        sess.setAttribute("email", isDPsnVal.getEmail());
+	        sess.setAttribute("nic", isDPsnVal.getNic());
+	        sess.setAttribute("dob", isDPsnVal.getDob());
+	        sess.setAttribute("imgUrl", isDPsnVal.getImgUrl());
+	        sess.setAttribute("phone", isDPsnVal.getPhone());
+	        sess.setAttribute("city", isDPsnVal.getCity());
+	        sess.setAttribute("DrivingLicenseNum", isDPsnVal.getDrivingLicenseNum());
+	        sess.setAttribute("vehicleNum", isDPsnVal.getVehicleNum());
+	        sess.setAttribute("password", isDPsnVal.getPassword()); // Not recommended to store passwords in session!
+	        sess.setAttribute("userType", "DeliveryPerson");
+	        
 	        response.sendRedirect("dashboard.jsp"); 
 		} else if (isCusVal != null) {
 			sess.setAttribute("ID", isCusVal.getCusID());
@@ -59,7 +88,6 @@ public class UserValidation extends HttpServlet {
 	        sess.setAttribute("imgUrl", isCusVal.getImgUrl());
 	        sess.setAttribute("lane", isCusVal.getLane());
 	        sess.setAttribute("city", isCusVal.getCity());
-	        sess.setAttribute("username", isCusVal.getUsername());
 	        sess.setAttribute("password", isCusVal.getPassword()); // Not recommended to store passwords in session!
 	        sess.setAttribute("userType", "Customer");
 	        
@@ -74,7 +102,6 @@ public class UserValidation extends HttpServlet {
 	        sess.setAttribute("imgUrl", isAdmVal.getImgUrl());
 	        sess.setAttribute("lane", isAdmVal.getLane());
 	        sess.setAttribute("city", isAdmVal.getCity());
-	        sess.setAttribute("username", isAdmVal.getUsername());
 	        sess.setAttribute("password", isAdmVal.getPassword()); // Not recommended to store passwords in session!
 	        sess.setAttribute("userType", "Admin");
 	        

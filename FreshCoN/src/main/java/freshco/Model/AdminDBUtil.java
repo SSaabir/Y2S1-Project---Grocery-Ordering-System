@@ -8,9 +8,9 @@ import freshco.Beans.Admin; // Assuming you have an Admin bean class
 
 public class AdminDBUtil {
 	
-	public static Admin validateAdmin(String username, String password) throws Exception {
+	public static Admin validateAdmin(String email, String password) throws Exception {
 		
-		String query = "SELECT * FROM admin WHERE username='"+username+"' AND password='"+password+"'";
+		String query = "SELECT * FROM admin WHERE email='"+email+"' AND password='"+password+"'";
 		
 		ResultSet rs = webDB.executeSearch(query);
 		
@@ -25,7 +25,6 @@ public class AdminDBUtil {
                 rs.getString("dob"),
                 rs.getString("imgUrl"),
                 rs.getString("phone"),
-                rs.getString("username"),
                 rs.getString("password")
             );
 		rs.close();
@@ -52,7 +51,6 @@ public class AdminDBUtil {
                 rs.getString("dob"),
                 rs.getString("imgUrl"),
                 rs.getString("phone"),
-                rs.getString("username"),
                 rs.getString("password")
             );
             admins.add(admin);
@@ -63,12 +61,11 @@ public class AdminDBUtil {
 
     // Method to add a new admin record
     public static boolean addAdmin(String fName, String lName, String email, String address,
-                                   String city, String dob, String imgUrl, String phone,
-                                   String username, String password) {
+                                   String city, String dob, String imgUrl, String phone, String password) {
         boolean isSuccess = false;
-        String query = "INSERT INTO Admin (fName, lName, email, lane, city, dob, imgUrl, phone, username, password) " +
+        String query = "INSERT INTO Admin (fName, lName, email, lane, city, dob, imgUrl, phone, password) " +
                        "VALUES ('" + fName + "', '" + lName + "', '" + email + "', '" + address + "', '" +
-                       city + "', '" + dob + "', '" + imgUrl + "', '" + phone + "', '" + username + "', '" + password + "')";
+                       city + "', '" + dob + "', '" + imgUrl + "', '" + phone + "', '" + password + "')";
 
         try {
             int rowsAffected = webDB.executeIUD(query);
@@ -83,11 +80,11 @@ public class AdminDBUtil {
     // Method to update an existing admin record
     public static boolean updateAdmin(int AID, String fName, String lName, String email, 
                                        String address, String city, String dob, String imgUrl, 
-                                       String phone, String username, String password) {
+                                       String phone, String password) {
         boolean isSuccess = false;
         String query = "UPDATE Admin SET fName='" + fName + "', lName='" + lName + "', email='" + email + 
                        "', address='" + address + "', city='" + city + "', dob='" + dob + "', imgUrl='" + 
-                       imgUrl + "', phone='" + phone + "', username='" + username + "', password='" + password + 
+                       imgUrl + "', phone='" + phone + "', password='" + password + 
                        "' WHERE AID=" + AID;
 
         try {

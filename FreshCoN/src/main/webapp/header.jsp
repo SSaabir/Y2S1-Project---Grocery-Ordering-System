@@ -201,11 +201,10 @@
                 <span>FreshCo</span>
             </div>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="Fruits.html">Shop</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Pages</a></li>
+                <li><a href="index.jsp">Home</a></li>
+                <li><a href="aboutUs.jsp">About Us</a></li>
+                <li><a href="Product.jsp">Shop</a></li>
+                <li><a href="#contactUS">Contact Us</a></li>
             </ul>
             <div class="search-bar">
                 <input type="text" placeholder="Search...">
@@ -217,15 +216,15 @@
                 <div class="sub-menu-wrap">
                     <div class="sub-menu">
                         <ul>
-                            <li><a href="#">Login</a><i class='bx bx-chevron-right'></i></li>
-                            <li><a href="#">Edit Profile</a><i class='bx bx-chevron-right'></i></li>
-                            <li><a href="#">Registration</a><i class='bx bx-chevron-right'></i></li>
+                            <li><a href="login.jsp">Login</a><i class='bx bx-chevron-right'></i></li>
+                            <li><a href="EditProfile.jsp">Edit Profile</a><i class='bx bx-chevron-right'></i></li>
+                            <li><a href="login.jsp">Registration</a><i class='bx bx-chevron-right'></i></li>
                             <li><a href="logout">Logout</a><i class='bx bx-chevron-right'></i></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <a href="Fruits.html"><i class="fas fa-shopping-cart"></i></a>
+            <a href="Product.jsp"><i class="fas fa-shopping-cart"></i></a>
         </nav>
     </header>
 

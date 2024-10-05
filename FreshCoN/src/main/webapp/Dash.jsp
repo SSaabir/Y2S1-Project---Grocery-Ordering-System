@@ -16,42 +16,55 @@
         <header>
             <jsp:include page="header.jsp" />
         </header>
-        
-        <!--Side Navigation-->
         <div id="side-nav">
-            <a href="dashboard.jsp"><span class="material-symbols-outlined">
-                    dashboard
-                </span>Dashboard</a>
-            <a href="Customer"><span class="material-symbols-outlined">
-                    groups
-                </span> Customer</a>
-                <a href="Admin"><span class="material-symbols-outlined">
-                    groups
-                </span> Admin</a>
-            <a href="Sale"><span class="material-symbols-outlined">
-                    shopping_bag
-                </span> Sale</a>
-            <a href="Employee"><span class="material-symbols-outlined">
-                    badge
-                </span> Employee</a>
-            <a href="Category"><span class="material-symbols-outlined">
-                    category
-                </span> Category</a>
-            <a href="Product"><span class="material-symbols-outlined">
-                    inventory_2
-                </span> Product</a>
-            <a href="Feedback"><span class="material-symbols-outlined">
-                    feedback
-                </span> Feedback</a>
-            <a href="Enquiry"><span class="material-symbols-outlined">
-                    support
-                </span> Enquiry</a>
-            <a href="Payment"><span class="material-symbols-outlined">
-                    payments
-                </span> Payment </a>
-        </div>
-  
+        <%
+                HttpSession sess = request.getSession(false); // Get the session without creating a new one
+                String userType = (String) sess.getAttribute("userType"); // Get userType from the session
 
+                if (userType != null && userType.equals("Employee")) {
+            %>
+            <a href="dashboard.jsp"><span class="material-symbols-outlined">dashboard</span>Dashboard</a>
+            <a href="Sale"><span class="material-symbols-outlined">shopping_bag</span> Sale</a>
+            <a href="Category"><span class="material-symbols-outlined">category</span> Category</a>
+            <a href="Product"><span class="material-symbols-outlined">inventory_2</span> Product</a>
+   		<%
+                } else if (userType != null && userType.equals("Manager")) {
+            %>
+            <a href="dashboard.jsp"><span class="material-symbols-outlined">dashboard</span>Dashboard</a>
+            <a href="Category"><span class="material-symbols-outlined">category</span> Category</a>
+            <a href="Product"><span class="material-symbols-outlined">inventory_2</span> Product</a>
+            <a href="Feedback"><span class="material-symbols-outlined">feedback</span> Feedback</a>
+            <a href="Enquiry"><span class="material-symbols-outlined">support</span> Enquiry</a>
+            <a href="Sale"><span class="material-symbols-outlined">shopping_bag</span> Sale</a>
+            <a href="Payment"><span class="material-symbols-outlined">payments</span> Payment </a>
+        <%
+                } else if (userType != null && userType.equals("DeliveryPerson")) {
+            %>
+            <a href="dashboard.jsp"><span class="material-symbols-outlined">dashboard</span>Dashboard</a>
+            <a href="Sale"><span class="material-symbols-outlined">shopping_bag</span> Sale</a>
+            <a href="Payment"><span class="material-symbols-outlined">payments</span> Payment </a>
+        <%
+                } else if (userType != null && userType.equals("Customer")) {
+            %>
+            <a href="dashboard.jsp"><span class="material-symbols-outlined">dashboard</span>Dashboard</a>
+            <a href="Sale"><span class="material-symbols-outlined">shopping_bag</span> Sale</a>
+            <a href="Payment"><span class="material-symbols-outlined">payments</span> Payment </a>
+        <%
+                } else if (userType != null && userType.equals("Admin")) {
+            %>
+            <a href="dashboard.jsp"><span class="material-symbols-outlined">dashboard</span>Dashboard</a>
+            <a href="Admin"><span class="material-symbols-outlined">groups</span> Admin</a>
+			<a href="Customer"><span class="material-symbols-outlined">groups</span>Customer</a>
+			<a href="Employee"><span class="material-symbols-outlined">badge</span> Employee</a>
+        <%
+                } else {
+            %>
+                <h2>Access Denied</h2>
+                <p>You do not have permission to view this content.</p>
+            <%
+                }
+            %>
+		 </div>
     </body>
 
     </html>

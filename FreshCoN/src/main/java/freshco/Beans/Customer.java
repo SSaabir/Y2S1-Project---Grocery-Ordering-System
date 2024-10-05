@@ -11,11 +11,10 @@ public class Customer {
 	    private String city;
 	    private String dob; 
 	    private String imgUrl;
-	    private String username;
 	    private String password;
 	    
 	    
-		public Customer(int cusID, String fName, String lName, String email, String phone, String lane, String city, String dob, String imgUrl, String username, String password) 
+		public Customer(int cusID, String fName, String lName, String email, String phone, String lane, String city, String dob, String imgUrl, String password) 
 		{
 			super();
 			this.cusID = cusID;
@@ -27,7 +26,6 @@ public class Customer {
 			this.city = city;
 			this.dob = dob;
 			this.imgUrl = imgUrl;
-			this.username = username;
 			this.password = password;
 			
 		}
@@ -74,12 +72,6 @@ public class Customer {
 			return imgUrl;
 		}
 
-
-		public String getUsername() {
-			return username;
-		}
-
-
 		public String getPassword() {
 			return password;
 		}
@@ -122,11 +114,6 @@ public class Customer {
 
 		public void setImgUrl(String imgUrl) {
 			this.imgUrl = imgUrl;
-		}
-
-
-		public void setUsername(String username) {
-			this.username = username;
 		}
 
 

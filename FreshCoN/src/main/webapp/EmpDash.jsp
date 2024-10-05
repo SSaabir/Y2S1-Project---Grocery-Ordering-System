@@ -88,7 +88,6 @@
                         <td><%= emp.getNic() %></td>
                         <td><%= emp.getDob() %></td>
                         <td><%= emp.getPhone() %></td>
-                        <td><%= emp.getUsername() %></td>
                         
                     </tr>
                     <%

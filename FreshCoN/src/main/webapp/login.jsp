@@ -290,12 +290,6 @@
                     </div>
 
                 </div>
-
-                <div>
-                    <input type="text" id="signUpUsername" placeholder="Username" name="username" required />
-                    <span id="usernameError" class="error"></span>
-                </div>
-
                 <div class="form-grid">
                     <div>
                         <input type="password" id="signUpPassword" placeholder="Password" name="password" required />
@@ -314,7 +308,7 @@
         <div class="form-container sign-in-container">
             <form id="signInForm" action="login" method="post">
                 <h1>Sign in</h1>
-                <input type="text" id="signInEmail" name="username" placeholder="Enter Your Username" required />
+                <input type="email" id="signInEmail" name="email" placeholder="Enter Your Email" required />
                 <span id="emailError" class="error"></span>
                 <input type="password" id="signInPassword" name="password" placeholder="Enter Your Password" required />
                 <span id="passwordError" class="error"></span>

@@ -7,18 +7,15 @@ public class Employee {
 	private String dob;
 	private String imgUrl;
 	private String phone;
-	private String username;
 	private String password;
 	
-	public Employee(int emID, String email, String nic, String dob, String imgUrl, String phone, String username,
-			String password) {
+	public Employee(int emID, String email, String nic, String dob, String imgUrl, String phone, String password) {
 		EmID = emID;
 		this.email = email;
 		this.nic = nic;
 		this.dob = dob;
 		this.imgUrl = imgUrl;
 		this.phone = phone;
-		this.username = username;
 		this.password = password;
 	}
 
@@ -68,14 +65,6 @@ public class Employee {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 	public String getPassword() {
