@@ -180,7 +180,7 @@
 
         <div class="main-form">
             <!-- Form now includes multipart data for file uploads -->
-            <form id="profileForm" method="post" action = "AddCategories" >
+            <form id="profileForm" method="post" action = "AddCategories"  enctype="multipart/form-data" >
                 <!-- Category Name Field -->
                 <div class="group">
                     <label for="categoryName">Category Name</label>
@@ -190,7 +190,7 @@
                 <!-- Image Upload Field -->
                 <div class="group">
                     <label for="imgUrl">Image</label>
-                    <input type="file" id="ImgUrl" name="imgUrl" >
+                    <input type="file" id="imgUrl" name="imgUrl" >
                 </div>
 
                 <!-- Submit Button -->
