@@ -70,9 +70,6 @@
                         <th>City</th>
                         <th>DOB</th>
                         <th>Phone</th>
-                        <th>Username</th>
-               
-                        
                     </tr>
                 </thead>
                 <tbody>
@@ -91,8 +88,6 @@
                         <td><%= adm.getCity() %></td>
                         <td><%= adm.getDob() %></td>
                         <td><%= adm.getPhone() %></td>
-                        <td><%= adm.getUsername() %></td>
-                        
                     </tr>
                     <%
                         	}

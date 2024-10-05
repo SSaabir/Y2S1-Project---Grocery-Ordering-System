@@ -9,6 +9,17 @@
 	</welcome-file-list>
 
 	<!-- View Data Servlet Mappings Start -->
+	<!-- Index Data -->
+	<servlet>
+		<servlet-name>indexData</servlet-name>
+		<servlet-class>freshco.Control.indexData</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>indexData</servlet-name>
+		<url-pattern>/FreshCo</url-pattern>
+	</servlet-mapping>
+	
+	
 	<!-- Admin dash -->
 	<servlet>
 		<servlet-name>ViewAdmin</servlet-name>

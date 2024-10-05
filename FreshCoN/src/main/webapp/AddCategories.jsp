@@ -199,40 +199,6 @@
         </div>
     </div>
 
-    <!-- Script to handle form submission -->
-  <%-- 
-    <script>
-        document.getElementById('profileForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
-
-            // Prepare form data
-            const formData = new FormData();
-            const categoryName = document.getElementById('Category Name').value;
-            const imageFile = document.getElementById('ImgUrl').files[0]; // Get file input
-
-            // Append form data
-            formData.append('category_Name', categoryName);
-            formData.append('imgUrl', imageFile); // Append file data
-
-            // Send form data via Fetch API
-            fetch('/addCategories', {
-                method: 'POST',
-                body: formData // FormData object will include the file
-            })
-            .then(response => response.text())
-            .then(data => {
-                alert('Category saved successfully!');
-                document.getElementById('profileForm').reset(); // Reset form fields
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('There was an error saving the category.');
-            });
-        });
-    </script>
-    
-   -- --%>
-
 </body>
 
 </html>

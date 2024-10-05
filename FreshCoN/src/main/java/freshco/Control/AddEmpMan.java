@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import freshco.Model.EmployeeDBUtil;
 import freshco.Model.ManagerDBUtil;
@@ -20,18 +21,19 @@ public class AddEmpMan extends HttpServlet {
         String dob = request.getParameter("dob");
         String imgUrl = request.getParameter("imgUrl");
         String phone = request.getParameter("phone");
-        String username = request.getParameter("username");
         String password = request.getParameter("password");
 		String eType = request.getParameter("eType");
+		HttpSession session = request.getSession();
+		int ID = (int) session.getAttribute("ID");
 		
 		boolean isSuccess = false;
 		
 		if(eType == null || eType.isEmpty()){
-			isSuccess = EmployeeDBUtil.insertEmployee(email, nic, dob, phone, imgUrl, password);
+			isSuccess = EmployeeDBUtil.insertEmployee(email, nic, dob, phone, imgUrl, password, ID);
 
 		}else if("manager".equals(eType)) {
 			
-			isSuccess = ManagerDBUtil.insertManager(email, nic, dob, phone, imgUrl, password);
+			isSuccess = ManagerDBUtil.insertManager(email, nic, dob, phone, imgUrl, password, ID);
 
 		}
 		

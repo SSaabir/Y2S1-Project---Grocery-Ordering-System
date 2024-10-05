@@ -70,7 +70,7 @@ public class DeliveryPersonDBUtil {
         return deliveryPersons;
     }
 
-    public static boolean insertDeliveryPerson(String email, String nic, String dob, String imgUrl, String phone, String password, String vehicleNum, String drivingLicenseNum, String city) {
+    public static boolean insertDeliveryPerson(String email, String nic, String dob, String imgUrl, String phone, String password, String vehicleNum, String drivingLicenseNum, String city, int ID) {
         boolean isSuccess = false;
         
         String queryEmployee = "INSERT INTO employee (email, nic, dob, imgUrl, phone, password) VALUES ('" + email + "', '" + nic + "', '" + dob + "', '" + imgUrl +"', '" + phone + "', '" + password + "')";

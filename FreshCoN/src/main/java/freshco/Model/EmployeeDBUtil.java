@@ -36,7 +36,7 @@ public class EmployeeDBUtil {
         return employees;
     }
 	
-	public static boolean insertEmployee(String email, String nic, String dob, String phone, String imgUrl, String password) {
+	public static boolean insertEmployee(String email, String nic, String dob, String phone, String imgUrl, String password, int ID) {
     	
     	boolean isSuccess = false;
     	

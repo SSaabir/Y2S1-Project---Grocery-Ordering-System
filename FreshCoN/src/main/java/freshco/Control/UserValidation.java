@@ -28,8 +28,6 @@ public class UserValidation extends HttpServlet {
 		
 		try {
 		Employee isEmpVal = EmployeeDBUtil.validateEmployee(email, password);
-		Manager isManVal = ManagerDBUtil.validateManager(email, password);
-		DeliveryPerson isDPsnVal = DeliveryPersonDBUtil.validateDeliveryPerson(email, password);
 		Customer isCusVal = CustomerDBUtil.validateCustomer(email, password);
 		Admin isAdmVal = AdminDBUtil.validateAdmin(email, password);
 		
@@ -42,18 +40,10 @@ public class UserValidation extends HttpServlet {
         }
 		
 		if (isEmpVal != null) {
-	        sess.setAttribute("ID", isEmpVal.getEmID());
-	        sess.setAttribute("email", isEmpVal.getEmail());
-	        sess.setAttribute("nic", isEmpVal.getNic());
-	        sess.setAttribute("dob", isEmpVal.getDob());
-	        sess.setAttribute("imgUrl", isEmpVal.getImgUrl());
-	        sess.setAttribute("phone", isEmpVal.getPhone());
-	        sess.setAttribute("password", isEmpVal.getPassword()); // Not recommended to store passwords in session!
-	        sess.setAttribute("userType", "Employee");
-
-	        // Redirect to a success page or dashboard
-	        response.sendRedirect("dashboard.jsp"); 
-		} else if (isManVal != null) {
+			Manager isManVal = ManagerDBUtil.validateManager(email, password);
+			DeliveryPerson isDPsnVal = DeliveryPersonDBUtil.validateDeliveryPerson(email, password);
+	       
+		 if (isManVal != null) {
 			sess.setAttribute("ID", isManVal.getEmID());
 	        sess.setAttribute("email", isManVal.getEmail());
 	        sess.setAttribute("nic", isManVal.getNic());
@@ -78,7 +68,20 @@ public class UserValidation extends HttpServlet {
 	        sess.setAttribute("userType", "DeliveryPerson");
 	        
 	        response.sendRedirect("dashboard.jsp"); 
-		} else if (isCusVal != null) {
+			} else {
+				 sess.setAttribute("ID", isEmpVal.getEmID());
+			     sess.setAttribute("email", isEmpVal.getEmail());
+			     sess.setAttribute("nic", isEmpVal.getNic());
+			     sess.setAttribute("dob", isEmpVal.getDob());
+			     sess.setAttribute("imgUrl", isEmpVal.getImgUrl());
+			     sess.setAttribute("phone", isEmpVal.getPhone());
+			     sess.setAttribute("password", isEmpVal.getPassword()); // Not recommended to store passwords in session!
+			     sess.setAttribute("userType", "Employee");
+
+			        // Redirect to a success page or dashboard
+			        response.sendRedirect("dashboard.jsp"); 
+			}
+		 } else if (isCusVal != null) {
 			sess.setAttribute("ID", isCusVal.getCusID());
 	        sess.setAttribute("email", isCusVal.getEmail());
 	        sess.setAttribute("phone", isCusVal.getPhone());

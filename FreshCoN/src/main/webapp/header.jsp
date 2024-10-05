@@ -201,7 +201,7 @@
                 <span>FreshCo</span>
             </div>
             <ul class="nav-links">
-                <li><a href="index.jsp">Home</a></li>
+                <li><a href="FreshCo">Home</a></li>
                 <li><a href="aboutUs.jsp">About Us</a></li>
                 <li><a href="Product.jsp">Shop</a></li>
                 <li><a href="#contactUS">Contact Us</a></li>

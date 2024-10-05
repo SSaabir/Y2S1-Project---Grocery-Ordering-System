@@ -92,10 +92,7 @@
                         <td><%= cus.getCity() %></td>
                         <td><%= cus.getDob() %></td>
                         <td><%= cus.getImgUrl() %></td>
-                       
-                        
-                        
-                        
+ 
                     </tr>
                     <%
                         	}

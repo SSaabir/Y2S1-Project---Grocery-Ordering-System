@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="freshco.Model.CategoryDBUtil"%>
+<%@ page import="freshco.Beans.Category"%>
+<%@ page import="freshco.Model.ProductDBUtil" %>
+<%@ page import="freshco.Beans.Product" %>
+<%@ page import="freshco.Model.FeedbackDBUtil" %>
+<%@ page import="freshco.Beans.Feedback" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -184,14 +191,25 @@
         </div>
 
         <div class="category-container">
-
+                 <%
+                    try {
+                    	List<Category> categories = (List<Category>)request.getAttribute("categories");
+                        if (categories != null) {
+                            for (Category cat : categories) {
+                    %>
             <a href="#" class="category-box">
 
-                <img src="./image/cat-3.png" alt="Vegetables">
-                <span>Vegetables</span>
+                <img src="<%= cat.getImgUrl() %>" alt="<%= cat.getCategory_Name() %>">
+                <span><%= cat.getCategory_Name() %></span>
 
             </a>
-
+	 <%
+                        	}
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                %>
           
         </div>
     </section>
@@ -211,17 +229,30 @@
 
 
         <div class="product-cantainer">
-
+ <%
+                    try {
+                    	List<Product> products = (List<Product>)request.getAttribute("products");
+                        if (products != null) {
+                            for (Product pro : products) {
+                            	%>
+                            	
             <div class="product-box">
-                <img src="./image/pro-1.png" alt="CocaCola">
-                <strong>CocaCola</strong>
-                <span class="Quantity">1000ml</span>
-                <span class="price">1550/=</span>
+                <img src="" alt="<%= pro.getProductName() %>">
+                <strong><%= pro.getProductName() %></strong>
+                <span class="Quantity"><%= pro.getUnit() %></span>
+                <span class="price"><%= pro.getPrice() %>/=</span>
 
                 <a href="#" class="cart-button">
                     <i class="fas fa-shopping-bag"></i> Add To Cart
                 </a>
             </div>
+            <%
+                        	}
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                %>
         </div>
 
 
@@ -240,32 +271,41 @@
      
         <div class="client-box-container">
      
-           
+           <%
+                    try {
+                    	List<Feedback> feedback = (List<Feedback>) request.getAttribute("feedbacks");
+                        if (feedback != null) {
+                        for (Feedback Feed : feedback) {
+                    %>
            <div class="client-box">
-     
+      
               <div class="client-profile">
-                 <img src="./image/pic-2.png" alt="client">
-              
                  <div class="profile-text">
-                   <strong>jennifer lawrence</strong>
-                   <span>Hollywood Actor</span>
+                   <strong>Order#<%= Feed.getOID()%></strong>
                  </div>
-     
-              
               </div>
      
-              <div class="Rating">
-                 <i class="fas fa-star"></i>
-                 <i class="fas  fa-star"></i>
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-                 <i class="fas fa-star"></i>
-     
-              </div>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem perspiciatis recusandae tempora quod doloribus amet quo hic corrupti molestiae odit!</p>
+             <div class="Rating">
+    <%
+        int rating = Feed.getRating();  // assuming Feed is a valid object
+        for (int i = 0; i < rating; i++) {
+    %>
+        <i class="fas fa-star"></i>
+    <%
+        }
+    %>
+</div>
+
+              <p><%= Feed.getComments() %></p>
      
            </div>
-          
+           <%
+                        	}
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                %>
      
         </div>
      

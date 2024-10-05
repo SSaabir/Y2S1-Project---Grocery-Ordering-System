@@ -52,7 +52,7 @@ public class ManagerDBUtil {
         return managers;
     }
 	
-	public static boolean insertManager(String email, String nic, String dob, String phone, String imgUrl, String password) {
+	public static boolean insertManager(String email, String nic, String dob, String phone, String imgUrl, String password, int ID) {
 	    
 	    boolean isSuccess = false;
 

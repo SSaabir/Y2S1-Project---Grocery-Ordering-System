@@ -72,7 +72,6 @@
                         <th>NIC</th>
                         <th>DOB</th>
                         <th>Phone</th>
-                        <th>Username</th>
                     </tr>
                 </thead>
                 <tbody>
