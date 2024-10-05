@@ -27,11 +27,11 @@ public class AddEmpMan extends HttpServlet {
 		boolean isSuccess = false;
 		
 		if(eType == null || eType.isEmpty()){
-			isSuccess = EmployeeDBUtil.insertEmployee(email, nic, dob, phone, imgUrl, username, password);
+			isSuccess = EmployeeDBUtil.insertEmployee(email, nic, dob, phone, imgUrl, password);
 
 		}else if("manager".equals(eType)) {
 			
-			isSuccess = ManagerDBUtil.insertManager(email, nic, dob, phone, imgUrl, username, password);
+			isSuccess = ManagerDBUtil.insertManager(email, nic, dob, phone, imgUrl, password);
 
 		}
 		
