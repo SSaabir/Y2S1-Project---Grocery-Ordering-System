@@ -71,7 +71,7 @@
                     <th>City</th>
                     <th>Date Of Birth</th>
                     <th>ImgUrl</th>
-                    <th>UserName</th>
+                   
                     
                 </tr>
             </thead>
@@ -92,7 +92,7 @@
                         <td><%= cus.getCity() %></td>
                         <td><%= cus.getDob() %></td>
                         <td><%= cus.getImgUrl() %></td>
-                        <td><%= cus.getUsername() %></td>
+                       
                         
                         
                         

@@ -33,12 +33,11 @@ public class AddCustomer extends HttpServlet {
 	         	String city = request.getParameter("city");
 	         	String dob = request.getParameter("dob");
 	         	String imgUrl = request.getParameter("imgUrl");
-	         	String username = request.getParameter("username");
 	         	String password = request.getParameter("password");
 	         	
 
 		        
-		        boolean isInserted = CustomerDBUtil.insertCustomer(fName,lName,email,phone,lane,city,dob,imgUrl,username,password);
+		        boolean isInserted = CustomerDBUtil.insertCustomer(fName,lName,email,phone,lane,city,dob,imgUrl,password);
 
 		        if (isInserted) {
 		            // Redirect or inform the user of success
