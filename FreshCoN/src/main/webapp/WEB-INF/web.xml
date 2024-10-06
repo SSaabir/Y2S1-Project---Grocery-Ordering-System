@@ -275,7 +275,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DeleteCustomer</servlet-name>
-		<url-pattern>/DeleteCustomer</url-pattern>
+		<url-pattern>/DeleteCustomers</url-pattern>
 	</servlet-mapping>
 	
 	

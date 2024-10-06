@@ -112,7 +112,12 @@ footer {
         }
     </style>
 </head>
-
+ <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <iframe id="modalIframe" src="" frameborder="0" style="width:100%; height:650px;"></iframe>
+        </div>
+    </div>
 <body>
 <footer>
     <div class="container-footer">

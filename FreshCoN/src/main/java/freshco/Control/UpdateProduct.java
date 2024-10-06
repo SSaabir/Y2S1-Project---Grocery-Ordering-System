@@ -26,7 +26,6 @@ public class UpdateProduct extends HttpServlet {
         String unit = request.getParameter("unit");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         String imgUrl = request.getParameter("imgUrl");
-        double discount = Double.parseDouble(request.getParameter("discount"));
         int CID = Integer.parseInt(request.getParameter("CID"));
 
         boolean isSuccess =ProductDBUtil.updateProduct(PrID, productName, descript, price, unit, quantity, imgUrl, discount, CID);

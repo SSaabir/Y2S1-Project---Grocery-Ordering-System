@@ -134,13 +134,13 @@
             position: relative;
             display: flex;
             align-items: center;
+            margin-left:60%;
         }
         
         .user-pic {
             width: 30px;
             border-radius: 50%;
             cursor: pointer;
-            margin-left: 40%;
         }
         
         .sub-menu-wrap {
