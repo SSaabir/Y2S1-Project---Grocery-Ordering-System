@@ -101,6 +101,16 @@
 		<url-pattern>/Product</url-pattern>
 	</servlet-mapping>
 
+	<!--Shop -->
+	<servlet>
+		<servlet-name>Shop</servlet-name>
+		<servlet-class>freshco.Control.Shop</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Shop</servlet-name>
+		<url-pattern>/Shop</url-pattern>
+	</servlet-mapping>
+
 	<!--Sale dash -->
 	<servlet>
 		<servlet-name>ViewSale</servlet-name>

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ page import="freshco.Model.ProductDBUtil" %>
+<%@ page import="freshco.Beans.Product" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,41 +52,31 @@
     </div>
 
     <section>
-        
-        <div class="product-list" id="vegetables">
+                <%
+                    try {
+                    	List<Product> products = (List<Product>)request.getAttribute("products");
+                        if (products != null) {
+                            for (Product pro : products) {
+                    %>
+        <div class="product-list">
+
             <div class="product-box">
-                <img src="images/potato.png" alt="Fresh Potato" />
-                <strong>Potato</strong>
-                <span class="Quantity">1kg</span>
+                <img src="<%= pro.getImgUrl() %>" alt="<%= pro.getProductName() %>" />
+                <strong><td><%= pro.getProductName() %></td></strong>
+                <span class="Quantity"><%= pro.getUnit() %></span>
                 <input type="number" min="1" value="1" class="quantity-input" />
-                <span class="price" data-price="253">253/=</span>
-                <div class="cart-button" onclick="addToCart('Potato', 253, this.parentNode.querySelector('.quantity-input').value)">Add to Cart</div>
+                <span class="price" data-price="<%= pro.getPrice() %>"><%= pro.getPrice() %></span>
+      	          <div class="cart-button" onclick="addToCart('<%= pro.getProductName() %>',<%= pro.getPrice() %>, this.parentNode.querySelector('.quantity-input').value)">Add to Cart</div>
             </div>
         </div>
-        <div class="product-list" id="vegetables">
-            <div class="product-box">
-                    <img src="images/potato.png" alt="Fresh Potato" />
-                    <strong>Potato</strong>
-                    <span class="Quantity">1kg</span>
-                    <input type="number" min="1" value="1" class="quantity-input" />
-                    <span class="price" data-price="253">253/=</span>
-                    <div class="cart-button" onclick="addToCart('Potato', 253, this.parentNode.querySelector('.quantity-input').value)">Add to Cart</div>
-                </div>
-        </div>
-        <div class="product-list" id="vegetables">
-                <div class="product-box">
-                        <img src="images/potato.png" alt="Fresh Potato" />
-                        <strong>Potato</strong>
-                        <span class="Quantity">1kg</span>
-                        <input type="number" min="1" value="1" class="quantity-input" />
-                        <span class="price" data-price="253">253/=</span>
-                        <div class="cart-button" onclick="addToCart('Potato', 253, this.parentNode.querySelector('.quantity-input').value)">Add to Cart</div>
-                </div>
-        </div>
-
-
+         <%
+                        	}
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                %>
        
-
     </section>
 
     <div id="cart-modal">
