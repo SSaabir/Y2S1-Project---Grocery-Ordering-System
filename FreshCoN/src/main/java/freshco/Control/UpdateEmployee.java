@@ -24,11 +24,10 @@ public class UpdateEmployee extends HttpServlet {
 		        String nic = request.getParameter("nic");
 		        String dob = request.getParameter("dob");
 		        String phone = request.getParameter("phone");
-		        String username = request.getParameter("username");
 		        String password = request.getParameter("password");
 
 		        // Call the updateEmployee method from your database class
-		        boolean isUpdated = EmployeeDBUtil.updateEmployee(EmID, email, nic, dob, phone, username, password);
+		        boolean isUpdated = EmployeeDBUtil.updateEmployee(EmID, email, nic, dob, phone,  password);
 
 		        if (isUpdated) {
 		            // Redirect or inform the user of success

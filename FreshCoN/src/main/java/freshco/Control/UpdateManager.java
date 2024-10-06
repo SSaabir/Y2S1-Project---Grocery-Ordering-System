@@ -23,10 +23,9 @@ public class UpdateManager extends HttpServlet {
         String nic = request.getParameter("nic");
         String dob = request.getParameter("dob");
         String phone = request.getParameter("phone");
-        String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        boolean isSuccess = ManagerDBUtil.updateManager(EmID, email, nic, dob, phone, username, password);
+        boolean isSuccess = ManagerDBUtil.updateManager(EmID, email, nic, dob, phone, password);
 
         if (isSuccess) {
             response.sendRedirect("success.jsp");

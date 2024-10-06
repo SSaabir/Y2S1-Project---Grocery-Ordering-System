@@ -250,7 +250,52 @@
 	
 	
 	
+		<!-- Update Admin-->
 	
+	
+	<servlet>
+		<servlet-name>UpdateAdmin</servlet-name>
+		<servlet-class>freshco.Control.UpdateAdmin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateAdmin</servlet-name>
+		<url-pattern>/EditProfileA</url-pattern>
+	</servlet-mapping>
+	
+			<!-- Update Employee-->
+	
+	
+	<servlet>
+		<servlet-name>UpdateEmployee</servlet-name>
+		<servlet-class>freshco.Control.UpdateEmployee</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateEmployee</servlet-name>
+		<url-pattern>/EditProfileE</url-pattern>
+	</servlet-mapping>
+	
+			<!-- Update Manager-->
+	
+	
+	<servlet>
+		<servlet-name>UpdateManager</servlet-name>
+		<servlet-class>freshco.Control.UpdateManager</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateManager</servlet-name>
+		<url-pattern>/EditProfileM</url-pattern>
+	</servlet-mapping>
+			<!-- Update DeliveryPerson-->
+	
+	
+	<servlet>
+		<servlet-name>UpdateDeliveryPerson</servlet-name>
+		<servlet-class>freshco.Control.UpdateDeliveryPerson</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateDeliveryPerson</servlet-name>
+		<url-pattern>/EditProfileDP</url-pattern>
+	</servlet-mapping>
 	
 	
 	
@@ -264,7 +309,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>UpdateCustomer</servlet-name>
-		<url-pattern>/EditProfile</url-pattern>
+		<url-pattern>/EditProfileC</url-pattern>
 	</servlet-mapping>
 	
 	
@@ -275,9 +320,8 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DeleteCustomer</servlet-name>
-		<url-pattern>/DeleteCustomers</url-pattern>
+<url-pattern>/DeleteProfileC</url-pattern>
 	</servlet-mapping>
-	
 	
 		<!-- AddProductSale -->
 	<servlet>
@@ -289,6 +333,45 @@
 		<url-pattern>/AddProductSale</url-pattern>
 	</servlet-mapping>
 	
+		
 	
+	<!-- Delete Admin-->
+	<servlet>
+		<servlet-name>DeleteAdmin</servlet-name>
+		<servlet-class>freshco.Control.DeleteAdmin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteAdmin</servlet-name>
+		<url-pattern>/DeleteProfileA</url-pattern>
+	</servlet-mapping>
+	
+		<!-- Delete Employee-->
+	<servlet>
+		<servlet-name>DeleteEmployee</servlet-name>
+		<servlet-class>freshco.Control.DeleteEmployee</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteEmployee</servlet-name>
+		<url-pattern>/DeleteProfileE</url-pattern>
+	</servlet-mapping>
 
+<!-- Delete Manager-->
+	<servlet>
+		<servlet-name>DeleteManager</servlet-name>
+		<servlet-class>freshco.Control.DeleteManager</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteManager</servlet-name>
+		<url-pattern>/DeleteProfileM</url-pattern>
+	</servlet-mapping>
+
+<!-- Delete DeliveryPerson-->
+	<servlet>
+		<servlet-name>DeleteDeliveryPerson</servlet-name>
+		<servlet-class>freshco.Control.DeleteDeliveryPerson</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteDeliveryPerson</servlet-name>
+		<url-pattern>/DeleteProfileDP</url-pattern>
+	</servlet-mapping>
 </web-app>
