@@ -7,7 +7,49 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./css/styles.css">
         <link rel="stylesheet" href="./css/dataStyles.css">
+        <script src="./javascript/Dash.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+		<style>
+		.modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 0px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        /* Modal Content */
+        
+        .modal-content {
+            background-color: transparent;
+            margin: 5% auto;
+            border: 1px solid #888;
+            width: 98%;
+            max-width: 1100px;
+            height: 680px;
+            margin-top: 10px;
+        }
+        /* Close Button */
+        
+        .close {
+            color: #e51010;
+            float: right;
+            font-size: 35px;
+            font-weight: bold;
+            background: transparent;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+		</style>
         <title>Fresh Co</title>
 
     </head>
