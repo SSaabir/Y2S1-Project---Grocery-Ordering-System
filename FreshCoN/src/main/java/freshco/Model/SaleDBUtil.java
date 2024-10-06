@@ -1,8 +1,11 @@
 package freshco.Model;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import freshco.Beans.Product;
 import freshco.Beans.Sale;
 
 public class SaleDBUtil {
@@ -78,4 +81,62 @@ public class SaleDBUtil {
 
         return isSuccess;
     }
-}
+    
+    
+        public static  int getLastOrderIDByCustomerID(int customerID) throws SQLException {
+        	int id = -1;
+        	String query = "SELECT OID FROM Sale WHERE CusID = " + customerID + " ORDER BY orderDate DESC LIMIT 1";
+
+
+                ResultSet rs = null;
+				try {
+					rs = webDB.executeSearch(query);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+                
+                if (rs.next()) {
+                    id =  rs.getInt("OID"); // Adjusted to OID from Sale table
+                    return id;
+                } else {
+                    return -1; // No orders found
+                }
+            
+            
+        }
+
+        // Method to get all products associated with an orderID
+        public static List<Product> getProductsByOrderID(int orderID) throws SQLException {
+            String query = "SELECT Product.PrID, Product.productName, Product.price, Product_Sale.quantity, Product_Sale.netPrice, Product_Sale.discount " +
+                    "FROM Product_Sale " +
+                    "JOIN Product ON Product_Sale.PrID = Product.PrID " +
+                    "WHERE Product_Sale.OID = " + orderID;
+
+            List<Product> products = new ArrayList<>();
+
+                ResultSet rs;
+				try {
+					rs = webDB.executeSearch(query);
+				
+
+                while (rs.next()) {
+                    int productID = rs.getInt("PrID");  // Adjusted to PrID
+                    String productName = rs.getString("productName");
+                    int quantity = rs.getInt("quantity");
+                    float netPrice = rs.getFloat("netPrice");
+                    int discount = rs.getInt("discount");
+
+                    // Assuming your Product class has these fields
+                    products.add(new Product(productID, productName, quantity,  netPrice, discount));
+                }
+                
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+            return products;
+        }
+    }

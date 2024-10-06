@@ -119,21 +119,21 @@
                 <div class="form-row">
                     <div class="sub-part">
                         <label for="fName">First Name:</label>
-                        <input type="text" id="fName" name="fName" placeholder="Enter First Name" value="<%= (String) session.getAttribute("fName") %>" required>
+                        <input type="text" id="fName" name="fName" placeholder="Enter First Name" value="<%= (String) session.getAttribute("fName")%>" required>
                     </div>
                     <div class="sub-part">
                         <label for="lName">Last Name:</label>
-                        <input type="text" id="lName" name="lName" placeholder="Enter Last Name" value="<%= (String) session.getAttribute("lName") %>" required>
+                        <input type="text" id="lName" name="lName" placeholder="Enter Last Name" value="<%= (String) session.getAttribute("lName")%>" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="sub-part">
                         <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" placeholder="Enter Email" value="<%= (String) session.getAttribute("email") %>" required>
+                        <input type="email" id="email" name="email" placeholder="Enter Email" value="<%= (String) session.getAttribute("email")%>" required>
                     </div>
                     <div class="sub-part">
                         <label for="phone">Phone:</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" value="<%= (String) session.getAttribute("phone") %>" required>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" value="<%= (String) session.getAttribute("phone")%>" required>
                     </div>
                 </div>
                 <div class="form-row">

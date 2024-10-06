@@ -11,6 +11,7 @@ public class Product {
 	private String imgUrl ;
 	private double discount;
 	private int CID ;
+	private double netPrice;
 	
 	
 	public Product(int prID, String productName, String descript, double price, String unit, int quantity, String imgUrl,
@@ -25,6 +26,22 @@ public class Product {
 		this.imgUrl = imgUrl;
 		this.discount = discount;
 		CID = cID;
+	}
+
+
+	public Product(String productName2, float price2, int quantity2) {
+		this.productName = productName2;
+		this.price = price2;
+		this.quantity = quantity2;
+	}
+
+
+	public Product(int prID, String productName2, int quantity2, double netPrice, int discount2) {
+		PrID = prID;
+		this.productName = productName2;
+		this.netPrice = netPrice;
+		this.quantity = quantity2;
+		this.discount = discount2;
 	}
 
 

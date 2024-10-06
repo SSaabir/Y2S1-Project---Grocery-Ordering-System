@@ -57,11 +57,33 @@ const categorySelect = document.getElementById("category");
             closeCart();
         }
 
-        function checkToPay() {
-            if (cartCount > 0) {
-                alert('Redirecting to payment page...');
+		function checkout() {
+		    if (cartCount > 0) {
+		        // Create a string to send as query parameters
+		        let params = new URLSearchParams();
+		        params.append('cartItems', JSON.stringify(cart)); // Convert cart object to JSON string
+		        
+		        const xhr = new XMLHttpRequest();
+		        xhr.open('POST', 'YourCheckoutServletURL'); // Replace with your servlet URL
+		        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-            } else {
-                alert('Your cart is empty. Please add items to your cart before checking out.');
-            }
-        }
+		        xhr.onload = function () {
+		            if (xhr.status === 200) {
+		                alert('Products added to the database successfully!');
+		                // Optionally redirect to another page or refresh
+		                window.location.href = 'redirectURL'; // Replace with your redirect URL
+		            } else {
+		                alert('Error: ' + xhr.responseText);
+		            }
+		        };
+
+		        xhr.onerror = function () {
+		            alert('Request failed.');
+		        };
+
+		        xhr.send(params.toString());
+		    } else {
+		        alert('Your cart is empty. Please add items to your cart before checking out.');
+		    }
+		}
+	

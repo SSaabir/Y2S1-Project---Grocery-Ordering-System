@@ -278,5 +278,17 @@
 		<url-pattern>/DeleteCustomer</url-pattern>
 	</servlet-mapping>
 	
+	
+		<!-- AddProductSale -->
+	<servlet>
+		<servlet-name>AddProductSale</servlet-name>
+		<servlet-class>freshco.Control.AddProductSale</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddProductSale</servlet-name>
+		<url-pattern>/AddProductSale</url-pattern>
+	</servlet-mapping>
+	
+	
 
 </web-app>
