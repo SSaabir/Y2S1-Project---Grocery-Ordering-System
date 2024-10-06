@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-     <%@ page import="freshco.Model.ProductDBUtil" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="freshco.Model.ProductDBUtil" %>
 <%@ page import="freshco.Beans.Product" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html>
@@ -9,85 +8,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fresh Co</title>
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <title>Fresh Co - Products</title>
+    <style>
+        /* CSS Styles for the Product Page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9; /* Light background color */
+        }
+
+        .header {
+            background-color: #4caf50; /* Fresh green color */
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem; /* Header font size */
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input[type="text"] {
+            padding: 10px;
+            border: 1px solid #388e3c; /* Darker green border */
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+
+        .search-container button {
+            padding: 10px;
+            background-color: #388e3c; /* Darker green button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background-color: #45a049; /* Slightly darker green on hover */
+        }
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around; /* Space around product boxes */
+            padding: px;
+        }
+
+        .product-box {
+            background-color: #ffffff; /* White background for product boxes */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            margin: 15px;
+            padding: 15px;
+            width: calc(15% - 15px); /* Four items per row */
+            transition: transform 0.2s;
+        }
+
+        .product-box img {
+            width: 100%;
+            height: 150px; /* Fixed height */
+            object-fit: contain; /* Maintains aspect ratio */
+        }
+
+        .product-box strong {
+            color: #202020;
+            font-size: 1.2rem; /* Increased font size */
+            display: block; /* Make strong text block element */
+            margin: 10px 0 5px; /* Space around text */
+        }
+
+        .product-box .price {
+            margin-top: 5px;
+            color: #4caf50; /* Green color for price */
+            font-size: 1.4rem; /* Increased font size */
+            font-weight: bold; /* Bold price */
+        }
+
+        .product-box .cart-button {
+            width: 100%;
+            height: 40px;
+            background-color: #4caf50; /* Green background */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px; /* Space above button */
+            transition: background-color 0.3s;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+        }
+
+        .product-box .cart-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .product-box {
+                width: calc(50% - 30px); /* Two items per row on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-box {
+                width: 100%; /* Full width on very small screens */
+            }
+        }
+    </style>
 </head>
 
 <body>
-
+<header>
+<jsp:include page="header.jsp"/>
+</header>
     <div class="header">
-      <div class="col-3">
+        <h1>Fresh Co Products</h1>
         <div class="search-container">
-            <form action="">
-              <input type="text" placeholder="Search.." name="search">
-              <button type="submit"><i class="fa fa-search"></i></button>
+            <form action="" method="GET">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit">Search</button>
             </form>
         </div>
-      </div>
-      <div class="col-3">
-        <h1>Product Items</h1>
-      </div>
-      <div class="col-3">
-        <div id="category-container"></div>
-            <label for="category">Choose a category: </label>
-            <select id="category" name="category">
-                <option value="fruits">Fruits</option>
-                <option value="vegetables">Vegetables</option>
-                <option value="meats">Meats</option>
-                <option value="soft-drinks">Soft Drinks</option>
-            </select>
-        </div>
-        <div class="cart-icon" onclick="openCart()">
-        <a href="Fruits.html"><i class="fas fa-shopping-cart"></i></a>
-        <span class="cart-count">0</span>
-      </div>
-      </div>
-      
-
-        
-
-        
+        <label for="category">Choose a category: </label>
+        <select id="category" name="category">
+            <option value="fruits">Fruits</option>
+            <option value="vegetables">Vegetables</option>
+            <option value="meats">Meats</option>
+            <option value="soft-drinks">Soft Drinks</option>
+        </select>
     </div>
 
-    <section>
-                <%
-                    try {
-                    	List<Product> products = (List<Product>)request.getAttribute("products");
-                        if (products != null) {
-                            for (Product pro : products) {
-                    %>
-        <div class="product-list">
-
+    <div class="product-list">
+        <%
+            try {
+                List<Product> products = (List<Product>) request.getAttribute("products");
+                if (products != null) {
+                    for (Product pro : products) {
+        %>
             <div class="product-box">
                 <img src="<%= pro.getImgUrl() %>" alt="<%= pro.getProductName() %>" />
-                <strong><td><%= pro.getProductName() %></td></strong>
+                <strong><%= pro.getProductName() %></strong>
                 <span class="Quantity"><%= pro.getUnit() %></span>
-                <input type="number" min="1" value="1" class="quantity-input" />
-                <span class="price" data-price="<%= pro.getPrice() %>"><%= pro.getPrice() %></span>
-      	          <div class="cart-button" onclick="addToCart('<%= pro.getProductName() %>',<%= pro.getPrice() %>, this.parentNode.querySelector('.quantity-input').value)">Add to Cart</div>
+                <input type="number" min="1" value="1" max="<%= pro.getQuantity() %>" class="quantity-input" />
+                <span class="price">Price: $<%= pro.getPrice() %></span>
+                <div class="cart-button" 
+                     onclick="addToCart('<%= pro.getProductName() %>', <%= pro.getPrice() %>, this.parentNode.querySelector('.quantity-input').value)">
+                    Add to Cart
+                </div>
             </div>
-        </div>
-         <%
-                        	}
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
+        <%
                     }
-                %>
-       
-    </section>
-
-    <div id="cart-modal">
-        <h2>Your Cart</h2>
-        <div id="cart-items"></div>
-        <div id="cart-total"></div>
-        <button onclick="clearCart()">Clear Choices</button>
-        <button onclick="checkToPay()">Check to Pay</button>
-        <button onclick="closeCart()">Close Cart</button>
+                } else {
+                    out.println("<p>No products available</p>");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                out.println("<p>Error retrieving products</p>");
+            }
+        %>
     </div>
-    <script type="text/javascript" src="./javascript/cart.js"></script>
+<footer>
+<jsp:include page="footer.jsp"/>
+</footer>
 </body>
 
 </html>

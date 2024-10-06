@@ -192,7 +192,61 @@
         .sub-menu ul li:hover i {
             color: #0ded2b;
         }
+        .cart-icon {
+            cursor: pointer;
+        }
+
+        #cart-modal {
+            display: none; /* Initially hide the cart modal */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        #cart-items, #cart-total {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
     </style>
+    <script>
+        function openCart() {
+            document.getElementById('cart-modal').style.display = 'flex';
+        }
+
+        function closeCart() {
+            document.getElementById('cart-modal').style.display = 'none';
+        }
+
+        function clearCart() {
+            document.getElementById('cart-items').innerHTML = '';
+            document.getElementById('cart-total').innerHTML = 'Total: $0.00';
+        }
+
+        function checkToPay() {
+            alert('Proceeding to payment...');
+        }
+
+        function addToCart(productName, price, quantity) {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+
+            // Add product to cart
+            const item = document.createElement('div');
+            item.textContent = `${productName} - $${price} x ${quantity}`;
+            cartItems.appendChild(item);
+
+            // Update total
+            const currentTotal = parseFloat(cartTotal.textContent.split('$')[1] || '0');
+            const newTotal = currentTotal + (price * quantity);
+            cartTotal.textContent = `Total: $${newTotal.toFixed(2)}`;
+        }
+    </script>
 </head>
 
 <body>
@@ -240,10 +294,23 @@
                 }
             %>
             </div>
-            <a href="Product.jsp"><span class="material-symbols-outlined">shopping_cart</span></a>
+
+            <div class="cart-icon" onclick="openCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span> <!-- Update dynamically -->
+            </div>
         </nav>
     </header>
-
+    
+	<div id="cart-modal" style="display: none;">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <div id="cart-total">Total: $0.00</div>
+        <button onclick="clearCart()">Clear Choices</button>
+        <button onclick="checkToPay()">Check to Pay</button>
+        <button onclick="closeCart()">Close Cart</button>
+    </div>
+    
     <script>
         const userPic = document.querySelector('.user-pic');
         const subMenuWrap = document.querySelector('.sub-menu-wrap');

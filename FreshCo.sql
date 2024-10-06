@@ -17,7 +17,7 @@ CREATE TABLE Product (
     CID INT NOT NULL,
     CONSTRAINT Product_PK PRIMARY KEY (PrID),
     CONSTRAINT Product_Category_FK FOREIGN KEY (CID)
-        REFERENCES Category (CID)
+        REFERENCES Category (CID) ON DELETE CASCADE
 );
 
 CREATE TABLE Employee (
@@ -33,31 +33,36 @@ CREATE TABLE Employee (
 
 CREATE TABLE Category_Employee (
     CID INT NOT NULL,
-    EmID INT NOT NULL,
-    CONSTRAINT Category_Employee_PK PRIMARY KEY (CID, EmID),
+    EmID INT NULL,
+    PRIMARY KEY (CID),  -- Only CID in the primary key
     CONSTRAINT Category_Employee_Category_FK FOREIGN KEY (CID)
-        REFERENCES Category (CID),
+        REFERENCES Category (CID) ON DELETE CASCADE,
     CONSTRAINT Category_Employee_Employee_FK FOREIGN KEY (EmID)
-        REFERENCES Employee (EmID)
+        REFERENCES Employee (EmID) ON DELETE SET NULL,
+    UNIQUE (CID, EmID)  -- Ensure unique pairs of CID and EmID
 );
+
 
 CREATE TABLE Product_Employee (
     PrID INT NOT NULL,
-    EmID INT NOT NULL,
-    CONSTRAINT Product_Employee_PK PRIMARY KEY (PrID, EmID),
+    EmID INT NULL,
+    PRIMARY KEY (PrID),  -- Only PrID in the primary key
     CONSTRAINT Product_Employee_Product_FK FOREIGN KEY (PrID)
-        REFERENCES Product (PrID),
+        REFERENCES Product (PrID) ON DELETE CASCADE,
     CONSTRAINT Product_Employee_Employee_FK FOREIGN KEY (EmID)
-        REFERENCES Employee (EmID)
+        REFERENCES Employee (EmID) ON DELETE SET NULL,
+    UNIQUE (PrID, EmID)  -- Ensure unique pairs of PrID and EmID
 );
+
 
 -- Using EmID from Employee as a Foreign Key in Manager Table
 CREATE TABLE Manager (
-    EmID INT NOT NULL UNIQUE,
+    EmID INT NOT NULL UNIQUE,  -- EmID must be NOT NULL and UNIQUE
     CONSTRAINT Manager_PK PRIMARY KEY (EmID),
     CONSTRAINT Manager_Employee_FK FOREIGN KEY (EmID)
-        REFERENCES Employee (EmID)
+        REFERENCES Employee (EmID) ON DELETE CASCADE
 );
+
 
 -- Using EmID from Employee as a Foreign Key in DeliveryPerson Table
 CREATE TABLE DeliveryPerson (
@@ -67,7 +72,7 @@ CREATE TABLE DeliveryPerson (
     city VARCHAR(50) NOT NULL,
     CONSTRAINT DeliveryPerson_PK PRIMARY KEY (EmID),
     CONSTRAINT DeliveryPerson_Employee_FK FOREIGN KEY (EmID)
-        REFERENCES Employee (EmID)
+        REFERENCES Employee (EmID) ON DELETE CASCADE
 );
 
 CREATE TABLE Customer (
@@ -94,64 +99,69 @@ CREATE TABLE Payment (
 CREATE TABLE Sale (
     OID INT AUTO_INCREMENT NOT NULL UNIQUE,
     orderDate DATE NOT NULL,
-    totalAmount FLOAT NOT NULL,
+    totalAmount DOUBLE NOT NULL,  -- Use DOUBLE for better precision
     orderStatus BOOLEAN NULL,
-    CusID INT NOT NULL,
+    CusID INT NULL,
     PID INT NOT NULL,
-    EmID INT NOT NULL,
+    EmID INT NULL,
     CONSTRAINT Sale_PK PRIMARY KEY (OID),
     CONSTRAINT Sale_Customer_FK FOREIGN KEY (CusID)
-        REFERENCES Customer (CusID),
+        REFERENCES Customer (CusID) ON DELETE SET NULL,
     CONSTRAINT Sale_Payment_FK FOREIGN KEY (PID)
-        REFERENCES Payment (PID),
+        REFERENCES Payment (PID) ON DELETE CASCADE,
     CONSTRAINT Sale_Employee_FK FOREIGN KEY (EmID)
-        REFERENCES Employee (EmID)
+        REFERENCES Employee (EmID) ON DELETE SET NULL
 );
+
 
 CREATE TABLE Product_Sale (
-    PrID INT NOT NULL,
+    PrID INT NOT NULL,  -- Removed UNIQUE constraint
     OID INT NOT NULL,
     quantity INT NOT NULL,
-    netPrice FLOAT NOT NULL,
-    discount INT NULL,
-    CONSTRAINT Product_Sale_PK PRIMARY KEY (PrID, OID),
+    netPrice DOUBLE NOT NULL,  -- Changed FLOAT to DOUBLE for precision
+    discount DOUBLE NULL,
+    CONSTRAINT Product_Sale_PK PRIMARY KEY (PrID, OID),  -- Composite primary key
     CONSTRAINT Product_Sale_Product_FK FOREIGN KEY (PrID)
-        REFERENCES Product (PrID),
+        REFERENCES Product (PrID) ON DELETE CASCADE,  -- Changed to ON DELETE CASCADE
     CONSTRAINT Product_Sale_Sale_FK FOREIGN KEY (OID)
-        REFERENCES Sale (OID)
+        REFERENCES Sale (OID) ON DELETE CASCADE
 );
 
-CREATE TABLE Feedback (
-    FID INT AUTO_INCREMENT NOT NULL UNIQUE,
+
+	CREATE TABLE Feedback (
+    FID INT AUTO_INCREMENT NOT NULL,
     comments TEXT NOT NULL,
     rating INT NULL,
     OID INT NOT NULL,
     CONSTRAINT Feedback_PK PRIMARY KEY (FID),
     CONSTRAINT Feedback_Sale_FK FOREIGN KEY (OID)
-        REFERENCES Sale (OID)
+        REFERENCES Sale (OID) ON DELETE CASCADE
 );
 
--- Manager Feedback Table
-CREATE TABLE Manager_Feedback (
-    EmID INT NOT NULL,
+
+	-- Manager Feedback Table
+	CREATE TABLE Manager_Feedback (
+    EmID INT NOT NULL,  -- Changed to NOT NULL if every feedback must have a manager
     FID INT NOT NULL,
     CONSTRAINT Manager_Feedback_PK PRIMARY KEY (EmID, FID),
     CONSTRAINT Manager_Feedback_Manager_FK FOREIGN KEY (EmID)
-        REFERENCES Manager (EmID),
+        REFERENCES Manager (EmID) ON DELETE CASCADE,  -- Changed to ON DELETE CASCADE for consistent behavior
     CONSTRAINT Manager_Feedback_Feedback_FK FOREIGN KEY (FID)
-        REFERENCES Feedback (FID)
+        REFERENCES Feedback (FID) ON DELETE CASCADE
 );
+
 
 -- Manager Employee Table (linking EmID as a relationship between manager and employees)
 CREATE TABLE Manager_Employee (
-    EmID_Manager INT NOT NULL,
+    EmID_Manager INT NOT NULL,  -- Changed to NOT NULL if every employee must have a manager
     EmID_Employee INT NOT NULL,
     CONSTRAINT Manager_Employee_PK PRIMARY KEY (EmID_Manager, EmID_Employee),
     CONSTRAINT Manager_Employee_Manager_FK FOREIGN KEY (EmID_Manager)
-        REFERENCES Manager (EmID),
+        REFERENCES Manager (EmID) ON DELETE CASCADE,  -- Changed to ON DELETE CASCADE
     CONSTRAINT Manager_Employee_Employee_FK FOREIGN KEY (EmID_Employee)
-        REFERENCES Employee (EmID)
+        REFERENCES Employee (EmID) ON DELETE CASCADE
 );
+
 
 CREATE TABLE Admin (
     AID INT AUTO_INCREMENT NOT NULL UNIQUE,
@@ -167,16 +177,6 @@ CREATE TABLE Admin (
     CONSTRAINT Admin_PK PRIMARY KEY (AID)
 );
 
-CREATE TABLE Manager_Admin (
-    EmID INT NOT NULL,
-    AID INT NOT NULL,
-    CONSTRAINT Manager_Admin_PK PRIMARY KEY (EmID, AID),
-    CONSTRAINT Manager_Admin_Manager_FK FOREIGN KEY (EmID)
-        REFERENCES Manager (EmID),
-    CONSTRAINT Manager_Admin_Admin_FK FOREIGN KEY (AID)
-        REFERENCES Admin (AID)
-);
-
 CREATE TABLE Enquiry (
     EnID INT AUTO_INCREMENT NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL,
@@ -186,48 +186,58 @@ CREATE TABLE Enquiry (
     CONSTRAINT Enquiry_PK PRIMARY KEY (EnID)
 );
 
-CREATE TABLE Customer_Enquiry (
-    CusID INT NOT NULL,
-    EnID INT NOT NULL,
-    CONSTRAINT Customer_Enquiry_PK PRIMARY KEY (CusID, EnID),
-    CONSTRAINT Customer_Enquiry_Customer_FK FOREIGN KEY (CusID)
-        REFERENCES Customer (CusID),
-    CONSTRAINT Customer_Enquiry_Enquiry_FK FOREIGN KEY (EnID)
-        REFERENCES Enquiry (EnID)
-);
-
 CREATE TABLE Manager_Enquiry (
-    EmID INT NOT NULL,
+    EmID INT NOT NULL,  -- Changed to NOT NULL if every enquiry must have a manager
     EnID INT NOT NULL,
     CONSTRAINT Manager_Enquiry_PK PRIMARY KEY (EmID, EnID),
     CONSTRAINT Manager_Enquiry_Manager_FK FOREIGN KEY (EmID)
-        REFERENCES Manager (EmID),
+        REFERENCES Manager (EmID) ON DELETE CASCADE,  -- Changed to ON DELETE CASCADE for consistent behavior
     CONSTRAINT Manager_Enquiry_Enquiry_FK FOREIGN KEY (EnID)
-        REFERENCES Enquiry (EnID)
+        REFERENCES Enquiry (EnID) ON DELETE CASCADE
 );
 
-CREATE TABLE Customer_Admin (
-    CusID INT NOT NULL,
-    AID INT NOT NULL,
-    CONSTRAINT Customer_Admin_PK PRIMARY KEY (CusID, AID),
-    CONSTRAINT Customer_Admin_Customer_FK FOREIGN KEY (CusID)
-        REFERENCES Customer (CusID),
-    CONSTRAINT Customer_Admin_Admin_FK FOREIGN KEY (AID)
-        REFERENCES Admin (AID)
-);
-
-CREATE TABLE Payment_Manager (
-    EmID INT NOT NULL,
-    PID INT NOT NULL,
-    CONSTRAINT Payment_Manager_PK PRIMARY KEY (EmID, PID),
-    CONSTRAINT Payment_Manager_Manager_FK FOREIGN KEY (EmID)
-        REFERENCES Manager (EmID),
-    CONSTRAINT Payment_Manager_Payment_FK FOREIGN KEY (PID)
-        REFERENCES Payment (PID)
-);
 
 -- Create Triggers to Enforce Constraints
 DELIMITER //
+CREATE TRIGGER before_insert_product
+BEFORE INSERT ON Product
+FOR EACH ROW
+BEGIN
+    IF LEFT(NEW.imgUrl, 2) != './' THEN
+        SET NEW.imgUrl = CONCAT('./', NEW.imgUrl);
+    END IF;
+END;
+
+
+CREATE TRIGGER before_insert_category
+BEFORE INSERT ON Category
+FOR EACH ROW
+BEGIN
+    IF LEFT(NEW.imgUrl, 2) != './' THEN
+        SET NEW.imgUrl = CONCAT('./', NEW.imgUrl);
+    END IF;
+END;
+
+
+CREATE TRIGGER before_insert_employee
+BEFORE INSERT ON Employee
+FOR EACH ROW
+BEGIN
+    IF LEFT(NEW.imgUrl, 2) != './' THEN
+        SET NEW.imgUrl = CONCAT('./', NEW.imgUrl);
+    END IF;
+END;
+
+
+CREATE TRIGGER before_insert_customer
+BEFORE INSERT ON Customer
+FOR EACH ROW
+BEGIN
+    IF LEFT(NEW.imgUrl, 2) != './' THEN
+        SET NEW.imgUrl = CONCAT('./', NEW.imgUrl);
+    END IF;
+END;
+
 
 CREATE TRIGGER before_insert_manager
 BEFORE INSERT ON Manager
@@ -396,15 +406,6 @@ VALUES
 ('goodden54@gmail.com', 'Discount Offers', 'Are there any discount offers for bulk purchases?', NULL),
 ('goosden54@gmail.com', 'Return Policy', 'What is the return policy for electronics?', NULL);
 
--- Insert records into Customer_Enquiry
-INSERT INTO Customer_Enquiry (CusID, EnID)
-VALUES
-    (1, 1),
-    (2, 2),
-    (3, 3),
-    (4, 4),
-    (5, 5);
-
 -- Insert records into Manager_Enquiry
 INSERT INTO Manager_Enquiry (EmID, EnID)
 VALUES
@@ -421,21 +422,3 @@ VALUES
 ('Alice', 'Johnson', 'alicejohnson@adm.freshco.lk', '789 Oak St', 'Ogdenville', '1988-09-15', 'http://example.com/images/alicejohnson.jpg', '555-123-4567', 'hashed_password_3'),
 ('Bob', 'Brown', 'bobbrown@adm.freshco.lk', '321 Pine St', 'Capitol City', '1979-11-05', 'http://example.com/images/bobbrown.jpg', '444-987-6543', 'hashed_password_4'),
 ('Charlie', 'Davis', 'charliedavis@adm.freshco.lk', '654 Maple St', 'North Haverbrook', '1983-03-30', 'http://example.com/images/charliedavis.jpg', '333-456-7890', 'hashed_password_5');
-
--- Insert records into Customer_Admin
-INSERT INTO Customer_Admin (CusID, AID)
-VALUES
-    (1, 1),
-    (2, 2),
-    (3, 3),
-    (4, 4),
-    (5, 5);
-
--- Insert records into Payment_Manager
-INSERT INTO Payment_Manager (EmID, PID)
-VALUES
-    (6, 1),
-    (7, 2),
-    (8, 3),
-    (9, 4),
-    (10, 5);

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import freshco.Model.ManagerDBUtil;
 
-@WebServlet("/UpdateManager")
 public class UpdateManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
