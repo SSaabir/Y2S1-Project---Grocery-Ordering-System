@@ -154,7 +154,7 @@
                     </div>
 				<div class="sub-part">
                         <label for="img">Add Image</label>
-                        <input type="file" id="img">
+                        <input type="file" id="img" name="imgUrl">
                     </div>                </div>
                 <div class="form-row">
                     <div class="sub-part">

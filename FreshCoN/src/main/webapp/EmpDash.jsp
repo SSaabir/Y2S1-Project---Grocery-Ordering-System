@@ -28,11 +28,10 @@
     
     <div class="top-container">
         <div class="top-in-container">
-            <button class="button-top">Button1</button>
-            <button class="button-top">Button2</button>
-            <button class="button-top">Button3</button>
-            <button class="button-top">Button4</button>
-            <button class="button-top">Button5</button>
+        <button class="button-top" onclick="window.location.href='EmployeeDPRegistration.jsp'">Driver Registration form</button>
+        <button class="button-top" onclick="window.location.href='EmployeeManRegistration.jsp'">Add New Employee</button>
+            
+            
         </div>
     </div>
     <hr>

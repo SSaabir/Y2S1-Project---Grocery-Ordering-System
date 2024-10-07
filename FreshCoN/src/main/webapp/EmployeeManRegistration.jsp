@@ -198,15 +198,23 @@
                         <label for="password">Password :</label>
                         <input type="password" id="password" name="password" placeholder="Enter Password" required>
                     </div>
-                </div>
-
-                <div class="form-actions">
+                    
+                    
+                    <div class="form-actions">
                     <button type="reset" class="reset-btn">Reset All</button>
                     <button type="submit" class="submit-btn">Submit Form</button>
                 </div>
-            </form>
+                    
+                    
+                  </form>  
+                </div>
+
+                
+                
+            
+            
         </div>
-    </div>
+    
 </body>
 
 </html>

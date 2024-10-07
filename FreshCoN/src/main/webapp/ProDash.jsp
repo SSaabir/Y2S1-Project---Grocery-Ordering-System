@@ -30,11 +30,9 @@
 <hr>
 <div class="top-container">
     <div class="top-in-container">
-        <button class="button-top">Button1</button>
-        <button class="button-top">Button2</button>
-        <button class="button-top">Button3</button>
-        <button class="button-top">Button3</button>
-        <button class="button-top">Button3</button>
+        <button class="button-top" onclick="window.location.href='AddProducts.jsp'">Add New Products</button>
+
+        
     </div>
 </div>
 <hr>

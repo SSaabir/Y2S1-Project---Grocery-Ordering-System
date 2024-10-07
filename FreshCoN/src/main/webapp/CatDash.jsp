@@ -28,11 +28,10 @@
    <hr>
 <div class="top-container">
     <div class="top-in-container">
-        <button class="button-top" onclick="formFrame('AddCategories.jsp')">Button1</button>
-        <button class="button-top">Button2</button>
-        <button class="button-top">Button3</button>
-        <button class="button-top">Button3</button>
-        <button class="button-top">Button3</button>
+       <button class="button-top" onclick="window.location.href='AddCategories.jsp'">Add New Categories</button>
+
+
+        
     </div>
 </div>
 <hr>
