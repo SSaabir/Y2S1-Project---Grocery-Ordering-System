@@ -99,16 +99,6 @@ for (Map.Entry<String, Product> entry : cartItems.entrySet()) {
         int quantity = entry.getValue().getQuantity();
         double netPrice = entry.getValue().getPrice();
 
-        
-    
-                // Step 2: Retrieve the PrID for the given productName
-                String getPrIdQuery = "SELECT PrID, discount FROM Product WHERE productName = '" + productName + "'";
-                ResultSet InfoResultSet = webDB.executeSearch(getPrIdQuery);
-                if (InfoResultSet.next()) {
-                    prID = InfoResultSet.getInt("PrID");  // Get the PrID for the product
-                    discount = InfoResultSet.getDouble("discount");
-                }
-
                 // Step 3: Insert into Product_Sale table
                 if (oid != -1 && prID != -1) {
                     String insertProductSaleQuery = "INSERT INTO Product_Sale (quantity, netPrice, discount, OID, PrID) " +

@@ -27,7 +27,7 @@ public class Checkout extends HttpServlet {
         }
 
         // Set cart items as request attribute to access in JSP
-        request.setAttribute("cartProducts", cartItems);
+        request.setAttribute("cartItems", cartItems);
 
         // Forward to checkout.jsp
         request.getRequestDispatcher("PlaceOrder.jsp").forward(request, response);

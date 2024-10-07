@@ -100,7 +100,8 @@ CREATE TABLE Sale (
     OID INT AUTO_INCREMENT NOT NULL UNIQUE,
     orderDate DATE NOT NULL,
     totalAmount DOUBLE NOT NULL,  -- Use DOUBLE for better precision
-    orderStatus BOOLEAN NULL,
+	address VARCHAR (300) NULL,
+	orderStatus BOOLEAN NULL,
     CusID INT NULL,
     PID INT NOT NULL,
     EmID INT NULL,
@@ -118,8 +119,6 @@ CREATE TABLE Product_Sale (
     PrID INT NOT NULL,  -- Removed UNIQUE constraint
     OID INT NOT NULL,
     quantity INT NOT NULL,
-    netPrice DOUBLE NOT NULL,  -- Changed FLOAT to DOUBLE for precision
-    discount DOUBLE NULL,
     CONSTRAINT Product_Sale_PK PRIMARY KEY (PrID, OID),  -- Composite primary key
     CONSTRAINT Product_Sale_Product_FK FOREIGN KEY (PrID)
         REFERENCES Product (PrID) ON DELETE CASCADE,  -- Changed to ON DELETE CASCADE
@@ -347,13 +346,13 @@ VALUES
     ('2024-01-04', 150.00, TRUE, 5, 5, 5);
 
 -- Insert records into Product_Sale
-INSERT INTO Product_Sale (PrID, OID, quantity, netPrice, discount)
+INSERT INTO Product_Sale (PrID, OID, quantity)
 VALUES
-    (1, 1, 2, 90.00, 10),
-    (2, 2, 1, 45.00, 5),
-    (3, 3, 3, 60.00, 15),
-    (4, 4, 2, 20.00, 0),
-    (5, 5, 5, 120.00, 20);
+    (1, 1, 2),
+    (2, 2, 1),
+    (3, 3, 3),
+    (4, 4, 2),
+    (5, 5, 5);
 
 -- Insert records into Feedback
 INSERT INTO Feedback (comments, rating, OID)

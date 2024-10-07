@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="freshco.Beans.CartProducts" %> <!-- Update with the correct package name -->
 <!DOCTYPE html>
@@ -106,18 +105,6 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .review-order-section {
-            background-color: #f9f9f9;
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid #e0e0e0;
-            transition: border-color 0.3s;
-        }
-
-        .review-order-section:hover {
-            border-color: #c6c6c6;
-        }
-
         .order-item {
             display: flex;
             align-items: center;
@@ -143,8 +130,8 @@
         }
 
         .card-details {
-            margin-top: 20px;
             display: none;
+            margin-top: 20px;
         }
 
         .card-details label {
@@ -240,10 +227,9 @@
 
 <body>
     <div class="checkout-container">
-        <!-- Payment Section (Left) -->
-        
-        <form action="submitPayment" method="POST">
-        <h1>Fresh Co</h1>
+        <!-- Single Form for Payment and Order Review -->
+        <form action="OrderConfirm" method="POST">
+            <h1>Fresh Co Checkout</h1>
             <div class="payment-section">
                 <h2>Select Payment Method</h2>
                 <div class="payment-method">
@@ -251,7 +237,7 @@
                     <label for="card">Card</label>
                 </div>
                 <div class="payment-method">
-                    <input type="radio" name="payment" id="cod" value="cod" onclick="showCardDetails(false)" required>
+                    <input type="radio" name="payment" id="cod" value="cash" onclick="showCardDetails(false)" required>
                     <label for="cod">Cash on Delivery</label>
                 </div>
 
@@ -259,16 +245,16 @@
                 <div class="card-details" id="card-details">
                     <h3>Enter Card Details</h3>
                     <label for="card-name">Name on Card</label>
-                    <input type="text" id="card-name" name="cardName" placeholder="John Doe" required>
+                    <input type="text" id="card-name" name="cardName" placeholder="John Doe">
                     <label for="card-number">Card Number</label>
-                    <input type="text" id="card-number" name="cardNumber" placeholder="1234 5678 9012 3456" required>
+                    <input type="text" id="card-number" name="cardNumber" placeholder="1234 5678 9012 3456">
                     <label for="card-expiry">Expiry Date</label>
-                    <input type="text" id="card-expiry" name="cardExpiry" placeholder="MM/YY" required>
+                    <input type="text" id="card-expiry" name="cardExpiry" placeholder="MM/YY" >
                     <label for="card-cvc">CVC</label>
-                    <input type="text" id="card-cvc" name="cardCVC" placeholder="123" required>
+                    <input type="text" id="card-cvc" name="cardCVC" placeholder="123" >
                 </div>
 
-                <!-- Address Selection -->
+                <!-- Delivery Address Selection -->
                 <h3>Select Delivery Address</h3>
                 <div class="payment-method">
                     <input type="radio" name="address" id="existing-address" value="existing" onclick="toggleAddressDetails(false)" required>
@@ -279,57 +265,56 @@
                     <label for="add-delivery-address">Add Delivery Address</label>
                 </div>
 
-                <!-- Address input field -->
+                <!-- New Address input field -->
                 <div class="address-details" id="address-details">
                     <label for="address">Enter your Delivery Address</label>
-                    <input type="text" id="address" name="deliveryAddress" placeholder="Delivery Address" required>
+                    <input type="text" id="address" name="deliveryAddress" placeholder="Delivery Address" >
                 </div>
-
-                <button class="pay-now" type="submit">Pay Now</button>
             </div>
-        </form>
 
-        <!-- Review Order Section (Right) -->
-        <div class="review-order-section">
-            <h2>Review Your Order</h2>
+            <!-- Review Order Section -->
+            <div class="review-order-section">
+                <h2>Review Your Order</h2>
+                <%
+                    // Retrieve the cart products
+                    List<CartProducts> cartItems = (List<CartProducts>) request.getAttribute("cartItems");
+                    double totalAmount = 0.0;
+                    double discount = 50.00; // Example discount
+                %>
 
-            <%
-                // Retrieve the cart products
-                List<CartProducts> cartProducts = (List<CartProducts>) request.getAttribute("cartProducts");
-                double totalAmount = 0.0;
-                double discount = 50.00; // Example discount
-            %>
+                <%
+                    // Loop through the cart products and display them
+                    for (CartProducts product : cartItems) {
+                %>
+                    <div class="order-item">
+                        <img src="<%= product.getImgUrl() %>" alt="<%= product.getProductName() %>">
+                        <div>
+                            <p><%= product.getProductName() %></p>
+                            <p>Quantity: <%= product.getQuantity() %></p>
+                            <p>Price: $<%= product.getNetPrice() %>.00</p>
+                        </div>
+                    </div>
+                <%
+                        totalAmount += product.getNetPrice() * product.getQuantity();
+                    }
+                %>
 
-            <%
-                // Loop through the cart products and display them
-                for (CartProducts product : cartProducts) {
-            %>
-                <div class="order-item">
-                    <img src="<%= product.getImgUrl() %>" alt="<%= product.getProductName() %>">
-                    <div>
-                        <p><%= product.getProductName() %></p>
-                        <p>Quantity: <%= product.getQuantity() %></p>
-                        <p>Price: $<%= product.getNetPrice() %>.00</p>
+                <!-- Order Summary Section -->
+                <div class="order-summary-box">
+                    <h3>Order Summary</h3>
+                    <div class="order-summary">
+                        <p><strong>Order ID:</strong> <span id="order-id">#123456</span></p>
+                        <p><strong>Order Date:</strong> <span id="order-date"><%= new java.util.Date() %></span></p>
+                        <p><strong>Discount:</strong> <span id="discount">- $<%= discount %></span></p>
+                        <p>Total Items: <strong><%= cartItems.size() %></strong></p>
+                        <p>Total Amount: <strong>$<%= totalAmount - discount %></strong></p>
                     </div>
                 </div>
-            <%
-                    totalAmount += product.getNetPrice() * product.getQuantity();
-                }
-            %>
-            <p><strong>Shipping to:</strong> Colombo</p>
-
-            <!-- Order Summary Section -->
-            <div class="order-summary-box">
-                <h3>Order Summary</h3>
-                <div class="order-summary">
-                    <p><strong>Order ID:</strong> <span id="order-id">#123456</span></p>
-                    <p><strong>Order Date:</strong> <span id="order-date"><%= new java.util.Date() %></span></p>
-                    <p><strong>Discount:</strong> <span id="discount">- $<%= discount %></span></p>
-                    <p>Total Items: <strong><%= cartProducts.size() %></strong></p>
-                    <p>Total Amount: <strong>$<%= totalAmount - discount %></strong></p>
-                </div>
             </div>
-        </div>
+<!-- Add this hidden field inside the form to pass the totalAmount -->
+<input type="hidden" name="totalAmount" value="<%= totalAmount - discount %>">
+            <button class="pay-now" type="submit">Pay Now</button>
+        </form>
     </div>
 
     <script>

@@ -165,7 +165,7 @@
     <input type="hidden" name="discount" value="<%= pro.getDiscount() %>">
     <input type="hidden" name="productName" value="<%= pro.getProductName() %>">
     <input type="hidden" name="netPrice" value="<%= pro.getPrice() %>">
-    <input type="hidden" name="pid" value="<%= pro.getProductName().replaceAll("\\s+", "-").toLowerCase() %>">
+    <input type="hidden" name="pid" value="<%= pro.getPrID() %>">
     <input type="number" name="quantity" min="1" value="1" max="<%= pro.getQuantity() %>" class="quantity-input" />
     <input type="submit" value="Add to Cart" class="cart-button" />
 </form>

@@ -17,7 +17,7 @@ public class AddCartProducts extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Retrieve request parameters
-        String productId = request.getParameter("pid"); // Get product ID from request
+        int productId = Integer.parseInt(request.getParameter("pid")); // Get product ID from request
         String productName = request.getParameter("productName"); // Get product name
         String netPriceStr = request.getParameter("netPrice"); // Get product price as String
         String quantityStr = request.getParameter("quantity"); // Get quantity from request as String
@@ -59,7 +59,7 @@ public class AddCartProducts extends HttpServlet {
         // Check if the product already exists in the cart
         boolean productExists = false;
         for (CartProducts item : cartItems) {
-            if (item.getPid().equals(productId)) {
+            if (item.getPid() == productId) {
                 // Update quantity if the product exists
                 item.setQuantity(item.getQuantity() + quantity);
                 productExists = true;

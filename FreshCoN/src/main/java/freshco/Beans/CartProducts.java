@@ -6,9 +6,9 @@ public class CartProducts {
     private int quantity; // Quantity of the product
     private double netPrice; // Original price of the product
     private double discount; // Discount percentage of the product
-    private String pid; // Product ID
+    private int pid; // Product ID
 
-    public CartProducts(String productName, int quantity, double netPrice, double discount, String imgUrl, String pid) {
+    public CartProducts(String productName, int quantity, double netPrice, double discount, String imgUrl, int pid) {
         this.productName = productName;
         this.quantity = quantity;
         this.netPrice = netPrice; // Set the original price
@@ -53,11 +53,11 @@ public class CartProducts {
         this.discount = discount; // Set discount percentage
     }
 
-    public String getPid() {
+    public int getPid() {
         return pid;
     }
 
-    public void setPid(String pid) {
+    public void setPid(int pid) {
         this.pid = pid;
     }
 
