@@ -237,7 +237,7 @@
                             	%>
                             	
             <div class="product-box">
-                <img src="" alt="<%= pro.getProductName() %>">
+                <img src="<%= pro.getImgUrl() %>" alt="<%= pro.getProductName() %>">
                 <strong><%= pro.getProductName() %></strong>
                 <span class="Quantity"><%= pro.getUnit() %></span>
                 <span class="price"><%= pro.getPrice() %>/=</span>
