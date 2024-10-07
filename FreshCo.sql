@@ -10,7 +10,7 @@ CREATE TABLE Product (
     productName VARCHAR(100) UNIQUE,
     descript VARCHAR(250) NULL,
     price DOUBLE NOT NULL,
-    unit VARCHAR(5) NOT NULL,
+    unit VARCHAR(300) NOT NULL,
     quantity INT NOT NULL,
     imgUrl VARCHAR(300) NULL,
     discount DOUBLE NULL,
@@ -265,39 +265,41 @@ DELIMITER ;
 
 
 INSERT INTO Employee (email, nic, dob, imgUrl, phone, password) VALUES 
-('john.doe@emp.freshco.lk', 'NIC123456', '1990-01-01', 'john.jpg', '1234567890', 'password1'), -- EmID 1
-('jane.smith@emp.freshco.lk', 'NIC654321', '1985-02-02', 'jane.jpg', '0987654321', 'password2'), -- EmID 2
-('mark.jones@emp.freshco.lk', 'NIC789456', '1992-03-03', 'mark.jpg', '1357924680', 'password3'), -- EmID 3
-('lucy.brown@emp.freshco.lk', 'NIC159753', '1988-04-04', 'lucy.jpg', '2468135790', 'password4'), -- EmID 4
-('alex.wilson@emp.freshco.lk', 'NIC753159', '1995-05-05', 'alex.jpg', '3692581470', 'password5'), -- EmID 5
-('emma.johnson@emp.freshco.lk', 'NIC951753', '1987-06-06', 'emma.jpg', '1472583690', 'password6'), -- EmID 6
-('william.thompson@emp.freshco.lk', 'NIC852456', '1993-07-07', 'william.jpg', '2583691470', 'password7'), -- EmID 7
-('olivia.martinez@emp.freshco.lk', 'NIC456789', '1986-08-08', 'olivia.jpg', '9632587410', 'password8'), -- EmID 8
-('james.anderson@emp.freshco.lk', 'NIC654987', '1982-09-09', 'james.jpg', '7894561230', 'password9'), -- EmID 9
-('isabella.jackson@emp.freshco.lk', 'NIC321654', '1994-10-10', 'isabella.jpg', '3216549870', 'password10'), -- EmID 10
-('benjamin.harris@emp.freshco.lk', 'NIC789123', '1983-11-11', 'benjamin.jpg', '1473692580', 'password11'), -- EmID 11
-('sophia.miller@emp.freshco.lk', 'NIC258963', '1991-12-12', 'sophia.jpg', '2583691470', 'password12'), -- EmID 12
-('elijah.wilson@emp.freshco.lk', 'NIC951456', '1996-01-13', 'elijah.jpg', '1237894560', 'password13'), -- EmID 13
-('ava.moore@emp.freshco.lk', 'NIC753468', '1990-02-14', 'ava.jpg', '7891234560', 'password14'), -- EmID 14
-('noah.taylor@emp.freshco.lk', 'NIC951369', '1997-03-15', 'noah.jpg', '4561237890', 'password15'); -- EmID 15
+('john.doe@emp.freshco.lk', 'NIC123456', '1990-01-01', './image/john.jpg', '1234567890', 'password1'), -- EmID 1
+('jane.smith@emp.freshco.lk', 'NIC654321', '1985-02-02', './image/jane.jpg', '0987654321', 'password2'), -- EmID 2
+('mark.jones@emp.freshco.lk', 'NIC789456', '1992-03-03', './image/mark.jpg', '1357924680', 'password3'), -- EmID 3
+('lucy.brown@emp.freshco.lk', 'NIC159753', '1988-04-04', './image/lucy.jpg', '2468135790', 'password4'), -- EmID 4
+('alex.wilson@emp.freshco.lk', 'NIC753159', '1995-05-05', './image/alex.jpg', '3692581470', 'password5'), -- EmID 5
+('emma.johnson@emp.freshco.lk', 'NIC951753', '1987-06-06', './image/emma.jpg', '1472583690', 'password6'), -- EmID 6
+('william.thompson@emp.freshco.lk', 'NIC852456', '1993-07-07', './image/william.jpg', '2583691470', 'password7'), -- EmID 7
+('olivia.martinez@emp.freshco.lk', 'NIC456789', '1986-08-08', './image/olivia.jpg', '9632587410', 'password8'), -- EmID 8
+('james.anderson@emp.freshco.lk', 'NIC654987', '1982-09-09', './image/james.jpg', '7894561230', 'password9'), -- EmID 9
+('isabella.jackson@emp.freshco.lk', 'NIC321654', '1994-10-10', './image/isabella.jpg', '3216549870', 'password10'), -- EmID 10
+('benjamin.harris@emp.freshco.lk', 'NIC789123', '1983-11-11', './image/benjamin.jpg', '1473692580', 'password11'), -- EmID 11
+('sophia.miller@emp.freshco.lk', 'NIC258963', '1991-12-12', './image/sophia.jpg', '2583691470', 'password12'), -- EmID 12
+('elijah.wilson@emp.freshco.lk', 'NIC951456', '1996-01-13', './image/elijah.jpg', '1237894560', 'password13'), -- EmID 13
+('ava.moore@emp.freshco.lk', 'NIC753468', '1990-02-14', './image/ava.jpg', '7891234560', 'password14'), -- EmID 14
+('noah.taylor@emp.freshco.lk', 'NIC951369', '1997-03-15', './image/noah.jpg', '4561237890', 'password15'); -- EmID 15
+
 
 -- Insert records into Category
 INSERT INTO Category (category_Name, imgUrl)
 VALUES
-    ('Electronics',''),
-    ('Clothing',''),
-    ('Home Appliances',''),
-    ('Books',''),
-    ('Toys','');
+    ('Fruits', './image/fruits.jpg'), 
+    ('Vegitables', './image/vegitables.jpg'), 
+    ('Drinks', './image/drinks.jpg'), 
+    ('Meats', './image/meats.jpg'), 
+    ('Spices', './image/spices.jpg');
+
 
 -- Insert records into Product
 INSERT INTO Product (productName, descript, price, unit, quantity, imgUrl, discount, CID)
 VALUES
-    ('Smartphone', 'Latest model smartphone', 599.99, 'unit', 100, 'smartphone.jpg', 10, 1),
-    ('T-shirt', 'Cotton T-shirt', 19.99, 'piece', 500, 'tshirt.jpg', 5, 2),
-    ('Refrigerator', '2-door refrigerator', 799.99, 'unit', 50, 'refrigerator.jpg', 15, 3),
-    ('Novel', 'Bestselling novel', 14.99, 'book', 200, 'novel.jpg', 0, 4),
-    ('Toy Car', 'Toy car for kids', 19.99, 'piece', 100, 'toycar.jpg', 10, 5);
+    ('Apple', 'Fresh red apples', 1.99, 'kg', 200, './image/apple.jpg', 5, 1), -- Fruits
+    ('Carrot', 'Organic carrots', 0.99, 'kg', 300, './image/carrot.jpg', 0, 2), -- Vegetables
+    ('Orange Juice', 'Fresh orange juice', 3.49, 'bottle', 150, './image/orange_juice.jpg', 10, 3), -- Drinks
+    ('Chicken Breast', 'Boneless chicken breast', 6.99, 'kg', 100, './image/chicken_breast.jpg', 0, 4), -- Meats
+    ('Cinnamon', 'Ground cinnamon', 2.49, 'pack', 250, './image/cinnamon.jpg', 5, 5); -- Spices
 
 -- Insert records into Manager
 INSERT INTO Manager (EmID)
@@ -320,11 +322,11 @@ VALUES
 -- Insert records into Customer
 INSERT INTO Customer (fName, lName, email, phone, lane, city, dob, imgUrl, password)
 VALUES
-    ('John', 'Doe', 'johndoe@example.com', '1234567890', 'Main Street', 'Colombo', '1990-01-01', '', 'password123'),
-    ('Jane', 'Smith', 'janesmith@example.com', '9876543210', 'Park Avenue', 'Kandy', '1995-02-02', '', 'password456'),
-    ('Alice', 'Johnson', 'alicejohnson@example.com', '1112223330', '1st Street', 'Galle', '1985-03-03', '', 'password789'),
-    ('Bob', 'Williams', 'bobwilliams@example.com', '4445556660', '2nd Street', 'Jaffna', '1975-04-04', '', 'password000'),
-    ('Charlie', 'Brown', 'charliebrown@example.com', '7778889990', '3rd Street', 'Kurunegala', '1965-05-05', '', 'password111');
+    ('John', 'Doe', 'johndoe@example.com', '1234567890', 'Main Street', 'Colombo', '1990-01-01', './image/johhny.jpg', 'password123'),
+    ('Jane', 'Smith', 'janesmith@example.com', '9876543210', 'Park Avenue', 'Kandy', '1995-02-02', './image/janes.jpg', 'password456'),
+    ('Alice', 'Johnson', 'alicejohnson@example.com', '1112223330', '1st Street', 'Galle', '1985-03-03', './image/alisis.jpg', 'password789'),
+    ('Bob', 'Williams', 'bobwilliams@example.com', '4445556660', '2nd Street', 'Jaffna', '1975-04-04', './image/bobby.jpg', 'password000'),
+    ('Charlie', 'Brown', 'charliebrown@example.com', '7778889990', '3rd Street', 'Kurunegala', '1965-05-05', './image/charles.jpg', 'password111');
 
 -- Insert records into Payment
 INSERT INTO Payment (payMethod, payStatus)
@@ -417,8 +419,8 @@ VALUES
 
 INSERT INTO Admin (fName, lName, email, lane, city, dob, imgUrl, phone, password)
 VALUES 
-('John', 'Doe', 'johndoe@adm.freshco.lk', '123 Main St', 'Springfield', '1985-04-12', 'http://example.com/images/johndoe.jpg', '123-456-7890', 'hashed_password_1'),
-('Jane', 'Smith', 'janesmith@adm.freshco.lk', '456 Elm St', 'Shelbyville', '1990-07-22', 'http://example.com/images/janesmith.jpg', '098-765-4321', 'hashed_password_2'),
-('Alice', 'Johnson', 'alicejohnson@adm.freshco.lk', '789 Oak St', 'Ogdenville', '1988-09-15', 'http://example.com/images/alicejohnson.jpg', '555-123-4567', 'hashed_password_3'),
-('Bob', 'Brown', 'bobbrown@adm.freshco.lk', '321 Pine St', 'Capitol City', '1979-11-05', 'http://example.com/images/bobbrown.jpg', '444-987-6543', 'hashed_password_4'),
-('Charlie', 'Davis', 'charliedavis@adm.freshco.lk', '654 Maple St', 'North Haverbrook', '1983-03-30', 'http://example.com/images/charliedavis.jpg', '333-456-7890', 'hashed_password_5');
+    ('John', 'Doe', 'johndoe@adm.freshco.lk', '123 Main St', 'Springfield', '1985-04-12', './image/johndoe.jpg', '123-456-7890', 'hashed_password_1'),
+    ('Jane', 'Smith', 'janesmith@adm.freshco.lk', '456 Elm St', 'Shelbyville', '1990-07-22', './image/janesmith.jpg', '098-765-4321', 'hashed_password_2'),
+    ('Alice', 'Johnson', 'alicejohnson@adm.freshco.lk', '789 Oak St', 'Ogdenville', '1988-09-15', './image/alicejohnson.jpg', '555-123-4567', 'hashed_password_3'),
+    ('Bob', 'Brown', 'bobbrown@adm.freshco.lk', '321 Pine St', 'Capitol City', '1979-11-05', './image/bobbrown.jpg', '444-987-6543', 'hashed_password_4'),
+    ('Charlie', 'Davis', 'charliedavis@adm.freshco.lk', '654 Maple St', 'North Haverbrook', '1983-03-30', './image/charliedavis.jpg', '333-456-7890', 'hashed_password_5');
