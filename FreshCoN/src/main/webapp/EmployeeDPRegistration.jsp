@@ -123,7 +123,7 @@
     <div class="main">
         <div class="registration">
             <h2>Driver REGISTRATION FORM</h2>
-            <form id="registrationForm" action="AddDelPerson" method="post">
+            <form id="registrationForm" action="AddDelPerson" method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="sub-part">
                         <label for="email">Email:</label>

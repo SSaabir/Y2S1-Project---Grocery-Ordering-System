@@ -102,6 +102,7 @@ public class UserValidation extends HttpServlet {
 	        sess.setAttribute("fName", isAdmVal.getfName());
 	        sess.setAttribute("lName", isAdmVal.getlName());
 	        sess.setAttribute("dob", isAdmVal.getDob());
+	        sess.setAttribute("phone", isAdmVal.getPhone());
 	        sess.setAttribute("imgUrl", isAdmVal.getImgUrl());
 	        sess.setAttribute("lane", isAdmVal.getLane());
 	        sess.setAttribute("city", isAdmVal.getCity());

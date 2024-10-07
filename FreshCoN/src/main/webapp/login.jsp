@@ -251,7 +251,7 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
-            <form id="signUpForm" action="RegisterCustomer" method="post">
+            <form id="signUpForm" action="RegisterCustomer" method="post" enctype="multipart/form-data">
                 <h1>Create Account</h1>
                 <span class="enter_details">Enter Following Details</span>
                 <div class="form-grid">

@@ -151,7 +151,7 @@
 
         <div class="registration">
             <h2> REGISTRATION FORM</h2>
-            <form id="registrationForm" action="AEM" method="post">
+            <form id="registrationForm" action="AEM" method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="sub-part">
                         <label>Select Your Type :</label>

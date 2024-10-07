@@ -14,7 +14,6 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
-            background-image: url("https://i.pinimg.com/736x/5d/aa/aa/5daaaacda6f2f3d2837cd981658318dc.jpg");
             margin: 0;
             padding: 0;
         }
