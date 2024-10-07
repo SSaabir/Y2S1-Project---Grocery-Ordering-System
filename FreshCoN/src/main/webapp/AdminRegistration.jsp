@@ -116,7 +116,7 @@
     <div class="main">
         <div class="registration">
             <h2>ADMIN REGISTRATION FORM</h2>
-            <form action="AddAdm" method="post" enctype="multipart/form-data" >
+            <form action="AddAdm" method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="sub-part">
                         <label for="fName">First Name:</label>
@@ -153,9 +153,10 @@
                         <input type="date" id="dob" name="dob" required>
                     </div>
 				<div class="sub-part">
-                        <label for="img">Add Image</label>
-                        <input type="file" id="img" name="imgUrl">
-                    </div>                </div>
+                    <label for="imgUrl">Image</label>
+                    <input type="file" id="imgUrl" name="imgUrl" required>
+                    </div>              
+            </div>
                 <div class="form-row">
                     <div class="sub-part">
                         <label for="password">Password:</label>

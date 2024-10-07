@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-@WebServlet("/AddCategory")
 @MultipartConfig
 public class AddCategory extends HttpServlet {
     private static final long serialVersionUID = 1L;

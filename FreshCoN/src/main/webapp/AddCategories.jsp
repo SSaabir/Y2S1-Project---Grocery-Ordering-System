@@ -190,7 +190,7 @@
                 <!-- Image Upload Field -->
                 <div class="group">
                     <label for="imgUrl">Image</label>
-                    <input type="file" id="imgUrl" name="imgUrl" >
+                    <input type="file" id="imgUrl" name="imgUrl" required>
                 </div>
 
                 <!-- Submit Button -->
