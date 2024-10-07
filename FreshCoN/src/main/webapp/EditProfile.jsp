@@ -259,26 +259,27 @@
         Delete Profile
     </button>
 </form>
-        <%
+        <%	
+        
                 } else if (userType != null && userType.equals("Admin")) {
             %>
              <form id="profileForm" action="EditProfileA" method="post">
-                
-                    <div class="sub-part">
+                <div class="main-form">
+                    <div class="sub_part">
                         <label for="fName">First Name:</label>
                         <input type="text" id="fName" name="fName" value='<%= (String) session.getAttribute("fName") %>' placeholder="Enter First Name" required>
                     </div>
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="lName">Last Name:</label>
                         <input type="text" id="lName" name="lName" placeholder="Enter Last Name" value='<%= (String) session.getAttribute("lName") %>' required>
                     </div>
                 
                 
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" placeholder="Enter Email" value='<%= (String) session.getAttribute("email") %>' required>
                     </div>
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="phone">Phone:</label>
                         <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" value='<%= (String) session.getAttribute("phone") %>' required>
                     </div>
@@ -299,17 +300,18 @@
                     <i class="fa fa-city"></i>
                     <input type="text" id="city" name="city" value='<%= (String) session.getAttribute("city") %>' placeholder="Enter City" required>
                 </div>
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="password">New Password:</label>
                         <input type="password" id="password" name="password" placeholder="Enter New Password">
                     </div>
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="Confirmpassword">Confirm New Password:</label>
                         <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password">
                     </div>
- <button type="submit" class="save-btn" id="saveBtn">
+ 			<button type="submit" class="save-btn" id="saveBtn">
     			Save Profile
 				</button>
+		</div>
 </form>
 <form id="profileForm" method="POST" action="DeleteProfileA?AdmID=<%= (int) session.getAttribute("ID") %>">
     <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
@@ -319,33 +321,37 @@
             <%
                 } else if (userType != null && userType.equals("Employee")) {
             %>
+            
                <form id="profileForm" action="EditProfileE" method="post">
-                    <div class="sub-part">
+               
+                 <div class="main-form">
+                    <div class="sub_part">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" placeholder="Enter Email" value='<%= (String) session.getAttribute("email") %>' required>
                     </div>
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="phone">Phone:</label>
                         <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" value='<%= (String) session.getAttribute("phone") %>' required>
                     </div>
                 
                 
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="img">Add Image</label>
                         <input type="file" id="img" name="img">
                     </div>
 
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="password">New Password:</label>
                         <input type="password" id="password" name="password" placeholder="Enter New Password">
                     </div>
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="Confirmpassword">Confirm New Password:</label>
                         <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password">
                     </div>
- <button type="submit" class="save-btn" id="saveBtn">
+ 			<button type="submit" class="save-btn" id="saveBtn">
     			Save Profile
 				</button>
+		</div>		
 </form>
 <form id="profileForm" method="POST" action="DeleteProfileE?EmpID=<%= (int) session.getAttribute("ID") %>">
     <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
@@ -357,33 +363,34 @@
             %>
                <form id="profileForm" action="EditProfileM" method="post">
   
-                
-                    <div class="sub-part">
+               	<div class="main-form">
+                    <div class="sub_part">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" placeholder="Enter Email" value='<%= (String) session.getAttribute("email") %>' required>
                     </div>
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="phone">Phone:</label>
                         <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" value='<%= (String) session.getAttribute("phone") %>' required>
                     </div>
                 
                 
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="img">Add Image</label>
                         <input type="file" id="img" name="img">
                     </div>
 
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="password">New Password:</label>
                         <input type="password" id="password" name="password" placeholder="Enter New Password">
                     </div>
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="Confirmpassword">Confirm New Password:</label>
                         <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password">
                     </div>
- <button type="submit" class="save-btn" id="saveBtn">
+ 				<button type="submit" class="save-btn" id="saveBtn">
     			Save Profile
 				</button>
+			</div>	
 </form>
 <form id="profileForm" method="POST" action="DeleteProfileM?ManID=<%= (int) session.getAttribute("ID") %>">
     <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
@@ -394,33 +401,35 @@
                 } else if (userType != null && userType.equals("DeliveryPerson")) {
             %>
                <form id="profileForm" action="EditProfileDP" method="post">
-                
-                    <div class="sub-part">
+                 
+                 <div class="main-form">
+                    <div class="sub_part">
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" placeholder="Enter Email" value='<%= (String) session.getAttribute("email") %>' required>
                     </div>
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="phone">Phone:</label>
                         <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" value='<%= (String) session.getAttribute("phone") %>' required>
                     </div>
                 
                 
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="img">Add Image</label>
                         <input type="file" id="img" name="img">
                     </div>
 
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="password">New Password:</label>
                         <input type="password" id="password" name="password" placeholder="Enter New Password">
                     </div>
-                    <div class="sub-part">
+                    <div class="sub_part">
                         <label for="Confirmpassword">Confirm New Password:</label>
                         <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password">
                     </div>
- <button type="submit" class="save-btn" id="saveBtn">
+ 				<button type="submit" class="save-btn" id="saveBtn">
     			Save Profile
 				</button>
+			</div>	
 </form>
 <form id="profileForm" method="POST" action="DeleteProfileDP?DPID=<%= (int) session.getAttribute("ID") %>">
     <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">

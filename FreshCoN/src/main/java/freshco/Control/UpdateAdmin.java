@@ -1,5 +1,4 @@
 package freshco.Control;
-
 import freshco.Model.AdminDBUtil;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -116,7 +116,7 @@
     <div class="main">
         <div class="registration">
             <h2>ADMIN REGISTRATION FORM</h2>
-            <form action="AddAdm" method="post">
+            <form action="AddAdm" method="post" enctype="multipart/form-data" >
                 <div class="form-row">
                     <div class="sub-part">
                         <label for="fName">First Name:</label>
