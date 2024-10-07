@@ -27,7 +27,7 @@ public class ProductDBUtil {
     // Insert a new product
     public static boolean insertProduct(String productName, String descript, double price, String unit, int quantity, String imgUrl, double discount, int CID) {
         boolean isSuccess = false;
-        String query = "INSERT INTO Product (productName, descript, price, unit, quantity, discount, CID) " +
+        String query = "INSERT INTO Product (productName, descript, price, unit, quantity,imgUrl, discount, CID) " +
                        "VALUES ('" + productName + "', '" + descript + "', " + price + ", " + unit + ", " + quantity + ", '" + imgUrl + "', " + discount + ", " + CID + ")";
         
 

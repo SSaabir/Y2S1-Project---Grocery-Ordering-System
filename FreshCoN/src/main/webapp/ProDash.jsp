@@ -30,7 +30,7 @@
 <hr>
 <div class="top-container">
     <div class="top-in-container">
-        <button class="button-top" onclick="window.location.href='AddProducts.jsp'">Add New Products</button>
+        <button class="button-top" onclick="window.location.href='ProductForm'">Add New Products</button>
 
         
     </div>
@@ -68,6 +68,7 @@
                     <th>Unit</th>
                     <th>Quantity</th>
                     <th>Discount</th>
+                    <th>imgUrl</th>
                     <th>CID</th>
                 </tr>
                 
@@ -87,6 +88,7 @@
                         <td><%= pro.getUnit() %></td>
                         <td><%= pro.getQuantity() %></td>
                         <td><%= pro.getDiscount() %></td>
+                        <td><%= pro.getImgUrl() %></td>
                         <td><%= pro.getCID() %></td>
                         <td><a href=""><span class="material-symbols-outlined">edit</span></a>
                         <a href=""><span class="material-symbols-outlined">delete</span></a></td>

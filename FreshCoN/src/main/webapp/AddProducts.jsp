@@ -193,7 +193,7 @@
 
         <div class="main-form">
             
-           <form id="profileForm" action="AddProducts" method="post" >
+           <form id="profileForm" action="AddProducts" method="post" enctype="multipart/form-data">
     <div class="group">
         <label for="productName">Product Name</label>
         <input type="text" id="productName" name="productName" placeholder="Product Name" required>
@@ -215,82 +215,46 @@
         <input type="number" id="quantity" name="quantity" placeholder="Quantity" required>
     </div>
     <div class="group">
-                    <label for="imgUrl">Image</label>
-                    <input type="file" id="imgUrl" name="imgUrl" >
-                </div>
+        <label for="imgUrl">Image</label>
+        <input type="file" id="imgUrl" name="imgUrl" accept="image/*" required>
+    </div>
     <div class="group">
         <label for="discount">Discount</label>
         <input type="number" id="discount" name="discount" step="0.01" min="0" placeholder="Discount" required>
     </div>
-    
     <div class="group">
-        <label for="CID"> Category ID</label>
-       <select name="Category" id="Category">
-<%
-                    try {
-                    	List<Category> categories = (List<Category>)request.getAttribute("categories");
-                        if (categories != null) {
-                            for (Category cat : categories) {
-                    %>
-        <option value="<%= cat.getCID() %>" ><%= cat.getCategory_Name() %></option>
-
-  <%
-                        	}
+        <label for="CID">Category ID</label>
+        <select name="CID" id="CID" required>
+            <option value="" disabled selected>Select a category</option>
+            <%-- Populate options dynamically --%>
+            <%
+                try {
+                    List<Category> categories = (List<Category>) request.getAttribute("categories");
+                    if (categories != null) {
+                        for (Category cat : categories) {
+            %>
+            <option value="<%= cat.getCID() %>"><%= cat.getCategory_Name() %></option>
+            <%
                         }
-                    } catch (Exception e) {
-                        e.printStackTrace();
                     }
-                %>
-       </select>
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            %>
+        </select>
     </div>
-    
     <button type="submit" class="save-btn">Save</button>
+    <button type="button" class="save-btn" onclick="history.back();">Back</button>
 </form>
+
 
              
         </div>
     </div>
 
-   <%--  <script>
-        function previewImage(event) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function() {
-                const imgElement = document.getElementById('profilePic');
-                imgElement.src = reader.result;
-            }
-
-            if (file) {
-                reader.readAsDataURL(file);
-            }
-        }
-
-        document.getElementById('profileForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const saveBtn = document.getElementById('saveBtn');
-            const spinner = document.getElementById('spinner');
-            saveBtn.disabled = true;
-            spinner.style.display = 'inline-block';
-
-            setTimeout(function() {
-                alert('Profile saved successfully!');
-
-
-                document.getElementById('profileForm').reset();
-
-
-                document.getElementById('profilePic').src = '/user.png';
-
-                saveBtn.disabled = false;
-                spinner.style.display = 'none';
-            }, 2000);
-        });
-    </script>
-    
-    --%>
+   
 
 </body>
 
-</html>+
+</html>
     

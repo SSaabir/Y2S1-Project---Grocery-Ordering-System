@@ -195,6 +195,7 @@
 
                 <!-- Submit Button -->
                 <button type="submit" value="AddCategory" class="save-btn">Save</button>
+                <button type="button" class="save-btn" onclick="history.back();">Back</button>
             </form>
         </div>
     </div>
