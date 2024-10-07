@@ -408,4 +408,13 @@
 		<servlet-name>Checkout</servlet-name>
 		<url-pattern>/Checkout</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ProductCategoryList</servlet-name>
+		<servlet-class>freshco.Control.ProductCategoryList</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductCategoryList</servlet-name>
+		<url-pattern>/ProductForm</url-pattern>
+	</servlet-mapping>
 </web-app>

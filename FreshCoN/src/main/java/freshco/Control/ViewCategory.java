@@ -16,10 +16,6 @@ import java.util.List;
 public class ViewCategory extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public ViewCategory() {
-        super();
-    }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
         	List<Category> categories = CategoryDBUtil.getAllCategories();

@@ -24,7 +24,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: auto;
         }
 
         .checkout-container {
@@ -40,7 +40,7 @@
 
         .payment-section,
         .review-order-section {
-            width: 48%;
+            width: 100%;
         }
 
         .payment-section {
@@ -241,7 +241,9 @@
 <body>
     <div class="checkout-container">
         <!-- Payment Section (Left) -->
+        
         <form action="submitPayment" method="POST">
+        <h1>Fresh Co</h1>
             <div class="payment-section">
                 <h2>Select Payment Method</h2>
                 <div class="payment-method">

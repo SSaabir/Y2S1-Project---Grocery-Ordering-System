@@ -171,7 +171,7 @@
             <form action="ClearCart" method="post">
                 <button type="submit" class="clear-button">Clear Cart</button>
             </form>
-            <form action="Checkout" method="post">
+            <form action="Checkout" method="get">
                 <!-- Hidden fields to pass data to PlaceOrder.jsp -->
                 <input type="hidden" name="totalDiscount" value="<%= String.format("%.2f", totalDiscount) %>">
                 <input type="hidden" name="totalPayable" value="<%= String.format("%.2f", totalPayable) %>">

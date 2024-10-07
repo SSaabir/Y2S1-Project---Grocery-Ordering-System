@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="freshco.Model.ProductDBUtil" %>
 <%@ page import="freshco.Beans.Product" %>
+<%@ page import="freshco.Beans.Category" %>
 <%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
@@ -225,13 +226,21 @@
     <div class="group">
         <label for="CID"> Category ID</label>
        <select name="Category" id="Category">
+<%
+                    try {
+                    	List<Category> categories = (List<Category>)request.getAttribute("categories");
+                        if (categories != null) {
+                            for (Category cat : categories) {
+                    %>
+        <option value="<%= cat.getCID() %>" ><%= cat.getCategory_Name() %></option>
 
-        <option value="meats" name ="">meats</option>
-        <option value="meats" name ="">meats</option>
-        <option value="meats" name ="">meats</option>
-        <option value="meats" name ="">meats</option>
-        <option value="meats" name ="">meats</option>
-
+  <%
+                        	}
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                %>
        </select>
     </div>
     
