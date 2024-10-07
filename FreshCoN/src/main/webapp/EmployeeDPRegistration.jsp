@@ -10,7 +10,7 @@
     <script src="./javascript/DeliveryPerson.js" defer></script>
 
     <style>
-        body {
+        body {.
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -172,6 +172,11 @@
                     <div class="sub-part">
                         <label for="password">Password:</label>
                         <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                    </div>
+                    
+                     <div class="sub-part">
+                        <label for="password">Confirm Password:</label>
+                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Enter Confirm password" required>
                     </div>
                 </div>
                 <div class="form-actions">

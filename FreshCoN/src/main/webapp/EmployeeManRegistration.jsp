@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fresh Co</title>
-    <script src="./javascript/all.js" defer></script>
+    <script src="./javascript/DeliveryPerson.js" defer></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -194,10 +194,23 @@
                         <input type="file" id="img" name="imgUrl">
                     </div>
                 </div>
+                   
+                    
+                    
+                    
+                    
+                    
+                    <div class="form-row">
                     <div class="sub-part">
                         <label for="password">Password :</label>
                         <input type="password" id="password" name="password" placeholder="Enter Password" required>
                     </div>
+
+                     <div class="sub-part">
+                        <label for="password">Confirm Password :</label>
+                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Enter Confirm password" required>
+                    </div>
+                  </div>
                     
                     
                     <div class="form-actions">

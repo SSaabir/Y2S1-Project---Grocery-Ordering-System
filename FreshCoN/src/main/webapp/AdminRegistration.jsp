@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fresh Co</title>
+    <script src="./javascript/DeliveryPerson.js" defer></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -152,24 +153,33 @@
                         <input type="date" id="dob" name="dob" required>
                     </div>
 				<div class="sub-part">
+
                     <label for="imgUrl">Image</label>
                     <input type="file" id="imgUrl" name="imgUrl" required>
                     </div>              
             </div>
+
+                                   
+             </div>
+             
+
                 <div class="form-row">
                     <div class="sub-part">
                         <label for="password">Password:</label>
                         <input type="password" id="password" name="password" placeholder="Enter Password" required>
                     </div>
-                </div>
-                  <div class="sub_part">
-                    <label for="Confirmpassword">Confirm Password</label>
-                    <i class="fa fa-lock"></i>
-                    <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" required>
-                </div>
+                    
+                    <div class="sub-part">
+                        <label for="password">Confirm Password:</label>
+                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Enter Confirm password" required>
+                    </div>
+                    
+                    
+                  </div>
+                  
                 
                 <div class="form-actions">
-                    <button type="button" class="back-btn" onclick="history.back();">Back</button>
+                   
                     <button type="reset" class="reset-btn">Reset All</button>
                     <button type="submit" class="submit-btn">Submit Form</button>
                 </div>
