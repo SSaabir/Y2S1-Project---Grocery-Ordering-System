@@ -1,68 +1,68 @@
 package freshco.Beans;
 
 public class CartProducts {
-	private String productName; // Name of the product
+    private String productName; // Name of the product
+    private String imgUrl;
     private int quantity; // Quantity of the product
-    private double netPrice; // Price of the product
+    private double netPrice; // Original price of the product
+    private double discount; // Discount percentage of the product
     private String pid; // Product ID
-    private String cusid; // Customer ID
-    private String oid; // Order ID
 
-    public CartProducts(String productName, int quantity, double netPrice, String pid, String cusid, String oid) {
+    public CartProducts(String productName, int quantity, double netPrice, double discount, String imgUrl, String pid) {
         this.productName = productName;
         this.quantity = quantity;
-        this.netPrice = netPrice;
+        this.netPrice = netPrice; // Set the original price
+        this.discount = discount; // Set the discount percentage
         this.pid = pid;
-        this.cusid = cusid;
-        this.oid = oid;
+        this.imgUrl = imgUrl;
     }
 
+    public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
 	public String getProductName() {
-		return productName;
-	}
+        return productName;
+    }
 
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
-	public int getQuantity() {
-		return quantity;
-	}
+    public int getQuantity() {
+        return quantity;
+    }
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
-	public double getNetPrice() {
-		return netPrice;
-	}
+    public void setnetPrice(double price) {
+        this.netPrice = price; // Set original price
+    }
 
-	public void setNetPrice(double netPrice) {
-		this.netPrice = netPrice;
-	}
+    public double getDiscount() {
+        return discount; // Return discount percentage
+    }
 
-	public String getPid() {
-		return pid;
-	}
+    public void setDiscount(double discount) {
+        this.discount = discount; // Set discount percentage
+    }
 
-	public void setPid(String pid) {
-		this.pid = pid;
-	}
+    public String getPid() {
+        return pid;
+    }
 
-	public String getCusid() {
-		return cusid;
-	}
+    public void setPid(String pid) {
+        this.pid = pid;
+    }
 
-	public void setCusid(String cusid) {
-		this.cusid = cusid;
-	}
-
-	public String getOid() {
-		return oid;
-	}
-
-	public void setOid(String oid) {
-		this.oid = oid;
-	}
-
+    public double getNetPrice() {
+        // Calculate net price after discount
+        return netPrice;
+    }
 }

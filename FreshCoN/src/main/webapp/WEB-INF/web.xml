@@ -365,7 +365,47 @@
 		<url-pattern>/AddProductSale</url-pattern>
 	</servlet-mapping>
 	
-		
+			<servlet>
+		<servlet-name>AddCartProducts</servlet-name>
+		<servlet-class>freshco.Control.AddCartProducts</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddCartProducts</servlet-name>
+		<url-pattern>/AddCart</url-pattern>
+	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>ViewCartProducts</servlet-name>
+		<servlet-class>freshco.Control.ViewCartProducts</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ViewCartProducts</servlet-name>
+		<url-pattern>/ViewCart</url-pattern>
+	</servlet-mapping>
 
+<servlet>
+		<servlet-name>RemoveCartProducts</servlet-name>
+		<servlet-class>freshco.Control.RemoveCartProducts</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RemoveCartProducts</servlet-name>
+		<url-pattern>/RemoveCart</url-pattern>
+	</servlet-mapping>
+
+<servlet>
+		<servlet-name>ClearCartProducts</servlet-name>
+		<servlet-class>freshco.Control.ClearCartProducts</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ClearCartProducts</servlet-name>
+		<url-pattern>/ClearCart</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Checkout</servlet-name>
+		<servlet-class>freshco.Control.Checkout</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Checkout</servlet-name>
+		<url-pattern>/Checkout</url-pattern>
+	</servlet-mapping>
 </web-app>

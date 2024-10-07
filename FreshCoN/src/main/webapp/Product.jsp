@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fresh Co - Products</title>
+    <title>Fresh Co</title>
     <style>
         /* CSS Styles for the Product Page */
         body {
@@ -61,7 +61,7 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around; /* Space around product boxes */
-            padding: px;
+            padding: 20px; /* Adjusted padding for the product list */
         }
 
         .product-box {
@@ -70,7 +70,7 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
             margin: 15px;
             padding: 15px;
-            width: calc(15% - 15px); /* Four items per row */
+            width: calc(15% - 30px); /* Four items per row */
             transition: transform 0.2s;
         }
 
@@ -109,10 +109,6 @@
             border-radius: 5px; /* Rounded corners */
         }
 
-        .product-box .cart-button:hover {
-            background-color: #45a049; /* Darker green on hover */
-        }
-
         /* Responsive styles */
         @media (max-width: 768px) {
             .product-box {
@@ -129,11 +125,12 @@
 </head>
 
 <body>
-<header>
-<jsp:include page="header.jsp"/>
-</header>
+    <header>
+        <jsp:include page="header.jsp"/>
+    </header>
+    
     <div class="header">
-        <h1>Fresh Co Products</h1>
+        <h1>Fresh Co</h1>
         <div class="search-container">
             <form action="" method="GET">
                 <input type="text" placeholder="Search.." name="search">
@@ -160,12 +157,19 @@
                 <img src="<%= pro.getImgUrl() %>" alt="<%= pro.getProductName() %>" />
                 <strong><%= pro.getProductName() %></strong>
                 <span class="Quantity"><%= pro.getUnit() %></span>
-                <input type="number" min="1" value="1" max="<%= pro.getQuantity() %>" class="quantity-input" />
                 <span class="price">Price: $<%= pro.getPrice() %></span>
-                <div class="cart-button" 
-                     onclick="addToCart('<%= pro.getProductName() %>', <%= pro.getPrice() %>, this.parentNode.querySelector('.quantity-input').value)">
-                    Add to Cart
-                </div>
+                <!-- Form for adding to cart -->
+               <form action="AddCart" method="POST">
+    <input type="hidden" name="action" value="add">
+    <input type="hidden" name="imgUrl" value="<%= pro.getImgUrl() %>">
+    <input type="hidden" name="discount" value="<%= pro.getDiscount() %>">
+    <input type="hidden" name="productName" value="<%= pro.getProductName() %>">
+    <input type="hidden" name="netPrice" value="<%= pro.getPrice() %>">
+    <input type="hidden" name="pid" value="<%= pro.getProductName().replaceAll("\\s+", "-").toLowerCase() %>">
+    <input type="number" name="quantity" min="1" value="1" max="<%= pro.getQuantity() %>" class="quantity-input" />
+    <input type="submit" value="Add to Cart" class="cart-button" />
+</form>
+
             </div>
         <%
                     }
@@ -178,9 +182,10 @@
             }
         %>
     </div>
-<footer>
-<jsp:include page="footer.jsp"/>
-</footer>
+
+    <footer>
+        <jsp:include page="footer.jsp"/>
+    </footer>
 </body>
 
 </html>
