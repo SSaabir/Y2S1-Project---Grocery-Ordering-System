@@ -27,7 +27,7 @@ public class DeleteCustomer extends HttpServlet {
 
 	        if (isDeleted) {
 	            // Redirect to a success page
-	            response.sendRedirect("dashboard.jsp");
+	            response.sendRedirect("logout");
 	        } else {
 	            // Redirect to an error page
 	            response.sendRedirect("error.jsp");

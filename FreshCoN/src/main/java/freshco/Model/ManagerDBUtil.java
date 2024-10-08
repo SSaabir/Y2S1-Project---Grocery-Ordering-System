@@ -85,12 +85,12 @@ public class ManagerDBUtil {
 
 
     
-	public static boolean updateManager(int EmID, String email, String nic, String dob, String phone, String password) {
+	public static boolean updateManager(int EmID, String email, String imgUrl, String phone, String password) {
 	    
 	    boolean isSuccess = false;
 	    
 	    // Fixed query with correct spacing
-	    String query = "UPDATE employee SET email='" + email + "', nic='" + nic + "', dob='" + dob + "', phone='" + phone + "', password='" + password + "' WHERE EmID='" + EmID + "'";
+	    String query = "UPDATE employee SET email='" + email + "', imgUrl='"+imgUrl+"',  phone='" + phone + "', password='" + password + "' WHERE EmID='" + EmID + "'";
 	    
 	    try {
 	        int rowsAffected = webDB.executeIUD(query);

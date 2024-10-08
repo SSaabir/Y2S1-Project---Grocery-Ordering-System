@@ -96,15 +96,15 @@ public class DeliveryPersonDBUtil {
         return isSuccess;
     }
 
-    public static boolean updateDeliveryPerson(int EmID, String email, String nic, String dob, String imgUrl, String phone, String password, String vehicleNum, String drivingLicenseNum, String city) {
+    public static boolean updateDeliveryPerson(int EmID, String email, String imgUrl, String phone, String password, String vehicleNum, String city) {
         boolean isSuccess = false;
 
-        String queryEmployee = "UPDATE employee SET email='" + email + "', nic='" + nic + "', dob='" + dob + "', imgUrl='" + imgUrl + "', phone='" + phone + "', password='" + password + "' WHERE EmID='" + EmID + "'";
+        String queryEmployee = "UPDATE employee SET email='" + email + "', imgUrl='" + imgUrl + "', phone='" + phone + "', password='" + password + "' WHERE EmID='" + EmID + "'";
         
         try {
             int rowsAffected = webDB.executeIUD(queryEmployee);
             
-            String queryDeliveryPerson = "UPDATE DeliveryPerson SET vehicleNum='" + vehicleNum + "', drivingLicenseNum='" + drivingLicenseNum + "', city='" + city + "' WHERE EmID='" + EmID + "'";
+            String queryDeliveryPerson = "UPDATE DeliveryPerson SET vehicleNum='" + vehicleNum + "', city='" + city + "' WHERE EmID='" + EmID + "'";
             int rowsAffected2 = webDB.executeIUD(queryDeliveryPerson);
 
             isSuccess = (rowsAffected > 0 && rowsAffected2 > 0);

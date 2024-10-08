@@ -1,5 +1,7 @@
 package freshco.Control;
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -15,11 +17,6 @@ import freshco.Model.CustomerDBUtil;
 public class UpdateCustomer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public UpdateCustomer() {
-        super();
-   
-    }
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
@@ -30,11 +27,14 @@ public class UpdateCustomer extends HttpServlet {
 	         	String phone = request.getParameter("phone");
 	         	String lane = request.getParameter("lane");
 	         	String city = request.getParameter("city");
-	         	//String imgUrl = request.getParameter("imgUrl");
 	         	String password = request.getParameter("password");
 
+	         	RequestDispatcher dispatcher = request.getRequestDispatcher("UploadImage");
+	            dispatcher.include(request, response); // Include ImageUploadServlet's response in this servlet
+
+	            String imgUrl = (String) request.getAttribute("imageUrl"); 
 		        // Call the updateCustomermethod from your database class
-		        boolean isUpdated = CustomerDBUtil.updateCustomer(CusID, fName,lName,email,phone,lane,city, password);
+		        boolean isUpdated = CustomerDBUtil.updateCustomer(CusID,fName,lName,email,phone,imgUrl,lane,city, password);
 
 		        if (isUpdated) {
 		            // Redirect or inform the user of success

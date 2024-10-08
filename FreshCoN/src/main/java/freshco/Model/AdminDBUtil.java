@@ -98,7 +98,7 @@ public class AdminDBUtil {
     // Method to delete an admin record
     public static boolean deleteAdmin(int AID) {
         boolean isSuccess = false;
-        String query = "DELETE FROM Admin WHERE AID=" + AID;
+        String query = "DELETE FROM Admin WHERE AID='"+AID+"'";
 
         try {
             int rowsAffected = webDB.executeIUD(query);

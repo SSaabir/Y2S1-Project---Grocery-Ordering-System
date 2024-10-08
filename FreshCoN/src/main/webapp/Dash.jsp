@@ -79,6 +79,7 @@
             <a href="Enquiry"><span class="material-symbols-outlined">support</span> Enquiry</a>
             <a href="Sale"><span class="material-symbols-outlined">shopping_bag</span> Sale</a>
             <a href="Payment"><span class="material-symbols-outlined">payments</span> Payment </a>
+            <a href="Employee"><span class="material-symbols-outlined">badge</span> Employee</a>
         <%
                 } else if (userType != null && userType.equals("DeliveryPerson")) {
             %>

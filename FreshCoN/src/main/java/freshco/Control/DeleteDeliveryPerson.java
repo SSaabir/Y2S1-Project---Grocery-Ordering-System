@@ -9,13 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import freshco.Model.DeliveryPersonDBUtil;
 
-@WebServlet("/DeleteDeliveryPerson")
 public class DeleteDeliveryPerson extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public DeleteDeliveryPerson() {
-        super();
-    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int EmID = Integer.parseInt(request.getParameter("EmID"));
@@ -23,7 +18,7 @@ public class DeleteDeliveryPerson extends HttpServlet {
         boolean isSuccess = DeliveryPersonDBUtil.deleteDeliveryPerson(EmID);
 
         if (isSuccess) {
-            response.sendRedirect("success.jsp");
+            response.sendRedirect("logout");
         } else {
             response.sendRedirect("error.jsp");
         }

@@ -54,11 +54,11 @@ public class EmployeeDBUtil {
             return isSuccess;
     }
     
-	public static boolean updateEmployee(int EmID, String email, String nic, String dob, String phone, String password) {
+	public static boolean updateEmployee(int EmID, String email, String imgUrl, String phone, String password) {
 	
 		boolean isSuccess = false;
 		
-		String query = "UPDATE employee SET email='"+email+"',nic='"+nic+"',dob='"+dob+"',phone='"+phone+"',password='"+password+"'"
+		String query = "UPDATE employee SET email='"+email+"',phone='"+phone+"',imgUrl='"+imgUrl+"',password='"+password+"'"
 				+ "where EmID='"+EmID+"'";
 
 	try {

@@ -28,10 +28,6 @@
 <h1 class="title-sec">Customer</h1>
    <hr>
 <div class="top-container">
-    <div class="top-in-container">
-        <button class="button-top">Button1</button>
-       
-    </div>
 </div>
 <hr>
     <section class="table-container">
@@ -67,7 +63,7 @@
                     <th>Lane</th>
                     <th>City</th>
                     <th>Date Of Birth</th>
-                    <th>ImgUrl</th>
+                    <th>Image</th>
                    
                     
                 </tr>
@@ -88,7 +84,7 @@
                         <td><%= cus.getLane() %></td>
                         <td><%= cus.getCity() %></td>
                         <td><%= cus.getDob() %></td>
-                        <td><%= cus.getImgUrl() %></td>
+                        <td><img src="<%= cus.getImgUrl() %>" alt="<%= cus.getfName() %> + <%= cus.getlName() %>" style="width: 100px; height: auto;"></td>
  
                     </tr>
                     <%

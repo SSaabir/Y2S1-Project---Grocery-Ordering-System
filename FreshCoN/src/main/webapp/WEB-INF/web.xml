@@ -314,12 +314,12 @@
 	
 	<!-- Update Employee-->
 	<servlet>
-		<servlet-name>UpdateEmployee</servlet-name>
-		<servlet-class>freshco.Control.UpdateEmployee</servlet-class>
+		<servlet-name>UpdateEmp</servlet-name>
+		<servlet-class>freshco.Control.UpdateEmp</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>UpdateEmployee</servlet-name>
-		<url-pattern>/EditProfileE</url-pattern>
+		<servlet-name>UpdateEmp</servlet-name>
+		<url-pattern>/UpdateEmps</url-pattern>
 	</servlet-mapping>
 	
 	<!-- Update Manager-->

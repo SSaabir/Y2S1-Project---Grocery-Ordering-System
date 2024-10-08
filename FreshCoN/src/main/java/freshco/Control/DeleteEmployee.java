@@ -27,7 +27,7 @@ public class DeleteEmployee extends HttpServlet {
 
 	        if (isDeleted) {
 	            // Redirect to a success page
-	            response.sendRedirect("");
+	            response.sendRedirect("logout");
 	        } else {
 	            // Redirect to an error page
 	            response.sendRedirect("");
