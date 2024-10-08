@@ -56,43 +56,65 @@
         .search-container button:hover {
             background-color: #45a049; /* Slightly darker green on hover */
         }
+        
+        #product{
 
-        .product-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around; /* Space around product boxes */
-            padding: 20px; /* Adjusted padding for the product list */
-        }
+   display: flex;
+   flex-direction: column;
+   max-width: 1000px;
+   margin: 50px auto ;
+   margin: 80px auto;
 
-        .product-box {
-            background-color: #ffffff; /* White background for product boxes */
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
-            margin: 15px;
-            padding: 15px;
-            width: calc(15% - 30px); /* Four items per row */
-            transition: transform 0.2s;
-        }
+}
 
-        .product-box img {
-            width: 100%;
-            height: 150px; /* Fixed height */
-            object-fit: contain; /* Maintains aspect ratio */
-        }
+        .product-cantainer{
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr ;
+   grid-gap:30px;
+   margin: 40px 0px;
+   
+}
+.product-box{
+   width: 250px;
+   border: 1px solid #eeeeee;
+   background-color: #ffffff;
+   padding: 20px;
+   border-radius: 20px;
+   display:flex ;
+   flex-direction:column ;
 
-        .product-box strong {
-            color: #202020;
-            font-size: 1.2rem; /* Increased font size */
-            display: block; /* Make strong text block element */
-            margin: 10px 0 5px; /* Space around text */
-        }
+}
 
-        .product-box .price {
-            margin-top: 5px;
-            color: #4caf50; /* Green color for price */
-            font-size: 1.4rem; /* Increased font size */
-            font-weight: bold; /* Bold price */
-        }
+.product-box img{
+   width: 90%;
+   height: 180px;
+   object-fit: contain;
+   margin: auto;
+}
+.product-box strong{
+   color: #202020;
+   font-size: 1.1rem;
+   letter-spacing: 1px;
+   font-weight: 600;
+   margin-top: 10px;
+
+
+}
+.product-box .Quantity{
+   color: #949494;
+   font-size: 0.8rem;
+   font-weight: 500;
+   letter-spacing: 1px;
+
+}
+.product-box .price{
+   margin-top: 10px;
+   color: #393939;
+   font-size: 1.3rem;
+   font-weight: 600;
+   
+
+}
 
         .product-box .cart-button {
             width: 100%;
@@ -145,8 +167,11 @@
             <option value="soft-drinks">Soft Drinks</option>
         </select>
     </div>
+    
+    
+ <section id="product">
 
-    <div class="product-list">
+    <div class="product-cantainer">
         <%
             try {
                 List<Product> products = (List<Product>) request.getAttribute("products");
@@ -182,6 +207,9 @@
             }
         %>
     </div>
+    
+    
+  </section>
 
     <footer>
         <jsp:include page="footer.jsp"/>

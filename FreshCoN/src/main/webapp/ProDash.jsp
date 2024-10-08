@@ -67,8 +67,8 @@
                     <th>Price</th>
                     <th>Unit</th>
                     <th>Quantity</th>
-                    <th>Discount</th>
                     <th>imgUrl</th>
+                    <th>Discount</th>
                     <th>CID</th>
                 </tr>
                 
@@ -87,8 +87,8 @@
                         <td><%= pro.getPrice() %></td>
                         <td><%= pro.getUnit() %></td>
                         <td><%= pro.getQuantity() %></td>
-                        <td><%= pro.getDiscount() %></td>
                         <td><%= pro.getImgUrl() %></td>
+                        <td><%= pro.getDiscount() %></td>
                         <td><%= pro.getCID() %></td>
                         <td><a href=""><span class="material-symbols-outlined">edit</span></a>
                         <a href=""><span class="material-symbols-outlined">delete</span></a></td>

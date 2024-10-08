@@ -28,8 +28,8 @@ public class ProductDBUtil {
     public static boolean insertProduct(String productName, String descript, double price, String unit, int quantity, String imgUrl, double discount, int CID) {
         boolean isSuccess = false;
         String query = "INSERT INTO Product (productName, descript, price, unit, quantity,imgUrl, discount, CID) " +
-                       "VALUES ('" + productName + "', '" + descript + "', " + price + ", " + unit + ", " + quantity + ", '" + imgUrl + "', " + discount + ", " + CID + ")";
-        
+                "VALUES ('" + productName + "', '" + descript + "', " + price + ", '" + unit + "', " + quantity + ", '" + imgUrl + "', " + discount + ", " + CID + ")";
+
 
         try {
             int rowsAffected = webDB.executeIUD(query);

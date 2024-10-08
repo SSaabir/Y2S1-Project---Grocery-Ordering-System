@@ -30,10 +30,7 @@
 <div class="top-container">
     <div class="top-in-container">
         <button class="button-top">Button1</button>
-        <button class="button-top">Button2</button>
-        <button class="button-top">Button3</button>
-        <button class="button-top">Button3</button>
-        <button class="button-top">Button3</button>
+        
     </div>
 </div>
 <hr>

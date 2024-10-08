@@ -130,7 +130,7 @@
 <body>
     <div class="container">
         <!-- Form that submits to server -->
-        <form action="submitFeedback" method="post">
+        <form action="Feedbackform" method="post" enctype="multipart/form-data">
             <div class="card">
                 <h2>Rate Your Experience</h2>
                 <p>Your feedback helps us improve</p>
@@ -144,8 +144,10 @@
                     <i class="star" data-value="4">&#9733;</i>
                     <i class="star" data-value="5">&#9733;</i>
                 </div>
+                
                 <input type="hidden" name="rating" id="rating" value="0" />
-                <button type="button" class="submit-btn">Submit</button>
+                <button type="submit" class="submit-btn">Submit</button>
+
             </div>
         </form>
 

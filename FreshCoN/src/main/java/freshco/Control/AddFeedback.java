@@ -28,7 +28,7 @@ public class AddFeedback extends HttpServlet {
 
         // Redirect or forward based on the result
         if (isAdded) {
-            response.sendRedirect("feedbackList.jsp"); // Redirect to feedback list page on success
+            response.sendRedirect("Feedback"); // Redirect to feedback list page on success
         } else {
             request.setAttribute("errorMessage", "Failed to add feedback. Please try again.");
             request.getRequestDispatcher("addFeedback.jsp").forward(request, response); // Forward back to form with error
