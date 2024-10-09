@@ -426,4 +426,31 @@
 		<servlet-name>OrderFacadeServlet</servlet-name>
 		<url-pattern>/OrderConfirm</url-pattern>
 	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>UpdateProduct</servlet-name>
+		<servlet-class>freshco.Control.UpdateProduct</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateProduct</servlet-name>
+		<url-pattern>/EditProduct</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>EditProData</servlet-name>
+		<servlet-class>freshco.Control.EditProData</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditProData</servlet-name>
+		<url-pattern>/DataPro</url-pattern>
+	</servlet-mapping>
+	
+			<servlet>
+		<servlet-name>DeleteProduct</servlet-name>
+		<servlet-class>freshco.Control.DeleteProduct</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteProduct</servlet-name>
+		<url-pattern>/DeletePro</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -1,10 +1,11 @@
 package freshco.Model;
 
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import freshco.Beans.Product;
 
@@ -42,11 +43,11 @@ public class ProductDBUtil {
     
 
     // Update an existing product
-    public static boolean updateProduct(int PrID, String productName, String descript, double price, String unit, int quantity, String imgUrl, double discount, int CID) {
+    public static boolean updateProduct(int PrID, String productName, String descript, double price, int quantity, String imgUrl, double discount) {
         boolean isSuccess = false;
         String query = "UPDATE Product SET productName='" + productName + "', descript='" + descript + "', price=" + price +
-                       ", unit=" + unit + ", quantity=" + quantity + ", imgUrl='" + imgUrl + "', discount=" + discount +
-                       ", CID=" + CID + " WHERE PrID=" + PrID;
+                       ", quantity=" + quantity + ", imgUrl='" + imgUrl + "', discount=" + discount +
+                       " WHERE PrID=" + PrID;
 
         try {
             int rowsAffected = webDB.executeIUD(query);
@@ -72,48 +73,36 @@ public class ProductDBUtil {
         return isSuccess;
     }
 
-    
-    
-    public static boolean addProductSale(Map<String, Product> cartItems, int cusID) {
-        boolean isSuccess = false;
-        int oid = -1;  // To store the generated OID
-        int prID = -1; // To store the retrieved PrID
-        double discount = -1;
-        // Step 1: Insert into Sale table
-        String insertSaleQuery = "INSERT INTO Sale (orderDate, CusID) VALUES (GETDATE(), '"+cusID+"')";
+    public static Product getProductById(int prId) throws Exception {
+        Product product = null; // Initialize product as null
+        String query = "SELECT * FROM Product WHERE PrID = ?"; // Parameterized query to get the product by PrID
 
-        try {
-            // Execute insert query for Sale
-            int rowsAffected = webDB.executeIUD(insertSaleQuery);
+        try (PreparedStatement pstmt = webDB.getConnection().prepareStatement(query)) {
+            pstmt.setInt(1, prId); // Set the PrID parameter
 
-            // Check if the insert was successful
-            if (rowsAffected > 0) {
-                // Retrieve the generated OID
-                String getOidQuery = "SELECT LAST_INSERT_ID()";
-                ResultSet resultSet = webDB.executeSearch(getOidQuery);
-                if (resultSet.next()) {
-                    oid = resultSet.getInt(1);  // Get the last inserted OID
-                }
-for (Map.Entry<String, Product> entry : cartItems.entrySet()) {
-        String productName = entry.getKey();
-        int quantity = entry.getValue().getQuantity();
-        double netPrice = entry.getValue().getPrice();
-
-                // Step 3: Insert into Product_Sale table
-                if (oid != -1 && prID != -1) {
-                    String insertProductSaleQuery = "INSERT INTO Product_Sale (quantity, netPrice, discount, OID, PrID) " +
-                            "VALUES (" + quantity + ", " + netPrice + ", " + discount + ", " + oid + ", " + prID + ")";
-                    int productSaleRowsAffected = webDB.executeIUD(insertProductSaleQuery);
-                    isSuccess = productSaleRowsAffected > 0;  // Check if the insert was successful
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) { // Check if a result was returned
+                    product = new Product(
+                        rs.getInt("PrID"),
+                        rs.getString("productName"),
+                        rs.getString("descript"),
+                        rs.getDouble("price"),
+                        rs.getString("unit"),
+                        rs.getInt("quantity"),
+                        rs.getString("imgUrl"),
+                        rs.getDouble("discount"),
+                        rs.getInt("CID")
+                    );
                 }
             }
-          }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            // Handle the exception (log it or rethrow with additional context)
+            throw new Exception("Error retrieving product from database", e);
         }
-
-        return isSuccess;
+        
+        return product; // Return the product, or null if not found
     }
+
 
 }
 

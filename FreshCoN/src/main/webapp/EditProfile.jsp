@@ -308,7 +308,7 @@
                     </button>
                 </div>
             </form>
-            <form id="deleteProfileForm" method="POST" action="DeleteProfileA?AdminID=<%= (int) session.getAttribute("ID") %>">
+            <form id="deleteProfileForm" method="POST" action="DeleteProfileA?AID=<%= (int) session.getAttribute("ID") %>">
                 <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
                     Delete Profile
                 </button>
@@ -353,7 +353,7 @@
                     </button>
                 </div>
             </form>
-            <form id="deleteProfileForm" method="POST" action="DeleteProfileE?EmpID=<%= (int) session.getAttribute("ID") %>">
+            <form id="deleteProfileForm" method="POST" action="DeleteProfileE?EmID=<%= (int) session.getAttribute("ID") %>">
                 <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
                     Delete Profile
                 </button>
@@ -398,7 +398,7 @@
                     </button>
                 </div>
             </form>
-            <form id="deleteProfileForm" method="POST" action="DeleteProfileM?ManagerID=<%= (int) session.getAttribute("ID") %>">
+            <form id="deleteProfileForm" method="POST" action="DeleteProfileM?EmID=<%= (int) session.getAttribute("ID") %>">
                 <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
                     Delete Profile
                 </button>
@@ -425,6 +425,18 @@
                         <label for="img">Add Image</label>
                         <input type="file" id="img" name="imgUrl">
                     </div>
+                    
+                    <div class="sub_part">
+                        <label for="vN">Vehicle Number :</label>
+                        <i class="fa fa-envelope"></i>
+                        <input type="text" id="email" name="vehicleNum" value='<%= (String) session.getAttribute("vehicleNum") %>' placeholder="Enter Vehicle Num" required>
+                    </div>
+                    <div class="sub_part">
+                        <label for="city">City</label>
+                        <i class="fa fa-envelope"></i>
+                        <input type="text" id="email" name="city" value='<%= (String) session.getAttribute("city") %>' placeholder="Enter City" required>
+                    </div>
+                    
 
                     <div class="sub_part">
                         <label for="password">Password</label>
@@ -443,7 +455,7 @@
                     </button>
                 </div>
             </form>
-            <form id="deleteProfileForm" method="POST" action="DeleteProfileDP?DeliID=<%= (int) session.getAttribute("ID") %>">
+            <form id="deleteProfileForm" method="POST" action="DeleteProfileDP?EmID=<%= (int) session.getAttribute("ID") %>">
                 <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
                     Delete Profile
                 </button>

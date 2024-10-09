@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -171,34 +172,39 @@
         <form id="productForm" action="EditProduct" method="post" enctype="multipart/form-data">
             <div class="product-header">
                 <h2>Edit Product</h2>
-                <div class="areas" onclick="document.getElementById('imgUpload').click();">
-                    <img src="/path/to/default-product-image.jpg" alt="Product Image" class="product-image" id="productImage">
-                </div>
-                <input type="file" id="imgUpload" class="file-input" name="imgUpload" onchange="previewImage(event)">
-            </div>
+           		   </div>
 
             <div class="main-form">
                 <div class="sub_part">
+                <input type="hidden" name="PrID" value="${product.prID}">
                     <label for="productName">Product Name</label>
                     <i class="fa fa-tag"></i>
-                    <input type="text" id="productName" name="productName" placeholder="Enter Product Name" required>
+                    <input type="text" id="productName" name="productName" value="${product.productName}" placeholder="Enter Product Name" required>
                 </div>
                 <div class="sub_part">
                     <label for="productDescription">Product Description</label>
                     <i class="fa fa-info-circle"></i>
-                    <textarea id="productDescription" name="descript" placeholder="Enter Product Description" required></textarea>
+                    <textarea id="productDescription" name="descript" placeholder="Enter Product Description" required>${product.descript}</textarea>
                 </div>
-
+                <div class="sub_part">
+				<label for="imgUrl">Image</label>
+        		<input type="file" id="imgUrl" name="imgUrl" accept="image/*" value="${product.imgUrl}" required>
+         </div>
                 <div class="sub_part">
                     <label for="price">Price</label>
                     <i class="fa fa-dollar-sign"></i>
-                    <input type="number" id="price" name="price" placeholder="Enter Price" required>
+                    <input type="number" id="price" name="price" value="${product.price}" placeholder="Enter Price" required>
                 </div>
 
                 <div class="sub_part">
                     <label for="quantity">Quantity</label>
                     <i class="fa fa-box"></i>
-                    <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" required>
+                    <input type="number" id="quantity" name="quantity" value="${product.quantity}" placeholder="Enter Quantity" required>
+                </div>
+                <div class="sub_part">
+                    <label for="quantity">Discount</label>
+                    <i class="fa fa-box"></i>
+                    <input type="number" id="discount" name="discount" value="${product.discount}" placeholder="Enter Quantity" required>
                 </div>
                 
                 <button type="submit" class="save-btn" id="saveBtn">
@@ -208,29 +214,6 @@
             </div>
         </form>
     </div>
-
-    <script>
-        // Preview image function
-        function previewImage(event) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('productImage').src = e.target.result;
-            }
-            reader.readAsDataURL(file);
-        }
-
-        // Delete button functionality
-        const deleteBtn = document.getElementById('deleteBtn');
-        deleteBtn.addEventListener('click', function() {
-            if (confirm("Are you sure you want to delete this product?")) {
-                // Implement your delete logic here
-                alert("Product deleted!");
-                // Optionally, redirect to another page after deletion
-                // window.location.href = "/path/to/redirect";
-            }
-        });
-    </script>
 </body>
 
 </html>

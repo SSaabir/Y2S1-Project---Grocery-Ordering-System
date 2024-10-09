@@ -4,31 +4,22 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import freshco.Model.EmployeeDBUtil;
-
+@MultipartConfig
 public class UpdateEmp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
+@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-	        Object empIdObj = session.getAttribute("ID");
+        int EmID = (int) session.getAttribute("ID");
 
-	        // Check if the session attribute is null
-	        if (empIdObj == null) {
-	            response.sendRedirect("error.jsp"); // Redirect to an error page
-	            return; // Exit the method early
-	        }
-
-	        // Cast the session attribute to int
-	        int EmID = (int) empIdObj;
-
-	        // Get other parameters from the request
 	        String email = request.getParameter("email");
 	        String phone = request.getParameter("phone");
 	        String password = request.getParameter("password");

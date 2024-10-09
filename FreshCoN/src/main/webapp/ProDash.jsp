@@ -70,6 +70,7 @@
                     <th>imgUrl</th>
                     <th>Discount</th>
                     <th>CID</th>
+                    <th>Action</th>
                 </tr>
                 
             </thead>
@@ -90,8 +91,8 @@
                         <td><%= pro.getImgUrl() %></td>
                         <td><%= pro.getDiscount() %></td>
                         <td><%= pro.getCID() %></td>
-                        <td><a href=""><span class="material-symbols-outlined">edit</span></a>
-                        <a href=""><span class="material-symbols-outlined">delete</span></a></td>
+                        <td><a href="DataPro?PrID=<%= pro.getPrID() %>"><span class="material-symbols-outlined">edit</span></a>
+                        <a href="DeletePro?PrID=<%= pro.getPrID() %>"><span class="material-symbols-outlined">delete</span></a></td>
                         
                     <%
                         	}

@@ -10,7 +10,7 @@ CREATE TABLE Product (
     productName VARCHAR(100) UNIQUE,
     descript VARCHAR(250) NULL,
     price DOUBLE NOT NULL,
-    unit VARCHAR(300) NOT NULL,
+    unit VARCHAR(300)  NULL,
     quantity INT NOT NULL,
     imgUrl VARCHAR(300) NULL,
     discount DOUBLE NULL,
@@ -67,7 +67,7 @@ CREATE TABLE Manager (
 -- Using EmID from Employee as a Foreign Key in DeliveryPerson Table
 CREATE TABLE DeliveryPerson (
     EmID INT NOT NULL UNIQUE,
-    vehicleNum CHAR(10) NOT NULL,
+    vehicleNum VARCHAR(300) NOT NULL,
     drivingLicenseNum VARCHAR(10) NOT NULL,
     city VARCHAR(50) NOT NULL,
     CONSTRAINT DeliveryPerson_PK PRIMARY KEY (EmID),
@@ -100,8 +100,8 @@ CREATE TABLE Sale (
     OID INT AUTO_INCREMENT NOT NULL UNIQUE,
     orderDate DATE NOT NULL,
     totalAmount DOUBLE NOT NULL,  -- Use DOUBLE for better precision
-	address VARCHAR (300) NULL,
-	orderStatus BOOLEAN NULL,
+    orderStatus BOOLEAN NULL,
+    address VARCHAR(255) NOT NULL,
     CusID INT NULL,
     PID INT NOT NULL,
     EmID INT NULL,
@@ -284,21 +284,21 @@ INSERT INTO Employee (email, nic, dob, imgUrl, phone, password) VALUES
 -- Insert records into Category
 INSERT INTO Category (category_Name, imgUrl)
 VALUES
-    ('Fruits', './image/fruits.jpg'), 
-    ('Vegitables', './image/vegitables.jpg'), 
-    ('Drinks', './image/drinks.jpg'), 
-    ('Meats', './image/meats.jpg'), 
-    ('Spices', './image/spices.jpg');
+    ('Fruits', './image/cat-1.png'), 
+    ('Vegitables', './image/cat-3.png'), 
+    ('Drinks', './image/cat-4.png'), 
+    ('Meats', './image/cat-2.png'), 
+    ('Spices', './image/cat-6.png');
 
 
 -- Insert records into Product
 INSERT INTO Product (productName, descript, price, unit, quantity, imgUrl, discount, CID)
 VALUES
-    ('Apple', 'Fresh red apples', 1.99, 'kg', 200, './image/apple.jpg', 5, 1), -- Fruits
-    ('Carrot', 'Organic carrots', 0.99, 'kg', 300, './image/carrot.jpg', 0, 2), -- Vegetables
-    ('Orange Juice', 'Fresh orange juice', 3.49, 'bottle', 150, './image/orange_juice.jpg', 10, 3), -- Drinks
-    ('Chicken Breast', 'Boneless chicken breast', 6.99, 'kg', 100, './image/chicken_breast.jpg', 0, 4), -- Meats
-    ('Cinnamon', 'Ground cinnamon', 2.49, 'pack', 250, './image/cinnamon.jpg', 5, 5); -- Spices
+    ('Apple', 'Fresh red apples', 1.99, 'kg', 200, './image/fruits-1.png', 5, 1), -- Fruits
+    ('Carrot', 'Organic carrots', 0.99, 'kg', 300, './image/vegita-3.png', 0, 2), -- Vegetables
+    ('Orange Juice', 'Fresh orange juice', 3.49, 'bottle', 150, './image/Drink-7.png', 10, 3), -- Drinks
+    ('Chicken ', 'Boneless chicken ', 6.99, 'kg', 100, './image/meats-2.png', 0, 4), -- Meats
+    ('Cinnamon', 'Ground cinnamon', 2.49, 'pack', 250, './image/spices-5.png', 5, 5); -- Spices
 
 -- Insert records into Manager
 INSERT INTO Manager (EmID)
@@ -337,13 +337,13 @@ VALUES
     ('Mobile Payment', TRUE);
 
 -- Insert records into Sale
-INSERT INTO Sale (orderDate, totalAmount, orderStatus, CusID, PID, EmID)
+INSERT INTO Sale (orderDate, totalAmount, orderStatus, address, CusID, PID, EmID)
 VALUES
-    ('2023-12-31', 100.00, TRUE, 1, 1, 1),
-    ('2024-01-01', 50.00, FALSE, 2, 2, 2),
-    ('2024-01-02', 75.00, TRUE, 3, 3, 3),
-    ('2024-01-03', 25.00, FALSE, 4, 4, 4),
-    ('2024-01-04', 150.00, TRUE, 5, 5, 5);
+    ('2023-12-31', 100.00, TRUE,'a', 1, 1, 1),
+    ('2024-01-01', 50.00, FALSE,'a', 2, 2, 2),
+    ('2024-01-02', 75.00, TRUE,'b', 3, 3, 3),
+    ('2024-01-03', 25.00, FALSE,'b', 4, 4, 4),
+    ('2024-01-04', 150.00, TRUE,'c', 5, 5, 5);
 
 -- Insert records into Product_Sale
 INSERT INTO Product_Sale (PrID, OID, quantity)

@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import freshco.Beans.DeliveryPerson;
-import freshco.Beans.Manager;
 
 public class DeliveryPersonDBUtil {
 	    public static DeliveryPerson validateDeliveryPerson(String email, String password) throws Exception {
@@ -96,16 +95,17 @@ public class DeliveryPersonDBUtil {
         return isSuccess;
     }
 
-    public static boolean updateDeliveryPerson(int EmID, String email, String imgUrl, String phone, String password, String vehicleNum, String city) {
+    public static boolean updateDP(int EmID, String vehicleNum, String city, String email, String imgUrl, String phone, String password) {
         boolean isSuccess = false;
 
-        String queryEmployee = "UPDATE employee SET email='" + email + "', imgUrl='" + imgUrl + "', phone='" + phone + "', password='" + password + "' WHERE EmID='" + EmID + "'";
-        
+        String queryDeliveryPerson = "UPDATE deliveryperson SET vehicleNum='" + vehicleNum + "', city='" + city + "' WHERE EmID='" + EmID + "'";
+
         try {
-            int rowsAffected = webDB.executeIUD(queryEmployee);
+            int rowsAffected = webDB.executeIUD(queryDeliveryPerson);
             
-            String queryDeliveryPerson = "UPDATE DeliveryPerson SET vehicleNum='" + vehicleNum + "', city='" + city + "' WHERE EmID='" + EmID + "'";
-            int rowsAffected2 = webDB.executeIUD(queryDeliveryPerson);
+            String queryEmployee = "UPDATE employee SET email='" + email + "', imgUrl='" + imgUrl + "', phone='" + phone + "', password='" + password + "' WHERE EmID='" + EmID + "'";
+
+            int rowsAffected2 = webDB.executeIUD(queryEmployee);
 
             isSuccess = (rowsAffected > 0 && rowsAffected2 > 0);
         } catch (Exception e) {
@@ -114,6 +114,7 @@ public class DeliveryPersonDBUtil {
         
         return isSuccess;
     }
+
 
     public static boolean deleteDeliveryPerson(int EmID) {
         boolean isSuccess = false;

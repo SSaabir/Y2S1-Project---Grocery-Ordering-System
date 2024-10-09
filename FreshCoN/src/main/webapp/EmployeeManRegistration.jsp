@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fresh Co</title>
-    <script src="./javascript/DeliveryPerson.js" defer></script>
+    <script src="/javascript/DeliveryPerson.js" defer></script>
     <style>
         body {
             font-family: Arial, sans-serif;

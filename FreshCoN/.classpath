@@ -17,6 +17,5 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-fileupload2-javax-2.0.0-M2.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-io-2.17.0.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/image/Admin REgistraion.jpg"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

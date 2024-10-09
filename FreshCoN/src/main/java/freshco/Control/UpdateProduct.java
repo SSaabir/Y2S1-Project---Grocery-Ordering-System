@@ -1,40 +1,41 @@
 package freshco.Control;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import freshco.Model.ProductDBUtil;
 
-@WebServlet("/UpdateProductServlet")
+@MultipartConfig
 public class UpdateProduct extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
-    public UpdateProduct() {
-        super();
-      
-    }
-
-    protected void dopost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int PrID = Integer.parseInt(request.getParameter("PrID"));
         String productName = request.getParameter("productName");
         String descript = request.getParameter("descript");
         double price = Double.parseDouble(request.getParameter("price"));
-        String unit = request.getParameter("unit");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        String imgUrl = request.getParameter("imgUrl");
-        int CID = Integer.parseInt(request.getParameter("CID"));
+        double discount = Double.parseDouble(request.getParameter("discount"));
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("UploadImage");
+        dispatcher.include(request, response); // Include ImageUploadServlet's response in this servlet
 
-        boolean isSuccess =ProductDBUtil.updateProduct(PrID, productName, descript, price, unit, quantity, imgUrl, discount, CID);
+        String imgUrl = (String) request.getAttribute("imageUrl"); 
+        
+        
+        boolean isSuccess =ProductDBUtil.updateProduct(PrID, productName, descript, price, quantity, imgUrl, discount);
 
         if (isSuccess) {
-            response.sendRedirect("ViewProductServlet");
+            response.sendRedirect("Product");
         } else {
             request.setAttribute("errorMessage", "Failed to update product");
-            request.getRequestDispatcher("updateProduct.jsp").forward(request, response);
+            request.getRequestDispatcher("Product").forward(request, response);
         }
     }
 }
