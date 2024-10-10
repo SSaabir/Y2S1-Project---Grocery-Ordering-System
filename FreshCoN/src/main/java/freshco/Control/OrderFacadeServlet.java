@@ -19,6 +19,7 @@ public class OrderFacadeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+		@SuppressWarnings("unchecked")
 		List<CartProducts> cartProducts = (List<CartProducts>) session.getAttribute("cartItems");
         String paymentMethod = request.getParameter("payment");
 

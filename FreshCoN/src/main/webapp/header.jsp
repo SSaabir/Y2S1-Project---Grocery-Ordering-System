@@ -165,6 +165,7 @@
                     <div class="sub-menu-wrap">
                         <div class="sub-menu">
                             <ul>
+                            	<li><a href="dashboard.jsp">Dashboard</a><i class='bx bx-chevron-right'></i></li>
                                 <li><a href="EditProfile.jsp">Edit Profile</a><i class='bx bx-chevron-right'></i></li>
                                 <li><a href="logout">Logout</a><i class='bx bx-chevron-right'></i></li>
                             </ul>
