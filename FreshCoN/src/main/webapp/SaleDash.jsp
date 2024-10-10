@@ -28,11 +28,7 @@
     
     <div class="top-container">
         <div class="top-in-container">
-            <button class="button-top">Button1</button>
-            <button class="button-top">Button2</button>
-            <button class="button-top">Button3</button>
-            <button class="button-top">Button4</button>
-            <button class="button-top">Button5</button>
+            
         </div>
     </div>
     <hr>

@@ -27,13 +27,8 @@
 <div id="main">
 <h1 class="title-sec">Enquiry</h1>
   <hr>
-<div class="top-container">
-    <div class="top-in-container">
-        <button class="button-top">Button1</button>
-        
-    </div>
-</div>
-<hr>
+
+
     <section class="table-container">
     <div class="table-wrapper">
     <script>
@@ -64,6 +59,7 @@
                     <th>Subject</th>
                     <th>Comments</th>
                     <th>Response</th>
+                    <th>Replay</th>
                     
                 </tr>
             </thead>
@@ -80,6 +76,7 @@
                         <td><%= enq.getSubject() %></td>
                         <td><%= enq.getComments() %></td>
                         <td><%= enq.getResponse() %></td>
+                        <td><a href="Response.jsp"><span class="material-symbols-outlined">message</span></a></td>
                      
                        
            

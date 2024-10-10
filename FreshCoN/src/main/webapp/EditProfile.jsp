@@ -249,13 +249,15 @@
                     <button type="submit" class="save-btn" id="saveBtn">
                         Save Profile
                     </button>
-                </div>
-            </form>
-            <form id="deleteProfileForm" method="POST" action="DeleteProfileC?CusID=<%= (int) session.getAttribute("ID") %>">
+                    
+                    <form id="deleteProfileForm" method="POST" action="DeleteProfileC?CusID=<%= (int) session.getAttribute("ID") %>">
                 <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
                     Delete Profile
                 </button>
             </form>
+                </div>
+            </form>
+            
         <%
             } else if (userType != null && userType.equals("Admin")) {
         %>
@@ -306,13 +308,15 @@
                     <button type="submit" class="save-btn" id="saveBtn">
                         Save Profile
                     </button>
-                </div>
-            </form>
-            <form id="deleteProfileForm" method="POST" action="DeleteProfileA?AID=<%= (int) session.getAttribute("ID") %>">
+                    
+                    <form id="deleteProfileForm" method="POST" action="DeleteProfileA?AID=<%= (int) session.getAttribute("ID") %>">
                 <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
                     Delete Profile
                 </button>
             </form>
+                </div>
+            </form>
+            
         <%
             } else if (userType != null && userType.equals("Employee")) {
         %>
@@ -351,13 +355,14 @@
                     <button type="submit" class="save-btn" id="saveBtn">
                         Save Profile
                     </button>
-                </div>
-            </form>
-            <form id="deleteProfileForm" method="POST" action="DeleteProfileE?EmID=<%= (int) session.getAttribute("ID") %>">
+                    <form id="deleteProfileForm" method="POST" action="DeleteProfileE?EmID=<%= (int) session.getAttribute("ID") %>">
                 <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
                     Delete Profile
                 </button>
             </form>
+                </div>
+            </form>
+            
         <%
             } else if (userType != null && userType.equals("Manager")) {
         %>
@@ -396,13 +401,14 @@
                     <button type="submit" class="save-btn" id="saveBtn">
                         Save Profile
                     </button>
-                </div>
-            </form>
-            <form id="deleteProfileForm" method="POST" action="DeleteProfileM?EmID=<%= (int) session.getAttribute("ID") %>">
+                    <form id="deleteProfileForm" method="POST" action="DeleteProfileM?EmID=<%= (int) session.getAttribute("ID") %>">
                 <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
                     Delete Profile
                 </button>
             </form>
+                </div>
+            </form>
+            
         <%
             } else if (userType != null && userType.equals("DeliveryPerson")) {
         %>
@@ -453,13 +459,14 @@
                     <button type="submit" class="save-btn" id="saveBtn">
                         Save Profile
                     </button>
-                </div>
-            </form>
-            <form id="deleteProfileForm" method="POST" action="DeleteProfileDP?EmID=<%= (int) session.getAttribute("ID") %>">
+                     <form id="deleteProfileForm" method="POST" action="DeleteProfileDP?EmID=<%= (int) session.getAttribute("ID") %>">
                 <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
                     Delete Profile
                 </button>
             </form>
+                </div>
+            </form>
+           
         <%
             } else {
         %>
