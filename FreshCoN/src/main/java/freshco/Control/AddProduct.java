@@ -39,8 +39,9 @@ public class AddProduct extends HttpServlet {
         if (isSuccess) {
             response.sendRedirect("Product");
         } else {
-            request.setAttribute("errorMessage", "Failed to add product");
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+        	request.setAttribute("errorMessage", "Failed to add Product. Please try again.");
+			RequestDispatcher dispatcher1 = request.getRequestDispatcher("ProductForm");
+			dispatcher1.forward(request, response);
         }
     }
 }

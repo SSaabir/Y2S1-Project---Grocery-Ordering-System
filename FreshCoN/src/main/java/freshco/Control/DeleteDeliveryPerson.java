@@ -1,6 +1,8 @@
 package freshco.Control;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +21,9 @@ public class DeleteDeliveryPerson extends HttpServlet {
         if (isSuccess) {
             response.sendRedirect("logout");
         } else {
-            response.sendRedirect("error.jsp");
+        	request.setAttribute("errorMessage", "Failed to Delete Employee. Please try again.");
+			RequestDispatcher dispatcher1 = request.getRequestDispatcher("EditProfile.jsp");
+			dispatcher1.forward(request, response);
         }
     }
 }

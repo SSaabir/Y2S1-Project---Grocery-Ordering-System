@@ -71,7 +71,7 @@ public class AdminDBUtil {
             int rowsAffected = webDB.executeIUD(query);
             isSuccess = rowsAffected > 0;
         } catch (Exception e) {
-        	System.out.println("Email already exists: " + e.getMessage());
+        	e.printStackTrace();
         }
 
         return isSuccess;

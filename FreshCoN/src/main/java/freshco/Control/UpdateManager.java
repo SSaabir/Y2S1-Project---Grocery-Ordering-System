@@ -35,7 +35,9 @@ public class UpdateManager extends HttpServlet {
         if (isSuccess) {
             response.sendRedirect("dashboard.jsp");
         } else {
-            response.sendRedirect("error.jsp");
+        	request.setAttribute("errorMessage", "Failed to update Employee. Please try again.");
+			RequestDispatcher dispatcher1 = request.getRequestDispatcher("EditProfile.jsp");
+			dispatcher1.forward(request, response);
         }
     }
 }

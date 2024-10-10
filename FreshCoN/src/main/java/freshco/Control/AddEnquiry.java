@@ -1,6 +1,8 @@
 package freshco.Control;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,10 +37,11 @@ public class AddEnquiry extends HttpServlet {
 
 		        if (isInserted) {
 		            // Redirect or inform the user of success
-		            response.sendRedirect("index.jsp");
+		            response.sendRedirect("FreshCo");
 		        } else {
-		            // Handle the failure case, such as redirecting to an error page
-		            response.sendRedirect("");
+		        	request.setAttribute("errorMessage", "Something Went Wrong. Please try again.");
+					RequestDispatcher dispatcher1 = request.getRequestDispatcher("FreshCo");
+					dispatcher1.forward(request, response);
 		       }
 		    }
 	

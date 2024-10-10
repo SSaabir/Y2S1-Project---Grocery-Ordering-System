@@ -2,6 +2,7 @@ package freshco.Control;
 
 import freshco.Model.CategoryDBUtil;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,8 @@ public class DeleteCategory extends HttpServlet {
             response.sendRedirect("Category");  // Redirect to the view servlet
         } else {
             request.setAttribute("errorMessage", "Failed to delete category.");
-            request.getRequestDispatcher("Product").forward(request, response);
+			RequestDispatcher dispatcher1 = request.getRequestDispatcher("Category");
+			dispatcher1.forward(request, response);
         }
     }
 }

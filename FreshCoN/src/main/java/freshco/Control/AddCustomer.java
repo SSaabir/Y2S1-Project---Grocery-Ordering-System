@@ -49,8 +49,9 @@ public class AddCustomer extends HttpServlet {
 		            // Redirect or inform the user of success
 		            response.sendRedirect("login.jsp");
 		        } else {
-		            // Handle the failure case, such as redirecting to an error page
-		            response.sendRedirect("");
+		        	request.setAttribute("errorMessage", "Failed to add Customer. Email already exists. try login.");
+					RequestDispatcher dispatcher1 = request.getRequestDispatcher("login.jsp");
+					dispatcher1.forward(request, response);
 		        }
 		    }
 	

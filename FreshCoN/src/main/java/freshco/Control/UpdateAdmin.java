@@ -38,7 +38,8 @@ public class UpdateAdmin extends HttpServlet {
             response.sendRedirect("dashboard.jsp"); // Redirect to admin list page on success
         } else {
             request.setAttribute("errorMessage", "Failed to update admin. Please try again.");
-            request.getRequestDispatcher("editAdmin.jsp").forward(request, response); // Forward back to form with error
+			RequestDispatcher dispatcher1 = request.getRequestDispatcher("EditProfile.jsp");
+			dispatcher1.forward(request, response);
         }
     }
 }

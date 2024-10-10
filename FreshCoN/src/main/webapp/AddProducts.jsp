@@ -186,6 +186,16 @@
 </head>
 
 <body>
+<%
+	String errorMessage = (String) request.getAttribute("errorMessage");
+	if (errorMessage != null) {
+	%>
+	<script>
+        alert("<%= errorMessage %>");
+	</script>
+	<%
+	}
+	%>
     <div class="main-box">
         <div class="profile-header">
             <h2>Add Product</h2>

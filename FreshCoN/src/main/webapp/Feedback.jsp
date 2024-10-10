@@ -128,6 +128,16 @@
 </head>
 
 <body>
+<%
+	String errorMessage = (String) request.getAttribute("errorMessage");
+	if (errorMessage != null) {
+	%>
+	<script>
+        alert("<%= errorMessage %>");
+	</script>
+	<%
+	}
+	%>
     <div class="container">
         <!-- Form that submits to server -->
         <form action="Feedbackform" method="post" enctype="multipart/form-data">

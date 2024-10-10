@@ -93,7 +93,7 @@
                         <td><%= pro.getDiscount() %></td>
                         <td><%= pro.getCID() %></td>
                         <td><a href="DataPro?PrID=<%= pro.getPrID() %>"><span class="material-symbols-outlined">edit</span></a>
-                        <a href="DeletePro?PrID=<%= pro.getPrID() %>"><span class="material-symbols-outlined">delete</span></a></td>
+                        <a href="DeletePro?PrID=<%= pro.getPrID() %>" onclick="return confirmDelete();"><span class="material-symbols-outlined">delete</span></a></td>
                         
                     <%
                         	}
@@ -111,6 +111,10 @@
 <footer>
     <jsp:include page="footer.jsp"/>
 </footer>
-  
+   <script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete your Product? This action cannot be retrieved");
+    }
+</script>
 </body>
 </html>

@@ -2,6 +2,7 @@ package freshco.Control;
 
 import freshco.Model.ProductDBUtil;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,8 @@ public class DeleteProduct extends HttpServlet {
             response.sendRedirect("Product");
         } else {
             request.setAttribute("errorMessage", "Failed to delete product");
-            request.getRequestDispatcher("Product").forward(request, response);
+			RequestDispatcher dispatcher1 = request.getRequestDispatcher("Product");
+			dispatcher1.forward(request, response);
         }
     }
 }

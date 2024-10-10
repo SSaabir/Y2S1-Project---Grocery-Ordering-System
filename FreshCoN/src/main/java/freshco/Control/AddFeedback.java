@@ -1,6 +1,8 @@
 package freshco.Control;
 
 import freshco.Model.FeedbackDBUtil;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,10 +29,11 @@ public class AddFeedback extends HttpServlet {
 
         // Redirect or forward based on the result
         if (isAdded) {
-            response.sendRedirect("Feedback"); // Redirect to feedback list page on success
+            response.sendRedirect("Sale"); // Redirect to feedback list page on success
         } else {
-            request.setAttribute("errorMessage", "Failed to add feedback. Please try again.");
-            request.getRequestDispatcher("addFeedback.jsp").forward(request, response); // Forward back to form with error
+        	request.setAttribute("errorMessage", "Something went Wrong. Please try again.");
+			RequestDispatcher dispatcher1 = request.getRequestDispatcher("Feedback.jsp");
+			dispatcher1.forward(request, response);
         }
     }
 }

@@ -111,11 +111,11 @@ h2 {
 </head>
 <body>
 	<%
-	String Message = (String) request.getAttribute("Message");
-	if (Message != null) {
+	String errorMessage = (String) request.getAttribute("errorMessage");
+	if (errorMessage != null) {
 	%>
 	<script>
-        alert("<%= Message %>");
+        alert("<%= errorMessage %>");
 	</script>
 	<%
 	}

@@ -38,7 +38,9 @@ public class AddDeliveryPerson extends HttpServlet {
         if (isSuccess) {
             response.sendRedirect("Employee");
         } else {
-            response.sendRedirect("error.jsp");
+        	request.setAttribute("errorMessage", "Failed to add Delivery Employee. Email already exists. Please try again.");
+			RequestDispatcher dispatcher1 = request.getRequestDispatcher("EmployeeDPRegistration.jsp");
+			dispatcher1.forward(request, response);
         }
     }
 }

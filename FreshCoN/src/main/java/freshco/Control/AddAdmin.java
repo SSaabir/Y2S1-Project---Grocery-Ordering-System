@@ -39,7 +39,7 @@ public class AddAdmin extends HttpServlet {
 		if (isAdded) {
 			response.sendRedirect("Admin");
 		} else {
-			request.setAttribute("Message", "Failed to add Admin. Email already exists. Please try again.");
+			request.setAttribute("errorMessage", "Failed to add Admin. Email already exists. Please try again.");
 			RequestDispatcher dispatcher1 = request.getRequestDispatcher("AdminRegistration.jsp");
 			dispatcher1.forward(request, response);
 		}

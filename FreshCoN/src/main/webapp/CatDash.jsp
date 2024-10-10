@@ -78,7 +78,7 @@
                         <td><%= cat.getCID() %></td>
                          <td><%= cat.getCategory_Name() %></td>
                          <td><img src="<%= cat.getImgUrl() %>" alt="<%= cat.getCategory_Name() %>" style="width: 100px; height: auto;"></td>
-                        <td><a href="DeleteCategories?CID=<%= cat.getCID() %>"><span class="material-symbols-outlined">delete</span></a></td>
+                        <td><a href="DeleteCategories?CID=<%= cat.getCID() %>" onclick="return confirmDelete();"><span class="material-symbols-outlined">delete</span></a></td>
                         
                     </tr>
                     <%
@@ -99,5 +99,10 @@
     <jsp:include page="footer.jsp"/>
 </footer>
   
+  <script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete your Category? This action will delete all the products under the Category.");
+    }
+</script>
 </body>
 </html>

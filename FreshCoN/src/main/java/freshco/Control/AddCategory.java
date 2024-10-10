@@ -36,7 +36,9 @@ public class AddCategory extends HttpServlet {
         if (isSuccess) {
             response.sendRedirect("Category"); // Redirect to the category listing page
         } else {
-            response.sendRedirect("error.jsp"); // Redirect to error page
+        	request.setAttribute("errorMessage", "Failed to add Category. Category Exists. Enter a Different Category.");
+			RequestDispatcher dispatcher1 = request.getRequestDispatcher("AddCategory.jsp");
+			dispatcher1.forward(request, response);
         }
     }
 }

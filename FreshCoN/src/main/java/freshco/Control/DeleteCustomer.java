@@ -1,6 +1,8 @@
 package freshco.Control;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +30,9 @@ public class DeleteCustomer extends HttpServlet {
 	            // Redirect to a success page
 	            response.sendRedirect("logout");
 	        } else {
-	            // Redirect to an error page
-	            response.sendRedirect("error.jsp");
+	        	request.setAttribute("errorMessage", "Failed to Delete Customer. Please try again.");
+				RequestDispatcher dispatcher1 = request.getRequestDispatcher("EditProfile.jsp");
+				dispatcher1.forward(request, response);
 	        }
 	    }
 	}

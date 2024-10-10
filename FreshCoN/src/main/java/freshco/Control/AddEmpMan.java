@@ -48,7 +48,9 @@ public class AddEmpMan extends HttpServlet {
 		 if (isSuccess) {
 	            response.sendRedirect("Employee");
 	        } else {
-	            response.sendRedirect("");
+	        	request.setAttribute("errorMessage", "Failed to add Employee . Email already exists. Please try again.");
+				RequestDispatcher dispatcher1 = request.getRequestDispatcher("EmployeeManRegistration.jsp");
+				dispatcher1.forward(request, response);
 	        }
 	}
 

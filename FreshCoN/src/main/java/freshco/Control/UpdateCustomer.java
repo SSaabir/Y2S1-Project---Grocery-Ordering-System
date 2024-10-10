@@ -38,8 +38,9 @@ public class UpdateCustomer extends HttpServlet {
 		            // Redirect or inform the user of success
 		            response.sendRedirect("dashboard.jsp");
 		        } else {
-		            // Handle the failure case, such as redirecting to an error page
-		            response.sendRedirect("error.jsp");
+		        	request.setAttribute("errorMessage", "Failed to update customer. Please try again.");
+					RequestDispatcher dispatcher1 = request.getRequestDispatcher("EditProfile.jsp");
+					dispatcher1.forward(request, response);
 		        }
 		    }
 

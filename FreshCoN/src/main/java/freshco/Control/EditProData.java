@@ -27,12 +27,12 @@ public class EditProData extends HttpServlet {
 
 	        if (product != null) {
 	            request.setAttribute("product", product);
-	            // Forward to a JSP page to display the product details
 	            RequestDispatcher dispatcher = request.getRequestDispatcher("EditProduct.jsp");
 	            dispatcher.forward(request, response);
 	        } else {
-	            // Handle case where product is not found
-	            response.getWriter().write("Product not found!");
+	        	request.setAttribute("errorMessage", "Failed to Retrieve Data");
+				RequestDispatcher dispatcher1 = request.getRequestDispatcher("Product");
+				dispatcher1.forward(request, response);
 	        }
 		}
 }

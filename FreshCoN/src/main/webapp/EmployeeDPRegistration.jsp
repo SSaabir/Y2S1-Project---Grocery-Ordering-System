@@ -120,6 +120,16 @@
     </head>
 
     <body>
+    <%
+	String errorMessage = (String) request.getAttribute("errorMessage");
+	if (errorMessage != null) {
+	%>
+	<script>
+        alert("<%= errorMessage %>");
+	</script>
+	<%
+	}
+	%>
         <div class="main">
             <div class="registration">
                 <h2>Driver REGISTRATION FORM</h2>

@@ -22,7 +22,7 @@ public class ProductCategoryList extends HttpServlet {
 	            dispatcher.forward(request,response);
 	        } catch (Exception e) {
 	            e.printStackTrace();
-	            throw new ServletException("Retrieving employees failed.", e);
+	            throw new ServletException("Retrieving Category failed.", e);
 	        }
 	    }
 

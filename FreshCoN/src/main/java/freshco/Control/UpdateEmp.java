@@ -39,8 +39,9 @@ public class UpdateEmp extends HttpServlet {
 	            // Redirect to the dashboard on success
 	            response.sendRedirect("dashboard.jsp");
 	        } else {
-	            // Redirect to an error page on failure
-	            response.sendRedirect("erro.jsp");
+	        	request.setAttribute("errorMessage", "Failed to update Employee. Please try again.");
+				RequestDispatcher dispatcher1 = request.getRequestDispatcher("EditProfile.jsp");
+				dispatcher1.forward(request, response);
 	        }
 	    }
 	}

@@ -168,6 +168,16 @@
 </head>
 
 <body>
+<%
+	String errorMessage = (String) request.getAttribute("errorMessage");
+	if (errorMessage != null) {
+	%>
+	<script>
+        alert("<%= errorMessage %>");
+	</script>
+	<%
+	}
+	%>
     <div class="main-box">
         <form id="productForm" action="EditProduct" method="post" enctype="multipart/form-data">
             <div class="product-header">

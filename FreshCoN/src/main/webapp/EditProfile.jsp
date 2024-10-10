@@ -182,6 +182,16 @@
 </head>
 
 <body>
+<%
+	String errorMessage = (String) request.getAttribute("errorMessage");
+	if (errorMessage != null) {
+	%>
+	<script>
+        alert("<%= errorMessage %>");
+	</script>
+	<%
+	}
+	%>
     <div class="main-box">
         <%
             HttpSession sess = request.getSession(false); // Get the session without creating a new one
@@ -252,7 +262,7 @@
                                     </div>
             </form>
                     <form id="deleteProfileForm" method="POST" action="DeleteProfileC?CusID=<%= (int) session.getAttribute("ID") %>">
-                <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
+                <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;" onclick="return confirmDelete();">
                     Delete Profile
                 </button>
             </form>
@@ -312,7 +322,7 @@
             </form>
             
                     <form id="deleteProfileForm" method="POST" action="DeleteProfileA?AID=<%= (int) session.getAttribute("ID") %>">
-                <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
+                <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;" onclick="return confirmDelete();">
                     Delete Profile
                 </button>
             </form>
@@ -358,7 +368,7 @@
                           </div>
             </form>
                     <form id="deleteProfileForm" method="POST" action="DeleteProfileE?EmID=<%= (int) session.getAttribute("ID") %>">
-                <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
+                <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;" onclick="return confirmDelete();">
                     Delete Profile
                 </button>
             </form>
@@ -405,7 +415,7 @@
                             </div>
                     </form>
                     <form id="deleteProfileForm" method="POST" action="DeleteProfileM?EmID=<%= (int) session.getAttribute("ID") %>">
-                <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
+                <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;" onclick="return confirmDelete();">
                     Delete Profile
                 </button>
             </form>
@@ -464,7 +474,7 @@
                          </div>
                     </form>
                      <form id="deleteProfileForm" method="POST" action="DeleteProfileDP?EmID=<%= (int) session.getAttribute("ID") %>">
-                <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;">
+                <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;" onclick="return confirmDelete();">
                     Delete Profile
                 </button>
             </form>
@@ -479,6 +489,11 @@
             }
         %>
     </div>
+    <script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete your profile? This action cannot be undone.");
+    }
+</script>
 </body>
 
 </html>

@@ -35,7 +35,8 @@ public class UpdateProduct extends HttpServlet {
             response.sendRedirect("Product");
         } else {
             request.setAttribute("errorMessage", "Failed to update product");
-            request.getRequestDispatcher("Product").forward(request, response);
+			RequestDispatcher dispatcher1 = request.getRequestDispatcher("EditProduct.jsp");
+			dispatcher1.forward(request, response);
         }
     }
 }
