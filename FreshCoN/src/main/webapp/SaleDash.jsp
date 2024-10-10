@@ -69,6 +69,7 @@
                 <tbody>
                     <%
                     try {
+                    	@SuppressWarnings("unchecked")
                     	List<Sale> sales = (List<Sale>) request.getAttribute("sales");
                         if (sales != null) {
                         for (Sale Sale : sales) {

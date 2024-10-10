@@ -66,6 +66,7 @@
             <tbody>
                <%
                     try {
+                    	@SuppressWarnings("unchecked")
                     	List<Enquiry> enquiry = (List<Enquiry>) request.getAttribute("enquiry");
                         if (enquiry != null) {
                         for (Enquiry enq : enquiry) {

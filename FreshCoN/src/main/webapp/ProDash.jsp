@@ -77,6 +77,7 @@
            <tbody>
                <%
                     try {
+                    	@SuppressWarnings("unchecked")
                     	List<Product> products = (List<Product>)request.getAttribute("products");
                         if (products != null) {
                             for (Product pro : products) {

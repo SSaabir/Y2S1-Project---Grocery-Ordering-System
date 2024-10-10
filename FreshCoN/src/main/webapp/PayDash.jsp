@@ -72,6 +72,7 @@
             <tbody>
                  <%
                     try {
+                    	@SuppressWarnings("unchecked")
                     	List<Payment> payment = (List<Payment>) request.getAttribute("payment");
                         if (payment != null) {
                         for (Payment pay : payment) {

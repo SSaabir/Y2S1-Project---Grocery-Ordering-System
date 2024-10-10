@@ -17,7 +17,8 @@ public class RemoveCartProducts extends HttpServlet {
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	        int productId = Integer.parseInt(request.getParameter("pid"));
 	        HttpSession session = request.getSession();
-	        List<CartProducts> cartItems = (List<CartProducts>) session.getAttribute("cartItems");
+	        @SuppressWarnings("unchecked")
+			List<CartProducts> cartItems = (List<CartProducts>) session.getAttribute("cartItems");
 
 	        if (cartItems != null) {
 	            cartItems.removeIf(item -> item.getPid() == productId); // Remove item by product ID

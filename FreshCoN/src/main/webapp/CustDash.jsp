@@ -71,6 +71,7 @@
             <tbody>
                  <%
                     try {
+                    	@SuppressWarnings("unchecked")
                     	List<Customer> customers = (List<Customer>) request.getAttribute("customers");
                         if (customers != null) {
                         for (Customer cus : customers) {

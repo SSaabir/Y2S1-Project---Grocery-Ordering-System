@@ -48,7 +48,8 @@ public class AddCartProducts extends HttpServlet {
 
         // Get session and cart items
         HttpSession session = request.getSession();
-        List<CartProducts> cartItems = (List<CartProducts>) session.getAttribute("cartItems");
+        @SuppressWarnings("unchecked")
+		List<CartProducts> cartItems = (List<CartProducts>) session.getAttribute("cartItems");
 
         // Initialize cartItems if it's null
         if (cartItems == null) {

@@ -71,6 +71,7 @@
                 <tbody>
                     <%
                     try {
+                    	@SuppressWarnings("unchecked")
                     	List<Admin> admin = (List<Admin>) request.getAttribute("admins");
                         if (admin != null) {
                         for (Admin adm : admin) {

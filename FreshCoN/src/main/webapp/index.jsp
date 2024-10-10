@@ -17,7 +17,7 @@
     <title>Fresh Co</title>
 
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
     
     <link rel="stylesheet" href="./css/index.css">
 
@@ -193,6 +193,7 @@
         <div class="category-container">
                  <%
                     try {
+                    	@SuppressWarnings("unchecked")
                     	List<Category> categories = (List<Category>)request.getAttribute("categories");
                         if (categories != null) {
                             for (Category cat : categories) {
@@ -231,6 +232,7 @@
         <div class="product-cantainer">
  <%
                     try {
+                    	@SuppressWarnings("unchecked")
                     	List<Product> products = (List<Product>)request.getAttribute("products");
                         if (products != null) {
                             for (Product pro : products) {
@@ -266,13 +268,14 @@
     <section  id="client">
 
         <div class="client-heading">
-           <h3>Our Regular & Trustful Clients</h3>
+           <h3>Our Regular and Trustful Clients</h3>
         </div>
      
         <div class="client-box-container">
      
            <%
                     try {
+                    	@SuppressWarnings("unchecked")
                     	List<Feedback> feedback = (List<Feedback>) request.getAttribute("feedbacks");
                         if (feedback != null) {
                         for (Feedback Feed : feedback) {
@@ -441,7 +444,7 @@
         </div>
     
         <!-- Font Awesome Icons (for the icons in the info section) -->
-        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         
     </section>
     <script>

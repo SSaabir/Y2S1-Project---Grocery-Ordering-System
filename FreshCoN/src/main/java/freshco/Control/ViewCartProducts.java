@@ -16,7 +16,8 @@ public class ViewCartProducts extends HttpServlet {
 
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	        HttpSession session = request.getSession();
-	        List<CartProducts> cartItems = (List<CartProducts>) session.getAttribute("cartItems");
+	        @SuppressWarnings("unchecked")
+			List<CartProducts> cartItems = (List<CartProducts>) session.getAttribute("cartItems");
 
 	        // Set cartItems as request attribute for JSP
 	        request.setAttribute("cartItems", cartItems);

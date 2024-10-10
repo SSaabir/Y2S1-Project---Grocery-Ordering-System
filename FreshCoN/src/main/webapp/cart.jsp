@@ -108,6 +108,7 @@
                 <th>Action</th>
             </tr>
             <%
+            @SuppressWarnings("unchecked")
                 List<CartProducts> cartItems = (List<CartProducts>) request.getAttribute("cartItems");
                 double totalDiscount = 0; // Initialize total discount
                 double totalPayable = 0; // Initialize total payable amount

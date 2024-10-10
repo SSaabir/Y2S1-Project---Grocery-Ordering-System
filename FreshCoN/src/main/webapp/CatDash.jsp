@@ -69,6 +69,7 @@
            <tbody>
                  <%
                     try {
+                    	@SuppressWarnings("unchecked")
                     	List<Category> categories = (List<Category>)request.getAttribute("categories");
                         if (categories != null) {
                             for (Category cat : categories) {

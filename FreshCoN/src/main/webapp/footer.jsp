@@ -7,110 +7,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     
-    <style>
+    <style type="text/css">
 footer {
-    position: relative;
-    width: 100%;
+	position: relative;
+	width: 100%;
 }
 
 .footer-content {
-    background: #3ea055;
-    padding: 100px 40px 40px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+	background: #3ea055;
+	padding: 100px 40px 40px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
-  
-        
-        .footer-main {
-            margin: 10px 20px;
-            width: 400px;
-        }
-        
-        .footer-main h2 {
-            color: #fff;
-            font-size: 1.6rem;
-        }
-        
-        .footer-main p {
-            color: #fff;
-            font-size: 0.8rem;
-            line-height: 1.3rem;
-        }
-        
-        .social-link {
-            margin: 15px 0;
-            display: flex;
-            gap: 8px;
-        }
-        
-        .social-link a {
-            width: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: .3s;
-            height: 40px;
-            background: #dbd8e3;
-        }
-        
-        .social-link a:hover {
-            opacity: 0.7;
-        }
-        
-        .social-link a i {
-            font-size: 1.1rem;
-            color: #201e1e;
-        }
-        
-        .links {
-            display: flex;
-            flex-direction: column;
-            width: 200px;
-            margin: 40px 20px;
-        }
-        
-        .links p {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-            color: #fff;
-        }
-        
-        .links a {
-            font-size: 0.8rem;
-            text-decoration: none;
-            margin-bottom: 15px;
-            font-weight: 600;
-            color: #dbd8db;
-            transition: .3s all;
-        }
-        
-        .links a:hover {
-            opacity: 0.5;
-        }
-        
-        @media(max-width: 1000px) {
-            .newsletter {
-                border-radius: 0px;
-            }
-        }
-        
-        @media(max-width: 800px) {
-            .newsletter {
-                flex-direction: column;
-            }
-            .newsletter-left {
-                margin-bottom: 10px;
-            }
-            .newsletter-right {
-                width: 100%;
-            }
-        }
-    </style>
+
+.footer-main {
+	margin: 10px 20px;
+	width: 400px;
+}
+
+.footer-main h2 {
+	color: #fff;
+	font-size: 1.6rem;
+}
+
+.footer-main p {
+	color: #fff;
+	font-size: 0.8rem;
+	line-height: 1.3rem;
+}
+
+.social-link {
+	margin: 15px 0;
+	display: flex;
+	gap: 8px;
+}
+
+.social-link a {
+	width: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	border-radius: 5px;
+	transition: .3s;
+	height: 40px;
+	background: #dbd8e3;
+}
+
+.social-link a:hover {
+	opacity: 0.7;
+}
+
+.social-link a i {
+	font-size: 1.1rem;
+	color: #201e1e;
+}
+
+.links {
+	display: flex;
+	flex-direction: column;
+	width: 200px;
+	margin: 40px 20px;
+}
+
+.links p {
+	font-size: 1.3rem;
+	margin-bottom: 15px;
+	font-weight: 600;
+	color: #fff;
+}
+
+.links a {
+	font-size: 0.8rem;
+	text-decoration: none;
+	margin-bottom: 15px;
+	font-weight: 600;
+	color: #dbd8db;
+	transition: .3s all;
+}
+
+.links a:hover {
+	opacity: 0.5;
+}
+
+@media ( max-width : 1000px) {
+	.newsletter {
+		border-radius: 0px;
+	}
+}
+
+@media ( max-width : 800px) {
+	.newsletter {
+		flex-direction: column;
+	}
+	.newsletter-left {
+		margin-bottom: 10px;
+	}
+	.newsletter-right {
+		width: 100%;
+	}
+}
+</style>
 </head>
 <body>
 <footer>
@@ -134,7 +133,7 @@ footer {
                     <a href="#" class="link">Services</a>
                     <a href="#" class="link">Support</a>
                     <a href="faq.jsp" class="link">FAQ</a>
-                    <a href="#" class="link">Terms & Conditions</a>
+                    <a href="#" class="link">Terms and Conditions</a>
                 </div>
                 <div class="links">
                     <p>Information</p>
@@ -144,8 +143,7 @@ footer {
                 </div>
             </div>
         </div>
-    </div>
-</footer>
+	</footer>
 </body>
 
 </html>

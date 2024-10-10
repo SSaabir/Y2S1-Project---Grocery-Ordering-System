@@ -76,6 +76,7 @@
                 <tbody>
                     <%
                     try {
+                    	@SuppressWarnings("unchecked")
                     	List<Employee> employees = (List<Employee>) request.getAttribute("employees");
                         if (employees != null) {
                         for (Employee emp : employees) {

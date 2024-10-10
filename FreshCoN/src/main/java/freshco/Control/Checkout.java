@@ -17,7 +17,8 @@ public class Checkout extends HttpServlet {
         HttpSession session = request.getSession();
 
         // Retrieve cart items from session
-        List<CartProducts> cartItems = (List<CartProducts>) session.getAttribute("cartItems");
+        @SuppressWarnings("unchecked")
+		List<CartProducts> cartItems = (List<CartProducts>) session.getAttribute("cartItems");
 
         // Check if cart items exist
         if (cartItems == null || cartItems.isEmpty()) {

@@ -423,3 +423,21 @@ VALUES
     ('Alice', 'Johnson', 'alicejohnson@adm.freshco.lk', '789 Oak St', 'Ogdenville', '1988-09-15', './image/alicejohnson.jpg', '555-123-4567', 'hashed_password_3'),
     ('Bob', 'Brown', 'bobbrown@adm.freshco.lk', '321 Pine St', 'Capitol City', '1979-11-05', './image/bobbrown.jpg', '444-987-6543', 'hashed_password_4'),
     ('Charlie', 'Davis', 'charliedavis@adm.freshco.lk', '654 Maple St', 'North Haverbrook', '1983-03-30', './image/charliedavis.jpg', '333-456-7890', 'hashed_password_5');
+
+CREATE VIEW SalePaymentView AS
+SELECT 
+    s.OID AS OrderID,
+    s.orderDate AS OrderDate,
+    s.totalAmount AS TotalAmount,
+    s.orderStatus AS OrderStatus,
+    s.address AS ShippingAddress,
+    s.CusID AS CustomerID,
+    s.EmID AS EmployeeID,
+    p.PID AS PaymentID,
+    p.payMethod AS PaymentMethod,
+    p.payStatus AS PaymentStatus
+FROM 
+    Sale s
+JOIN 
+    Payment p ON s.PID = p.PID;
+

@@ -67,6 +67,7 @@
                 <tbody>
                     <%
                     try {
+                    	@SuppressWarnings("unchecked")
                     	List<Feedback> feedback = (List<Feedback>) request.getAttribute("feedbacks");
                         if (feedback != null) {
                         for (Feedback Feed : feedback) {
