@@ -115,7 +115,8 @@
             background: #ddd;
         }
         
-        .sub-buttons, button {
+        .sub-buttons,
+        button {
             border-radius: 20px;
             border: 1px solid #4CAF50;
             background: #4CAF50;
@@ -129,21 +130,25 @@
             cursor: pointer;
         }
         
-         .sub-buttons, button:hover {
+        .sub-buttons,
+        button:hover {
             background: #05f50d;
         }
         
-         .sub-buttons, button:active {
+        .sub-buttons,
+        button:active {
             transform: scale(0.95);
         }
         
-         .sub-buttons, button.ghost {
+        .sub-buttons,
+        button.ghost {
             background: transparent;
             border-color: #fff;
             margin-top: 15px;
         }
         
-         .sub-buttons, button.ghost:hover {
+        .sub-buttons,
+        button.ghost:hover {
             background: #05f50d;
             color: black;
         }
@@ -280,11 +285,11 @@
                         <span id="cityError" class="error"></span>
                     </div>
                     <div>
-                        <input type="date" id="signUpDOB" placeholder="Date of Birth" name="dob" required />
+                        <input type="date" id="signUpDOB" placeholder="Date of Birth" name="dob" max="2009-12-31" required />
                         <span id="dobError" class="error"></span>
                     </div>
                     <div>
-                        <input type="file" id="signUpImageUrl"  name="imgUrl" />
+                        <input type="file" id="signUpImageUrl" name="imgUrl" />
                         <span id="imageError" class="error"></span>
                         <img id="imagePreview" src="" alt="Image Preview" style="display:none; width: 100px; margin-top: 10px;" />
                     </div>
@@ -331,6 +336,106 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const signUpForm = document.getElementById('signUpForm');
+            const signInForm = document.getElementById('signInForm');
+
+            // Sign Up Form Validation
+            signUpForm.addEventListener('submit', function(event) {
+                let errorMessages = [];
+                let isValid = true;
+
+                // Email validation (standard format)
+                const emailField = document.getElementById('signUpEmail');
+                const email = emailField.value;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Standard email format regex
+                if (!emailRegex.test(email)) {
+                    errorMessages.push("Please enter a valid email address.");
+                    isValid = false;
+                }
+
+                // Phone number validation (10 digits)
+                const phoneField = document.getElementById('signUpPhone');
+                const phone = phoneField.value;
+                const phoneRegex = /^\d{10}$/;
+                if (!phoneRegex.test(phone)) {
+                    errorMessages.push("Phone number must be exactly 10 digits.");
+                    isValid = false;
+                }
+
+                // Date of Birth validation (must be at least 16 years old)
+                const dobField = document.getElementById('signUpDOB');
+                const dob = new Date(dobField.value);
+                const age = new Date().getFullYear() - dob.getFullYear();
+                if (age < 16) {
+                    errorMessages.push("You must be at least 16 years old.");
+                    isValid = false;
+                }
+
+                // Password validation (at least 8 characters)
+                const passwordField = document.getElementById('signUpPassword');
+                const password = passwordField.value;
+                if (password.length < 8) {
+                    errorMessages.push("Password must be at least 8 characters long.");
+                    isValid = false;
+                }
+
+                // Confirm password validation
+                const confirmPasswordField = document.getElementById('signUpConfirmPassword');
+                const confirmPassword = confirmPasswordField.value;
+                if (password !== confirmPassword) {
+                    errorMessages.push("Passwords do not match.");
+                    isValid = false;
+                }
+
+                // If there are any errors, show them in an alert and prevent form submission
+                if (!isValid) {
+                    alert(errorMessages.join("\n")); // Display all error messages at once
+                    event.preventDefault();
+                } else {
+                    // Show success message if validation is successful
+                    document.getElementById('signUpSuccess').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('signUpSuccess').style.display = 'none';
+                    }, 3000); // Hide success message after 3 seconds
+                }
+            });
+
+            // Sign In Form Validation
+            signInForm.addEventListener('submit', function(event) {
+                let errorMessages = [];
+                let isValid = true;
+
+                // Dummy values for validation (You can replace this with actual user data)
+                const validUsername = "testuser"; // Example username
+                const validPassword = "password123"; // Example password
+
+                const usernameField = document.getElementById('signInEmail');
+                const username = usernameField.value;
+
+                const passwordField = document.getElementById('signInPassword');
+                const password = passwordField.value;
+
+
+                // If there are any errors, show them in an alert and prevent form submission
+                if (!isValid) {
+                    alert(errorMessages.join("\n"));
+                    event.preventDefault();
+                }
+            });
+        });
+
+        // Function to switch between Sign Up and Sign In forms
+        document.getElementById('signIn').addEventListener('click', function() {
+            document.getElementById('container').classList.remove('right-panel-active');
+        });
+
+        document.getElementById('signUp').addEventListener('click', function() {
+            document.getElementById('container').classList.add('right-panel-active');
+        });
+    </script>
 </body>
 
 </html>
