@@ -208,12 +208,12 @@
                     <div class="sub_part">
                         <label for="fName">First Name</label>
                         <i class="fa fa-id-card"></i>
-                        <input type="text" id="fName" name="fName" value='<%= (String) session.getAttribute("fName") %>' placeholder="First Name" required>
+                        <input type="text" id="fName" name="fName" value='<%= (String) session.getAttribute("fName") %>' placeholder="First Name" maxlength="10"  required>
                     </div>
                     <div class="sub_part">
                         <label for="lName">Last Name</label>
                         <i class="fa fa-id-card-alt"></i>
-                        <input type="text" id="lName" name="lName" value='<%= (String) session.getAttribute("lName") %>' placeholder="Last Name" required>
+                        <input type="text" id="lName" name="lName" value='<%= (String) session.getAttribute("lName") %>' placeholder="Last Name" maxlength="10"  required>
                     </div>
 
                     <div class="sub_part">
@@ -225,7 +225,7 @@
                     <div class="sub_part">
                         <label for="phone">Mobile Number</label>
                         <i class="fa fa-phone"></i>
-                        <input type="tel" id="phone" name="phone" value='<%= (String) session.getAttribute("phone") %>' placeholder="Enter Phone Number" required>
+                        <input type="tel" id="phone" name="phone" value='<%= (String) session.getAttribute("phone") %>' placeholder="Enter Phone Number" maxlength="10" required>
                     </div>
 
                     <div class="sub_part">
@@ -236,30 +236,74 @@
                     <div class="sub_part">
                         <label for="lane">Address : Lane</label>
                         <i class="fa fa-map-marker-alt"></i>
-                        <input type="text" id="lane" name="lane" value='<%= (String) session.getAttribute("lane") %>' placeholder="Enter Address" required>
+                        <input type="text" id="lane" name="lane" value='<%= (String) session.getAttribute("lane") %>' placeholder="Enter Address" maxlength="30" required>
                     </div>
                     <div class="sub_part">
                         <label for="city">City</label>
                         <i class="fa fa-city"></i>
-                        <input type="text" id="city" name="city" value='<%= (String) session.getAttribute("city") %>' placeholder="Enter City" required>
+                        <input type="text" id="city" name="city" value='<%= (String) session.getAttribute("city") %>' placeholder="Enter City" maxlength="10" required>
                     </div>
 
                     <div class="sub_part">
                         <label for="password">Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" required>
+                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" maxlength="15" required>
                     </div>
 
                     <div class="sub_part">
                         <label for="Confirmpassword">Confirm Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" required>
+                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" maxlength="15" required>
                     </div>
 
                     <button type="submit" class="save-btn" id="saveBtn">
                         Save Profile
                     </button>
                                     </div>
+                                    
+                                    
+                    <script>
+                    
+                    document.getElementById('saveBtn').addEventListener('click', function (event) {
+                        let errors = [];
+
+                        // Email validation
+                        const email = document.getElementById('email').value;
+                        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
+                        if (!emailPattern.test(email)) {
+                            errors.push("Please enter a valid email address.");
+                        }
+
+                        // Phone number validation (10 digits)
+                        const phone = document.getElementById('phone').value;
+                        const phonePattern = /^\d{10}$/;
+                        if (!phonePattern.test(phone)) {
+                            errors.push("Please enter a valid 10-digit phone number.");
+                        }
+
+                        // Password validation (at least 8 characters)
+                        const password = document.getElementById('password').value;
+                        const confirmPassword = document.getElementById('Confirmpassword').value;
+                        if (password.length < 8) {
+                            errors.push("Password must be at least 8 characters long.");
+                        }
+
+                        // Check if password matches confirm password
+                        if (password !== confirmPassword) {
+                            errors.push("Passwords do not match.");
+                        }
+
+                        // If there are errors, prevent form submission and show all errors
+                        if (errors.length > 0) {
+                            alert(errors.join("\n"));
+                            event.preventDefault();
+                        } else {
+                            alert("Profile saved successfully!");
+                        }
+                    });
+                    </script>
+                                    
+                                    
             </form>
                     <form id="deleteProfileForm" method="POST" action="DeleteProfileC?CusID=<%= (int) session.getAttribute("ID") %>">
                 <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;" onclick="return confirmDelete();">
@@ -278,12 +322,12 @@
                     <div class="sub_part">
                         <label for="fName">First Name</label>
                         <i class="fa fa-id-card"></i>
-                        <input type="text" id="fName" name="fName" value='<%= (String) session.getAttribute("fName") %>' placeholder="First Name" required>
+                        <input type="text" id="fName" name="fName" value='<%= (String) session.getAttribute("fName") %>' placeholder="First Name" maxlength="10" required>
                     </div>
                     <div class="sub_part">
                         <label for="lName">Last Name</label>
                         <i class="fa fa-id-card-alt"></i>
-                        <input type="text" id="lName" name="lName" value='<%= (String) session.getAttribute("lName") %>' placeholder="Last Name" required>
+                        <input type="text" id="lName" name="lName" value='<%= (String) session.getAttribute("lName") %>' placeholder="Last Name"  maxlength="10" required>
                     </div>
 
                     <div class="sub_part">
@@ -295,7 +339,7 @@
                     <div class="sub_part">
                         <label for="phone">Mobile Number</label>
                         <i class="fa fa-phone"></i>
-                        <input type="tel" id="phone" name="phone" value='<%= (String) session.getAttribute("phone") %>' placeholder="Enter Phone Number" required>
+                        <input type="tel" id="phone" name="phone" value='<%= (String) session.getAttribute("phone") %>' placeholder="Enter Phone Number" maxlength="10" required>
                     </div>
 
                     <div class="sub_part">
@@ -306,19 +350,62 @@
                     <div class="sub_part">
                         <label for="password">Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" required>
+                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" maxlength="15" required>
                     </div>
 
                     <div class="sub_part">
                         <label for="Confirmpassword">Confirm Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" required>
+                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" maxlength="15" required>
                     </div>
 
                     <button type="submit" class="save-btn" id="saveBtn">
                         Save Profile
                     </button>
                          </div>
+                         
+                         
+                         
+                         <script>
+                         document.getElementById('saveBtn').addEventListener('click', function(event) {
+                             let errors = [];
+
+                             // Email validation (must include @adm.freshco.lk)
+                             const email = document.getElementById('email').value;
+                             const emailPattern = /^[a-zA-Z0-9._%+-]+@adm\.freshco\.lk$/;
+                             if (!emailPattern.test(email)) {
+                                 errors.push("Please enter a valid email address in the format '@adm.freshco.lk'.");
+                             }
+
+                             // Phone number validation (10 digits)
+                             const phone = document.getElementById('phone').value;
+                             const phonePattern = /^\d{10}$/;
+                             if (!phonePattern.test(phone)) {
+                                 errors.push("Please enter a valid 10-digit phone number.");
+                             }
+
+                             // Password validation (at least 8 characters)
+                             const password = document.getElementById('password').value;
+                             const confirmPassword = document.getElementById('Confirmpassword').value;
+                             if (password.length < 8) {
+                                 errors.push("Password must be at least 8 characters long.");
+                             }
+
+                             // Check if password matches confirm password
+                             if (password !== confirmPassword) {
+                                 errors.push("Passwords do not match.");
+                             }
+
+                             // If there are errors, prevent form submission and show all errors
+                             if (errors.length > 0) {
+                                 alert(errors.join("\n"));
+                                 event.preventDefault();
+                             } else {
+                                 alert("Profile saved successfully!");
+                             }
+                         });
+
+                    </script>
             </form>
             
                     <form id="deleteProfileForm" method="POST" action="DeleteProfileA?AID=<%= (int) session.getAttribute("ID") %>">
@@ -342,7 +429,7 @@
                     <div class="sub_part">
                         <label for="phone">Mobile Number</label>
                         <i class="fa fa-phone"></i>
-                        <input type="tel" id="phone" name="phone" value='<%= (String) session.getAttribute("phone") %>' placeholder="Enter Phone Number" required>
+                        <input type="tel" id="phone" name="phone" value='<%= (String) session.getAttribute("phone") %>' placeholder="Enter Phone Number" maxlength="10" required>
                     </div>
 
                     <div class="sub_part">
@@ -353,19 +440,61 @@
                     <div class="sub_part">
                         <label for="password">Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" required>
+                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" maxlength="15" required>
                     </div>
 
                     <div class="sub_part">
                         <label for="Confirmpassword">Confirm Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" required>
+                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" maxlength="15"required>
                     </div>
 
                     <button type="submit" class="save-btn" id="saveBtn">
                         Save Profile
                     </button>
                           </div>
+                          
+                          <script>
+                     
+                          document.getElementById('saveBtn').addEventListener('click', function(event) {
+                              let errors = [];
+
+                              // Email validation (must include @emp.freshco.lk)
+                              const email = document.getElementById('email').value;
+                              const emailPattern = /^[a-zA-Z0-9._%+-]+@emp\.freshco\.lk$/;
+                              if (!emailPattern.test(email)) {
+                                  errors.push("Please enter a valid email address in the format '@emp.freshco.lk'.");
+                              }
+
+                              // Phone number validation (10 digits)
+                              const phone = document.getElementById('phone').value;
+                              const phonePattern = /^\d{10}$/;
+                              if (!phonePattern.test(phone)) {
+                                  errors.push("Please enter a valid 10-digit phone number.");
+                              }
+
+                              // Password validation (at least 8 characters)
+                              const password = document.getElementById('password').value;
+                              const confirmPassword = document.getElementById('Confirmpassword').value;
+                              if (password.length < 8) {
+                                  errors.push("Password must be at least 8 characters long.");
+                              }
+
+                              // Check if password matches confirm password
+                              if (password !== confirmPassword) {
+                                  errors.push("Passwords do not match.");
+                              }
+
+                              // If there are errors, prevent form submission and show all errors
+                              if (errors.length > 0) {
+                                  alert(errors.join("\n")); // Display all errors at once
+                                  event.preventDefault();
+                              } else {
+                                  alert("Profile saved successfully!");
+                              }
+                          });
+
+                          </script>
             </form>
                     <form id="deleteProfileForm" method="POST" action="DeleteProfileE?EmID=<%= (int) session.getAttribute("ID") %>">
                 <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;" onclick="return confirmDelete();">
@@ -389,7 +518,7 @@
                     <div class="sub_part">
                         <label for="phone">Mobile Number</label>
                         <i class="fa fa-phone"></i>
-                        <input type="tel" id="phone" name="phone" value='<%= (String) session.getAttribute("phone") %>' placeholder="Enter Phone Number" required>
+                        <input type="tel" id="phone" name="phone" value='<%= (String) session.getAttribute("phone") %>' placeholder="Enter Phone Number" maxlength="10" required>
                     </div>
 
                     <div class="sub_part">
@@ -400,19 +529,62 @@
                     <div class="sub_part">
                         <label for="password">Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" required>
+                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" maxlength="15" required>
                     </div>
 
                     <div class="sub_part">
                         <label for="Confirmpassword">Confirm Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" required>
+                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" maxlength="15" required>
                     </div>
 
                     <button type="submit" class="save-btn" id="saveBtn">
                         Save Profile
                     </button>
                             </div>
+                            
+                             <script>
+                     
+                             document.getElementById('saveBtn').addEventListener('click', function(event) {
+                                 let errors = [];  // Array to hold error messages
+
+                                 // Email validation (must include @emp.freshco.lk)
+                                 const email = document.getElementById('email').value;
+                                 const emailPattern = /^[a-zA-Z0-9._%+-]+@emp\.freshco\.lk$/;
+                                 if (!emailPattern.test(email)) {
+                                     errors.push("Please enter a valid email address in the format '@emp.freshco.lk'.");
+                                 }
+
+                                 // Phone number validation (10 digits)
+                                 const phone = document.getElementById('phone').value;
+                                 const phonePattern = /^\d{10}$/;
+                                 if (!phonePattern.test(phone)) {
+                                     errors.push("Please enter a valid 10-digit phone number.");
+                                 }
+
+                                 // Password validation (at least 8 characters)
+                                 const password = document.getElementById('password').value;
+                                 const confirmPassword = document.getElementById('Confirmpassword').value;
+                                 if (password.length < 8) {
+                                     errors.push("Password must be at least 8 characters long.");
+                                 }
+
+                                 // Check if password matches confirm password
+                                 if (password !== confirmPassword) {
+                                     errors.push("Passwords do not match.");
+                                 }
+
+                                 // If there are errors, prevent form submission and show all errors
+                                 if (errors.length > 0) {
+                                     alert(errors.join("\n")); // Display all errors at once
+                                     event.preventDefault(); // Prevent form submission
+                                 } else {
+                                     alert("Profile saved successfully!");
+                                 }
+                             });
+
+                          </script>
+                            
                     </form>
                     <form id="deleteProfileForm" method="POST" action="DeleteProfileM?EmID=<%= (int) session.getAttribute("ID") %>">
                 <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;" onclick="return confirmDelete();">
@@ -436,7 +608,7 @@
                     <div class="sub_part">
                         <label for="phone">Mobile Number</label>
                         <i class="fa fa-phone"></i>
-                        <input type="tel" id="phone" name="phone" value='<%= (String) session.getAttribute("phone") %>' placeholder="Enter Phone Number" required>
+                        <input type="tel" id="phone" name="phone" value='<%= (String) session.getAttribute("phone") %>' placeholder="Enter Phone Number" maxlength="10" required>
                     </div>
 
                     <div class="sub_part">
@@ -447,31 +619,73 @@
                     <div class="sub_part">
                         <label for="vN">Vehicle Number :</label>
                         <i class="fa fa-envelope"></i>
-                        <input type="text" id="email" name="vehicleNum" value='<%= (String) session.getAttribute("vehicleNum") %>' placeholder="Enter Vehicle Num" required>
+                        <input type="text" id="email" name="vehicleNum" value='<%= (String) session.getAttribute("vehicleNum") %>' placeholder="Enter Vehicle Num" maxlength="7" required>
                     </div>
                     <div class="sub_part">
                         <label for="city">City</label>
                         <i class="fa fa-envelope"></i>
-                        <input type="text" id="email" name="city" value='<%= (String) session.getAttribute("city") %>' placeholder="Enter City" required>
+                        <input type="text" id="email" name="city" value='<%= (String) session.getAttribute("city") %>' placeholder="Enter City" maxlength="10" required>
                     </div>
                     
 
                     <div class="sub_part">
                         <label for="password">Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" required>
+                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" maxlength="15" required>
                     </div>
 
                     <div class="sub_part">
                         <label for="Confirmpassword">Confirm Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" required>
+                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" maxlength="15" required>
                     </div>
 
                     <button type="submit" class="save-btn" id="saveBtn">
                         Save Profile
                     </button>
                          </div>
+                         
+                          <script>
+                     
+                          document.getElementById('saveBtn').addEventListener('click', function(event) {
+                              let errors = [];  // Array to hold error messages
+
+                              // Email validation (must include @emp.freshco.lk)
+                              const email = document.getElementById('email').value;
+                              const emailPattern = /^[a-zA-Z0-9._%+-]+@emp\.freshco\.lk$/;
+                              if (!emailPattern.test(email)) {
+                                  errors.push("Please enter a valid email address in the format '@emp.freshco.lk'.");
+                              }
+
+                              // Phone number validation (10 digits)
+                              const phone = document.getElementById('phone').value;
+                              const phonePattern = /^\d{10}$/;
+                              if (!phonePattern.test(phone)) {
+                                  errors.push("Please enter a valid 10-digit phone number.");
+                              }
+
+                              // Password validation (at least 8 characters)
+                              const password = document.getElementById('password').value;
+                              const confirmPassword = document.getElementById('Confirmpassword').value;
+                              if (password.length < 8) {
+                                  errors.push("Password must be at least 8 characters long.");
+                              }
+
+                              // Check if password matches confirm password
+                              if (password !== confirmPassword) {
+                                  errors.push("Passwords do not match.");
+                              }
+
+                              // If there are errors, prevent form submission and show all errors
+                              if (errors.length > 0) {
+                                  alert(errors.join("\n")); // Display all errors at once
+                                  event.preventDefault(); // Prevent form submission
+                              } else {
+                                  alert("Profile saved successfully!");
+                              }
+                          });
+                          </script>
+                         
                     </form>
                      <form id="deleteProfileForm" method="POST" action="DeleteProfileDP?EmID=<%= (int) session.getAttribute("ID") %>">
                 <button type="submit" class="save-btn" id="deleteBtn" style="background-color: #d9534f;" onclick="return confirmDelete();">
