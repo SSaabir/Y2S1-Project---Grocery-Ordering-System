@@ -245,13 +245,13 @@
                 <div class="card-details" id="card-details">
                     <h3>Enter Card Details</h3>
                     <label for="card-name">Name on Card</label>
-                    <input type="text" id="card-name" name="cardName" placeholder="John Doe">
+                    <input type="text" id="card-name" name="cardName" placeholder="John Doe" maxlength="10">
                     <label for="card-number">Card Number</label>
-                    <input type="text" id="card-number" name="cardNumber" placeholder="1234 5678 9012 3456">
+                    <input type="text" id="card-number" name="cardNumber" placeholder="xxxx xxxx xxxx xxxx" maxlength="19">
                     <label for="card-expiry">Expiry Date</label>
-                    <input type="text" id="card-expiry" name="cardExpiry" placeholder="MM/YY" >
+                    <input type="text" id="card-expiry" name="cardExpiry" placeholder="MM/YY"  maxlength="5">
                     <label for="card-cvc">CVC</label>
-                    <input type="text" id="card-cvc" name="cardCVC" placeholder="123" >
+                    <input type="text" id="card-cvc" name="cardCVC" placeholder="xxx" maxlength="3">
                 </div>
 
                 <!-- Delivery Address Selection -->

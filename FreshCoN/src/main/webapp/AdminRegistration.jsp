@@ -127,11 +127,11 @@ h2 {
 				<div class="form-row">
 					<div class="sub-part">
 						<label for="fName">First Name:</label> <input type="text"
-							id="fName" name="fName" placeholder="Enter First Name" required>
+							id="fName" name="fName" placeholder="Enter First Name" maxlength="10"  required>
 					</div>
 					<div class="sub-part">
 						<label for="lName">Last Name:</label> <input type="text"
-							id="lName" name="lName" placeholder="Enter Last Name" required>
+							id="lName" name="lName" placeholder="Enter Last Name" maxlength="10" required>
 					</div>
 				</div>
 				<div class="form-row">
@@ -141,17 +141,17 @@ h2 {
 					</div>
 					<div class="sub-part">
 						<label for="phone">Phone:</label> <input type="tel" id="phone"
-							name="phone" placeholder="Enter Phone Number" required>
+							name="phone" placeholder="Enter Phone Number" maxlength="10"  required>
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="sub-part">
 						<label for="Lane">Address Line:</label> <input type="text"
-							id="Lane" name="Lane" placeholder="Enter Address Line" required>
+							id="Lane" name="Lane" placeholder="Enter Address Line" maxlength="30" required>
 					</div>
 					<div class="sub-part">
 						<label for="city">City:</label> <input type="text" id="city"
-							name="city" placeholder="Enter City" required>
+							name="city" placeholder="Enter City" maxlength="10"  required>
 					</div>
 				</div>
 				<div class="form-row">
@@ -161,7 +161,7 @@ h2 {
 					</div>
 					<div class="sub-part">
 						<label for="img">Add Image</label> <input type="file" id="img"
-							name="imgUrl">
+							name="imgUrl"required >
 					</div>
 				</div>
 
@@ -169,13 +169,13 @@ h2 {
 					<div class="sub-part">
 						<label for="password">Password:</label> <input type="password"
 							id="password" name="password" placeholder="Enter Password"
-							required>
+							maxlength="15" required>
 					</div>
 
 					<div class="sub-part">
 						<label for="password">Confirm Password:</label> <input
 							type="password" id="Confirmpassword" name="Confirmpassword"
-							placeholder="Enter Confirm password" required>
+							placeholder="Enter Confirm password" maxlength="15" required>
 					</div>
 
 

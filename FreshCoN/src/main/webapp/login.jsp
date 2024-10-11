@@ -261,11 +261,11 @@
                 <span class="enter_details">Enter Following Details</span>
                 <div class="form-grid">
                     <div>
-                        <input type="text" id="signUpFirstName" placeholder="First Name" name="fName" required />
+                        <input type="text" id="signUpFirstName" placeholder="First Name" name="fName" maxlength="10" required />
                         <span id="firstNameError" class="error"></span>
                     </div>
                     <div>
-                        <input type="text" id="signUpLastName" placeholder="Last Name" name="lName" required />
+                        <input type="text" id="signUpLastName" placeholder="Last Name" name="lName" maxlength="10" required />
                         <span id="lastNameError" class="error"></span>
                     </div>
                     <div>
@@ -273,15 +273,15 @@
                         <span id="emailError" class="error"></span>
                     </div>
                     <div>
-                        <input type="text" id="signUpPhone" placeholder="Phone Number" name="phone" required />
+                        <input type="text" id="signUpPhone" placeholder="Phone Number" name="phone" maxlength="10" required />
                         <span id="phoneError" class="error"></span>
                     </div>
                     <div>
-                        <input type="text" id="signUpLane" placeholder="Lane" name="lane" required />
+                        <input type="text" id="signUpLane" placeholder="Lane" name="lane" maxlength="30" required />
                         <span id="laneError" class="error"></span>
                     </div>
                     <div>
-                        <input type="text" id="signUpCity" placeholder="City" name="city" required />
+                        <input type="text" id="signUpCity" placeholder="City" name="city" maxlength="10" required />
                         <span id="cityError" class="error"></span>
                     </div>
                     <div>
@@ -289,7 +289,7 @@
                         <span id="dobError" class="error"></span>
                     </div>
                     <div>
-                        <input type="file" id="signUpImageUrl" name="imgUrl" />
+                        <input type="file" id="signUpImageUrl" name="imgUrl" required />
                         <span id="imageError" class="error"></span>
                         <img id="imagePreview" src="" alt="Image Preview" style="display:none; width: 100px; margin-top: 10px;" />
                     </div>
@@ -297,12 +297,12 @@
                 </div>
                 <div class="form-grid">
                     <div>
-                        <input type="password" id="signUpPassword" placeholder="Password" name="password" required />
+                        <input type="password" id="signUpPassword" placeholder="Password" name="password" maxlength="15" required />
                         <span id="passwordError" class="error"></span>
                     </div>
 
                     <div>
-                        <input type="password" id="signUpConfirmPassword" placeholder="Confirm Password" name="password" required />
+                        <input type="password" id="signUpConfirmPassword" placeholder="Confirm Password" name="password" maxlength="15" required />
                         <span id="passwordError" class="error"></span>
                     </div>
                 </div>
