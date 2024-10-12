@@ -2,7 +2,10 @@ package freshco.Model;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import freshco.Beans.DeliveryPerson;
 import freshco.Beans.Employee;
+import freshco.Beans.Manager;
 
 
 public class EmployeeDBUtil {
@@ -24,17 +27,46 @@ public class EmployeeDBUtil {
 	}
 
 	public static List<Employee> getAllEmployees() throws Exception {
-        List<Employee> employees = new ArrayList<>();
-        String query = "SELECT * FROM Employee";
+	    List<Employee> employees = new ArrayList<>();
+	    String query = "SELECT EmID, email, nic, dob, imgUrl, phone, password, Role, vehicleNum, drivingLicenseNum, city FROM EmployeeRoleView";
 
-        ResultSet rs = webDB.executeSearch(query);
-        while (rs.next()) {
-            Employee emp = new Employee(rs.getInt("EmID"),rs.getString("email"),rs.getString("nic"),rs.getString("dob"),rs.getString("imgUrl"),rs.getString("phone"),rs.getString("password"));
-            employees.add(emp);
-        }
-        rs.close();
-        return employees;
-    }
+	    ResultSet rs = webDB.executeSearch(query);
+	    while (rs.next()) {
+	        // Fetch common employee fields
+	        int emID = rs.getInt("EmID");
+	        String email = rs.getString("email");
+	        String nic = rs.getString("nic");
+	        String dob = rs.getString("dob");
+	        String imgUrl = rs.getString("imgUrl");
+	        String phone = rs.getString("phone");
+	        String password = rs.getString("password");
+	        String role = rs.getString("Role");
+
+	        Employee emp;
+
+	        // Instantiate the appropriate subclass based on the role
+	        if ("Manager".equals(role)) {
+	            // Create Manager object
+	            emp = new Manager(emID, email, nic, dob, imgUrl, phone, password);
+	        } else if ("DeliveryPerson".equals(role)) {
+	            // Fetch delivery-specific fields
+	            String vehicleNum = rs.getString("vehicleNum");
+	            String drivingLicenseNum = rs.getString("drivingLicenseNum");
+	            String city = rs.getString("city");
+	            
+	            // Create DeliveryPerson object
+	            emp = new DeliveryPerson(emID, email, nic, dob, imgUrl, phone, password, vehicleNum, drivingLicenseNum, city);
+	        } else {
+	            // Create Normal Employee object
+	            emp = new Employee(emID, email, nic, dob, imgUrl, phone, password);
+	        }
+
+	        employees.add(emp);
+	    }
+	    rs.close();
+	    return employees;
+	}
+
 	
 	public static boolean insertEmployee(String email, String nic, String dob, String phone, String imgUrl, String password, int ID) {
     	

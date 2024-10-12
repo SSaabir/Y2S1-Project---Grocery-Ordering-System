@@ -30,6 +30,13 @@ public class Customer {
 			
 		}
 
+		public Customer(int cusID, String fName, String lName, String email) {
+		    super();
+		    this.cusID = cusID;
+		    this.fName = fName;
+		    this.lName = lName;
+		    this.email = email;
+		}
 
 	
 

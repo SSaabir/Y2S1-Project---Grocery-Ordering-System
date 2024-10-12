@@ -10,10 +10,10 @@ public class Sale {
     private boolean orderStatus;
     private int CusID ;
     private int PID ;
-    private int DPID ;
+    private Integer DPID ;
     
     
-	public Sale(int oID, Date date, double totalAmount, boolean orderStatus, int cusID, int pID, int dPID) {
+	public Sale(int oID, Date date, double totalAmount, boolean orderStatus, int cusID, int pID, Integer dPID) {
 		super();
 		OID = oID;
 		this.orderDate = date;
@@ -43,7 +43,7 @@ public class Sale {
 	public int getPID() {
 		return PID;
 	}
-	public int getDPID() {
+	public Integer getDPID() {
 		return DPID;
 	}
 	public void setOID(int oID) {
@@ -64,7 +64,7 @@ public class Sale {
 	public void setPID(int pID) {
 		PID = pID;
 	}
-	public void setDPID(int dPID) {
+	public void setDPID(Integer dPID) {
 		DPID = dPID;
 	}
     

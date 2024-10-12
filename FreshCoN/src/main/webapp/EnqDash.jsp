@@ -24,6 +24,12 @@
 
 <body>
  <jsp:include page="Dash.jsp"/>
+ <%
+	HttpSession sess = request.getSession(false); // Get the session without creating a new one
+	String userType = (String) sess.getAttribute("userType"); // Get userType from the session
+
+	if (userType != null && userType.equals("Manager")) {
+	%>
 <div id="main">
 <h1 class="title-sec">Enquiry</h1>
   <hr>
@@ -59,7 +65,7 @@
                     <th>Subject</th>
                     <th>Comments</th>
                     <th>Response</th>
-                    <th>Replay</th>
+                    <th>Action</th>
                     
                 </tr>
             </thead>
@@ -95,7 +101,14 @@
         </div>
     </section>
 </div>
-
+<%
+	} else {
+	%>
+	<h2>Access Denied</h2>
+	<p>You do not have permission to view this content.</p>
+	<%
+	}
+	%>
 <footer>
     <jsp:include page="footer.jsp"/>
 </footer>

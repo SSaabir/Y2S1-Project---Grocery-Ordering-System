@@ -424,20 +424,63 @@ VALUES
     ('Bob', 'Brown', 'bobbrown@adm.freshco.lk', '321 Pine St', 'Capitol City', '1979-11-05', './image/bobbrown.jpg', '444-987-6543', 'hashed_password_4'),
     ('Charlie', 'Davis', 'charliedavis@adm.freshco.lk', '654 Maple St', 'North Haverbrook', '1983-03-30', './image/charliedavis.jpg', '333-456-7890', 'hashed_password_5');
 
-CREATE VIEW SalePaymentView AS
-SELECT 
-    s.OID AS OrderID,
-    s.orderDate AS OrderDate,
-    s.totalAmount AS TotalAmount,
-    s.orderStatus AS OrderStatus,
-    s.address AS ShippingAddress,
-    s.CusID AS CustomerID,
-    s.EmID AS EmployeeID,
-    p.PID AS PaymentID,
-    p.payMethod AS PaymentMethod,
-    p.payStatus AS PaymentStatus
-FROM 
-    Sale s
-JOIN 
-    Payment p ON s.PID = p.PID;
 
+CREATE VIEW EmployeeRoleView AS
+SELECT 
+    e.EmID,
+    e.email,
+    e.nic,
+    e.dob,
+    e.imgUrl,
+    e.phone,
+    e.password,
+    CASE
+        WHEN m.EmID IS NOT NULL THEN 'Manager'
+        WHEN dp.EmID IS NOT NULL THEN 'DeliveryPerson'
+        ELSE 'Normal Employee'
+    END AS Role,
+    -- Delivery Person specific fields, NULL for non-DeliveryPersons
+    dp.vehicleNum,
+    dp.drivingLicenseNum,
+    dp.city
+FROM 
+    Employee e
+LEFT JOIN 
+    Manager m ON e.EmID = m.EmID
+LEFT JOIN 
+    DeliveryPerson dp ON e.EmID = dp.EmID;
+
+CREATE VIEW Manager_Sales_View AS
+SELECT 
+    S.OID AS OrderID,
+    S.orderDate,
+    S.totalAmount,
+    CASE
+        WHEN S.orderStatus IS NULL THEN 'Pending'      -- NULL = Pending
+        WHEN S.orderStatus = 0 THEN 'On Delivery'      -- 0 = On Delivery
+        WHEN S.orderStatus = 1 THEN 'Completed'        -- 1 = Completed
+        ELSE 'Unknown'                                 -- Handle unexpected cases
+    END AS orderStatus,
+    C.CusID,
+    C.fName,
+    C.lName,
+    C.email,
+    P.PID AS PaymentID,
+    P.payMethod,
+    CASE
+        WHEN P.payStatus = 0 THEN 'Pending'            -- 0 = Pending
+        WHEN P.payStatus = 1 THEN 'Paid'               -- 1 = Paid
+        ELSE 'Unknown'                                 -- Handle unexpected cases
+    END AS payStatus,                                  -- Display human-readable status
+    F.FID AS FeedbackID,
+    F.comments,
+    F.rating,
+    S.EmID AS DeliveryPersonID                         -- Include DPID from Sale table
+FROM 
+    Sale S
+LEFT JOIN 
+    Customer C ON S.CusID = C.CusID
+LEFT JOIN 
+    Payment P ON S.PID = P.PID
+LEFT JOIN 
+    Feedback F ON S.OID = F.OID;
