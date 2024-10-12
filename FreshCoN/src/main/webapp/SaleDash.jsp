@@ -116,7 +116,7 @@
 							<td><%=feedback != null ? feedback.getComments() : "N/A"%></td>
 							<td><%=feedback != null ? feedback.getRating() : "N/A"%></td>
 							<td><%=(sale.getDPID() != null) ? sale.getDPID() : "N/A"%></td>
-							<td><a href=""><span class="material-symbols-outlined">receipt_long</span></a></td>
+							<td><a href="Receipt?OID=<%= sale.getOID() %>"><span class="material-symbols-outlined">receipt_long</span></a></td>
 							
 
 						</tr>
@@ -223,7 +223,7 @@
 							<td><%=feedback != null ? feedback.getComments() : "N/A"%></td>
 							<td><%=feedback != null ? feedback.getRating() : "N/A"%></td>
 							<td><%=(sale.getDPID() != null) ? sale.getDPID() : "N/A"%></td>
-							<td><a href=""><span class="material-symbols-outlined">receipt_long</span></a></td><!-- accept link -->
+							<td><a href="Receipt?OID=<%= sale.getOID() %>"><span class="material-symbols-outlined">receipt_long</span></a></td><!-- accept link -->
 							
 						</tr>
 						<%
@@ -298,6 +298,7 @@
 							<th>Feedback Comments</th>
 							<th>Feedback Rating</th>
 							<th>DPID</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -328,8 +329,8 @@
 							<td><%=feedback != null ? feedback.getComments() : "N/A"%></td>
 							<td><%=feedback != null ? feedback.getRating() : "N/A"%></td>
 							<td><%=(sale.getDPID() != null) ? sale.getDPID() : "N/A"%></td>
-							<td><a href=""><span class="material-symbols-outlined">receipt_long</span></a>
-							<a href=""><span class="material-symbols-outlined">reviews</span></a></td>
+							<td><a href="Receipt?OID=<%= sale.getOID() %>"><span class="material-symbols-outlined">receipt_long</span></a>
+							<a href="Feedback.jsp?OID=<%= sale.getOID() %>"><span class="material-symbols-outlined">reviews</span></a></td>
 
 						</tr>
 						<%

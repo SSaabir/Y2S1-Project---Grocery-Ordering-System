@@ -17,7 +17,7 @@ public class FeedbackDBUtil {
             Feedback feedback = new Feedback(
                 rs.getInt("FID"),
                 rs.getString("comments"),
-                rs.getInt("rating"),
+                rs.getString("rating"),
                 rs.getInt("OID")
             );
             feedbacks.add(feedback);
@@ -27,7 +27,7 @@ public class FeedbackDBUtil {
     }
 
     // Method to insert a new feedback record
-    public static boolean insertFeedback(String comments, int rating, int OID) {
+    public static boolean insertFeedback(String comments, String rating, int OID) {
         boolean isSuccess = false;
 
         String query = "INSERT INTO feedback (comments, rating, OID) VALUES ('"

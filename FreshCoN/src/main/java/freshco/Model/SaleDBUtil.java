@@ -42,7 +42,7 @@ public class SaleDBUtil {
 	        // Fetch Feedback details
 	        int FID = rs.getInt("FeedbackID");
 	        String comments = rs.getString("comments");
-	        int rating = rs.getInt("rating");
+	        String rating = rs.getString("rating");
 
 	        // Create Feedback object
 	        Feedback feedback = new Feedback(FID, comments, rating, OID);

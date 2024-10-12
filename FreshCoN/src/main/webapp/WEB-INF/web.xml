@@ -381,6 +381,15 @@
 		<url-pattern>/EditProduct</url-pattern>
 	</servlet-mapping>
 
+	<!-- Update Enquiry-->
+	<servlet>
+		<servlet-name>UpdateEnquiry</servlet-name>
+		<servlet-class>freshco.Control.UpdateEnquiry</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateEnquiry</servlet-name>
+		<url-pattern>/ResUpdate</url-pattern>
+	</servlet-mapping>
 	<!-- Update Data Servlet Mappings End -->
 
 

@@ -24,18 +24,15 @@ public class UpdateEnquiry extends HttpServlet {
      	
 		
 		        int EnID = Integer.parseInt(request.getParameter("EnID"));
-		        String email = request.getParameter("email");
-		    	String subject = request.getParameter("subject");
-	         	String comments = request.getParameter("comments");
 	         	String respons = request.getParameter("response");
 	         
 
 		        // Call the updateEnquirymethod from your database class
-		        boolean isUpdated = EnquiryDBUtil.updateEnquiry(EnID,email, subject,comments,respons);
+		        boolean isUpdated = EnquiryDBUtil.updateEnquiry(EnID, respons);
 
 		        if (isUpdated) {
 		            // Redirect or inform the user of success
-		            response.sendRedirect("");
+		            response.sendRedirect("Enquiry");
 		        } else {
 		            // Handle the failure case, such as redirecting to an error page
 		            response.sendRedirect("");

@@ -108,12 +108,12 @@
         </div>
 
         <div class="main-form">
-            <form id="profileForm" method="post" action="Response" enctype="multipart/form-data">
+            <form id="profileForm" method="post" action="ResUpdate" enctype="multipart/form-data">
                 <div class="group">
                     <label for="Response">Response</label>
-                    <textarea name="Response" id="Response"></textarea>
+                    <textarea name="response" id="Response"></textarea>
                 </div>
-
+				<input type="hidden" name="EnID" value="<%= request.getParameter("EnID") != null ? request.getParameter("EnID") : "" %>" />
                 <button type="submit" value="Response" class="save-btn">Save</button>
                 <button type="button" class="save-btn" onclick="history.back();">Back</button>
             </form>

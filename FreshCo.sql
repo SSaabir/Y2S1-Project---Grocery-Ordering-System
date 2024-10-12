@@ -130,7 +130,7 @@ CREATE TABLE Product_Sale (
 	CREATE TABLE Feedback (
     FID INT AUTO_INCREMENT NOT NULL,
     comments TEXT NOT NULL,
-    rating INT NULL,
+    rating VARCHAR(1) NULL,
     OID INT NOT NULL,
     CONSTRAINT Feedback_PK PRIMARY KEY (FID),
     CONSTRAINT Feedback_Sale_FK FOREIGN KEY (OID)
@@ -357,11 +357,11 @@ VALUES
 -- Insert records into Feedback
 INSERT INTO Feedback (comments, rating, OID)
 VALUES
-    ('Great product!', 5, 1),
-    ('Good service', 4, 2),
-    ('Excellent value', 5, 3),
-    ('Fast delivery', 4, 4),
-    ('Happy customer', 5, 5);
+    ('Great product!', '5', 1),
+    ('Good service', '4', 2),
+    ('Excellent value', '5', 3),
+    ('Fast delivery', '4', 4),
+    ('Happy customer', '5', 5);
 
 -- Insert records into Category_Employee
 INSERT INTO Category_Employee (CID, EmID)
@@ -484,3 +484,24 @@ LEFT JOIN
     Payment P ON S.PID = P.PID
 LEFT JOIN 
     Feedback F ON S.OID = F.OID;
+
+CREATE VIEW SaleDetails AS
+SELECT 
+    s.OID AS OrderID,
+    s.orderDate AS OrderDate,
+    s.totalAmount AS TotalAmount,
+    s.orderStatus AS OrderStatus,
+    s.address AS Address,
+    s.CusID AS CustomerID,
+    ps.PrID AS ProductID,
+    p.productName AS ProductName,
+    p.price AS ProductPrice,
+    ps.quantity AS Quantity,
+    p.discount AS ProductDiscount,
+    p.imgUrl AS ProductImageURL
+FROM 
+    Sale s
+LEFT JOIN 
+    Product_Sale ps ON s.OID = ps.OID
+LEFT JOIN 
+    Product p ON ps.PrID = p.PrID;

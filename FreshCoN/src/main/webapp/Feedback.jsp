@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -129,15 +130,15 @@
 
 <body>
 <%
-	String errorMessage = (String) request.getAttribute("errorMessage");
-	if (errorMessage != null) {
-	%>
-	<script>
+    String errorMessage = (String) request.getAttribute("errorMessage");
+    if (errorMessage != null) {
+%>
+    <script>
         alert("<%= errorMessage %>");
-	</script>
-	<%
-	}
-	%>
+    </script>
+<%
+    }
+%>
     <div class="container">
         <!-- Form that submits to server -->
         <form action="Feedbackform" method="post" enctype="multipart/form-data">
@@ -145,7 +146,7 @@
                 <h2>Rate Your Experience</h2>
                 <p>Your feedback helps us improve</p>
                 <div class="comment-box">
-                    <textarea id="comment" placeholder="Leave a comment..." name="comments"></textarea>
+                    <textarea id="comment" placeholder="Leave a comment..." name="comments" required></textarea>
                 </div>
                 <div class="stars">
                     <i class="star" data-value="1">&#9733;</i>
@@ -154,22 +155,17 @@
                     <i class="star" data-value="4">&#9733;</i>
                     <i class="star" data-value="5">&#9733;</i>
                 </div>
-                
+				String OID = <%= request.getParameter("OID") %>;
                 <input type="hidden" name="rating" id="rating" value="0" />
+                <input type="hidden" name="OID" value="OID" />
                 <button type="submit" class="submit-btn">Submit</button>
-
             </div>
         </form>
-
-        <div class="success-message">Thank you! Your feedback has been successfully submitted.</div>
     </div>
 
     <script>
         // Select elements
         const stars = document.querySelectorAll('.star');
-        const submitBtn = document.querySelector('.submit-btn');
-        const successMessage = document.querySelector('.success-message');
-        const commentBox = document.getElementById('comment');
         const ratingInput = document.getElementById('rating');
         let selectedRating = 0;
 
@@ -189,38 +185,8 @@
                 ratingInput.value = selectedRating;  // Set the hidden input value for submission
             });
         });
-
-        // Show success message and clear form on submit
-        submitBtn.addEventListener('click', () => {
-            const comment = commentBox.value; // Get the comment value
-
-            // Validate if a rating is selected
-            if (selectedRating === 0) {
-                alert('Please select a rating before submitting.');
-                return;
-            }
-
-            // Validate if a comment is provided
-            if (comment.trim() === "") {
-                alert('Please leave a comment before submitting.');
-                return;
-            }
-
-            // Show success message
-            successMessage.style.display = 'block';
-
-            // Log rating and comment (you can replace this with an AJAX request to send data to a server)
-            console.log('Selected Rating:', selectedRating);
-            console.log('Comment:', comment);
-
-            // Clear comment box and selected rating
-            commentBox.value = '';
-            selectedRating = 0;
-
-            // Remove active class from all stars
-            stars.forEach(star => star.classList.remove('active'));
-        });
     </script>
+
 </body>
 
 </html>

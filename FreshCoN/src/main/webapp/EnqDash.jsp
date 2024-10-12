@@ -83,7 +83,7 @@
                         <td><%= enq.getSubject() %></td>
                         <td><%= enq.getComments() %></td>
                         <td><%= enq.getResponse() %></td>
-                        <td><a href="Response.jsp"><span class="material-symbols-outlined">message</span></a></td>
+                        <td><a href="Response.jsp?EnID=<%= enq.getEnID() %>"><span class="material-symbols-outlined">message</span></a></td>
                      
                        
            

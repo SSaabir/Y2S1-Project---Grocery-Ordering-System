@@ -46,12 +46,11 @@ public class EnquiryDBUtil {
 	
 	
 	
-	public static boolean updateEnquiry(int EnID,String email,String subject, String comments, String response) {
+	public static boolean updateEnquiry(int EnID, String response) {
 	
 		boolean isSuccess = false;
 		
-		String query = "UPDATE enquiry SET email='"+email+"',subject='"+subject+"',comments='"+comments+"',response='"+response+"'"
-				+ "where EnID='"+EnID+"'";
+		String query = "UPDATE enquiry SET response='"+response+"'" + "where EnID='"+EnID+"'";
 
 	try {
         int rowsAffected = webDB.executeIUD(query);
