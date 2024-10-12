@@ -126,8 +126,8 @@
                             // Ensure quantities are valid
                              // At least 1 quantity
 
-                            totalDiscount += discountAmount * quantity; // Calculate total discount
-                            totalPayable += netPrice * quantity; // Calculate total payable amount
+                            totalDiscount += discountAmount; // Calculate total discount
+                            totalPayable += netPrice; // Calculate total payable amount
             %>
             <tr>
                 <td>

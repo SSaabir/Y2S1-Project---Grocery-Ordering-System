@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
-<%@ page import="freshco.Beans.CartProducts" %> <!-- Update with the correct package name -->
+<%@ page import="freshco.Beans.CartProducts" %>
+<%@ page import="java.text.DecimalFormat" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -227,7 +228,6 @@
 
 <body>
     <div class="checkout-container">
-        <!-- Single Form for Payment and Order Review -->
         <form action="OrderConfirm" method="POST">
             <h1>Fresh Co Checkout</h1>
             <div class="payment-section">
@@ -242,19 +242,18 @@
                 </div>
 
                 <!-- Card details section -->
-                <div class="card-details" id="card-details">
+                <div class="card-details" id="card-details" style="display:none;">
                     <h3>Enter Card Details</h3>
                     <label for="card-name">Name on Card</label>
-                    <input type="text" id="card-name" name="cardName" placeholder="John Doe" maxlength="10">
+                    <input type="text" id="card-name" name="cardName" placeholder="John Doe" maxlength="50">
                     <label for="card-number">Card Number</label>
-                    <input type="text" id="card-number" name="cardNumber" placeholder="xxxx xxxx xxxx xxxx" maxlength="19">
+                    <input type="text" id="card-number" name="cardNumber" placeholder="xxxx xxxx xxxx xxxx" maxlength="16">
                     <label for="card-expiry">Expiry Date</label>
-                    <input type="text" id="card-expiry" name="cardExpiry" placeholder="MM/YY"  maxlength="5">
+                    <input type="text" id="card-expiry" name="cardExpiry" placeholder="MM/YY" maxlength="5">
                     <label for="card-cvc">CVC</label>
                     <input type="text" id="card-cvc" name="cardCVC" placeholder="xxx" maxlength="3">
                 </div>
 
-                <!-- Delivery Address Selection -->
                 <h3>Select Delivery Address</h3>
                 <div class="payment-method">
                     <input type="radio" name="address" id="existing-address" value="existing" onclick="toggleAddressDetails(false)" required>
@@ -265,62 +264,66 @@
                     <label for="add-delivery-address">Add Delivery Address</label>
                 </div>
 
-                <!-- New Address input field -->
-                <div class="address-details" id="address-details">
+                <div class="address-details" id="address-details" style="display:none;">
                     <label for="address">Enter your Delivery Address</label>
-                    <input type="text" id="address" name="deliveryAddress" placeholder="Delivery Address" >
+                    <input type="text" id="address" name="address" placeholder="123 Main St, City" required>
                 </div>
-            </div>
 
-            <!-- Review Order Section -->
+                <button type="submit" class="pay-now">Pay Now</button>
+            </div>
             <div class="review-order-section">
                 <h2>Review Your Order</h2>
+
+                <%-- Retrieve cart items from request --%>
                 <%
-                    // Retrieve the cart products
-                    @SuppressWarnings("unchecked")
                     List<CartProducts> cartItems = (List<CartProducts>) request.getAttribute("cartItems");
                     double totalAmount = 0.0;
-                    double discount = 50.00; // Example discount
-                %>
-
+                    double discount = 0.0; // Example discount value
+                    double totalPayable = 0.0;
+                    DecimalFormat df = new DecimalFormat("#.00");
+                    
+                    // Check if the cartItems is null or empty
+                    if (cartItems != null && !cartItems.isEmpty()) {
+                        for (CartProducts product : cartItems) {
+                        	double productAmount = 0.0;
+                %>		
+                            <div class="order-item">
+                                <img src="<%= product.getImgUrl() %>" alt="<%= product.getProductName() %>">
+                                <div>
+                                    <p><%= product.getProductName() %></p>
+                                    <p>Quantity: <%= product.getQuantity() %></p>
+                                   <p>Price: $<%= df.format(product.getNetPrice() * product.getQuantity()) %></p>
+                                </div>
+                            </div>
                 <%
-                    // Loop through the cart products and display them
-                    for (CartProducts product : cartItems) {
+                            // Calculate total amount
+                            productAmount = product.getNetPrice() * product.getQuantity();
+                			discount += productAmount * (product.getDiscount()/100) ;
+                			totalAmount += productAmount; 
+                        }
+                    } else {
                 %>
-                    <div class="order-item">
-                        <img src="<%= product.getImgUrl() %>" alt="<%= product.getProductName() %>">
-                        <div>
-                            <p><%= product.getProductName() %></p>
-                            <p>Quantity: <%= product.getQuantity() %></p>
-                            <p>Price: $<%= product.getNetPrice() %>.00</p>
-                        </div>
-                    </div>
+                        <p>No items in the cart.</p>
                 <%
-                        totalAmount += product.getNetPrice() * product.getQuantity();
                     }
+                    
+                    // Calculate total payable after discount
+                    totalPayable = (totalAmount - discount > 0) ? (totalAmount - discount) : 0;
                 %>
 
-                <!-- Order Summary Section -->
-                <div class="order-summary-box">
-                    <h3>Order Summary</h3>
-                    <div class="order-summary">
-                        <p><strong>Order ID:</strong> <span id="order-id">#123456</span></p>
-                        <p><strong>Order Date:</strong> <span id="order-date"><%= new java.util.Date() %></span></p>
-                        <p><strong>Discount:</strong> <span id="discount">- $<%= discount %></span></p>
-                        <p>Total Items: <strong><%= cartItems.size() %></strong></p>
-                        <p>Total Amount: <strong>$<%= totalAmount - discount %></strong></p>
-                    </div>
+                <div class="order-summary">
+                    <p><strong>Total Items:</strong> <%= cartItems != null ? cartItems.size() : 0 %></p>
+                    <p><strong>Total Amount:</strong> $<%= df.format(totalAmount) %></p>
+                    <p><strong>Total Discount:</strong> $<%= df.format(discount) %></p>
+                    <p><strong>Total Payable:</strong> $<%= df.format(totalPayable) %></p>
                 </div>
             </div>
-<!-- Add this hidden field inside the form to pass the totalAmount -->
-<input type="hidden" name="totalAmount" value="<%= totalAmount - discount %>">
-            <button class="pay-now" type="submit">Pay Now</button>
         </form>
     </div>
 
     <script>
-        function showCardDetails(isCard) {
-            document.getElementById('card-details').style.display = isCard ? 'block' : 'none';
+        function showCardDetails(show) {
+            document.getElementById('card-details').style.display = show ? 'block' : 'none';
         }
 
         function toggleAddressDetails(show) {
