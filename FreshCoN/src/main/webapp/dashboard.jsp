@@ -8,39 +8,107 @@
         <title>Fresh Co</title>
 
         <style>
-            .data {
-                display: flex;
-                flex-wrap: wrap;
+           
+            
+        
+        /* Container for the entire dashboard */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* Title section at the top */
+        .title-section {
+            
+            margin-bottom: 20px;
+        }
+        .title-section h1 {
+            font-size: 46px;
+            color: #333;
+        }
+        /* Dashboard cards in a row */
+        .dashboard {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            height:150px;
+           
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            color: #333;
+        }
+        .card h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .clock :hover{
+            transform: scale(1.1);
+            transition: all ease 0.1s;
+        }
+         .calendar :hover{
+            transform: scale(1.1);
+            transition: all ease 0.1s;
+        }
+       
+        .card .time, .card .calendar {
+            font-size: 40px;
+            color: #2d2d2d;
+        }
+        .card .description {
+            font-size: 16px;
+            color: #888;
+        }
+        /* For the clock, weather, and calendar icons */
+        .icon {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .clock-icon {
+            background: url('./image/clock1.png') no-repeat center;
+            background-size: contain;
+        }
+       
+        .calendar-icon {
+            background: url('./image/calendar.png') no-repeat center;
+            background-size: contain;
+        }
+        /* Colors */
+        .card.clock {
+            background-color: #dceffb; /* Light blue */
+        }
+        .card.weather {
+            background-color: #f8d6e7; /* Light pink */
+        }
+        .card.calendar {
+            background-color: #dff8da; /* Soft green */
+        }
+        
+        .buttonsone {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width:50px;
+            padding: 20px;
+            
+        }
 
-            }
-
-            .data-box {
-                display: flex;
-                border-radius: 20px;
-                color: white;
-                padding: 30px;
-                margin: 20px;
-            }
-
-            #box1 {
-                background-color: #003285;
-            }
-
-            #box2 {
-                background-color: #2A629A;
-            }
-
-            #box3 {
-                background-color: #FF7F3E;
-            }
-
-            #box4 {
-                background-color: #E5D9F2;
-            }
-
-            #box5 {
-                background-color: #E5D9F2;
-            }
+        .user-picone {
+            width: 150px;
+            border-radius: 50%;
+            cursor: pointer;
+      
+            
         </style>
 
 
@@ -51,61 +119,103 @@
 <jsp:include page = "Dash.jsp"/>
 
         <div id="main">
-            <section class="data">
-                <div class="data-box" id="box1">
-                    <span class="material-symbols-outlined">
-                        inventory
-                    </span>
-                    <h2>&nbsp;&nbsp;Order</h2>
-                    <h1>nmbrs</h1>
-                </div>
+        
+        <div class="buttonsone">
+                <%
+                    HttpSession sessH = request.getSession(false); // Get the session without creating a new one
+                    String userTypo = (String) sessH.getAttribute("userType"); // Get userType from the session
 
-                <div class="data-box" id="box2">
-                    <span class="material-symbols-outlined">
-                        crowdsource
-                    </span>
-                    <h2>&nbsp;&nbsp;Customer</h2>
-                    <h1>nmbrs</h1>
-                </div>
-
-                <div class="data-box" id="box3">
-                    <span class="material-symbols-outlined">
-                        paid
-                    </span>
-                    <h2>&nbsp;&nbsp;Spending</h2>
-                    <h1>nmbrs</h1>
-                </div>
-
-                <div class="data-box" id="box4">
-                    <span class="material-symbols-outlined">
-                        list_alt
-                    </span>
-                    <h2>&nbsp;&nbsp;Inventory</h2>
-                    <h1>nmbrs</h1>
-                </div>
-
-                <div class="data-box" id="box5">
-                    <span class="material-symbols-outlined">
-                        monitoring
-                    </span>
-                    <h2>&nbsp;&nbsp;Earning</h2>
-                    <h1>nmbrs</h1>
-                </div>
-
-            </section>
-<%String userType = (String) session.getAttribute("userType");%>
+                    if (userTypo == null || userTypo.equals("guest")) {
+                %>
+                    <img src="./image/user.png" class="user-picone" alt="User Profile">
+                    
+                    
+                <%
+                    } else {
+                %>
+                    <img src="<%= (String) session.getAttribute("imgUrl") %>" class="user-picone" alt="User Profile">
+                    
+                        
+                            
+                <%
+                    }
+                %>
+            </div>
+            
+            <%String userType = (String) session.getAttribute("userType");%>
 
 
             <section class="graph">
                 <div class="graph-box" id="graph1">
-                    <h1> <%= userType %></h1>
+                    <h1> FreshCo <%= userType %></h1>
                 </div>
 
-                <div class="graph-box" id="graph2">
-                    <h1>jingles</h1>
-                </div>
+                
 
             </section>
+        
+            <div class="container">
+        <!-- Title Section -->
+        
+        
+        <div class="title-section">
+            <h1>Welcome to the Dashboard</h1>
+        </div>
+
+        <!-- Dashboard Section with Clock, Weather, and Calendar -->
+        <div class="dashboard">
+            <!-- Clock Card -->
+            <div class="card clock">
+                <h2>Current Time</h2>
+                <div class="time" id="clock">08:34 AM</div>
+                <div class="icon clock-icon"></div>
+            </div>
+
+            <!-- Calendar Card -->
+            <div class="card calendar">
+                <h2>Today's Date</h2>
+                <div class="calendar" id="calendar">October 12, 2024</div>
+                <div class="description" id="day">Saturday</div>
+                <div class="icon calendar-icon"></div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    <script>
+        // JavaScript code for updating time
+        function updateTime() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            const timeString = hours + ':' + minutes + ' ' + ampm;
+            document.getElementById('clock').textContent = timeString;
+        }
+
+        // JavaScript code for updating calendar
+        function updateCalendar() {
+            const now = new Date();
+            const options = { month: 'long', day: 'numeric', year: 'numeric' };
+            const dateString = now.toLocaleDateString('en-US', options);
+            const dayString = now.toLocaleDateString('en-US', { weekday: 'long' });
+
+            document.getElementById('calendar').textContent = dateString;
+            document.getElementById('day').textContent = dayString;
+        }
+
+        // Call the functions to update time and calendar
+        setInterval(updateTime, 1000); // Update time every second
+        updateTime(); // Initial call for time
+        updateCalendar(); // Initial call for calendar
+    </script>
+           
+
         </div>
         <footer>
             <jsp:include page="footer.jsp" />

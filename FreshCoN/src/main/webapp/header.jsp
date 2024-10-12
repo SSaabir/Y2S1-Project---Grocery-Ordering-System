@@ -45,7 +45,14 @@
         .freshco span {
             font-size: 18px;
             font-weight: bold;
-            color: #000000;
+            
+        }
+        .fresh {
+            color: green;
+        }
+
+        .co {
+            color: rgb(239, 185, 6);
         }
 
         .nav-links {
@@ -134,7 +141,7 @@
     <header>
         <nav class="navbar">
             <div class="freshco">
-                <span>FreshCo</span>
+                <span class="fresh">Fresh</span><span class="co">Co</span>
             </div>
             <ul class="nav-links">
                 <li><a href="FreshCo">Home</a></li>
