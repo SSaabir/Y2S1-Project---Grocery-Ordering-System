@@ -32,12 +32,19 @@ public class UpdateEmp extends HttpServlet {
 	        String imgUrl = (String) request.getAttribute("imageUrl");
 
 	        // Call the updateEmployee method from your database class
-	        boolean isUpdated = EmployeeDBUtil.updateEmployee(EmID, email, imgUrl, phone, password);
-
+	        boolean isUpdated;
+	        if (imgUrl != null) {
+	            isUpdated = EmployeeDBUtil.updateEmployee(EmID, email, imgUrl, phone, password);
+	        } else {
+	            isUpdated = EmployeeDBUtil.updateEmployeeWithoutImage(EmID, email, phone, password);
+	        }
 	        // Handle success or failure
 	        if (isUpdated) {
-	            // Redirect to the dashboard on success
-	            response.sendRedirect("dashboard.jsp");
+	        	request.setAttribute("email", email);
+	            request.setAttribute("password", password);
+	            
+	        	RequestDispatcher userValidationDispatcher = request.getRequestDispatcher("login");
+	            userValidationDispatcher.forward(request, response);
 	        } else {
 	        	request.setAttribute("errorMessage", "Failed to update Employee. Please try again.");
 				RequestDispatcher dispatcher1 = request.getRequestDispatcher("EditProfile.jsp");

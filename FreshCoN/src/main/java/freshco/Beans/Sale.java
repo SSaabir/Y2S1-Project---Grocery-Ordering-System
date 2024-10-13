@@ -8,23 +8,35 @@ public class Sale {
     private Date orderDate ;
     private double totalAmount;
     private boolean orderStatus;
+    private String address;
     private int CusID ;
     private int PID ;
     private Integer DPID ;
     
     
-	public Sale(int oID, Date date, double totalAmount, boolean orderStatus, int cusID, int pID, Integer dPID) {
+	public Sale(int oID, Date date, double totalAmount, boolean orderStatus, String address, int cusID, int pID, Integer dPID) {
 		super();
 		OID = oID;
 		this.orderDate = date;
 		this.totalAmount = totalAmount;
 		this.orderStatus = orderStatus;
+		this.address = address;
 		CusID = cusID;
 		PID = pID;
 		DPID = dPID;
 	}
 	
 	
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
 	public int getOID() {
 		return OID;
 	}

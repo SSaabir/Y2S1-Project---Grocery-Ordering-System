@@ -1,5 +1,8 @@
 package freshco.Control;
 
+import freshco.Model.PaymentDBUtil;
+import freshco.Model.ProductDBUtil;
+import freshco.Model.SaleDBUtil;
 import freshco.Model.webDB;
 import freshco.Beans.CartProducts;
 
@@ -9,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 public class OrderFacadeServlet extends HttpServlet {
@@ -44,9 +45,9 @@ public class OrderFacadeServlet extends HttpServlet {
             // Start transaction
             webDB.executeIUD("START TRANSACTION");
 
-            int paymentId = createPayment(paymentMethod);
-            int saleId = createSale(deliveryAddress, paymentId, (int) session.getAttribute("ID"), totalAmount);
-            createProductSale(saleId, cartProducts);
+            int paymentId = PaymentDBUtil.createPayment(paymentMethod);
+            int saleId = SaleDBUtil.createSale(deliveryAddress, paymentId, (int) session.getAttribute("ID"), totalAmount);
+            ProductDBUtil.createProductSale(saleId, cartProducts);
 
             // Commit transaction
             webDB.executeIUD("COMMIT");
@@ -64,67 +65,5 @@ public class OrderFacadeServlet extends HttpServlet {
             }
             response.sendRedirect("error.jsp"); // Redirect to an error page
         }
-    }
-
-    private int createPayment(String paymentMethod) throws Exception {
-        int status = paymentMethod.equals("card") ? 1 : 0; // Set status based on payment method
-        String sql = "INSERT INTO Payment (payMethod, payStatus) VALUES ('" + paymentMethod + "', " + status + ")";
-        
-        Integer affectedRows = webDB.executeIUD(sql);
-        if (affectedRows == 0) {
-            throw new SQLException("Creating payment failed, no rows affected.");
-        }
-
-        // Get the last inserted ID (payment ID)
-        ResultSet rs = webDB.executeSearch("SELECT LAST_INSERT_ID() AS paymentId");
-        if (rs.next()) {
-            return rs.getInt("paymentId");
-        } else {
-            throw new SQLException("Creating payment failed, no ID obtained.");
-        }
-    }
-
-    private int createSale(String address, int paymentId, int customerId, double totalAmount) throws Exception {
-        String sql = "INSERT INTO Sale (orderDate, totalAmount, address, orderStatus, CusID, PID) VALUES (NOW(), "
-                + totalAmount + ", '" + address + "', FALSE, " + customerId + ", " + paymentId + ")";
-        Integer affectedRows = webDB.executeIUD(sql);
-        if (affectedRows == 0) {
-            throw new SQLException("Creating sale failed, no rows affected.");
-        }
-
-        // Get the last inserted ID (sale ID)
-        ResultSet rs = webDB.executeSearch("SELECT LAST_INSERT_ID() AS saleId");
-        if (rs.next()) {
-            return rs.getInt("saleId");
-        } else {
-            throw new SQLException("Creating sale failed, no ID obtained.");
-        }
-    }
-
-    private void createProductSale(int saleId, List<CartProducts> cartItems) throws Exception {
-        for (CartProducts product : cartItems) {
-            if (product == null) {
-                throw new Exception("One of the cart products is null");
-            } else {
-                // Construct the SQL query using the provided saleId, product ID, and quantity
-                String sql = "INSERT INTO Product_Sale (OID, PrID, quantity) VALUES (" 
-                            + saleId + ", " 
-                            + product.getPid() + ", " 
-                            + product.getQuantity() + ")";
-                // Log the SQL statement for debugging purposes
-                System.out.println("Executing SQL: " + sql);
-                
-                // Execute the SQL query
-                webDB.executeIUD(sql);
-                // Update the product quantity
-                updateProductQuantity(product.getPid(), product.getQuantity());
-            }
-        }
-    }
-
-
-    private void updateProductQuantity(int string, int quantity) throws Exception {
-        String sql = "UPDATE Product SET quantity = quantity - " + quantity + " WHERE PrID = " + string;
-        webDB.executeIUD(sql);
     }
 }

@@ -16,25 +16,9 @@ public class AddFeedback extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Retrieve parameters from the request
         String comments = request.getParameter("comments");
-        String rating = request.getParameter("rating");
-        String oidParam = request.getParameter("OID"); // Get OID as a string
-        System.out.println("OID Parameter: " + oidParam); // Debugging output
-
-        int OID = 0;
-
-        // Validate OID
-        try {
-            if (oidParam == null || oidParam.isEmpty()) {
-                throw new NumberFormatException(); // Trigger error if OID is null
-            }
-            OID = Integer.parseInt(oidParam);
-        } catch (NumberFormatException e) {
-            request.setAttribute("errorMessage", "Invalid Order ID. Please try again.");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Feedback.jsp");
-            dispatcher.forward(request, response);
-            return; // Exit to avoid further processing
-        }
-
+        int rating = Integer.parseInt(request.getParameter("rating"));
+        int oid = Integer.parseInt(request.getParameter("oID"));
+        
         // Validate comments
         if (comments == null || comments.trim().isEmpty()) {
             request.setAttribute("errorMessage", "Comments cannot be empty.");
@@ -44,7 +28,7 @@ public class AddFeedback extends HttpServlet {
         }
 
         // Call the method to insert feedback
-        boolean isAdded = FeedbackDBUtil.insertFeedback(comments, rating, OID);
+        boolean isAdded = FeedbackDBUtil.insertFeedback(comments, rating, oid);
 
         // Redirect or forward based on the result
         if (isAdded) {

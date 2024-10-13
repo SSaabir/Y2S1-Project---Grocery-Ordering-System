@@ -168,33 +168,42 @@
             %>
         </table>
 
-        <div class="cart-actions">
-            <form action="ClearCart" method="post">
-                <button type="submit" class="clear-button">Clear Cart</button>
-            </form>
-            <form action="Checkout" method="get">
-                <!-- Hidden fields to pass data to PlaceOrder.jsp -->
-                <input type="hidden" name="totalDiscount" value="<%= String.format("%.2f", totalDiscount) %>">
-                <input type="hidden" name="totalPayable" value="<%= String.format("%.2f", totalPayable) %>">
-                
-                <!-- Loop through cart items to add them as hidden inputs -->
-                <%
-                    if (cartItems != null && !cartItems.isEmpty()) {
-                        for (CartProducts item : cartItems) {
-                %>
+    <%
+    String userType = (String) session.getAttribute("userType"); // Assuming userType is stored in session
+%>
+<div class="cart-actions">
+    <form action="ClearCart" method="post">
+        <button type="submit" class="clear-button">Clear Cart</button>
+    </form>
+
+    <% if ("Customer".equals(userType)) { %>
+        <form action="Checkout" method="get">
+            <input type="hidden" name="totalDiscount" value="<%= String.format("%.2f", totalDiscount) %>">
+            <input type="hidden" name="totalPayable" value="<%= String.format("%.2f", totalPayable) %>">
+            
+            <% 
+                if (cartItems != null && !cartItems.isEmpty()) {
+                    for (CartProducts item : cartItems) {
+            %>
                 <input type="hidden" name="productId" value="<%= item.getPid() %>">
                 <input type="hidden" name="productName" value="<%= item.getProductName() %>">
                 <input type="hidden" name="productQuantity" value="<%= item.getQuantity() %>">
                 <input type="hidden" name="productPrice" value="<%= String.format("%.2f", item.getNetPrice()) %>">
                 <input type="hidden" name="productDiscount" value="<%= String.format("%.2f", item.getDiscount()) %>">
                 <input type="hidden" name="productImage" value="<%= item.getImgUrl() %>">
-                <%
-                        }
+            <% 
                     }
-                %>
-                <button type="submit" class="checkout-button">Checkout</button>
-            </form>
-        </div>
+                } 
+            %>
+            <button type="submit" class="checkout-button">Checkout</button>
+        </form>
+    <% } else { %>
+        
+            <h3 class="checkout-button">Login as Customer</h3>
+        
+          <% } %>
+</div>
+
     </section>
 
 </body>

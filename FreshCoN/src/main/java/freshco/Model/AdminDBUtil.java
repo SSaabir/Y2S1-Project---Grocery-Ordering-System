@@ -109,4 +109,22 @@ public class AdminDBUtil {
 
         return isSuccess;
     }
+
+
+
+	public static boolean updateAdminWithoutImage(int aID, String fName, String lName, String email, String phone,
+			String password) {
+		boolean isSuccess = false;
+        String query = "UPDATE Admin SET fName='" + fName + "', lName='" + lName + "', email='" + email +"', phone='" + phone + "', password='" + password + 
+                       "' WHERE AID=" + aID;
+
+        try {
+            int rowsAffected = webDB.executeIUD(query);
+            isSuccess = rowsAffected > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return isSuccess;
+	}
 }

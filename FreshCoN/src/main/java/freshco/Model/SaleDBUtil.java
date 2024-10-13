@@ -2,6 +2,7 @@ package freshco.Model;
 
 import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class SaleDBUtil {
 
 	        // Fetch and process orderStatus (convert to boolean based on 'Completed')
 	        String orderStatusStr = rs.getString("orderStatus");
+	        String address = rs.getString("address");
 	        boolean orderStatus = orderStatusStr.equals("Completed");
 
 	        // Fetch Payment details
@@ -42,7 +44,7 @@ public class SaleDBUtil {
 	        // Fetch Feedback details
 	        int FID = rs.getInt("FeedbackID");
 	        String comments = rs.getString("comments");
-	        String rating = rs.getString("rating");
+	        int rating = rs.getInt("rating");
 
 	        // Create Feedback object
 	        Feedback feedback = new Feedback(FID, comments, rating, OID);
@@ -63,7 +65,7 @@ public class SaleDBUtil {
 	        }
 
 	        // Create Sale object using the constructor that fits this logic
-	        Sale sale = new Sale(OID, orderDate, totalAmount, orderStatus, CusID, PID, DPID);
+	        Sale sale = new Sale(OID, orderDate, totalAmount, orderStatus, address, CusID, PID, DPID);
 	        
 	        // Create SaleDetails object and add it to the list
 	        SaleDetails saleDetails = new SaleDetails(sale, payment, feedback, customer);
@@ -125,5 +127,73 @@ public class SaleDBUtil {
 
         return isSuccess;
     }
-    
+
+
+
+    public static boolean UpdateEmID(Integer iD, int oID) {
+        boolean isSuccess = false;
+
+        // Construct the SQL update query
+        String query = "UPDATE sale SET EmID='" + iD + "' WHERE OID=" + oID;
+
+        try {
+            // Execute the update query using webDB's executeIUD method
+            int affectedRows = webDB.executeIUD(query);
+
+            // Check if the update affected any rows
+            if (affectedRows > 0) {
+                isSuccess = true; // Update was successful
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace(); // Log any exceptions
+        }
+
+        return isSuccess; // Return whether the update was successful
+    }
+
+
+
+    public static boolean UpdateStatus(int pID, int oID) {
+        boolean isSuccess = false;
+
+        // Construct the SQL update queries
+        String updateOrderStatusQuery = "UPDATE sale SET orderStatus='" + 1 + "' WHERE OID=" + oID;
+        String updatePayStatusQuery = "UPDATE payment SET payStatus='" + 1 + "' WHERE PID=" + pID;
+
+        try {
+            // Execute the first update query
+            int affectedRows1 = webDB.executeIUD(updateOrderStatusQuery);
+            
+            // Execute the second update query
+            int affectedRows2 = webDB.executeIUD(updatePayStatusQuery);
+
+            // Check if both updates affected any rows
+            if (affectedRows1 > 0 && affectedRows2 > 0) {
+                isSuccess = true; // Both updates were successful
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Log any exceptions
+        }
+
+        return isSuccess; // Return whether the update was successful
+    }
+
+    public static int createSale(String address, int paymentId, int customerId, double totalAmount) throws Exception {
+        String sql = "INSERT INTO Sale (orderDate, totalAmount, address, orderStatus, CusID, PID) VALUES (NOW(), "
+                + totalAmount + ", '" + address + "', FALSE, " + customerId + ", " + paymentId + ")";
+        Integer affectedRows = webDB.executeIUD(sql);
+        if (affectedRows == 0) {
+            throw new SQLException("Creating sale failed, no rows affected.");
+        }
+
+        // Get the last inserted ID (sale ID)
+        ResultSet rs = webDB.executeSearch("SELECT LAST_INSERT_ID() AS saleId");
+        if (rs.next()) {
+            return rs.getInt("saleId");
+        } else {
+            throw new SQLException("Creating sale failed, no ID obtained.");
+        }
+    }
+
     }

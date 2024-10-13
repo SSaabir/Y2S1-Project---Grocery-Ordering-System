@@ -30,11 +30,20 @@ public class UpdateDeliveryPerson extends HttpServlet {
         String vehicleNum = request.getParameter("vehicleNum");
         String city = request.getParameter("city");
         
-   
-        boolean isSuccess = DeliveryPersonDBUtil.updateDP(EmID, vehicleNum, city, email, imgUrl, phone, password);
 
+        boolean isSuccess;
+        if (imgUrl != null) {
+            isSuccess = DeliveryPersonDBUtil.updateDP(EmID, vehicleNum, city, email, imgUrl, phone, password);
+        } else {
+            isSuccess = DeliveryPersonDBUtil.updateDPWithoutImage(EmID, vehicleNum, city, email, phone, password);
+        }
+        
         if (isSuccess) {
-            response.sendRedirect("dashboard.jsp");
+        	request.setAttribute("email", email);
+            request.setAttribute("password", password);
+            
+        	RequestDispatcher userValidationDispatcher = request.getRequestDispatcher("login");
+            userValidationDispatcher.forward(request, response);
         } else {
         	request.setAttribute("errorMessage", "Failed to update Employee. Please try again.");
 			RequestDispatcher dispatcher1 = request.getRequestDispatcher("EditProfile.jsp");

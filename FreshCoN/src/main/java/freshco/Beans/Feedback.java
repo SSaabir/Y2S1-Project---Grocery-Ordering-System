@@ -4,11 +4,11 @@ public class Feedback {
 	
 	private int FID ;
     private String comments ;
-    private String rating;
+    private int rating;
     private int OID ;
     
     
-	public Feedback(int fID, String comments, String rating, int oID) {
+	public Feedback(int fID, String comments, int rating, int oID) {
 		super();
 		FID = fID;
 		this.comments = comments;
@@ -27,7 +27,7 @@ public class Feedback {
 	}
 
 
-	public String getRating() {
+	public int getRating() {
 		return rating;
 	}
 
@@ -47,7 +47,7 @@ public class Feedback {
 	}
 
 
-	public void setRating(String rating) {
+	public void setRating(int rating) {
 		this.rating = rating;
 	}
 

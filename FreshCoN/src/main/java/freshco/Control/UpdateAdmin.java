@@ -1,6 +1,5 @@
 package freshco.Control;
 import freshco.Model.AdminDBUtil;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -31,11 +30,19 @@ public class UpdateAdmin extends HttpServlet {
 
         String imgUrl = (String) request.getAttribute("imageUrl"); 
         // Call the method to update admin
-        boolean isUpdated = AdminDBUtil.updateAdmin(AID, fName, lName, email, imgUrl, phone,  password);
-
+        boolean isUpdated;
+        if (imgUrl != null) {
+            isUpdated = AdminDBUtil.updateAdmin(AID, fName, lName, email, imgUrl, phone,  password);
+        } else {
+            isUpdated = AdminDBUtil.updateAdminWithoutImage(AID, fName, lName, email, phone,  password);
+        }
         // Redirect or forward based on the result
         if (isUpdated) {
-            response.sendRedirect("dashboard.jsp"); // Redirect to admin list page on success
+        	request.setAttribute("email", email);
+            request.setAttribute("password", password);
+            
+        	RequestDispatcher userValidationDispatcher = request.getRequestDispatcher("login");
+            userValidationDispatcher.forward(request, response); // Redirect to admin list page on success
         } else {
             request.setAttribute("errorMessage", "Failed to update admin. Please try again.");
 			RequestDispatcher dispatcher1 = request.getRequestDispatcher("EditProfile.jsp");

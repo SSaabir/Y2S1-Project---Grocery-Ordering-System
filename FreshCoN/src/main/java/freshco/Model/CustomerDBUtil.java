@@ -114,4 +114,26 @@ public static boolean deleteCustomer(int CusID) {
     	
     	return isSuccess;
     }
+
+public static boolean updateCustomerWithoutImage(int cusID, String fName, String lName, String email, String phone,
+		String lane, String city, String password) {
+	boolean isSuccess = false;
+	
+	String query = "UPDATE customer SET fName='"+fName+"',lName='"+lName+"',email='"+email+"',phone='"+phone+"',lane='"+lane+"',city='"+city+"',password='"+password+"'"
+			+ "where CusID='"+cusID+"'";
+
+try {
+    int rowsAffected = webDB.executeIUD(query);
+
+    isSuccess = rowsAffected > 0;
+
+}
+catch(Exception e) {
+	e.printStackTrace();
+}
+
+return isSuccess;
+}
+
+
 }

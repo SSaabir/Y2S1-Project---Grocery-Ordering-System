@@ -390,6 +390,26 @@
 		<servlet-name>UpdateEnquiry</servlet-name>
 		<url-pattern>/ResUpdate</url-pattern>
 	</servlet-mapping>
+	
+	<!-- Update DP in Sale -->
+	<servlet>
+		<servlet-name>UpdateDPSale</servlet-name>
+		<servlet-class>freshco.Control.UpdateDPSale</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateDPSale</servlet-name>
+		<url-pattern>/UDPS</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Update Status in Sale -->
+	<servlet>
+		<servlet-name>UpdateStatus</servlet-name>
+		<servlet-class>freshco.Control.UpdateStatus</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateStatus</servlet-name>
+		<url-pattern>/UPS</url-pattern>
+	</servlet-mapping>
 	<!-- Update Data Servlet Mappings End -->
 
 

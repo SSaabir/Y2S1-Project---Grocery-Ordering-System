@@ -119,6 +119,7 @@ CREATE TABLE Product_Sale (
     PrID INT NOT NULL,  -- Removed UNIQUE constraint
     OID INT NOT NULL,
     quantity INT NOT NULL,
+    netPrice DOUBLE NOT NULL,
     CONSTRAINT Product_Sale_PK PRIMARY KEY (PrID, OID),  -- Composite primary key
     CONSTRAINT Product_Sale_Product_FK FOREIGN KEY (PrID)
         REFERENCES Product (PrID) ON DELETE CASCADE,  -- Changed to ON DELETE CASCADE
@@ -130,7 +131,7 @@ CREATE TABLE Product_Sale (
 	CREATE TABLE Feedback (
     FID INT AUTO_INCREMENT NOT NULL,
     comments TEXT NOT NULL,
-    rating VARCHAR(1) NULL,
+    rating INT NULL,
     OID INT NOT NULL,
     CONSTRAINT Feedback_PK PRIMARY KEY (FID),
     CONSTRAINT Feedback_Sale_FK FOREIGN KEY (OID)
@@ -461,6 +462,7 @@ SELECT
         WHEN S.orderStatus = 1 THEN 'Completed'        -- 1 = Completed
         ELSE 'Unknown'                                 -- Handle unexpected cases
     END AS orderStatus,
+    S.address,
     C.CusID,
     C.fName,
     C.lName,

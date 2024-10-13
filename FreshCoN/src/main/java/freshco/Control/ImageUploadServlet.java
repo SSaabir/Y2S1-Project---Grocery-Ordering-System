@@ -46,7 +46,7 @@ public class ImageUploadServlet extends HttpServlet {
         // Generate the image URL (this is the relative path to the image in the project)
         String imageUrl = "./image/" + fileName; // Relative URL to access the image from your website
 
-        response.getWriter().write(imageUrl);
+        response.getWriter().write(imageUrl != null ? imageUrl : "null");
         
         request.setAttribute("imageUrl", imageUrl);
         }

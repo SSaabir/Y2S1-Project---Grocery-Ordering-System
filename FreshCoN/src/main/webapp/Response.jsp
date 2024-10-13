@@ -89,6 +89,11 @@
             background-color: #4a206a;
         }
     </style>
+    <script>
+        function confirmSubmission() {
+            return confirm("Are you sure you want to submit the response?");
+        }
+    </script>
 </head>
 
 <body>
@@ -108,12 +113,19 @@
         </div>
 
         <div class="main-form">
-            <form id="profileForm" method="post" action="ResUpdate" enctype="multipart/form-data">
+            <form id="profileForm" method="post" action="ResUpdate" onsubmit="return confirmSubmission();">
                 <div class="group">
                     <label for="Response">Response</label>
                     <textarea name="response" id="Response"></textarea>
                 </div>
-				<input type="hidden" name="EnID" value="<%= request.getParameter("EnID") != null ? request.getParameter("EnID") : "" %>" />
+                <%
+    String enID = request.getParameter("EnID");
+    if (enID == null || enID.isEmpty()) {
+        out.println("<script>alert('EnID parameter is missing or null');</script>");
+    }
+%>
+                
+				<input type="hidden" name="enID" value="<%= request.getParameter("EnID") %>" />
                 <button type="submit" value="Response" class="save-btn">Save</button>
                 <button type="button" class="save-btn" onclick="history.back();">Back</button>
             </form>

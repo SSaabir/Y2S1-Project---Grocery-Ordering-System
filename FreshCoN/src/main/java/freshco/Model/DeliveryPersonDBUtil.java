@@ -133,4 +133,25 @@ public class DeliveryPersonDBUtil {
         
         return isSuccess;
     }
+
+	public static boolean updateDPWithoutImage(int emID, String vehicleNum, String city, String email, String phone,
+			String password) {
+		boolean isSuccess = false;
+
+        String queryDeliveryPerson = "UPDATE deliveryperson SET vehicleNum='" + vehicleNum + "', city='" + city + "' WHERE EmID='" + emID + "'";
+
+        try {
+            int rowsAffected = webDB.executeIUD(queryDeliveryPerson);
+            
+            String queryEmployee = "UPDATE employee SET email='" + email + "', phone='" + phone + "', password='" + password + "' WHERE EmID='" + emID + "'";
+
+            int rowsAffected2 = webDB.executeIUD(queryEmployee);
+
+            isSuccess = (rowsAffected > 0 && rowsAffected2 > 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return isSuccess;
+	}
 }

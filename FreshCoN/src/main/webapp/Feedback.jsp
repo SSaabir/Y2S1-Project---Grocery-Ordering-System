@@ -126,6 +126,11 @@
             font-weight: bold;
         }
     </style>
+    <script>
+        function confirmSubmission() {
+            return confirm("Are you sure you want to submit the response?");
+        }
+    </script>
 </head>
 
 <body>
@@ -141,7 +146,7 @@
 %>
     <div class="container">
         <!-- Form that submits to server -->
-        <form action="Feedbackform" method="post" enctype="multipart/form-data">
+        <form action="Feedbackform" method="post" onsubmit="return confirmSubmission();">
             <div class="card">
                 <h2>Rate Your Experience</h2>
                 <p>Your feedback helps us improve</p>
@@ -155,9 +160,9 @@
                     <i class="star" data-value="4">&#9733;</i>
                     <i class="star" data-value="5">&#9733;</i>
                 </div>
-				String OID = <%= request.getParameter("OID") %>;
+				
                 <input type="hidden" name="rating" id="rating" value="0" />
-                <input type="hidden" name="OID" value="OID" />
+                <input type="hidden" name="oID" value="<%= request.getParameter("OID") %>" />
                 <button type="submit" class="submit-btn">Submit</button>
             </div>
         </form>

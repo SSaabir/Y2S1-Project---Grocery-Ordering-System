@@ -30,10 +30,19 @@ public class UpdateManager extends HttpServlet {
 
         String imgUrl = (String) request.getAttribute("imageUrl"); 
         
-        boolean isSuccess = ManagerDBUtil.updateManager(EmID, email, imgUrl, phone, password);
-
+        boolean isSuccess;
+        if (imgUrl != null) {
+            isSuccess = ManagerDBUtil.updateManager(EmID, email, imgUrl, phone, password);
+        } else {
+            isSuccess = ManagerDBUtil.updateManagerWithoutImage(EmID, email, phone, password);
+        }
+        
         if (isSuccess) {
-            response.sendRedirect("dashboard.jsp");
+        	request.setAttribute("email", email);
+            request.setAttribute("password", password);
+            
+        	RequestDispatcher userValidationDispatcher = request.getRequestDispatcher("login");
+            userValidationDispatcher.forward(request, response);
         } else {
         	request.setAttribute("errorMessage", "Failed to update Employee. Please try again.");
 			RequestDispatcher dispatcher1 = request.getRequestDispatcher("EditProfile.jsp");

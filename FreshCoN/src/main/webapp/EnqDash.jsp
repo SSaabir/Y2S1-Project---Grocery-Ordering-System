@@ -83,10 +83,23 @@
                         <td><%= enq.getSubject() %></td>
                         <td><%= enq.getComments() %></td>
                         <td><%= enq.getResponse() %></td>
-                        <td><a href="Response.jsp?EnID=<%= enq.getEnID() %>"><span class="material-symbols-outlined">message</span></a></td>
-                     
-                       
-           
+                        <td>                        
+<% 
+    // Check if the response is null or empty
+    if (enq.getResponse() == null || enq.getResponse().isEmpty()) { 
+%>
+    <!-- Show feedback link if response is not provided -->
+    <a href="Response.jsp?EnID=<%= enq.getEnID() %>">
+        <span class="material-symbols-outlined">message</span>
+    </a>
+<% 
+    } else { 
+%>
+    Responded
+<% 
+    } 
+%>   
+    </td>
                     </tr>
                     <%
                         	}

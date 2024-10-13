@@ -32,11 +32,20 @@ public class UpdateCustomer extends HttpServlet {
 
 	            String imgUrl = (String) request.getAttribute("imageUrl"); 
 		        // Call the updateCustomermethod from your database class
-		        boolean isUpdated = CustomerDBUtil.updateCustomer(CusID,fName,lName,email,phone,imgUrl,lane,city, password);
 
+		        boolean isUpdated;
+		        if (imgUrl != null) {
+		            isUpdated = CustomerDBUtil.updateCustomer(CusID,fName,lName,email,phone,imgUrl,lane,city, password);
+		        } else {
+		            isUpdated = CustomerDBUtil.updateCustomerWithoutImage(CusID,fName,lName,email,phone,lane,city, password);
+		        }
+		        
 		        if (isUpdated) {
-		            // Redirect or inform the user of success
-		            response.sendRedirect("dashboard.jsp");
+		        	request.setAttribute("email", email);
+		            request.setAttribute("password", password);
+		            
+		        	RequestDispatcher userValidationDispatcher = request.getRequestDispatcher("login");
+		            userValidationDispatcher.forward(request, response);
 		        } else {
 		        	request.setAttribute("errorMessage", "Failed to update customer. Please try again.");
 					RequestDispatcher dispatcher1 = request.getRequestDispatcher("EditProfile.jsp");

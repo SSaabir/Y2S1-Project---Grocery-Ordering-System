@@ -124,4 +124,23 @@ public static boolean deleteEmployee(int EmID) {
     	
     	return isSuccess;
     }
+
+public static boolean updateEmployeeWithoutImage(int emID, String email, String phone, String password) {
+	boolean isSuccess = false;
+	
+	String query = "UPDATE employee SET email='"+email+"',phone='"+phone+"',password='"+password+"'"
+			+ "where EmID='"+emID+"'";
+
+try {
+    int rowsAffected = webDB.executeIUD(query);
+
+    isSuccess = rowsAffected > 0;
+
+}
+catch(Exception e) {
+	e.printStackTrace();
+}
+
+return isSuccess;
+}
 }

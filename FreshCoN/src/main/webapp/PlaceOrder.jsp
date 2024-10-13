@@ -275,7 +275,8 @@
                 <h2>Review Your Order</h2>
 
                 <%-- Retrieve cart items from request --%>
-                <%
+                <%	
+                @SuppressWarnings("unchecked")
                     List<CartProducts> cartItems = (List<CartProducts>) request.getAttribute("cartItems");
                     double totalAmount = 0.0;
                     double discount = 0.0; // Example discount value

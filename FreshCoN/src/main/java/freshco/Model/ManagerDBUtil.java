@@ -132,4 +132,22 @@ public static boolean deleteManager(int EmID) {
     			return false;
     	}
 	}
+
+public static boolean updateManagerWithoutImage(int emID, String email, String phone, String password) {
+	boolean isSuccess = false;
+    
+    // Fixed query with correct spacing
+    String query = "UPDATE employee SET email='" + email + "',  phone='" + phone + "', password='" + password + "' WHERE EmID='" + emID + "'";
+    
+    try {
+        int rowsAffected = webDB.executeIUD(query);
+
+        isSuccess = rowsAffected > 0;
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    
+    return isSuccess;
+}
 }

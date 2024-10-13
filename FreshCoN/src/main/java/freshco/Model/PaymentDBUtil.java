@@ -1,5 +1,6 @@
 package freshco.Model;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import freshco.Beans.Payment;
@@ -76,4 +77,22 @@ public static boolean deletePayment(int PID) {
     	
     	return isSuccess;
     }
+
+public static int createPayment(String paymentMethod) throws Exception {
+    int status = paymentMethod.equals("card") ? 1 : 0; // Set status based on payment method
+    String sql = "INSERT INTO Payment (payMethod, payStatus) VALUES ('" + paymentMethod + "', " + status + ")";
+    
+    Integer affectedRows = webDB.executeIUD(sql);
+    if (affectedRows == 0) {
+        throw new SQLException("Creating payment failed, no rows affected.");
+    }
+
+    // Get the last inserted ID (payment ID)
+    ResultSet rs = webDB.executeSearch("SELECT LAST_INSERT_ID() AS paymentId");
+    if (rs.next()) {
+        return rs.getInt("paymentId");
+    } else {
+        throw new SQLException("Creating payment failed, no ID obtained.");
+    }
+}
 }

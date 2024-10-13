@@ -34,7 +34,7 @@ public class AddProduct extends HttpServlet {
         HttpSession session = request.getSession();
         Integer ID = (Integer) session.getAttribute("ID");
 
-        boolean isSuccess = ProductDBUtil.insertProduct(productName, descript, price, unit, quantity, imgUrl, discount, CID);
+        boolean isSuccess = ProductDBUtil.insertProduct(productName, descript, price, unit, quantity, imgUrl, discount, CID, ID);
 
         if (isSuccess) {
             response.sendRedirect("Product");
