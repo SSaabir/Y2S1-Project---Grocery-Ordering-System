@@ -481,7 +481,14 @@
 		<url-pattern>/OrderConfirm</url-pattern>
 	</servlet-mapping>
 
-
+	<servlet>
+		<servlet-name>Receip</servlet-name>
+		<servlet-class>freshco.Control.Receip</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Receip</servlet-name>
+		<url-pattern>/Receipt</url-pattern>
+	</servlet-mapping>
 
 
 </web-app>

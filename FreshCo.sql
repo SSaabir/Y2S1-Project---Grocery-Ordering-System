@@ -425,7 +425,8 @@ VALUES
     ('Bob', 'Brown', 'bobbrown@adm.freshco.lk', '321 Pine St', 'Capitol City', '1979-11-05', './image/bobbrown.jpg', '444-987-6543', 'hashed_password_4'),
     ('Charlie', 'Davis', 'charliedavis@adm.freshco.lk', '654 Maple St', 'North Haverbrook', '1983-03-30', './image/charliedavis.jpg', '333-456-7890', 'hashed_password_5');
 
-
+-- ----------------------------------------
+-- Employee Details
 CREATE VIEW EmployeeRoleView AS
 SELECT 
     e.EmID,
@@ -451,6 +452,8 @@ LEFT JOIN
 LEFT JOIN 
     DeliveryPerson dp ON e.EmID = dp.EmID;
 
+-- -----------------------------------------
+-- Sales Details 
 CREATE VIEW Manager_Sales_View AS
 SELECT 
     S.OID AS OrderID,
@@ -486,7 +489,8 @@ LEFT JOIN
     Payment P ON S.PID = P.PID
 LEFT JOIN 
     Feedback F ON S.OID = F.OID;
-
+-- ------------------------------------
+-- Order Details
 CREATE VIEW SaleDetails AS
 SELECT 
     s.OID AS OrderID,
@@ -495,15 +499,19 @@ SELECT
     s.orderStatus AS OrderStatus,
     s.address AS Address,
     s.CusID AS CustomerID,
+    c.fName AS CustomerFirstName,
+    c.lName AS CustomerLastName,
+    c.email AS CustomerEmail,
+    c.phone AS CustomerPhone,
     ps.PrID AS ProductID,
     p.productName AS ProductName,
-    p.price AS ProductPrice,
-    ps.quantity AS Quantity,
-    p.discount AS ProductDiscount,
-    p.imgUrl AS ProductImageURL
+    ps.netPrice AS netPrice,
+    ps.quantity AS Quantity
 FROM 
     Sale s
 LEFT JOIN 
     Product_Sale ps ON s.OID = ps.OID
 LEFT JOIN 
-    Product p ON ps.PrID = p.PrID;
+    Product p ON ps.PrID = p.PrID
+LEFT JOIN 
+    Customer c ON s.CusID = c.CusID;

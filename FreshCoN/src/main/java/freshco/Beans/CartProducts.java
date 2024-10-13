@@ -17,6 +17,14 @@ public class CartProducts {
         this.imgUrl = imgUrl;
     }
 
+    public CartProducts(int pid, String productName, int quantity, double netPrice) {
+        this.pid = pid;
+    	this.productName = productName;
+        this.quantity = quantity;
+        this.netPrice = netPrice; // netPrice corresponds to the Product Price
+        // Other attributes like discount and imgUrl are omitted since they are not used here
+    }
+
     public String getImgUrl() {
 		return imgUrl;
 	}

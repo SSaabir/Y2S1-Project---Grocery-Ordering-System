@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import freshco.Beans.CartProducts;
 import freshco.Beans.Customer;
 import freshco.Beans.Feedback;
 import freshco.Beans.Payment;
@@ -194,6 +195,66 @@ public class SaleDBUtil {
         } else {
             throw new SQLException("Creating sale failed, no ID obtained.");
         }
+    }
+
+    
+    public static SaleDetails getSaleDetailsByOrderID(int orderID) throws Exception {
+        Sale sale = null;
+        Customer customer = null;
+        List<CartProducts> cartProducts = new ArrayList<>(); // List to hold multiple cart products
+        ResultSet rs = null;
+
+        try {
+            // Query the SaleDetails view using orderID
+            String query = "SELECT * FROM SaleDetails WHERE OrderID = " + orderID;
+            rs = webDB.executeSearch(query);
+
+            if (rs.next()) {
+                // Extract Sale details
+                sale = new Sale(
+                    rs.getInt("OrderID"),
+                    rs.getDate("OrderDate"),
+                    rs.getDouble("TotalAmount"),
+                    rs.getString("Address")
+                );
+
+                // Extract Customer details
+                customer = new Customer(
+                    rs.getInt("CustomerID"),
+                    rs.getString("CustomerFirstName"),
+                    rs.getString("CustomerLastName"),
+                    rs.getString("CustomerEmail"),
+                    rs.getString("CustomerPhone")
+                );
+
+                // Create CartProducts for the first product (the current row)
+                do {
+                    CartProducts cartProduct = new CartProducts(
+                    	rs.getInt("ProductID"),
+                        rs.getString("ProductName"), // Use ProductName
+                        rs.getInt("Quantity"), // Use Quantity
+                        rs.getDouble("netPrice") // Set netPrice to ProductPrice
+                    );
+
+                    // Add the cart product to the list
+                    cartProducts.add(cartProduct);
+
+                } while (rs.next()); // Continue to the next row for the same OrderID
+
+                // Create SaleDetails object with the list of cart products
+                return new SaleDetails(sale, customer, cartProducts); // Assuming SaleDetails is adjusted to take a List<CartProducts>
+            }
+
+        } catch (Exception e) {
+            throw new Exception("Error fetching sale details", e);
+        } finally {
+            // Close the result set
+            if (rs != null) {
+                rs.close();
+            }
+        }
+
+        return null; // If no sale details found
     }
 
     }

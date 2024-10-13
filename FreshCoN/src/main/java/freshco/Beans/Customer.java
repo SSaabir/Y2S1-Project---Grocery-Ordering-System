@@ -38,7 +38,15 @@ public class Customer {
 		    this.email = email;
 		}
 
-	
+		public Customer(int cusID, String fName, String lName, String email, String phone) {
+		    this.cusID = cusID;
+		    this.fName = fName;
+		    this.lName = lName;
+		    this.email = email;
+		    this.phone = phone;
+		    
+		}
+
 
 		public int getCusID() {
 			return cusID;

@@ -26,7 +26,14 @@ public class Sale {
 		DPID = dPID;
 	}
 	
-	
+	public Sale(int oID, Date orderDate, double totalAmount, String address) {
+	    this.OID = oID;
+	    this.orderDate = orderDate;
+	    this.totalAmount = totalAmount;
+	    this.address = address;
+	}
+
+
 	public String getAddress() {
 		return address;
 	}

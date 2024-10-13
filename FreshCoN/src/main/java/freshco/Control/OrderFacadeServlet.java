@@ -3,7 +3,6 @@ package freshco.Control;
 import freshco.Model.PaymentDBUtil;
 import freshco.Model.ProductDBUtil;
 import freshco.Model.SaleDBUtil;
-import freshco.Model.webDB;
 import freshco.Beans.CartProducts;
 
 import javax.servlet.RequestDispatcher;
@@ -43,9 +42,7 @@ public class OrderFacadeServlet extends HttpServlet {
         double totalAmount = Double.parseDouble(request.getParameter("totalAmount")); // Retrieve the total amount
 
         try {
-            // Start transaction
-            webDB.executeIUD("START TRANSACTION");
-
+           
             int paymentId = PaymentDBUtil.createPayment(paymentMethod);
             int saleId = SaleDBUtil.createSale(deliveryAddress, paymentId, (int) session.getAttribute("ID"), totalAmount);
             ProductDBUtil.createProductSale(saleId, cartProducts);

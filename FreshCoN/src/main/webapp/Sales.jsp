@@ -1,10 +1,22 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List" %>
+<%@ page import="freshco.Beans.SaleDetails" %>
+<%@ page import="freshco.Beans.Customer" %>
+<%@ page import="freshco.Beans.Sale" %>
+<%@ page import="freshco.Beans.CartProducts" %>
+<%
+    // Retrieve the SaleDetails object from the request
+    SaleDetails saleDetails = (SaleDetails) request.getAttribute("saleDetails");
+    Customer customer = saleDetails.getCustomer();
+    Sale sale = saleDetails.getSale();
+%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreshCo | Order Receipt</title>
+    <title>FreshCo | Receipt</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +26,7 @@
         }
 
         .container {
-            width: 30%;
+            width: 50%;
             margin: 50px auto;
             background-color: #fff;
             padding: 20px;
@@ -26,7 +38,7 @@
         .brand-header {
             text-align: center;
             padding: 20px 0;
-            background-color: #ccf4be; /* Changed background to dark grey */
+            background-color: #ccf4be;
             color: white;
             font-size: 36px;
             letter-spacing: 2px;
@@ -119,40 +131,64 @@
 
         <h2>Order Receipt</h2>
         <hr>
-
         <div class="order-details">
             <div class="Order">
                 <label>Order Number:</label>
-                <p>#123456789</p>
+                <p>#<%= sale.getOID() %></p> <!-- Order ID -->
             </div>
 
             <div class="Order">
                 <label>Customer Name:</label>
-                <p>John Doe</p>
+                <p><%= customer.getfName() %> <%= customer.getlName() %></p> <!-- Customer Name -->
             </div>
 
             <div class="Order">
                 <label>Email:</label>
-                <p>johndoe@example.com</p>
+                <p><%= customer.getEmail() %></p> <!-- Customer Email -->
             </div>
 
             <div class="Order">
                 <label>Phone Number:</label>
-                <p>+1234567890</p>
+                <p><%= customer.getPhone() %></p> <!-- Customer Phone -->
             </div>
 
             <div class="Order">
                 <label>Shipping Address:</label>
-                <p>1234 Street, City, Country</p>
+                <p><%= sale.getAddress() %></p> <!-- Shipping Address -->
             </div>
 
             <div class="order-summary">
                 <h3>Order Summary</h3>
-                <p>Product: T-Shirt</p>
-                <p>Quantity: 2</p>
-                <p>Price per item: $20</p>
-                <p class="total">Total: $40</p>
-            </div>
+                
+                <% 
+                    List<CartProducts> cartProducts = saleDetails.getCartProducts();
+                    if (cartProducts != null && !cartProducts.isEmpty()) {
+                        double totalAmount = 0.0;
+                        double discount = 0.0;
+                        for (CartProducts product : cartProducts) {                 %>
+                        <hr>
+                    <p>Product: <%= product.getProductName() %></p> <!-- Product Name -->
+                    <p>Quantity: <%= product.getQuantity() %></p> <!-- Quantity -->
+                    <p>Price in Total: $<%= product.getNetPrice() %></p> <!-- Price per Item -->
+
+                <% 
+                totalAmount += product.getNetPrice();
+                        } 
+                        discount = totalAmount - sale.getTotalAmount();
+                %>
+                </div>
+                <hr><hr>
+                <p class="total">Total: $<%= totalAmount %></p> 
+                <p class="total">Discount: $<%= String.format("%.2f", discount) %></p>
+                <p class="total">Total Payable: $<%= sale.getTotalAmount() %></p> <!-- Total Amount -->
+                <% 
+                    } else { 
+                %>
+                <p>No items in your order.</p>
+                <% 
+                    } 
+                %>
+            
 
             <button class="print-button" onclick="window.print()">Print Receipt</button>
         </div>

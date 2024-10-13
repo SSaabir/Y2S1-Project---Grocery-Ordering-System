@@ -26,6 +26,11 @@ public class Product {
         this.CID = cID; // Assuming CID is meant to be capitalized
     }
 
+    public Product(int prID, String productName) {
+        this.prID = prID;
+        this.productName = productName;
+    }
+
     // Getter methods
     public int getPrID() {
         return prID; // No change needed here
