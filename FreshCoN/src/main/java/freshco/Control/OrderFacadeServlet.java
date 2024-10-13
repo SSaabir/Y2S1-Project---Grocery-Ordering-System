@@ -6,6 +6,7 @@ import freshco.Model.SaleDBUtil;
 import freshco.Model.webDB;
 import freshco.Beans.CartProducts;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -49,21 +50,15 @@ public class OrderFacadeServlet extends HttpServlet {
             int saleId = SaleDBUtil.createSale(deliveryAddress, paymentId, (int) session.getAttribute("ID"), totalAmount);
             ProductDBUtil.createProductSale(saleId, cartProducts);
 
-            // Commit transaction
-            webDB.executeIUD("COMMIT");
-            // Clear cart or update session as needed
             cartProducts.clear();
             session.setAttribute("cartProducts", cartProducts);
             response.sendRedirect("FreshCo"); // Redirect to a success page
 
         } catch (Exception e) {
             e.printStackTrace();
-            try {
-                webDB.executeIUD("ROLLBACK"); // Rollback transaction on error
-            } catch (Exception rollbackEx) {
-                rollbackEx.printStackTrace();
-            }
-            response.sendRedirect("error.jsp"); // Redirect to an error page
+            request.setAttribute("errorMessage", "Failed to Place Order. Please try again.");
+			RequestDispatcher dispatcher1 = request.getRequestDispatcher("FreshCo");
+			dispatcher1.forward(request, response);
         }
     }
 }

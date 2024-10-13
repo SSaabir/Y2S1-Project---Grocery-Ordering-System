@@ -317,7 +317,6 @@
                 <span id="emailError" class="error"></span>
                 <input type="password" id="signInPassword" name="password" placeholder="Enter Your Password" required />
                 <span id="passwordError" class="error"></span>
-                <a href="#" class="a">Forgot your password?</a>
                 <input type="submit" class="sub-buttons" value="Sign In">
             </form>
         </div>

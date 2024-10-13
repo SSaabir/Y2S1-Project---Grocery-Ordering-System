@@ -21,6 +21,16 @@
 </head>
 
 <body>
+<%
+	String errorMessage = (String) request.getAttribute("errorMessage");
+	if (errorMessage != null) {
+	%>
+	<script>
+        alert("<%= errorMessage %>");
+	</script>
+	<%
+	}
+	%>
 <jsp:include page = "Dash.jsp"/>
 
 <div id="main">

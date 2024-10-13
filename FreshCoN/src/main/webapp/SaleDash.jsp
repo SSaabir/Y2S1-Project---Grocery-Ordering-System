@@ -48,6 +48,16 @@
 </style>
 </head>
 <body>
+<%
+	String errorMessage = (String) request.getAttribute("errorMessage");
+	if (errorMessage != null) {
+	%>
+	<script>
+        alert("<%= errorMessage %>");
+	</script>
+	<%
+	}
+	%>
 	<jsp:include page="Dash.jsp" />
 	<%
 	HttpSession sess = request.getSession(false); // Get the session without creating a new one
@@ -336,7 +346,7 @@
 							Payment payment = saleDetail.getPayment(); // Get Payment object
 							Customer customer = saleDetail.getCustomer(); // Get Customer object
 							Feedback feedback = saleDetail.getFeedback(); // Get Feedback object
-							if (sale != null && sessionId != null && sessionId.equals(sale.getDPID()) && payment.isPayStatus() != true && sale.isOrderStatus() != true) {
+							if (sale != null && sessionId != null && sessionId.equals(sale.getDPID()) && sale.isOrderStatus() != true) {
 								
 							
 							String orderStatus = sale.isOrderStatus() ? "Completed" : "Pending";
@@ -469,7 +479,7 @@
 							<td><a href="Receipt?OID=<%=sale.getOID()%>"><span
 									class="material-symbols-outlined">receipt_long</span></a> <%
  if (feedback.getComments() == null && feedback.getRating() == 0
- 		&& sale.getDPID() != null) {
+ 		&& sale.getDPID() != null && sale.isOrderStatus() == false) {
  %> <!-- Show feedback link if comments, rating, and DPID are present -->
 								<a href="Feedback.jsp?OID=<%=sale.getOID()%>"> <span
 									class="material-symbols-outlined">reviews</span>

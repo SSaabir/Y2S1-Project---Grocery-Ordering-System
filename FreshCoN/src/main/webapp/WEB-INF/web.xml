@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="4.0">
 	<display-name>FreshCoN</display-name>
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>FreshCo</welcome-file>
 	</welcome-file-list>
 
 	<!-- View Data Servlet Mappings Start -->
@@ -329,6 +329,15 @@
 	<servlet-mapping>
 		<servlet-name>UpdateAdmin</servlet-name>
 		<url-pattern>/EditProfileA</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EditProData</servlet-name>
+		<servlet-class>freshco.Control.EditProData</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditProData</servlet-name>
+		<url-pattern>/DataPro</url-pattern>
 	</servlet-mapping>
 
 	<!-- Update Employee -->

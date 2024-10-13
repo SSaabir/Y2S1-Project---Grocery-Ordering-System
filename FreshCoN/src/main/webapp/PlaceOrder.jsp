@@ -266,7 +266,7 @@
 
                 <div class="address-details" id="address-details" style="display:none;">
                     <label for="address">Enter your Delivery Address</label>
-                    <input type="text" id="address" name="address" placeholder="123 Main St, City" required>
+                    <input type="text" id="address" name="address" placeholder="123 Main St, City">
                 </div>
 
                 <button type="submit" class="pay-now">Pay Now</button>
@@ -319,6 +319,7 @@
                     <p><strong>Total Payable:</strong> $<%= df.format(totalPayable) %></p>
                 </div>
             </div>
+            <input type="hidden" name="totalAmount" value="<%= totalPayable %>">
         </form>
     </div>
 

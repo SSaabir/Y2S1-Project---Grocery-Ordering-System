@@ -23,12 +23,22 @@
 </head>
 
 <body>
+<%
+	String errorMessage = (String) request.getAttribute("errorMessage");
+	if (errorMessage != null) {
+	%>
+	<script>
+        alert("<%= errorMessage %>");
+	</script>
+	<%
+	}
+	%>
     <jsp:include page="Dash.jsp"/>
 <%
 	HttpSession sess = request.getSession(false); // Get the session without creating a new one
 	String userType = (String) sess.getAttribute("userType"); // Get userType from the session
 
-	if (userType != null && userType.equals("Manager") || userType.equals("Employee")) {
+	if (userType != null && userType.equals("Manager")) {
 	%>
 <div id="main">
 <h1 class="title-sec">Product</h1>
