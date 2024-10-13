@@ -178,6 +178,16 @@
         .file-input {
             display: none;
         }
+        #deleteBtn{
+
+            margin-left: 40px;
+            margin-bottom: 50px;
+            margin-top:0;
+        }
+       
+        
+        
+        
     </style>
 </head>
 
