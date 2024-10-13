@@ -147,7 +147,7 @@
                 <li><a href="FreshCo">Home</a></li>
                 <li><a href="aboutUs.jsp">About Us</a></li>
                 <li><a href="Shop">Shop</a></li>
-                <li><a href="#contactUS">Contact Us</a></li>
+                <li><a href="FreshCo#contactUS">Contact Us</a></li>
             </ul>
 
             <div class="buttons">
