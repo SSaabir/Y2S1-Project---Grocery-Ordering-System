@@ -347,13 +347,13 @@ VALUES
     ('2024-01-04', 150.00, TRUE,'c', 5, 5, 5);
 
 -- Insert records into Product_Sale
-INSERT INTO Product_Sale (PrID, OID, quantity)
+INSERT INTO Product_Sale (PrID, OID, quantity, netPrice)
 VALUES
-    (1, 1, 2),
-    (2, 2, 1),
-    (3, 3, 3),
-    (4, 4, 2),
-    (5, 5, 5);
+    (1, 1, 2, 10.0),
+    (2, 2, 1, 10.0),
+    (3, 3, 3, 10.0),
+    (4, 4, 2, 10.0),
+    (5, 5, 5, 10.0);
 
 -- Insert records into Feedback
 INSERT INTO Feedback (comments, rating, OID)
