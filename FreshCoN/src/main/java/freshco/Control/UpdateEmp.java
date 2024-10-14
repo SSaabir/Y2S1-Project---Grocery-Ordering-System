@@ -24,21 +24,21 @@ public class UpdateEmp extends HttpServlet {
 	        String phone = request.getParameter("phone");
 	        String password = request.getParameter("password");
 
-	        // Include the UploadImage servlet's response
+	       
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("UploadImage");
 	        dispatcher.include(request, response);
 
-	        // Retrieve the image URL from the request attributes
+
 	        String imgUrl = (String) request.getAttribute("imageUrl");
 
-	        // Call the updateEmployee method from your database class
+
 	        boolean isUpdated;
 	        if (imgUrl != null) {
 	            isUpdated = EmployeeDBUtil.updateEmployee(EmID, email, imgUrl, phone, password);
 	        } else {
 	            isUpdated = EmployeeDBUtil.updateEmployeeWithoutImage(EmID, email, phone, password);
 	        }
-	        // Handle success or failure
+
 	        if (isUpdated) {
 	        	request.setAttribute("email", email);
 	            request.setAttribute("password", password);

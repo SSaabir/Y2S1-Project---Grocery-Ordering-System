@@ -152,9 +152,8 @@
 
             <div class="buttons">
                 <%
-                    HttpSession sessH = request.getSession(false); // Get the session without creating a new one
-                    String userTypo = (String) sessH.getAttribute("userType"); // Get userType from the session
-
+                    HttpSession sessH = request.getSession(false); // Get the session 
+                    String userTypo = (String) sessH.getAttribute("userType"); // Get userType
                     if (userTypo == null || userTypo.equals("guest")) {
                 %>
                     <img src="./image/user.png" class="user-pic" alt="User Profile">
