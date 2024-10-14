@@ -35,30 +35,30 @@ public class ProductDBUtil {
                 "VALUES ('" + productName + "', '" + descript + "', " + price + ", '" + unit + "', " + quantity + ", '" + imgUrl + "', " + discount + ", " + CID + ")";
 
         try {
-            // Execute the insert query for the Product
+            
             int rowsAffected = webDB.executeIUD(queryProduct);
 
             if (rowsAffected > 0) {
-                // Get the last inserted product ID
+                
                 ResultSet rs = webDB.executeSearch("SELECT LAST_INSERT_ID()");
                 if (rs.next()) {
-                    int lastProductID = rs.getInt(1); // Assuming this is the ID of the last inserted product
+                    int lastProductID = rs.getInt(1); 
 
                     // SQL query to insert into the Product_Employee table
                     String queryProductEmployee = "INSERT INTO Product_Employee (PrID, EmID) VALUES (" + lastProductID + ", " + employeeId + ")";
 
-                    // Execute the insert query for Product_Employee
+                   
                     int rowsAffected2 = webDB.executeIUD(queryProductEmployee);
                     
-                    // Check if the insertion was successful
+                    
                     isSuccess = rowsAffected2 > 0;
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace(); // Handle exceptions appropriately
+            e.printStackTrace(); 
         }
 
-        return isSuccess; // Return whether the entire operation was successful
+        return isSuccess; 
     }
     
 
@@ -95,13 +95,13 @@ public class ProductDBUtil {
 
     public static Product getProductById(int prId) throws Exception {
         Product product = null; // Initialize product as null
-        String query = "SELECT * FROM Product WHERE PrID = ?"; // Parameterized query to get the product by PrID
+        String query = "SELECT * FROM Product WHERE PrID = ?"; 
 
         try (PreparedStatement pstmt = webDB.getConnection().prepareStatement(query)) {
-            pstmt.setInt(1, prId); // Set the PrID parameter
+            pstmt.setInt(1, prId); 
 
             try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) { // Check if a result was returned
+                if (rs.next()) { 
                     product = new Product(
                         rs.getInt("PrID"),
                         rs.getString("productName"),
@@ -116,11 +116,11 @@ public class ProductDBUtil {
                 }
             }
         } catch (SQLException e) {
-            // Handle the exception (log it or rethrow with additional context)
+            
             throw new Exception("Error retrieving product from database", e);
         }
         
-        return product; // Return the product, or null if not found
+        return product; 
     }
 
     public static void createProductSale(int saleId, List<CartProducts> cartItems) throws Exception {
@@ -128,18 +128,18 @@ public class ProductDBUtil {
             if (product == null) {
                 throw new Exception("One of the cart products is null");
             } else {
-                // Construct the SQL query using the provided saleId, product ID, and quantity
+                
                 String sql = "INSERT INTO Product_Sale (OID, PrID, quantity, netPrice) VALUES (" 
                             + saleId + ", " 
                             + product.getPid() + ", " 
                             + product.getQuantity() + ", "
                             + product.getQuantity() * product.getNetPrice() + ")";
-                // Log the SQL statement for debugging purposes
+                
                 System.out.println("Executing SQL: " + sql);
                 
                 // Execute the SQL query
                 webDB.executeIUD(sql);
-                // Update the product quantity
+                
                 updateProductQuantity(product.getPid(), product.getQuantity());
             }
         }

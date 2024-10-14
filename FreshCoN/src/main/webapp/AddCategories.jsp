@@ -194,18 +194,18 @@
                 <!-- Category Name Field -->
                 <div class="group">
                     <label for="categoryName">Category Name</label>
-                    <input type="text" id="Category Name" name="category_Name" placeholder="Category Name" required>  <!--Upload  category name -->
+                    <input type="text" id="Category Name" name="category_Name" placeholder="Category Name" required> 
                 </div>
 
                 <!-- Image Upload Field -->
                 <div class="group">
                     <label for="imgUrl">Image</label>
-                    <input type="file" id="imgUrl" name="imgUrl" required>  <!--Upload  category image -->
+                    <input type="file" id="imgUrl" name="imgUrl" required>  
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" value="AddCategory" class="save-btn">Save</button> <!--Add new Categories-->
-                <button type="button" class="save-btn" onclick="history.back();">Back</button>  <!--if you don't want new and go to the home -->
+                <button type="submit" value="AddCategory" class="save-btn">Save</button> 
+                <button type="button" class="save-btn" onclick="history.back();">Back</button>  
             </form>
         </div>
     </div>

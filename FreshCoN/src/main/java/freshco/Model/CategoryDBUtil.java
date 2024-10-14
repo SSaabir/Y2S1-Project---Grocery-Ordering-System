@@ -10,14 +10,15 @@ public class CategoryDBUtil {
 	
 	
 
-    // Get all categories
+	// Get all categories from the database
+
     public static List<Category> getAllCategories() throws Exception {
-        List<Category> categories = new ArrayList<>();
-        String query = "SELECT * FROM Category";  // Query to get all categories
+        List<Category> categories = new ArrayList<>();// List to store Category objects
+        String query = "SELECT * FROM Category";  
 
         try {
-            ResultSet rs = webDB.executeSearch(query);  // Execute the search query
-            // Iterate over the result set and create Category objects
+            ResultSet rs = webDB.executeSearch(query);  // Execute query to get categories from DB
+        
             while (rs.next()) {
                 Category category = new Category(
                     rs.getInt("CID"),
@@ -27,10 +28,10 @@ public class CategoryDBUtil {
                 );
                 categories.add(category);
             }
-            rs.close();
+            rs.close();   
         } catch (Exception e) {
-            e.printStackTrace();
-            throw e;  // Optional: rethrow the exception if needed
+            e.printStackTrace();  
+            throw e;  
         }
         return categories;
     }
@@ -50,15 +51,15 @@ public class CategoryDBUtil {
                 // Get the last inserted category ID
                 ResultSet rs = webDB.executeSearch("SELECT LAST_INSERT_ID()");
                 if (rs.next()) {
-                    int lastCategoryID = rs.getInt(1); // Assuming this is the ID of the last inserted category
+                    int lastCategoryID = rs.getInt(1); 
 
-                    // SQL query to insert into the category_employee table
+                    
                     String queryCategoryEmployee = "INSERT INTO category_employee (CID, EmID) VALUES (" + lastCategoryID + ", " + ID + ")";
 
-                    // Execute the insert query for category_employee
+                  
                     int rowsAffected2 = webDB.executeIUD(queryCategoryEmployee);
                     
-                    // Check if the insertion was successful
+                    
                     isSuccess = rowsAffected2 > 0;
                 }
             }
