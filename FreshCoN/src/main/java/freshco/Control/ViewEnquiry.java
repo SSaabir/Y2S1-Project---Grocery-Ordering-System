@@ -30,7 +30,7 @@ public class ViewEnquiry extends HttpServlet {
         dispatcher.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace(); 
-            throw new ServletException("Retrieving customers failed.", e);
+            throw new ServletException("Retrieving Enquiry failed.", e);
         }
 
     }
