@@ -63,7 +63,7 @@
 	HttpSession sess = request.getSession(false); // Get the session without creating a new one
 	String userType = (String) sess.getAttribute("userType"); // Get userType from the session
 	Integer sessionId = (Integer) session.getAttribute("ID");
-	if (userType != null && userType.equals("Manager")) {
+	if (userType != null && userType.equals("Manager") || userType.equals("Employee")) {
 	%>
 	<div id="main">
 		<h1 class="title-sec">Sale</h1>
