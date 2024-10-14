@@ -15,19 +15,21 @@
 body {
 	font-family: Arial, sans-serif;
 	background-color: #f0f0f0;
-	background-image:
-		url("https://i.pinimg.com/736x/5d/aa/aa/5daaaacda6f2f3d2837cd981658318dc.jpg");
 	margin: 0;
 	padding: 0;
 }
 
-.main {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	background-color: #ffffff;
-}
+ .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url(./image/AdminRegistraion.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
 
 .registration {
 	padding: 30px;

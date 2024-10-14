@@ -154,7 +154,16 @@
 </head>
 
 <body>
-
+<%
+	String errorMessage = (String) request.getAttribute("errorMessage");
+	if (errorMessage != null) {
+	%>
+	<script>
+        alert("<%= errorMessage %>");
+	</script>
+	<%
+	}
+	%>
 <header>
 <jsp:include page="header.jsp"/>
 </header>

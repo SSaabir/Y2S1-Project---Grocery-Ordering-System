@@ -53,9 +53,7 @@ public class OrderFacadeServlet extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMessage", "Failed to Place Order. Please try again.");
-			RequestDispatcher dispatcher1 = request.getRequestDispatcher("FreshCo");
-			dispatcher1.forward(request, response);
+            response.sendRedirect("error.jsp");
         }
     }
 }
