@@ -189,23 +189,23 @@
         </div>
 
         <div class="main-form">
-            <!-- Form now includes multipart data for file uploads -->
+            <!-- Form now includes multiPart data for file uploads -->
             <form id="profileForm" method="post" action = "AddCategories"  enctype="multipart/form-data" >
                 <!-- Category Name Field -->
                 <div class="group">
                     <label for="categoryName">Category Name</label>
-                    <input type="text" id="Category Name" name="category_Name" placeholder="Category Name" required>
+                    <input type="text" id="Category Name" name="category_Name" placeholder="Category Name" required>  <!--Upload  category name -->
                 </div>
 
                 <!-- Image Upload Field -->
                 <div class="group">
                     <label for="imgUrl">Image</label>
-                    <input type="file" id="imgUrl" name="imgUrl" required>
+                    <input type="file" id="imgUrl" name="imgUrl" required>  <!--Upload  category image -->
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" value="AddCategory" class="save-btn">Save</button>
-                <button type="button" class="save-btn" onclick="history.back();">Back</button>
+                <button type="submit" value="AddCategory" class="save-btn">Save</button> <!--Add new Categories-->
+                <button type="button" class="save-btn" onclick="history.back();">Back</button>  <!--if you don't want new and go to the home -->
             </form>
         </div>
     </div>
