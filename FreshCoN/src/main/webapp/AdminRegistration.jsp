@@ -127,11 +127,11 @@ h2 {
 				<div class="form-row">
 					<div class="sub-part">
 						<label for="fName">First Name:</label> <input type="text"
-							id="fName" name="fName" placeholder="Enter First Name" maxlength="10"  required>
+							id="fName" name="fName" placeholder="Enter First Name" maxlength="25"  required>
 					</div>
 					<div class="sub-part">
 						<label for="lName">Last Name:</label> <input type="text"
-							id="lName" name="lName" placeholder="Enter Last Name" maxlength="10" required>
+							id="lName" name="lName" placeholder="Enter Last Name" maxlength="25" required>
 					</div>
 				</div>
 				<div class="form-row">
@@ -151,7 +151,7 @@ h2 {
 					</div>
 					<div class="sub-part">
 						<label for="city">City:</label> <input type="text" id="city"
-							name="city" placeholder="Enter City" maxlength="10"  required>
+							name="city" placeholder="Enter City" maxlength="20"  required>
 					</div>
 				</div>
 				<div class="form-row">
@@ -169,13 +169,13 @@ h2 {
 					<div class="sub-part">
 						<label for="password">Password:</label> <input type="password"
 							id="password" name="password" placeholder="Enter Password"
-							maxlength="15" required>
+							maxlength="20" required>
 					</div>
 
 					<div class="sub-part">
 						<label for="password">Confirm Password:</label> <input
 							type="password" id="Confirmpassword" name="Confirmpassword"
-							placeholder="Enter Confirm password" maxlength="15" required>
+							placeholder="Enter Confirm password" maxlength="20" required>
 					</div>
 
 

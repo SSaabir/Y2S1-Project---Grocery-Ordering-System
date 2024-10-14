@@ -227,7 +227,7 @@
 </head>
 
 <body>
-    <div class="checkout-container">
+    
         <form action="OrderConfirm" method="POST">
             <h1>Fresh Co Checkout</h1>
             <div class="payment-section">
@@ -321,7 +321,7 @@
             </div>
             <input type="hidden" name="totalAmount" value="<%= totalPayable %>">
         </form>
-    </div>
+   
 
     <script>
         function showCardDetails(show) {

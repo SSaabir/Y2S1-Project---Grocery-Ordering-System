@@ -218,12 +218,12 @@
                     <div class="sub_part">
                         <label for="fName">First Name</label>
                         <i class="fa fa-id-card"></i>
-                        <input type="text" id="fName" name="fName" value='<%= (String) session.getAttribute("fName") %>' placeholder="First Name" maxlength="10"  required>
+                        <input type="text" id="fName" name="fName" value='<%= (String) session.getAttribute("fName") %>' placeholder="First Name" maxlength="25"  required>
                     </div>
                     <div class="sub_part">
                         <label for="lName">Last Name</label>
                         <i class="fa fa-id-card-alt"></i>
-                        <input type="text" id="lName" name="lName" value='<%= (String) session.getAttribute("lName") %>' placeholder="Last Name" maxlength="10"  required>
+                        <input type="text" id="lName" name="lName" value='<%= (String) session.getAttribute("lName") %>' placeholder="Last Name" maxlength="25"  required>
                     </div>
 
                     <div class="sub_part">
@@ -240,7 +240,7 @@
 
                     <div class="sub_part">
                         <label for="img">Add Image</label>
-                        <input type="file" id="img" name="imgUrl">
+                        <input type="file" id="img" name="imgUrl" required>
                     </div>
 
                     <div class="sub_part">
@@ -251,19 +251,19 @@
                     <div class="sub_part">
                         <label for="city">City</label>
                         <i class="fa fa-city"></i>
-                        <input type="text" id="city" name="city" value='<%= (String) session.getAttribute("city") %>' placeholder="Enter City" maxlength="10" required>
+                        <input type="text" id="city" name="city" value='<%= (String) session.getAttribute("city") %>' placeholder="Enter City" maxlength="20" required>
                     </div>
 
                     <div class="sub_part">
                         <label for="password">Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" maxlength="15" required>
+                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" maxlength="20" required>
                     </div>
 
                     <div class="sub_part">
                         <label for="Confirmpassword">Confirm Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" maxlength="15" required>
+                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" maxlength="20" required>
                     </div>
 
                     <button type="submit" class="save-btn" id="saveBtn">
@@ -332,12 +332,12 @@
                     <div class="sub_part">
                         <label for="fName">First Name</label>
                         <i class="fa fa-id-card"></i>
-                        <input type="text" id="fName" name="fName" value='<%= (String) session.getAttribute("fName") %>' placeholder="First Name" maxlength="10" required>
+                        <input type="text" id="fName" name="fName" value='<%= (String) session.getAttribute("fName") %>' placeholder="First Name" maxlength="25" required>
                     </div>
                     <div class="sub_part">
                         <label for="lName">Last Name</label>
                         <i class="fa fa-id-card-alt"></i>
-                        <input type="text" id="lName" name="lName" value='<%= (String) session.getAttribute("lName") %>' placeholder="Last Name"  maxlength="10" required>
+                        <input type="text" id="lName" name="lName" value='<%= (String) session.getAttribute("lName") %>' placeholder="Last Name"  maxlength="25" required>
                     </div>
 
                     <div class="sub_part">
@@ -354,19 +354,19 @@
 
                     <div class="sub_part">
                         <label for="img">Add Image</label>
-                        <input type="file" id="img" name="imgUrl">
+                        <input type="file" id="img" name="imgUrl" required>
                     </div>
 
                     <div class="sub_part">
                         <label for="password">Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" maxlength="15" required>
+                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" maxlength="20" required>
                     </div>
 
                     <div class="sub_part">
                         <label for="Confirmpassword">Confirm Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" maxlength="15" required>
+                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" maxlength="20" required>
                     </div>
 
                     <button type="submit" class="save-btn" id="saveBtn">
@@ -444,19 +444,19 @@
 
                     <div class="sub_part">
                         <label for="img">Add Image</label>
-                        <input type="file" id="img" name="imgUrl">
+                        <input type="file" id="img" name="imgUrl" required>
                     </div>
 
                     <div class="sub_part">
                         <label for="password">Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" maxlength="15" required>
+                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" maxlength="20" required>
                     </div>
 
                     <div class="sub_part">
                         <label for="Confirmpassword">Confirm Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" maxlength="15"required>
+                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" maxlength="20"required>
                     </div>
 
                     <button type="submit" class="save-btn" id="saveBtn">
@@ -533,19 +533,19 @@
 
                     <div class="sub_part">
                         <label for="img">Add Image</label>
-                        <input type="file" id="img" name="imgUrl">
+                        <input type="file" id="img" name="imgUrl" required>
                     </div>
 
                     <div class="sub_part">
                         <label for="password">Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" maxlength="15" required>
+                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" maxlength="20" required>
                     </div>
 
                     <div class="sub_part">
                         <label for="Confirmpassword">Confirm Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" maxlength="15" required>
+                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" maxlength="20" required>
                     </div>
 
                     <button type="submit" class="save-btn" id="saveBtn">
@@ -623,7 +623,7 @@
 
                     <div class="sub_part">
                         <label for="img">Add Image</label>
-                        <input type="file" id="img" name="imgUrl">
+                        <input type="file" id="img" name="imgUrl" required>
                     </div>
                     
                     <div class="sub_part">
@@ -634,20 +634,20 @@
                     <div class="sub_part">
                         <label for="city">City</label>
                         <i class="fa fa-envelope"></i>
-                        <input type="text" id="email" name="city" value='<%= (String) session.getAttribute("city") %>' placeholder="Enter City" maxlength="10" required>
+                        <input type="text" id="email" name="city" value='<%= (String) session.getAttribute("city") %>' placeholder="Enter City" maxlength="20" required>
                     </div>
                     
 
                     <div class="sub_part">
                         <label for="password">Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" maxlength="15" required>
+                        <input type="password" id="password" name="password" value='<%= (String) session.getAttribute("password") %>' placeholder="Password" maxlength="20" required>
                     </div>
 
                     <div class="sub_part">
                         <label for="Confirmpassword">Confirm Password</label>
                         <i class="fa fa-lock"></i>
-                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" maxlength="15" required>
+                        <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Confirm Password" maxlength="20" required>
                     </div>
 
                     <button type="submit" class="save-btn" id="saveBtn">

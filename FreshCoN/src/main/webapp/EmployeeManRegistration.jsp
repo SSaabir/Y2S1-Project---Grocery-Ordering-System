@@ -209,12 +209,12 @@
                     <div class="form-row">
                         <div class="sub-part">
                             <label for="password">Password :</label>
-                            <input type="password" id="password" name="password" placeholder="Enter Password" maxlength="15" required>
+                            <input type="password" id="password" name="password" placeholder="Enter Password" maxlength="20" required>
                         </div>
 
                         <div class="sub-part">
                             <label for="password">Confirm Password :</label>
-                            <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Enter Confirm password" maxlength="15" required>
+                            <input type="password" id="Confirmpassword" name="Confirmpassword" placeholder="Enter Confirm password" maxlength="20" required>
                         </div>
                     </div>
 

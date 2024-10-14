@@ -261,11 +261,11 @@
                 <span class="enter_details">Enter Following Details</span>
                 <div class="form-grid">
                     <div>
-                        <input type="text" id="signUpFirstName" placeholder="First Name" name="fName" maxlength="10" required />
+                        <input type="text" id="signUpFirstName" placeholder="First Name" name="fName" maxlength="25" required />
                         <span id="firstNameError" class="error"></span>
                     </div>
                     <div>
-                        <input type="text" id="signUpLastName" placeholder="Last Name" name="lName" maxlength="10" required />
+                        <input type="text" id="signUpLastName" placeholder="Last Name" name="lName" maxlength="25" required />
                         <span id="lastNameError" class="error"></span>
                     </div>
                     <div>
@@ -281,7 +281,7 @@
                         <span id="laneError" class="error"></span>
                     </div>
                     <div>
-                        <input type="text" id="signUpCity" placeholder="City" name="city" maxlength="10" required />
+                        <input type="text" id="signUpCity" placeholder="City" name="city" maxlength="20" required />
                         <span id="cityError" class="error"></span>
                     </div>
                     <div>
@@ -297,12 +297,12 @@
                 </div>
                 <div class="form-grid">
                     <div>
-                        <input type="password" id="signUpPassword" placeholder="Password" name="password" maxlength="15" required />
+                        <input type="password" id="signUpPassword" placeholder="Password" name="password" maxlength="20" required />
                         <span id="passwordError" class="error"></span>
                     </div>
 
                     <div>
-                        <input type="password" id="signUpConfirmPassword" placeholder="Confirm Password" name="password" maxlength="15" required />
+                        <input type="password" id="signUpConfirmPassword" placeholder="Confirm Password" name="password" maxlength="20" required />
                         <span id="passwordError" class="error"></span>
                     </div>
                 </div>
@@ -315,7 +315,7 @@
                 <h1>Sign in</h1>
                 <input type="email" id="signInEmail" name="email" placeholder="Enter Your Email" required />
                 <span id="emailError" class="error"></span>
-                <input type="password" id="signInPassword" name="password" placeholder="Enter Your Password" required />
+                <input type="password" id="signInPassword" name="password" placeholder="Enter Your Password" maxlength="20" required />
                 <span id="passwordError" class="error"></span>
                 <input type="submit" class="sub-buttons" value="Sign In">
             </form>
@@ -337,51 +337,53 @@
     </div>
 
     <script>
+    
+    //These lines retrieve the Sign Up and Sign In forms by their respective IDs
         document.addEventListener('DOMContentLoaded', function() {
             const signUpForm = document.getElementById('signUpForm');
             const signInForm = document.getElementById('signInForm');
 
             // Sign Up Form Validation
             signUpForm.addEventListener('submit', function(event) {
-                let errorMessages = [];
+                let errorMessages = [];//  store any validation errors found
                 let isValid = true;
 
-                // Email validation (standard format)
+                // Email validation 
                 const emailField = document.getElementById('signUpEmail');
                 const email = emailField.value;
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Standard email format regex
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Standard email format (Regex)
                 if (!emailRegex.test(email)) {
                     errorMessages.push("Please enter a valid email address.");
                     isValid = false;
                 }
 
-                // Phone number validation (10 digits)
+                // Phone number 
                 const phoneField = document.getElementById('signUpPhone');
                 const phone = phoneField.value;
-                const phoneRegex = /^\d{10}$/;
+                const phoneRegex = /^\d{10}$/;// check 10 numbers
                 if (!phoneRegex.test(phone)) {
                     errorMessages.push("Phone number must be exactly 10 digits.");
                     isValid = false;
                 }
 
-                // Date of Birth validation (must be at least 16 years old)
+                // Date of Birth  
                 const dobField = document.getElementById('signUpDOB');
                 const dob = new Date(dobField.value);
                 const age = new Date().getFullYear() - dob.getFullYear();
-                if (age < 16) {
+                if (age < 16) { // must be at least 16 years old
                     errorMessages.push("You must be at least 16 years old.");
                     isValid = false;
                 }
 
-                // Password validation (at least 8 characters)
+                // check Password 
                 const passwordField = document.getElementById('signUpPassword');
                 const password = passwordField.value;
-                if (password.length < 8) {
+                if (password.length < 8) { //   8 characters
                     errorMessages.push("Password must be at least 8 characters long.");
                     isValid = false;
                 }
 
-                // Confirm password validation
+                // Confirm password 
                 const confirmPasswordField = document.getElementById('signUpConfirmPassword');
                 const confirmPassword = confirmPasswordField.value;
                 if (password !== confirmPassword) {
