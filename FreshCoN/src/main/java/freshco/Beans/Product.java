@@ -12,10 +12,12 @@ public class Product {
     private double discount;
     private int CID;
 
+    
+    //using  Constructor to product Object
     public Product(int prID, String productName, String descript, double price, String unit, int quantity, String imgUrl,
                    double discount, int cID) {
         super();
-        this.prID = prID; // Use the updated field name
+        this.prID = prID; 
         this.productName = productName;
         this.descript = descript;
         this.price = price;
@@ -23,9 +25,11 @@ public class Product {
         this.quantity = quantity;
         this.imgUrl = imgUrl;
         this.discount = discount;
-        this.CID = cID; // Assuming CID is meant to be capitalized
+        this.CID = cID; 
     }
 
+    
+    // Constructor with only productID and productName
     public Product(int prID, String productName) {
         this.prID = prID;
         this.productName = productName;

@@ -25,16 +25,16 @@ public class AddCategory extends HttpServlet {
 
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("UploadImage");
-        dispatcher.include(request, response); // Include ImageUploadServlet's response in this servlet
+        dispatcher.include(request, response); 
 
         String imgUrl = (String) request.getAttribute("imageUrl"); 
         // Insert the category into the database with the image URL
         boolean isSuccess = CategoryDBUtil.insertCategory(category_Name, imgUrl, ID);
 
         
-        // Redirect based on success/failure
+        
         if (isSuccess) {
-            response.sendRedirect("Category"); // Redirect to the category listing page
+            response.sendRedirect("Category"); 
         } else {
         	request.setAttribute("errorMessage", "Failed to add Category. Category Exists. Enter a Different Category.");
 			RequestDispatcher dispatcher1 = request.getRequestDispatcher("AddCategory.jsp");
