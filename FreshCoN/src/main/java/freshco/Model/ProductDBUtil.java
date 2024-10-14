@@ -35,7 +35,7 @@ public class ProductDBUtil {
                 "VALUES ('" + productName + "', '" + descript + "', " + price + ", '" + unit + "', " + quantity + ", '" + imgUrl + "', " + discount + ", " + CID + ")";
 
         try {
-            // Execute the insert query for the Product
+            
             int rowsAffected = webDB.executeIUD(queryProduct);
 
             if (rowsAffected > 0) {

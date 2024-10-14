@@ -19,7 +19,7 @@ public class AddCategory extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Retrieve the category name from the form
         String category_Name = request.getParameter("category_Name");
-     // Get session details
+     
         HttpSession session = request.getSession();
         Integer ID = (Integer) session.getAttribute("ID");
 
