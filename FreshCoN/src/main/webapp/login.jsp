@@ -338,20 +338,20 @@
 
     <script>
     
-    //These lines retrieve the Sign Up and Sign In forms by their respective IDs
+    
         document.addEventListener('DOMContentLoaded', function() {
             const signUpForm = document.getElementById('signUpForm');
             const signInForm = document.getElementById('signInForm');
 
-            // Sign Up Form Validation
+            // Sign Up
             signUpForm.addEventListener('submit', function(event) {
-                let errorMessages = [];//  store any validation errors found
+                let errorMessages = [];//  store all error
                 let isValid = true;
 
                 // Email validation 
                 const emailField = document.getElementById('signUpEmail');
                 const email = emailField.value;
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Standard email format (Regex)
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //  email format 
                 if (!emailRegex.test(email)) {
                     errorMessages.push("Please enter a valid email address.");
                     isValid = false;
@@ -383,7 +383,7 @@
                     isValid = false;
                 }
 
-                // Confirm password 
+                
                 const confirmPasswordField = document.getElementById('signUpConfirmPassword');
                 const confirmPassword = confirmPasswordField.value;
                 if (password !== confirmPassword) {
@@ -391,16 +391,17 @@
                     isValid = false;
                 }
 
-                // If there are any errors, show them in an alert and prevent form submission
+                //  validation fails  didnt submit form & show the error msg.
+
                 if (!isValid) {
-                    alert(errorMessages.join("\n")); // Display all error messages at once
-                    event.preventDefault();
+                    alert(errorMessages.join("\n")); // show all error msg
+                    event.preventDefault();//didn't submit if any error is show
                 } else {
-                    // Show success message if validation is successful
+                    // Show success msg if validation is successful
                     document.getElementById('signUpSuccess').style.display = 'block';
                     setTimeout(() => {
                         document.getElementById('signUpSuccess').style.display = 'none';
-                    }, 3000); // Hide success message after 3 seconds
+                    }, 3000); //sucess msg
                 }
             });
 
@@ -409,9 +410,9 @@
                 let errorMessages = [];
                 let isValid = true;
 
-                // Dummy values for validation (You can replace this with actual user data)
-                const validUsername = "testuser"; // Example username
-                const validPassword = "password123"; // Example password
+               
+                const validUsername = "testuser"; 
+                const validPassword = "password123"; 
 
                 const usernameField = document.getElementById('signInEmail');
                 const username = usernameField.value;
@@ -420,7 +421,7 @@
                 const password = passwordField.value;
 
 
-                // If there are any errors, show them in an alert and prevent form submission
+                //  validation fails  didnt submit form & show the error msg.
                 if (!isValid) {
                     alert(errorMessages.join("\n"));
                     event.preventDefault();
@@ -428,7 +429,7 @@
             });
         });
 
-        // Function to switch between Sign Up and Sign In forms
+        // sign in & sign up click
         document.getElementById('signIn').addEventListener('click', function() {
             document.getElementById('container').classList.remove('right-panel-active');
         });

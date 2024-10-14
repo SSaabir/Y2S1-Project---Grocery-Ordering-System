@@ -18,7 +18,9 @@ public class UpdateCustomer extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		   // Retrieve  cid from session 
 		        int CusID = (int) session.getAttribute("ID");
+		     // Retrieve  data 
 		    	String fName = request.getParameter("fName");
 	         	String lName = request.getParameter("lName");
 	         	String email = request.getParameter("email");
@@ -28,25 +30,29 @@ public class UpdateCustomer extends HttpServlet {
 	         	String password = request.getParameter("password");
 
 	         	RequestDispatcher dispatcher = request.getRequestDispatcher("UploadImage");
-	            dispatcher.include(request, response); // Include ImageUploadServlet's response in this servlet
-
+	            dispatcher.include(request, response); //  ImageUploadServlet's response in this servlet
+	            
+	         // Retrieve  img URL set by the UploadImage servlet
 	            String imgUrl = (String) request.getAttribute("imageUrl"); 
-		        // Call the updateCustomermethod from your database class
+	         
 
+	         // Call  CustomerDBUtil uddate details
 		        boolean isUpdated;
 		        if (imgUrl != null) {
 		            isUpdated = CustomerDBUtil.updateCustomer(CusID,fName,lName,email,phone,imgUrl,lane,city, password);
 		        } else {
 		            isUpdated = CustomerDBUtil.updateCustomerWithoutImage(CusID,fName,lName,email,phone,lane,city, password);
 		        }
-		        
+		     
 		        if (isUpdated) {
+		        	// Set email and password for login validation
 		        	request.setAttribute("email", email);
 		            request.setAttribute("password", password);
-		            
+		         // Forward the request to the login servlet for user validation
 		        	RequestDispatcher userValidationDispatcher = request.getRequestDispatcher("login");
 		            userValidationDispatcher.forward(request, response);
 		        } else {
+		        	
 		        	request.setAttribute("errorMessage", "Failed to update customer. Please try again.");
 					RequestDispatcher dispatcher1 = request.getRequestDispatcher("EditProfile.jsp");
 					dispatcher1.forward(request, response);

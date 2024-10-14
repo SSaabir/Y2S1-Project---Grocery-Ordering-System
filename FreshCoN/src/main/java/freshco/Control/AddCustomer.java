@@ -23,7 +23,7 @@ public class AddCustomer extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	
+ // Handles the POST request . when form is submitted
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		     
@@ -36,17 +36,19 @@ public class AddCustomer extends HttpServlet {
 	         	String dob = request.getParameter("dob");
 	         	String password = request.getParameter("password");
 	         	
+	            //  forward  request to the UploadImg servlet
 	         	RequestDispatcher dispatcher = request.getRequestDispatcher("UploadImage");
-	            dispatcher.include(request, response); // Include ImageUploadServlet's response in this servlet
+	            dispatcher.include(request, response); //  ImageUploadServlet's response 
 
+	            // Retrieve the image URL stored as an attribute by the UploadImage servlet
 	            String imgUrl = (String) request.getAttribute("imageUrl"); 
 	         	
 
-		        
+	         // Call  CustomerDBUtil  insert the customer into the database
 		        boolean isInserted = CustomerDBUtil.insertCustomer(fName,lName,email,phone,lane,city,dob,imgUrl,password);
-
+		     //   successful
 		        if (isInserted) {
-		            // Redirect or inform the user of success
+		        	
 		            response.sendRedirect("login.jsp");
 		        } else {
 		        	request.setAttribute("errorMessage", "Failed to add Customer. Email already exists. try login.");

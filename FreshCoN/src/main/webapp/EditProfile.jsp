@@ -277,33 +277,33 @@
                     document.getElementById('saveBtn').addEventListener('click', function (event) {
                         let errors = [];
 
-                        // Email validation
+                        // Email 
                         const email = document.getElementById('email').value;
                         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
                         if (!emailPattern.test(email)) {
                             errors.push("Please enter a valid email address.");
                         }
 
-                        // Phone number validation (10 digits)
+                        // Phone 10 digits
                         const phone = document.getElementById('phone').value;
                         const phonePattern = /^\d{10}$/;
                         if (!phonePattern.test(phone)) {
                             errors.push("Please enter a valid 10-digit phone number.");
                         }
 
-                        // Password validation (at least 8 characters)
+                        // Password  8 characters
                         const password = document.getElementById('password').value;
                         const confirmPassword = document.getElementById('Confirmpassword').value;
                         if (password.length < 8) {
                             errors.push("Password must be at least 8 characters long.");
                         }
 
-                        // Check if password matches confirm password
+                        // password == confirm password
                         if (password !== confirmPassword) {
                             errors.push("Passwords do not match.");
                         }
 
-                        // If there are errors, prevent form submission and show all errors
+                        //  validation fails  didnt submit form & show the error msg.
                         if (errors.length > 0) {
                             alert(errors.join("\n"));
                             event.preventDefault();
@@ -380,33 +380,33 @@
                          document.getElementById('saveBtn').addEventListener('click', function(event) {
                              let errors = [];
 
-                             // Email validation (must include @adm.freshco.lk)
+                             // Email 
                              const email = document.getElementById('email').value;
                              const emailPattern = /^[a-zA-Z0-9._%+-]+@adm\.freshco\.lk$/;
                              if (!emailPattern.test(email)) {
                                  errors.push("Please enter a valid email address in the format '@adm.freshco.lk'.");
                              }
 
-                             // Phone number validation (10 digits)
+                             // Phone
                              const phone = document.getElementById('phone').value;
                              const phonePattern = /^\d{10}$/;
                              if (!phonePattern.test(phone)) {
                                  errors.push("Please enter a valid 10-digit phone number.");
                              }
 
-                             // Password validation (at least 8 characters)
+                             // Password 
                              const password = document.getElementById('password').value;
                              const confirmPassword = document.getElementById('Confirmpassword').value;
                              if (password.length < 8) {
                                  errors.push("Password must be at least 8 characters long.");
                              }
 
-                             // Check if password matches confirm password
+                             //  password == confirm password
                              if (password !== confirmPassword) {
                                  errors.push("Passwords do not match.");
                              }
 
-                             // If there are errors, prevent form submission and show all errors
+                             //  validation fails  didnt submit form & show the error msg.
                              if (errors.length > 0) {
                                  alert(errors.join("\n"));
                                  event.preventDefault();
@@ -495,9 +495,9 @@
                                   errors.push("Passwords do not match.");
                               }
 
-                              // If there are errors, prevent form submission and show all errors
+                              //  validation fails  didnt submit form & show the error msg.
                               if (errors.length > 0) {
-                                  alert(errors.join("\n")); // Display all errors at once
+                                  alert(errors.join("\n")); // show all errors 
                                   event.preventDefault();
                               } else {
                                   alert("Profile saved successfully!");
@@ -556,38 +556,38 @@
                              <script>
                      
                              document.getElementById('saveBtn').addEventListener('click', function(event) {
-                                 let errors = [];  // Array to hold error messages
+                                 let errors = [];  // // store all error
 
-                                 // Email validation (must include @emp.freshco.lk)
+                                 // Email  
                                  const email = document.getElementById('email').value;
-                                 const emailPattern = /^[a-zA-Z0-9._%+-]+@emp\.freshco\.lk$/;
+                                 const emailPattern = /^[a-zA-Z0-9._%+-]+@emp\.freshco\.lk$/;//must include @emp.freshco.lk
                                  if (!emailPattern.test(email)) {
                                      errors.push("Please enter a valid email address in the format '@emp.freshco.lk'.");
                                  }
 
-                                 // Phone number validation (10 digits)
+                                 // Phone   10 digits
                                  const phone = document.getElementById('phone').value;
                                  const phonePattern = /^\d{10}$/;
                                  if (!phonePattern.test(phone)) {
                                      errors.push("Please enter a valid 10-digit phone number.");
                                  }
 
-                                 // Password validation (at least 8 characters)
+                                 // Password  8 characters
                                  const password = document.getElementById('password').value;
                                  const confirmPassword = document.getElementById('Confirmpassword').value;
                                  if (password.length < 8) {
                                      errors.push("Password must be at least 8 characters long.");
                                  }
 
-                                 // Check if password matches confirm password
+                                 //   password == confirm password
                                  if (password !== confirmPassword) {
                                      errors.push("Passwords do not match.");
                                  }
 
-                                 // If there are errors, prevent form submission and show all errors
+                                 //  validation fails  didnt submit form & show the error msg.
                                  if (errors.length > 0) {
-                                     alert(errors.join("\n")); // Display all errors at once
-                                     event.preventDefault(); // Prevent form submission
+                                     alert(errors.join("\n")); // show all errors 
+                                     event.preventDefault(); 
                                  } else {
                                      alert("Profile saved successfully!");
                                  }
@@ -658,38 +658,38 @@
                           <script>
                      
                           document.getElementById('saveBtn').addEventListener('click', function(event) {
-                              let errors = [];  // Array to hold error messages
+                              let errors = [];  // store all error
 
-                              // Email validation (must include @emp.freshco.lk)
+                              // Email  
                               const email = document.getElementById('email').value;
-                              const emailPattern = /^[a-zA-Z0-9._%+-]+@emp\.freshco\.lk$/;
+                              const emailPattern = /^[a-zA-Z0-9._%+-]+@emp\.freshco\.lk$/;//must include @emp.freshco.lk
                               if (!emailPattern.test(email)) {
                                   errors.push("Please enter a valid email address in the format '@emp.freshco.lk'.");
                               }
 
-                              // Phone number validation (10 digits)
+                              // Phone   10 num
                               const phone = document.getElementById('phone').value;
                               const phonePattern = /^\d{10}$/;
                               if (!phonePattern.test(phone)) {
                                   errors.push("Please enter a valid 10-digit phone number.");
                               }
 
-                              // Password validation (at least 8 characters)
+                              // Password  8 characters
                               const password = document.getElementById('password').value;
                               const confirmPassword = document.getElementById('Confirmpassword').value;
                               if (password.length < 8) {
                                   errors.push("Password must be at least 8 characters long.");
                               }
 
-                              // Check if password matches confirm password
+                              //  password == confirm password
                               if (password !== confirmPassword) {
                                   errors.push("Passwords do not match.");
                               }
 
-                              // If there are errors, prevent form submission and show all errors
+                          //  validation fails  didnt submit form & show the error msg.
                               if (errors.length > 0) {
-                                  alert(errors.join("\n")); // Display all errors at once
-                                  event.preventDefault(); // Prevent form submission
+                                  alert(errors.join("\n")); // show all errors at once
+                                  event.preventDefault(); // any error form didt submit
                               } else {
                                   alert("Profile saved successfully!");
                               }
