@@ -16,7 +16,8 @@ public class UpdateAdmin extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Retrieve form parameters
+    	
+        //form parameters
     	HttpSession session = request.getSession();
         int AID = (int) session.getAttribute("ID");
         String fName = request.getParameter("fName");
@@ -26,23 +27,23 @@ public class UpdateAdmin extends HttpServlet {
         String password = request.getParameter("password");
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("UploadImage");
-        dispatcher.include(request, response); // Include ImageUploadServlet's response in this servlet
+        dispatcher.include(request, response); //upload image to servlet 
 
         String imgUrl = (String) request.getAttribute("imageUrl"); 
-        // Call the method to update admin
+       
         boolean isUpdated;
         if (imgUrl != null) {
             isUpdated = AdminDBUtil.updateAdmin(AID, fName, lName, email, imgUrl, phone,  password);
         } else {
             isUpdated = AdminDBUtil.updateAdminWithoutImage(AID, fName, lName, email, phone,  password);
         }
-        // Redirect or forward based on the result
+      
         if (isUpdated) {
         	request.setAttribute("email", email);
             request.setAttribute("password", password);
             
         	RequestDispatcher userValidationDispatcher = request.getRequestDispatcher("login");
-            userValidationDispatcher.forward(request, response); // Redirect to admin list page on success
+            userValidationDispatcher.forward(request, response); //redirect result
         } else {
             request.setAttribute("errorMessage", "Failed to update admin. Please try again.");
 			RequestDispatcher dispatcher1 = request.getRequestDispatcher("EditProfile.jsp");

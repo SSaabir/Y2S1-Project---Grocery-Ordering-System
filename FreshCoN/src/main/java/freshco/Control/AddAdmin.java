@@ -17,7 +17,7 @@ public class AddAdmin extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Retrieve form parameters
+		// form parameters
 		String fName = request.getParameter("fName");
 		String lName = request.getParameter("lName");
 		String email = request.getParameter("email");
@@ -27,15 +27,16 @@ public class AddAdmin extends HttpServlet {
 		String phone = request.getParameter("phone");
 		String password = request.getParameter("password");
 
+		// Include ImageUploadServlet's 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("UploadImage");
-		dispatcher.include(request, response); // Include ImageUploadServlet's response in this servlet
+		dispatcher.include(request, response); 
 
 		String imgUrl = (String) request.getAttribute("imageUrl");
 
-		// Call the method to add admin
+		// Method call admin
 		boolean isAdded = AdminDBUtil.addAdmin(fName, lName, email, address, city, dob, imgUrl, phone, password);
 
-		// Redirect or forward based on the result
+		// Redirect based on the result
 		if (isAdded) {
 			response.sendRedirect("Admin");
 		} else {

@@ -25,7 +25,7 @@ public class ViewAdmin extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             List<Admin> admins = AdminDBUtil.getAllAdmins(); // Retrieve all admin records
-            request.setAttribute("admins", admins); // Set the admin list as an attribute in the request
+            request.setAttribute("admins", admins); // Set the admin list 
             RequestDispatcher dispatcher = request.getRequestDispatcher("AdmDash.jsp"); // Forward to AdminDash.jsp
             dispatcher.forward(request, response);
         } catch (Exception e) {

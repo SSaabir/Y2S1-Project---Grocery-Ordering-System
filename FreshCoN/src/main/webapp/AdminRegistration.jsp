@@ -197,7 +197,7 @@ h2 {
 	<script type="text/javascript">
 		document
 				.addEventListener(
-						'DOMContentLoaded',
+						'DOMContentLoaded', //HTML document to fully load before executing. 
 						function() {
 							const form = document.querySelector('form');
 							const emailField = document.getElementById('email');
@@ -222,7 +222,7 @@ h2 {
 															.push("Email must be in the format '@adm.freshco.lk'.");
 												}
 
-												// Phone number validation (10 digits)
+												// Phone number validatio
 												const phone = phoneField.value;
 												const phoneRegex = /^\d{10}$/;
 												if (!phoneRegex.test(phone)) {
@@ -230,7 +230,7 @@ h2 {
 															.push("Phone number must be exactly 10 digits.");
 												}
 
-												// Age validation (must be at least 20 years old)
+												// Age validation
 												const dob = new Date(
 														dobField.value);
 												const age = new Date()
@@ -241,7 +241,7 @@ h2 {
 															.push("You must be at least 20 years old.");
 												}
 
-												// Password validation (at least 8 characters)
+												// Password validation
 												const password = passwordField.value;
 												if (password.length < 8) {
 													errors

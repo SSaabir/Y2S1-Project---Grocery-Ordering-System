@@ -187,7 +187,7 @@
 
                 // Set selected rating value
                 selectedRating = star.getAttribute('data-value');
-                ratingInput.value = selectedRating;  // Set the hidden input value for submission
+                ratingInput.value = selectedRating;  // Set the hidden input 
             });
         });
     </script>

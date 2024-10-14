@@ -7,7 +7,7 @@ import freshco.Beans.Feedback;
 
 public class FeedbackDBUtil {
 
-    // Method to retrieve all feedback records
+    //retrieve all feedback records
     public static List<Feedback> getAllFeedbacks() throws Exception {
         List<Feedback> feedbacks = new ArrayList<>();
         String query = "SELECT * FROM Feedback";
@@ -26,7 +26,7 @@ public class FeedbackDBUtil {
         return feedbacks;
     }
 
-    // Method to insert a new feedback record
+    //insert a new feedback record
     public static boolean insertFeedback(String comments, int rating, int OID) {
         boolean isSuccess = false;
 

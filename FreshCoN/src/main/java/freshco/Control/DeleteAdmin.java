@@ -14,15 +14,16 @@ public class DeleteAdmin extends HttpServlet {
    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Retrieve admin ID from the request
-        int AID = Integer.parseInt(request.getParameter("AID")); // Assuming AID is passed as a hidden input
+    	
+        //Admin ID from the request
+        int AID = Integer.parseInt(request.getParameter("AID")); 
 
-        // Call the method to delete admin
+        // Method call delete admin
         boolean isDeleted = AdminDBUtil.deleteAdmin(AID);
 
-        // Redirect or forward based on the result
+        // Forwarding based on the result
         if (isDeleted) {
-            response.sendRedirect("logout"); // Redirect to admin list page on success
+            response.sendRedirect("logout"); // Page redirect  success notifications
         } else {
         	request.setAttribute("errorMessage", "Failed to Delete Admin. Please try again.");
 			RequestDispatcher dispatcher1 = request.getRequestDispatcher("EditProfile.jsp");
