@@ -115,6 +115,7 @@
 							<th>Feedback Comments</th>
 							<th>Feedback Rating</th>
 							<th>DPID</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -444,7 +445,7 @@
 							<th>Feedback Comments</th>
 							<th>Feedback Rating</th>
 							<th>DPID</th>
-							<th>Action</th>
+							<th colspan="2	">Action</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -477,11 +478,10 @@
 							<td><%=feedback != null ? feedback.getRating() : "N/A"%></td>
 							<td><%=(sale.getDPID() != null) ? sale.getDPID() : "N/A"%></td>
 							<td><a href="Receipt?OID=<%=sale.getOID()%>"><span
-									class="material-symbols-outlined">receipt_long</span></a> <%
- if (feedback.getComments() == null && feedback.getRating() == 0
- 		&& sale.getDPID() != null && sale.isOrderStatus() == false) {
+									class="material-symbols-outlined">receipt_long</span></a></td> <%
+				 if (feedback.getComments() == null && feedback.getRating() == 0 && sale.isOrderStatus() == true) {
  %> <!-- Show feedback link if comments, rating, and DPID are present -->
-								<a href="Feedback.jsp?OID=<%=sale.getOID()%>"> <span
+								<td><a href="Feedback.jsp?OID=<%= sale.getOID() %>"><span
 									class="material-symbols-outlined">reviews</span>
 							</a> <%
  }

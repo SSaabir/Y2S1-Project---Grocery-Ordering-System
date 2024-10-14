@@ -12,9 +12,9 @@ public class ClearCartProducts extends HttpServlet {
 
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	        HttpSession session = request.getSession();
-	        session.removeAttribute("cartItems"); // Clear the cart
+	        session.removeAttribute("cartItems"); 
 
-	        // Redirect back to the cart page
+	        
 	        response.sendRedirect("ViewCart");
 	    }
 	}

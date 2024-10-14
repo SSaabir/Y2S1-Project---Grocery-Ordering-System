@@ -21,10 +21,10 @@ public class RemoveCartProducts extends HttpServlet {
 			List<CartProducts> cartItems = (List<CartProducts>) session.getAttribute("cartItems");
 
 	        if (cartItems != null) {
-	            cartItems.removeIf(item -> item.getPid() == productId); // Remove item by product ID
+	            cartItems.removeIf(item -> item.getPid() == productId);
 	        }
 
-	        // Redirect back to the cart page
-	        response.sendRedirect("ViewCart"); // Use ViewCartServlet to refresh the cart view
+	        
+	        response.sendRedirect("ViewCart"); 
 	    }
 	}

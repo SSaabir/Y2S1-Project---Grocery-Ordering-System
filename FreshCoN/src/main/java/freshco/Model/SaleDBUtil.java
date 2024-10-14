@@ -16,6 +16,7 @@ import freshco.Beans.SaleDetails;
 public class SaleDBUtil {
 
     // Method to retrieve all Sale records
+	// Used in ViewSale Servlet
 	public static List<SaleDetails> getAllSales() throws Exception {
 	    List<SaleDetails> salesDetails = new ArrayList<>();
 	    String query = "SELECT * FROM Manager_Sales_View";
@@ -78,59 +79,8 @@ public class SaleDBUtil {
 	}
 
 
-
-    // Method to insert a new Sale record
-    public static boolean insertSale(String orderDate, float totalAmount, boolean orderStatus, int CusID, int PID, int EmID) {
-        boolean isSuccess = false;
-
-        String query = "INSERT INTO sale (orderDate, totalAmount, orderStatus, CusID, PID, EmID) VALUES ('"
-            + orderDate + "', " + totalAmount + ", " + (orderStatus ? 1 : 0) + ", " + CusID + ", " + PID + ", " + EmID + ")";
-
-        try {
-            int rowsAffected = webDB.executeIUD(query);
-            isSuccess = rowsAffected > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return isSuccess;
-    }
-
-    // Method to update a Sale record
-    public static boolean updateSale(int OID, String orderDate, float totalAmount, boolean orderStatus, int CusID, int PID, int EmID) {
-        boolean isSuccess = false;
-
-        String query = "UPDATE sale SET orderDate='" + orderDate + "', totalAmount=" + totalAmount + ", orderStatus=" + (orderStatus ? 1 : 0)
-            + ", CusID=" + CusID + ", PID=" + PID + ", EmID=" + EmID + " WHERE OID=" + OID;
-
-        try {
-            int rowsAffected = webDB.executeIUD(query);
-            isSuccess = rowsAffected > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return isSuccess;
-    }
-
-    // Method to delete a Sale record
-    public static boolean deleteSale(int OID) {
-        boolean isSuccess = false;
-
-        String query = "DELETE FROM sale WHERE OID=" + OID;
-
-        try {
-            int rowsAffected = webDB.executeIUD(query);
-            isSuccess = rowsAffected > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return isSuccess;
-    }
-
-
-
+    // Method to Update EmID when Accepted to deliver
+    // Used in UpdateDPSale Servlet
     public static boolean UpdateEmID(Integer iD, int oID) {
         boolean isSuccess = false;
 
@@ -154,19 +104,17 @@ public class SaleDBUtil {
     }
 
 
-
+    // Method to Update payStatus and orderStatus when deliver Completed
+    //Used in UpdateStatus Servlet
     public static boolean UpdateStatus(int pID, int oID) {
         boolean isSuccess = false;
 
-        // Construct the SQL update queries
         String updateOrderStatusQuery = "UPDATE sale SET orderStatus='" + 1 + "' WHERE OID=" + oID;
         String updatePayStatusQuery = "UPDATE payment SET payStatus='" + 1 + "' WHERE PID=" + pID;
 
         try {
-            // Execute the first update query
-            int affectedRows1 = webDB.executeIUD(updateOrderStatusQuery);
             
-            // Execute the second update query
+            int affectedRows1 = webDB.executeIUD(updateOrderStatusQuery);
             int affectedRows2 = webDB.executeIUD(updatePayStatusQuery);
 
             // Check if both updates affected any rows
@@ -177,9 +125,11 @@ public class SaleDBUtil {
             e.printStackTrace(); // Log any exceptions
         }
 
-        return isSuccess; // Return whether the update was successful
+        return isSuccess; // Return Result
     }
 
+    // Method to create Sale when payment is done
+    // Used in OrderFacadeServlet
     public static int createSale(String address, int paymentId, int customerId, double totalAmount) throws Exception {
         String sql = "INSERT INTO Sale (orderDate, totalAmount, address, orderStatus, CusID, PID) VALUES (NOW(), "
                 + totalAmount + ", '" + address + "', FALSE, " + customerId + ", " + paymentId + ")";
@@ -188,7 +138,7 @@ public class SaleDBUtil {
             throw new SQLException("Creating sale failed, no rows affected.");
         }
 
-        // Get the last inserted ID (sale ID)
+        // Get the last inserted ID (OID)
         ResultSet rs = webDB.executeSearch("SELECT LAST_INSERT_ID() AS saleId");
         if (rs.next()) {
             return rs.getInt("saleId");
@@ -197,7 +147,8 @@ public class SaleDBUtil {
         }
     }
 
-    
+    // Method to retrieve Sale related Data to the Receipt
+    //Used in receip Servlet
     public static SaleDetails getSaleDetailsByOrderID(int orderID) throws Exception {
         Sale sale = null;
         Customer customer = null;
@@ -205,7 +156,7 @@ public class SaleDBUtil {
         ResultSet rs = null;
 
         try {
-            // Query the SaleDetails view using orderID
+            
             String query = "SELECT * FROM SaleDetails WHERE OrderID = " + orderID;
             rs = webDB.executeSearch(query);
 
@@ -231,9 +182,9 @@ public class SaleDBUtil {
                 do {
                     CartProducts cartProduct = new CartProducts(
                     	rs.getInt("ProductID"),
-                        rs.getString("ProductName"), // Use ProductName
-                        rs.getInt("Quantity"), // Use Quantity
-                        rs.getDouble("netPrice") // Set netPrice to ProductPrice
+                        rs.getString("ProductName"), 
+                        rs.getInt("Quantity"), 
+                        rs.getDouble("netPrice") 
                     );
 
                     // Add the cart product to the list
@@ -241,8 +192,8 @@ public class SaleDBUtil {
 
                 } while (rs.next()); // Continue to the next row for the same OrderID
 
-                // Create SaleDetails object with the list of cart products
-                return new SaleDetails(sale, customer, cartProducts); // Assuming SaleDetails is adjusted to take a List<CartProducts>
+               
+                return new SaleDetails(sale, customer, cartProducts); // return saleDetails object
             }
 
         } catch (Exception e) {

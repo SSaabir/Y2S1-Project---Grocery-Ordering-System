@@ -9,6 +9,8 @@ import freshco.Beans.Manager;
 
 
 public class EmployeeDBUtil {
+	// Method to validate User based on email and password
+	// Used in UserValidation Servlet
 	public static Employee validateEmployee(String email, String password) throws Exception {
 		
 		String query = "SELECT * FROM employee WHERE email='"+email+"' AND password='"+password+"'";
@@ -25,7 +27,9 @@ public class EmployeeDBUtil {
 			return null;
 		}
 	}
-
+	
+	// Method to retrieve all the Data of the Employee and the Inheritence
+	//Used in ViewEmployee Servlet
 	public static List<Employee> getAllEmployees() throws Exception {
 	    List<Employee> employees = new ArrayList<>();
 	    String query = "SELECT EmID, email, nic, dob, imgUrl, phone, password, Role, vehicleNum, drivingLicenseNum, city FROM EmployeeRoleView";
@@ -67,7 +71,8 @@ public class EmployeeDBUtil {
 	    return employees;
 	}
 
-	
+	// Method to Create Employee
+	 		// Used in AddEmpMan Servlet
 	public static boolean insertEmployee(String email, String nic, String dob, String phone, String imgUrl, String password, int ID) {
     	
     	boolean isSuccess = false;
@@ -86,6 +91,8 @@ public class EmployeeDBUtil {
             return isSuccess;
     }
     
+	//Method to Update
+	//Used in UpdateEmp Servlet
 	public static boolean updateEmployee(int EmID, String email, String imgUrl, String phone, String password) {
 	
 		boolean isSuccess = false;
@@ -106,7 +113,9 @@ public class EmployeeDBUtil {
 	return isSuccess;
 }
 	
-public static boolean deleteEmployee(int EmID) {
+	// Method to Delete
+	// Used in DeleteEmployee Servlet
+	public static boolean deleteEmployee(int EmID) {
 	
 	boolean isSuccess = false;
 	
@@ -124,8 +133,10 @@ public static boolean deleteEmployee(int EmID) {
     	
     	return isSuccess;
     }
-
-public static boolean updateEmployeeWithoutImage(int emID, String email, String phone, String password) {
+	
+	//Method to update employee withoutImage
+	//Used in UpdateEmp Servlet
+	public static boolean updateEmployeeWithoutImage(int emID, String email, String phone, String password) {
 	boolean isSuccess = false;
 	
 	String query = "UPDATE employee SET email='"+email+"',phone='"+phone+"',password='"+password+"'"

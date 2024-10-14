@@ -1,11 +1,11 @@
 package freshco.Model;
 
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 import freshco.Beans.DeliveryPerson;
 
 public class DeliveryPersonDBUtil {
+	// Method to validate User based on email and password
+			// Used in UserValidation Servlet
 	    public static DeliveryPerson validateDeliveryPerson(String email, String password) throws Exception {
 	        // SQL query to validate delivery person credentials using JOIN
 	        String query = "SELECT e.*, dp.vehicleNum, dp.drivingLicenseNum, dp.city " +
@@ -20,55 +20,28 @@ public class DeliveryPersonDBUtil {
 	        if (rs.next()) {
 	            // Create a DeliveryPerson object with the retrieved data
 	            DeliveryPerson deliveryPerson = new DeliveryPerson(
-	                rs.getInt("EmID"),                  // Common ID
-	                rs.getString("email"),               // From employee table
-	                rs.getString("nic"),                 // From employee table
-	                rs.getString("dob"),                 // From employee table
-	                rs.getString("imgUrl"),              // From employee table
-	                rs.getString("phone"),               // From employee table
-	                rs.getString("password"),            // From employee table
-	                rs.getString("vehicleNum"),          // From deliveryPerson table
-	                rs.getString("drivingLicenseNum"),   // From deliveryPerson table
-	                rs.getString("city")                 // From deliveryPerson table
+	                rs.getInt("EmID"),                  
+	                rs.getString("email"),              
+	                rs.getString("nic"),                
+	                rs.getString("dob"),                
+	                rs.getString("imgUrl"),             
+	                rs.getString("phone"),              
+	                rs.getString("password"),           
+	                rs.getString("vehicleNum"),         
+	                rs.getString("drivingLicenseNum"),  
+	                rs.getString("city")                
 	            );
 	            
-	            rs.close(); // Close the ResultSet
-	            return deliveryPerson; // Return the DeliveryPerson object
+	            rs.close(); 
+	            return deliveryPerson; // Return object
 	        } else {
-	            rs.close(); // Close the ResultSet if no delivery person found
+	            rs.close(); 
 	            return null; // Return null if no valid delivery person found
 	        }
 	    }
 	    
-    public static List<DeliveryPerson> getAllDeliveryPersons() throws Exception {
-        List<DeliveryPerson> deliveryPersons = new ArrayList<>();
-        
-        String query = "SELECT e.EmID, e.email, e.nic, e.dob, e.imgUrl, e.phone, e.password, dp.vehicleNum, dp.drivingLicenseNum, dp.city " +
-                       "FROM DeliveryPerson dp " +
-                       "JOIN Employee e ON dp.EmID = e.EmID";
-        
-        ResultSet rs = webDB.executeSearch(query);
-        
-        while (rs.next()) {
-            DeliveryPerson dp = new DeliveryPerson(
-                rs.getInt("EmID"),
-                rs.getString("email"),
-                rs.getString("nic"),
-                rs.getString("dob"),
-                rs.getString("imgUrl"),
-                rs.getString("phone"),
-                rs.getString("password"),
-                rs.getString("vehicleNum"),
-                rs.getString("drivingLicenseNum"),
-                rs.getString("city")
-            );
-            deliveryPersons.add(dp);
-        }
-        
-        rs.close();
-        return deliveryPersons;
-    }
-
+	 // Method to CreateDP
+	 // Used in AddDeliveryPerson Servlet
     public static boolean insertDeliveryPerson(String email, String nic, String dob, String imgUrl, String phone, String password, String vehicleNum, String drivingLicenseNum, String city, int ID) {
         boolean isSuccess = false;
         
@@ -94,7 +67,9 @@ public class DeliveryPersonDBUtil {
         
         return isSuccess;
     }
-
+    
+    // Method to UpdateDP
+ 	 // Used in UpdateDeliveryPerson Servlet
     public static boolean updateDP(int EmID, String vehicleNum, String city, String email, String imgUrl, String phone, String password) {
         boolean isSuccess = false;
 
@@ -115,7 +90,8 @@ public class DeliveryPersonDBUtil {
         return isSuccess;
     }
 
-
+    // Method to DeleteDP
+	 // Used in DeleteDeliveryPerson Servlet
     public static boolean deleteDeliveryPerson(int EmID) {
         boolean isSuccess = false;
 
@@ -134,6 +110,8 @@ public class DeliveryPersonDBUtil {
         return isSuccess;
     }
 
+    // Method to UpdateDP withoutImage
+	 // Used in UpdateDeliveryPerson Servlet
 	public static boolean updateDPWithoutImage(int emID, String vehicleNum, String city, String email, String phone,
 			String password) {
 		boolean isSuccess = false;

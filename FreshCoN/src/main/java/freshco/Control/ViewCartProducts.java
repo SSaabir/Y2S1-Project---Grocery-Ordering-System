@@ -19,10 +19,10 @@ public class ViewCartProducts extends HttpServlet {
 	        @SuppressWarnings("unchecked")
 			List<CartProducts> cartItems = (List<CartProducts>) session.getAttribute("cartItems");
 
-	        // Set cartItems as request attribute for JSP
+	        
 	        request.setAttribute("cartItems", cartItems);
 	        
-	        // Forward to cart.jsp
+	        
 	        request.getRequestDispatcher("cart.jsp").forward(request, response);
 	    }
 	}

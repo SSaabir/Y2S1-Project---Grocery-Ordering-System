@@ -1,15 +1,15 @@
 package freshco.Model;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 import freshco.Beans.Manager;
 
 public class ManagerDBUtil {
+	// Method to validate User based on email and password
+		// Used in UserValidation Servlet
     public static Manager validateManager(String email, String password) throws Exception {
         // SQL query to validate manager credentials using JOIN
-        String query = "SELECT e.*" +  // Assuming role or other manager-specific columns exist in the manager table
+        String query = "SELECT e.*" +  
                        "FROM employee e " +
-                       "JOIN manager m ON e.EmID = m.EmID " + // Join on common EmID
+                       "JOIN manager m ON e.EmID = m.EmID " + 
                        "WHERE e.email='" + email + "' AND e.password='" + password + "'";
         
         // Execute the query and get the result set
@@ -17,43 +17,28 @@ public class ManagerDBUtil {
         
         // Check if a result was returned
         if (rs.next()) {
-            // Create a Manager object with the retrieved data
+            
             Manager manager = new Manager(
-                rs.getInt("EmID"),                  // Common ID
-                rs.getString("email"),               // From employee table
-                rs.getString("nic"),                 // From employee table
-                rs.getString("dob"),                 // From employee table
-                rs.getString("imgUrl"),              // From employee table
-                rs.getString("phone"),               // From employee table
-                rs.getString("password")          	// From employee table
+                rs.getInt("EmID"),                  
+                rs.getString("email"),              
+                rs.getString("nic"),                
+                rs.getString("dob"),                
+                rs.getString("imgUrl"),             
+                rs.getString("phone"),              
+                rs.getString("password")          	
             );
             
-            rs.close(); // Close the ResultSet
-            return manager; // Return the Manager object
+            rs.close(); 
+            return manager; // Return the Manager
         } else {
-            rs.close(); // Close the ResultSet if no manager found
+            rs.close(); 
             return null; // Return null if no valid manager found
         }
     }
     
-	public static List<Manager> getAllManager() throws Exception {
-        List<Manager> managers = new ArrayList<>();
-        String query = "SELECT e.EmID, e.email, e.nic, e.dob, e.imgUrl, e.phone, e.password " +
-                "FROM Manager m " +
-                "JOIN Employee e ON m.EmID = e.EmID";
- 
-
-        ResultSet rs = webDB.executeSearch(query);
-        while (rs.next()) {
-        	Manager man = new Manager(rs.getInt("EmID"),rs.getString("email"),rs.getString("nic"),rs.getString("dob"),rs.getString("imgUrl"),rs.getString("phone"),rs.getString("password"));
-            managers.add(man);
-        }
-        rs.close();
-        return managers;
-    }
-	
-	public static boolean insertManager(String email, String nic, String dob, String phone, String imgUrl, String password, int ID) {
-	    
+ // Method to Create Employee
+ 		// Used in AddEmpMan Servlet
+	public static boolean insertManager(String email, String nic, String dob, String phone, String imgUrl, String password, int ID) {	    
 	    boolean isSuccess = false;
 
 	    
@@ -84,7 +69,8 @@ public class ManagerDBUtil {
 	}
 
 
-    
+    // Method to Update Manager
+	// Used in UpdateManager Servlet
 	public static boolean updateManager(int EmID, String email, String imgUrl, String phone, String password) {
 	    
 	    boolean isSuccess = false;
@@ -105,6 +91,8 @@ public class ManagerDBUtil {
 	}
 
 	
+	// Method to Delete Manager
+	// Used in DeleteManager Servlet
 public static boolean deleteManager(int EmID) {
 	
 	boolean isSuccess = false;
@@ -133,6 +121,8 @@ public static boolean deleteManager(int EmID) {
     	}
 	}
 
+//Method to Update Manager withoutImage
+	// Used in UpdateManager Servlet
 public static boolean updateManagerWithoutImage(int emID, String email, String phone, String password) {
 	boolean isSuccess = false;
     

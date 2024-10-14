@@ -299,7 +299,7 @@
      
              <div class="Rating">
     <%
-        int rating = Feed.getRating();  // assuming Feed is a valid object
+        int rating = Feed.getRating();  
         for (int i = 0; i < rating; i++) {
     %>
         <i class="fas fa-star"></i>
@@ -452,7 +452,7 @@
             </div>
         </div>
     
-        <!-- Font Awesome Icons (for the icons in the info section) -->
+
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         
     </section>
